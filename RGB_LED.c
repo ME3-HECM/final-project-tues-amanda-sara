@@ -1,11 +1,3 @@
-/*
- * File:   RGB_LED.c
- * Author: s
- *
- * Created on November 27, 2021, 11:31 AM
- */
-
-
 #include <xc.h>
 #include "RGB_LED.h"
 

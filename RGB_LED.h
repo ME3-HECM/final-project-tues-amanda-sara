@@ -1,4 +1,3 @@
-
 #ifndef _RGB_LED_H
 #define	_RGB_LED_H
 
@@ -10,4 +9,3 @@ void greenLED(void);
 void blueLED(void);
 
 #endif
-
