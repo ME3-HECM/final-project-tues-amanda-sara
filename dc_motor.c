@@ -4,7 +4,10 @@
 #define LOW 50
 #define HIGH 50
 
-// function initialise T2 and PWM for DC motor control
+/*************************************************
+ * initDCmotorsPWM
+ * function initialise T2 and PWM for DC motor control
+ *****************************************************/
 void initDCmotorsPWM(int PWMperiod){
 	// timer 2 config
     T2CONbits.CKPS=0b100; // 1:16 prescaler
@@ -36,9 +39,10 @@ void initDCmotorsPWM(int PWMperiod){
     RC7PPS=0x0B; //PMW7 on RC7
 }
 
-
-
-// function to set PWM output from the values in the motor structure
+/*****************
+ * setMotorPWM
+ * function to set PWM output from the values in the motor structure
+ ************************************/
 void setMotorPWM(struct DC_motor *m)
 {
 	int PWMduty; //tmp variable to store PWM duty cycle
@@ -61,9 +65,10 @@ void setMotorPWM(struct DC_motor *m)
 	}
 }
 
-
-
-//function to stop the robot gradually 
+/********************************
+ * stop
+ * function to stop the robot gradually 
+ ***********************************/
 void stop(struct DC_motor *mL, struct DC_motor *mR)
 {
     // need to slowly bring both motors to a stop
@@ -78,9 +83,10 @@ void stop(struct DC_motor *mL, struct DC_motor *mR)
     }
 }
 
-
-
-//function to make the robot turn left 
+/**************************
+ * turnLeft
+ * function to make the robot turn left 
+ **************************/
 void turnLeft(struct DC_motor *mL, struct DC_motor *mR)
 {
     // in order for it to make it turn on the spot: (Assume it was stationary before)
@@ -101,9 +107,10 @@ void turnLeft(struct DC_motor *mL, struct DC_motor *mR)
     }
 }
 
-
-
-//function to make the robot turn right 
+/*******************
+ * turnRight
+ * function to make the robot turn right 
+ **************************************/
 void turnRight(struct DC_motor *mL, struct DC_motor *mR)
 {
     // in order for it to make it turn on the spot: (Assume it was stationary before)
@@ -124,9 +131,10 @@ void turnRight(struct DC_motor *mL, struct DC_motor *mR)
     }
 }
 
-
-
-//function to make the robot go straight
+/****************************
+ * fullSpeedAhead
+ * function to make the robot go straight
+ *********************************/
 void fullSpeedAhead(struct DC_motor *mL, struct DC_motor *mR)
 {
     // Assume it was stationary before

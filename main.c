@@ -22,13 +22,37 @@
  * See The C programming language, second edition, pp.88-89
  **************************************************************************************/
 #include <xc.h>                     // Include processor files
+#include "ADC.h"
 #include "color.h"
-#include "RGB_LED.h"
 #include "dc_motor.h"
+#include "i2c.h"
+#include "interrupts.h"
+#include "RGB_LED.h"
 
 /***************
  * Main function
  ***************/
 void main(void) {
+    // Initialisation functions
     color_click_init();
+    button_init();
+    
+    // Colour calibration routine
+    
+    
+    // Motor calibration routine
+    
+    
+    while(1) {
+        // Check battery level
+        // Monitor the battery voltage via an analogue input pin.
+        // The voltage at BAT-VSENSE will always be one third of that at the battery.
+    }
 }
+
+// Additional LEDs
+H.LAMPS; //H.LAMPS turns on the front white LEDs and rear red LEDs, at a reduced brightness.
+M.BEAM; //M.BEAM and BRAKE enable you to turn these LEDs on at full brightness.
+BRAKE;
+TURN-L; //The turn signals have not hardware based brightness control.
+TURN-R;

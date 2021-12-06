@@ -2,6 +2,10 @@
 #include "color.h"
 #include "i2c.h"
 
+/***************************
+ * color_click_init
+ * Function used to initialise the colour click module using I2C
+ ***************************/
 void color_click_init(void)
 {   
     //setup colour sensor via i2c interface
@@ -18,7 +22,14 @@ void color_click_init(void)
 	color_writetoaddr(0x01, 0xD5);
 }
 
-void color_writetoaddr(char address, char value){
+/********************
+ * color_writetoaddr
+ * Function used to write to the colour click module
+ * address is the register within the colour click to write to
+ * value is the value that will be written to that address
+ ************************/
+void color_writetoaddr(char address, char value)
+{
     I2C_2_Master_Start();         //Start condition
     I2C_2_Master_Write(0x52 | 0x00);     //7 bit device address + Write mode
     I2C_2_Master_Write(0x80 | address);    //command + register address
@@ -26,6 +37,11 @@ void color_writetoaddr(char address, char value){
     I2C_2_Master_Stop();          //Stop condition
 }
 
+/********************
+ * color_read_Red
+ * Function used to read the red channel
+ * Returns a 16 bit ADC value representing colour intensity
+ *********************/
 unsigned int color_read_Red(void)
 {
 	unsigned int tmp;
@@ -39,4 +55,3 @@ unsigned int color_read_Red(void)
 	I2C_2_Master_Stop();          //Stop condition
 	return tmp;
 }
-
