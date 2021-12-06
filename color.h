@@ -9,7 +9,7 @@
 //definition of RGB structure
 
 typedef struct {
-    unsigned int R, G, B;
+    unsigned int R, G, B, C;
 } RGB_val;
 
 /********************************************
@@ -31,5 +31,6 @@ void color_writetoaddr(char address, char value);
 unsigned int color_read_Red(void);
 unsigned int color_read_Green(void);
 unsigned int color_read_Blue(void);
+unsigned int color_read_Clear(void);
 
 #endif

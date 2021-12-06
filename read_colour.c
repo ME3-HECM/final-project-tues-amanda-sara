@@ -17,6 +17,7 @@ RGB_val read_colour(RGB_val current) {
     current.R = color_read_Red();
     current.G = color_read_Green();
     current.B = color_read_Blue();
+    current.C = color_read_Clear();
 
     return current;
 }

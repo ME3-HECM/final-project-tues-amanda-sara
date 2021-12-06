@@ -19,7 +19,7 @@ endif
 endif
 
 # Environment
-MKDIR=mkdir -p
+MKDIR=gnumkdir -p
 RM=rm -f 
 MV=mv 
 CP=cp 
@@ -57,17 +57,17 @@ OBJECTDIR=build/${CND_CONF}/${IMAGE_TYPE}
 DISTDIR=dist/${CND_CONF}/${IMAGE_TYPE}
 
 # Source Files Quoted if spaced
-SOURCEFILES_QUOTED_IF_SPACED=color.c i2c.c RGB_LED.c main.c dc_motor.c interrupts.c ADC.c read_colour.c serial.c
+SOURCEFILES_QUOTED_IF_SPACED=color.c i2c.c RGB_LED.c main.c dc_motor.c interrupts.c ADC.c serial.c read_colour.c
 
 # Object Files Quoted if spaced
-OBJECTFILES_QUOTED_IF_SPACED=${OBJECTDIR}/color.p1 ${OBJECTDIR}/i2c.p1 ${OBJECTDIR}/RGB_LED.p1 ${OBJECTDIR}/main.p1 ${OBJECTDIR}/dc_motor.p1 ${OBJECTDIR}/interrupts.p1 ${OBJECTDIR}/ADC.p1 ${OBJECTDIR}/read_colour.p1 ${OBJECTDIR}/serial.p1
-POSSIBLE_DEPFILES=${OBJECTDIR}/color.p1.d ${OBJECTDIR}/i2c.p1.d ${OBJECTDIR}/RGB_LED.p1.d ${OBJECTDIR}/main.p1.d ${OBJECTDIR}/dc_motor.p1.d ${OBJECTDIR}/interrupts.p1.d ${OBJECTDIR}/ADC.p1.d ${OBJECTDIR}/read_colour.p1.d ${OBJECTDIR}/serial.p1.d
+OBJECTFILES_QUOTED_IF_SPACED=${OBJECTDIR}/color.p1 ${OBJECTDIR}/i2c.p1 ${OBJECTDIR}/RGB_LED.p1 ${OBJECTDIR}/main.p1 ${OBJECTDIR}/dc_motor.p1 ${OBJECTDIR}/interrupts.p1 ${OBJECTDIR}/ADC.p1 ${OBJECTDIR}/serial.p1 ${OBJECTDIR}/read_colour.p1
+POSSIBLE_DEPFILES=${OBJECTDIR}/color.p1.d ${OBJECTDIR}/i2c.p1.d ${OBJECTDIR}/RGB_LED.p1.d ${OBJECTDIR}/main.p1.d ${OBJECTDIR}/dc_motor.p1.d ${OBJECTDIR}/interrupts.p1.d ${OBJECTDIR}/ADC.p1.d ${OBJECTDIR}/serial.p1.d ${OBJECTDIR}/read_colour.p1.d
 
 # Object Files
-OBJECTFILES=${OBJECTDIR}/color.p1 ${OBJECTDIR}/i2c.p1 ${OBJECTDIR}/RGB_LED.p1 ${OBJECTDIR}/main.p1 ${OBJECTDIR}/dc_motor.p1 ${OBJECTDIR}/interrupts.p1 ${OBJECTDIR}/ADC.p1 ${OBJECTDIR}/read_colour.p1 ${OBJECTDIR}/serial.p1
+OBJECTFILES=${OBJECTDIR}/color.p1 ${OBJECTDIR}/i2c.p1 ${OBJECTDIR}/RGB_LED.p1 ${OBJECTDIR}/main.p1 ${OBJECTDIR}/dc_motor.p1 ${OBJECTDIR}/interrupts.p1 ${OBJECTDIR}/ADC.p1 ${OBJECTDIR}/serial.p1 ${OBJECTDIR}/read_colour.p1
 
 # Source Files
-SOURCEFILES=color.c i2c.c RGB_LED.c main.c dc_motor.c interrupts.c ADC.c read_colour.c serial.c
+SOURCEFILES=color.c i2c.c RGB_LED.c main.c dc_motor.c interrupts.c ADC.c serial.c read_colour.c
 
 
 
@@ -150,14 +150,6 @@ ${OBJECTDIR}/ADC.p1: ADC.c  nbproject/Makefile-${CND_CONF}.mk
 	@-${MV} ${OBJECTDIR}/ADC.d ${OBJECTDIR}/ADC.p1.d 
 	@${FIXDEPS} ${OBJECTDIR}/ADC.p1.d $(SILENT) -rsi ${MP_CC_DIR}../  
 	
-${OBJECTDIR}/read_colour.p1: read_colour.c  nbproject/Makefile-${CND_CONF}.mk 
-	@${MKDIR} "${OBJECTDIR}" 
-	@${RM} ${OBJECTDIR}/read_colour.p1.d 
-	@${RM} ${OBJECTDIR}/read_colour.p1 
-	${MP_CC} $(MP_EXTRA_CC_PRE) -mcpu=$(MP_PROCESSOR_OPTION) -c  -D__DEBUG=1   -mdfp="${DFP_DIR}/xc8"  -fno-short-double -fno-short-float -memi=wordwrite -O0 -fasmfile -maddrqual=ignore -xassembler-with-cpp -mwarn=-3 -Wa,-a -DXPRJ_default=$(CND_CONF)  -msummary=-psect,-class,+mem,-hex,-file  -ginhx32 -Wl,--data-init -mno-keep-startup -mno-download -mdefault-config-bits $(COMPARISON_BUILD)  -std=c99 -gdwarf-3 -mstack=compiled:auto:auto:auto     -o ${OBJECTDIR}/read_colour.p1 read_colour.c 
-	@-${MV} ${OBJECTDIR}/read_colour.d ${OBJECTDIR}/read_colour.p1.d 
-	@${FIXDEPS} ${OBJECTDIR}/read_colour.p1.d $(SILENT) -rsi ${MP_CC_DIR}../  
-	
 ${OBJECTDIR}/serial.p1: serial.c  nbproject/Makefile-${CND_CONF}.mk 
 	@${MKDIR} "${OBJECTDIR}" 
 	@${RM} ${OBJECTDIR}/serial.p1.d 
@@ -165,6 +157,14 @@ ${OBJECTDIR}/serial.p1: serial.c  nbproject/Makefile-${CND_CONF}.mk
 	${MP_CC} $(MP_EXTRA_CC_PRE) -mcpu=$(MP_PROCESSOR_OPTION) -c  -D__DEBUG=1   -mdfp="${DFP_DIR}/xc8"  -fno-short-double -fno-short-float -memi=wordwrite -O0 -fasmfile -maddrqual=ignore -xassembler-with-cpp -mwarn=-3 -Wa,-a -DXPRJ_default=$(CND_CONF)  -msummary=-psect,-class,+mem,-hex,-file  -ginhx32 -Wl,--data-init -mno-keep-startup -mno-download -mdefault-config-bits $(COMPARISON_BUILD)  -std=c99 -gdwarf-3 -mstack=compiled:auto:auto:auto     -o ${OBJECTDIR}/serial.p1 serial.c 
 	@-${MV} ${OBJECTDIR}/serial.d ${OBJECTDIR}/serial.p1.d 
 	@${FIXDEPS} ${OBJECTDIR}/serial.p1.d $(SILENT) -rsi ${MP_CC_DIR}../  
+	
+${OBJECTDIR}/read_colour.p1: read_colour.c  nbproject/Makefile-${CND_CONF}.mk 
+	@${MKDIR} "${OBJECTDIR}" 
+	@${RM} ${OBJECTDIR}/read_colour.p1.d 
+	@${RM} ${OBJECTDIR}/read_colour.p1 
+	${MP_CC} $(MP_EXTRA_CC_PRE) -mcpu=$(MP_PROCESSOR_OPTION) -c  -D__DEBUG=1   -mdfp="${DFP_DIR}/xc8"  -fno-short-double -fno-short-float -memi=wordwrite -O0 -fasmfile -maddrqual=ignore -xassembler-with-cpp -mwarn=-3 -Wa,-a -DXPRJ_default=$(CND_CONF)  -msummary=-psect,-class,+mem,-hex,-file  -ginhx32 -Wl,--data-init -mno-keep-startup -mno-download -mdefault-config-bits $(COMPARISON_BUILD)  -std=c99 -gdwarf-3 -mstack=compiled:auto:auto:auto     -o ${OBJECTDIR}/read_colour.p1 read_colour.c 
+	@-${MV} ${OBJECTDIR}/read_colour.d ${OBJECTDIR}/read_colour.p1.d 
+	@${FIXDEPS} ${OBJECTDIR}/read_colour.p1.d $(SILENT) -rsi ${MP_CC_DIR}../  
 	
 else
 ${OBJECTDIR}/color.p1: color.c  nbproject/Makefile-${CND_CONF}.mk 
@@ -223,14 +223,6 @@ ${OBJECTDIR}/ADC.p1: ADC.c  nbproject/Makefile-${CND_CONF}.mk
 	@-${MV} ${OBJECTDIR}/ADC.d ${OBJECTDIR}/ADC.p1.d 
 	@${FIXDEPS} ${OBJECTDIR}/ADC.p1.d $(SILENT) -rsi ${MP_CC_DIR}../  
 	
-${OBJECTDIR}/read_colour.p1: read_colour.c  nbproject/Makefile-${CND_CONF}.mk 
-	@${MKDIR} "${OBJECTDIR}" 
-	@${RM} ${OBJECTDIR}/read_colour.p1.d 
-	@${RM} ${OBJECTDIR}/read_colour.p1 
-	${MP_CC} $(MP_EXTRA_CC_PRE) -mcpu=$(MP_PROCESSOR_OPTION) -c   -mdfp="${DFP_DIR}/xc8"  -fno-short-double -fno-short-float -memi=wordwrite -O0 -fasmfile -maddrqual=ignore -xassembler-with-cpp -mwarn=-3 -Wa,-a -DXPRJ_default=$(CND_CONF)  -msummary=-psect,-class,+mem,-hex,-file  -ginhx32 -Wl,--data-init -mno-keep-startup -mno-download -mdefault-config-bits $(COMPARISON_BUILD)  -std=c99 -gdwarf-3 -mstack=compiled:auto:auto:auto     -o ${OBJECTDIR}/read_colour.p1 read_colour.c 
-	@-${MV} ${OBJECTDIR}/read_colour.d ${OBJECTDIR}/read_colour.p1.d 
-	@${FIXDEPS} ${OBJECTDIR}/read_colour.p1.d $(SILENT) -rsi ${MP_CC_DIR}../  
-	
 ${OBJECTDIR}/serial.p1: serial.c  nbproject/Makefile-${CND_CONF}.mk 
 	@${MKDIR} "${OBJECTDIR}" 
 	@${RM} ${OBJECTDIR}/serial.p1.d 
@@ -238,6 +230,14 @@ ${OBJECTDIR}/serial.p1: serial.c  nbproject/Makefile-${CND_CONF}.mk
 	${MP_CC} $(MP_EXTRA_CC_PRE) -mcpu=$(MP_PROCESSOR_OPTION) -c   -mdfp="${DFP_DIR}/xc8"  -fno-short-double -fno-short-float -memi=wordwrite -O0 -fasmfile -maddrqual=ignore -xassembler-with-cpp -mwarn=-3 -Wa,-a -DXPRJ_default=$(CND_CONF)  -msummary=-psect,-class,+mem,-hex,-file  -ginhx32 -Wl,--data-init -mno-keep-startup -mno-download -mdefault-config-bits $(COMPARISON_BUILD)  -std=c99 -gdwarf-3 -mstack=compiled:auto:auto:auto     -o ${OBJECTDIR}/serial.p1 serial.c 
 	@-${MV} ${OBJECTDIR}/serial.d ${OBJECTDIR}/serial.p1.d 
 	@${FIXDEPS} ${OBJECTDIR}/serial.p1.d $(SILENT) -rsi ${MP_CC_DIR}../  
+	
+${OBJECTDIR}/read_colour.p1: read_colour.c  nbproject/Makefile-${CND_CONF}.mk 
+	@${MKDIR} "${OBJECTDIR}" 
+	@${RM} ${OBJECTDIR}/read_colour.p1.d 
+	@${RM} ${OBJECTDIR}/read_colour.p1 
+	${MP_CC} $(MP_EXTRA_CC_PRE) -mcpu=$(MP_PROCESSOR_OPTION) -c   -mdfp="${DFP_DIR}/xc8"  -fno-short-double -fno-short-float -memi=wordwrite -O0 -fasmfile -maddrqual=ignore -xassembler-with-cpp -mwarn=-3 -Wa,-a -DXPRJ_default=$(CND_CONF)  -msummary=-psect,-class,+mem,-hex,-file  -ginhx32 -Wl,--data-init -mno-keep-startup -mno-download -mdefault-config-bits $(COMPARISON_BUILD)  -std=c99 -gdwarf-3 -mstack=compiled:auto:auto:auto     -o ${OBJECTDIR}/read_colour.p1 read_colour.c 
+	@-${MV} ${OBJECTDIR}/read_colour.d ${OBJECTDIR}/read_colour.p1.d 
+	@${FIXDEPS} ${OBJECTDIR}/read_colour.p1.d $(SILENT) -rsi ${MP_CC_DIR}../  
 	
 endif
 
@@ -284,7 +284,7 @@ endif
 # Enable dependency checking
 .dep.inc: .depcheck-impl
 
-DEPFILES=$(shell "${PATH_TO_IDE_BIN}"mplabwildcard ${POSSIBLE_DEPFILES})
+DEPFILES=$(shell mplabwildcard ${POSSIBLE_DEPFILES})
 ifneq (${DEPFILES},)
 include ${DEPFILES}
 endif

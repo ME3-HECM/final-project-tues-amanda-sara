@@ -22,6 +22,7 @@
  * See The C programming language, second edition, pp.88-89
  **************************************************************************************/
 #include <xc.h>                     // Include processor files
+#include <stdio.h>
 #include "ADC.h"
 #include "color.h"
 #include "dc_motor.h"
@@ -45,27 +46,30 @@ void main(void) {
     
     TRISHbits.TRISH3 = 0;
     LATHbits.LATH3 = 0;
-    
-    color_writetoaddr(0x00, 0x01);
 
     // Colour calibration routine
-    
     whiteLED(1);
+    TRISDbits.TRISD3 = 0;
+    LATDbits.LATD3 = 1;
     
     RGB_val initial; 
-    initial = read_colour(initial); //read ambient light value
+//    initial = read_colour(initial); //read ambient light value
     
     // Motor calibration routine
     RGB_val current;
     
     while(1) {
         
-        sendCharSerial4(initial.R>>8);
-        __delay_ms(200);
-        sendCharSerial4(initial.G>>8);
-        __delay_ms(200);
-        sendCharSerial4(initial.B>>8);
-        __delay_ms(200);       
+        initial = read_colour(initial); //read ambient light value
+        
+        char buf[40];
+        unsigned int tmpR = initial.R;
+        unsigned int tmpG = initial.G;
+        unsigned int tmpB = initial.B;
+        unsigned int tmpC = initial.C;
+        sprintf(buf,"%i %i %i %i\n",tmpR,tmpG,tmpB,tmpC);
+        sendStringSerial4(buf);
+        __delay_ms(500);      
 
         // Check battery level
         // Monitor the battery voltage via an analogue input pin.
