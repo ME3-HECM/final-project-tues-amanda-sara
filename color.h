@@ -7,11 +7,10 @@
 
 
 //definition of RGB structure
-struct RGB_val {
-	unsigned int R;
-	unsigned int G;
-	unsigned int B;
-};
+
+typedef struct {
+    unsigned int R, G, B;
+} RGB_val;
 
 /********************************************
  *  Function to initialise the colour click module using I2C
@@ -30,5 +29,7 @@ void color_writetoaddr(char address, char value);
  *	Returns a 16 bit ADC value representing colour intensity
  ***********************************************/
 unsigned int color_read_Red(void);
+unsigned int color_read_Green(void);
+unsigned int color_read_Blue(void);
 
 #endif

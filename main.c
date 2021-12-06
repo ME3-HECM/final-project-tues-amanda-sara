@@ -28,22 +28,45 @@
 #include "i2c.h"
 #include "interrupts.h"
 #include "RGB_LED.h"
+#include "read_colour.h"
+#include "serial.h"
+
 
 /***************
  * Main function
  ***************/
 void main(void) {
     // Initialisation functions
+    I2C_2_Master_Init();
     color_click_init();
-    button_init();
+    RGB_init();
+    initUSART4();
+//    button_init();
     
+    TRISHbits.TRISH3 = 0;
+    LATHbits.LATH3 = 0;
+    
+    color_writetoaddr(0x00, 0x01);
+
     // Colour calibration routine
     
+    whiteLED(1);
+    
+    RGB_val initial; 
+    initial = read_colour(initial); //read ambient light value
     
     // Motor calibration routine
-    
+    RGB_val current;
     
     while(1) {
+        
+        sendCharSerial4(initial.R>>8);
+        __delay_ms(200);
+        sendCharSerial4(initial.G>>8);
+        __delay_ms(200);
+        sendCharSerial4(initial.B>>8);
+        __delay_ms(200);       
+
         // Check battery level
         // Monitor the battery voltage via an analogue input pin.
         // The voltage at BAT-VSENSE will always be one third of that at the battery.
@@ -51,8 +74,8 @@ void main(void) {
 }
 
 // Additional LEDs
-H.LAMPS; //H.LAMPS turns on the front white LEDs and rear red LEDs, at a reduced brightness.
-M.BEAM; //M.BEAM and BRAKE enable you to turn these LEDs on at full brightness.
-BRAKE;
-TURN-L; //The turn signals have not hardware based brightness control.
-TURN-R;
+//H.LAMPS; //H.LAMPS turns on the front white LEDs and rear red LEDs, at a reduced brightness.
+//M.BEAM; //M.BEAM and BRAKE enable you to turn these LEDs on at full brightness.
+//BRAKE;
+//TURN-L; //The turn signals have not hardware based brightness control.
+//TURN-R;

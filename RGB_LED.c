@@ -15,26 +15,8 @@ void RGB_init(void) {
     LATFbits.LATF7 = 0;
 }
 
-/*****************
- * redLED
- * Function used to
- *************************/
-void redLED(void){
-    LATGbits.LATG1 = !LATGbits.LATG1;
-}
-
-/****************
- * greenLED
- * Function used to
- **************************/
-void greenLED(void){
-    LATAbits.LATA4 = !LATAbits.LATA4;
-}
-
-/*****************
- * blueLED
- * Function used to
- ***********************/
-void blueLED(void){
-    LATFbits.LATF7 = !LATFbits.LATF7;
+void whiteLED(unsigned char on_off) {
+    redLED = on_off;
+    greenLED = on_off;
+    blueLED = on_off;
 }

@@ -10,6 +10,8 @@
       <itemPath>dc_motor.h</itemPath>
       <itemPath>interrupts.h</itemPath>
       <itemPath>ADC.h</itemPath>
+      <itemPath>read_colour.h</itemPath>
+      <itemPath>serial.h</itemPath>
     </logicalFolder>
     <logicalFolder name="LinkerScript"
                    displayName="Linker Files"
@@ -25,6 +27,8 @@
       <itemPath>dc_motor.c</itemPath>
       <itemPath>interrupts.c</itemPath>
       <itemPath>ADC.c</itemPath>
+      <itemPath>read_colour.c</itemPath>
+      <itemPath>serial.c</itemPath>
     </logicalFolder>
     <logicalFolder name="ExternalFiles"
                    displayName="Important Files"
@@ -43,10 +47,10 @@
         <targetDevice>PIC18F67K40</targetDevice>
         <targetHeader></targetHeader>
         <targetPluginBoard></targetPluginBoard>
-        <platformTool>noID</platformTool>
+        <platformTool>pk4hybrid</platformTool>
         <languageToolchain>XC8</languageToolchain>
         <languageToolchainVersion>2.32</languageToolchainVersion>
-        <platform>3</platform>
+        <platform>4</platform>
       </toolsSet>
       <packs>
         <pack name="PIC18F-K_DFP" vendor="Microchip" version="1.4.87"/>
