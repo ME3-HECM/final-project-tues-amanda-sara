@@ -42,4 +42,10 @@ RGB_val read_card(RGB_val current) {
     return current;
 }
 
+void check_red(unsigned int initial, unsigned int current) {
+    unsigned int diff
+    diff = current - initial;
+    if(diff>150) LATHbits.LATH3 = !LATHbits.LATH3;
+}
+
 

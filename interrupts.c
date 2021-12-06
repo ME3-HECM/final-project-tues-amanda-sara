@@ -1,5 +1,7 @@
 #include <xc.h>
-//#include "interrupts.h"
+#include "interrupts.h"
+#include "color.h"
+#include "i2c.h"
 
 /****************************************************************************************************
  * Interrupts_init
@@ -7,6 +9,25 @@
  * Turn on the interrupt sources, peripheral interrupts and global interrupts
  * It's a good idea to turn on global interrupts last, once all other interrupt configuration is done
  ****************************************************************************************************/
+
+void interrupts_init(void){
+    TRISBbits.TRISB1 = 1;
+    ANSELBbits.ANSELB1 = 0;
+//    INT1PPS=0x09;
+    
+    PIE0bits.INT1IE = 1; //enable external interrupt
+    IPR0bits.INT1IP = 1; //set clear channel interrupt to high priority 
+    
+    color_writetoaddr(0x04, 0x14);
+    color_writetoaddr(0x05, 0x05);
+    color_writetoaddr(0x06, 0x6C);
+    color_writetoaddr(0x07, 0x07);
+    
+    INTCONbits.IPEN = 1;
+    INTCONbits.PEIE = 1;
+    INTCONbits.GIE = 1;
+}
+
 //void Interrupts_init(dateandtime current) {
 //    if (current.hour<1 || current.hour>=5) {    // Check if start up timing is outside 1am-5am
 //        PIE2bits.C1IE = 1;                      // If yes, enable comparator interrupt source
@@ -26,24 +47,22 @@
  * Special function for high priority interrupt service routine
  * Make sure all enabled interrupts are checked and flags cleared
  ****************************************************************/
-volatile unsigned char sunrise_flag=0;          // Declare global variable to toggle when sunrise occurs (to minimise code within interrupts)
-volatile unsigned char sunset_flag=0;           // Declare global variable to toggle when sunset occurs (to minimise code within interrupts)
+//volatile unsigned char sunrise_flag=0;          // Declare global variable to toggle when sunrise occurs (to minimise code within interrupts)
+//volatile unsigned char sunset_flag=0;           // Declare global variable to toggle when sunset occurs (to minimise code within interrupts)
 
-//void __interrupt(high_priority) HighISR() {
-//    if (PIR2bits.C1IF) {                        // Check the interrupt source
-//        LATDbits.LATD7 = !LATDbits.LATD7;       // Toggle the LED1 when the LDR goes from light-to-dark (sunset) or dark-to-light (sunrise)
-//        if (LATDbits.LATD7==0) {sunrise_flag=1;}// If LED1 just got switched off, it is sunrise
-//        else {sunset_flag=1;}                   // If LED1 just got switched on, it is sunset
-//        PIR2bits.C1IF = 0;                      // Clear the interrupt flag
-//    }
-//}
+void __interrupt(high_priority) HighISR() {
+    if (PIR0bits.INT1IF) {                        // Check the interrupt source
+        LATHbits.LATH3 = !LATHbits.LATH3;       // Toggle the LED1 when the LDR goes from light-to-dark (sunset) or dark-to-light (sunrise)
+        PIR0bits.INT1IF = 0;                      // Clear the interrupt flag
+    }
+}
 
 /****************************************************************
  * Low ISR
  * Special function for low priority interrupt service routine
  * Make sure all enabled interrupts are checked and flags cleared
  ****************************************************************/
-volatile unsigned char time_flag=0;             // Declare global variable to toggle when timer overflows (to minimise code within interrupts)
+//volatile unsigned char time_flag=0;             // Declare global variable to toggle when timer overflows (to minimise code within interrupts)
 
 //void __interrupt(low_priority) LowISR() {
 //    if (PIR0bits.TMR0IF) {                      // Check the interrupt source

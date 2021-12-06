@@ -42,6 +42,7 @@ void main(void) {
     color_click_init();
     RGB_init();
     initUSART4();
+    interrupts_init();
 //    button_init();
     
     TRISHbits.TRISH3 = 0;
@@ -58,18 +59,23 @@ void main(void) {
     // Motor calibration routine
     RGB_val current;
     
+
     while(1) {
         
-        initial = read_colour(initial); //read ambient light value
+        current = read_colour(current); //read ambient light value
+        
+        check_red(initial.R, current.R);
         
         char buf[40];
-        unsigned int tmpR = initial.R;
-        unsigned int tmpG = initial.G;
-        unsigned int tmpB = initial.B;
-        unsigned int tmpC = initial.C;
+        unsigned int tmpR = current.R;
+        unsigned int tmpG = current.G;
+        unsigned int tmpB = current.B;
+        unsigned int tmpC = current.C;
         sprintf(buf,"%i %i %i %i\n",tmpR,tmpG,tmpB,tmpC);
         sendStringSerial4(buf);
         __delay_ms(500);      
+        
+        
 
         // Check battery level
         // Monitor the battery voltage via an analogue input pin.
