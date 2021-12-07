@@ -24179,93 +24179,89 @@ extern __attribute__((nonreentrant)) void _delay3(unsigned char);
 
 
 
-# 1 "./color.h" 1
-# 11 "./color.h"
+# 1 "./color_click.h" 1
+# 12 "./color_click.h"
 typedef struct {
     unsigned int R, G, B, C;
 } RGB_val;
 
 
-
-
-void color_click_init(void);
-
-
-
-
-
-
-void color_writetoaddr(char address, char value);
-
-
-
-
-
-unsigned int color_read_Red(void);
-unsigned int color_read_Green(void);
-unsigned int color_read_Blue(void);
-unsigned int color_read_Clear(void);
+void colorclick_init(void);
+void colorclick_cyclingRGBLED(void);
+void colorclick_toggleClearLED(unsigned char toggle);
+void colorclick_writetoaddr(char address, char value);
+unsigned int colorclick_readRed(void);
+unsigned int colorclick_readGreen(void);
+unsigned int colorclick_readBlue(void);
+unsigned int colorclick_readClear(void);
+void colorclick_int_clear(void);
+void colorclick_int_init(void);
+RGB_val colorclick_readColour(RGB_val current);
 # 7 "./interrupts.h" 2
 # 1 "./i2c.h" 1
-# 13 "./i2c.h"
+# 10 "./i2c.h"
 void I2C_2_Master_Init(void);
-
-
-
-
 void I2C_2_Master_Idle(void);
-
-
-
-
 void I2C_2_Master_Start(void);
-
-
-
-
 void I2C_2_Master_RepStart(void);
-
-
-
-
 void I2C_2_Master_Stop(void);
-
-
-
-
 void I2C_2_Master_Write(unsigned char data_byte);
-
-
-
-
 unsigned char I2C_2_Master_Read(unsigned char ack);
 # 8 "./interrupts.h" 2
-# 18 "./interrupts.h"
+
+
+
+
+volatile unsigned char card_flag=0;
+volatile unsigned char battery_flag=0;
+
+
 void interrupts_init(void);
 void __attribute__((picinterrupt(("high_priority")))) HighISR();
 # 3 "interrupts.c" 2
-# 13 "interrupts.c"
+# 12 "interrupts.c"
 void interrupts_init(void){
     TRISBbits.TRISB1 = 1;
     ANSELBbits.ANSELB1 = 0;
-
+    INT1PPS=0x09;
 
     PIE0bits.INT1IE = 1;
+
+
     IPR0bits.INT1IP = 1;
 
-    color_writetoaddr(0x04, 0x14);
-    color_writetoaddr(0x05, 0x05);
-    color_writetoaddr(0x06, 0x6C);
-    color_writetoaddr(0x07, 0x07);
+
+    colorclick_int_clear();
 
     INTCONbits.IPEN = 1;
+    INTCONbits.INT1EDG = 0;
     INTCONbits.PEIE = 1;
     INTCONbits.GIE = 1;
 }
-# 53 "interrupts.c"
+
+
+
+
+
+
+
 void __attribute__((picinterrupt(("high_priority")))) HighISR() {
     if (PIR0bits.INT1IF) {
         LATHbits.LATH3 = !LATHbits.LATH3;
+        colorclick_int_clear();
         PIR0bits.INT1IF = 0;
     }
+}
+
+
+
+
+
+
+
+void __attribute__((picinterrupt(("low_priority")))) LowISR() {
+
+
+
+
 }

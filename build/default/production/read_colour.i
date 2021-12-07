@@ -1,4 +1,4 @@
-# 1 "read_colour.c"
+# 1 "color_card.c"
 # 1 "<built-in>" 1
 # 1 "<built-in>" 3
 # 288 "<built-in>" 3
@@ -6,15 +6,7 @@
 # 1 "<built-in>" 2
 # 1 "/Applications/microchip/mplabx/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8/pic/include/language_support.h" 1 3
 # 2 "<built-in>" 2
-# 1 "read_colour.c" 2
-
-
-
-
-
-
-
-
+# 1 "color_card.c" 2
 # 1 "/Applications/microchip/mplabx/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8/pic/include/xc.h" 1 3
 # 18 "/Applications/microchip/mplabx/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8/pic/include/xc.h" 3
 extern const char __xc8_OPTIM_SPEED;
@@ -24180,68 +24172,51 @@ extern __attribute__((nonreentrant)) void _delaywdt(unsigned long);
 #pragma intrinsic(_delay3)
 extern __attribute__((nonreentrant)) void _delay3(unsigned char);
 # 33 "/Applications/microchip/mplabx/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8/pic/include/xc.h" 2 3
-# 10 "read_colour.c" 2
-# 1 "./RGB_LED.h" 1
-# 10 "./RGB_LED.h"
-void RGB_init(void);
-void whiteLED(unsigned char on_off);
-# 11 "read_colour.c" 2
-# 1 "./color.h" 1
-# 11 "./color.h"
+# 2 "color_card.c" 2
+# 1 "./color_click.h" 1
+# 12 "./color_click.h"
 typedef struct {
     unsigned int R, G, B, C;
 } RGB_val;
 
 
+void colorclick_init(void);
+void colorclick_cyclingRGBLED(void);
+void colorclick_toggleClearLED(unsigned char toggle);
+void colorclick_writetoaddr(char address, char value);
+unsigned int colorclick_readRed(void);
+unsigned int colorclick_readGreen(void);
+unsigned int colorclick_readBlue(void);
+unsigned int colorclick_readClear(void);
+void colorclick_int_clear(void);
+void colorclick_int_init(void);
+RGB_val colorclick_readColour(RGB_val current);
+# 3 "color_card.c" 2
 
+RGB_val read_card(RGB_val current) {
+    LATGbits.LATG1 = 1;
+    current.R = colorclick_readRed();
+    _delay((unsigned long)((1000)*(64000000/4000.0)));
+    LATGbits.LATG1 = 0;
+    _delay((unsigned long)((20)*(64000000/4000.0)));
 
-void color_click_init(void);
+    LATAbits.LATA4 = 1;
+    current.G = colorclick_readGreen();
+    _delay((unsigned long)((1000)*(64000000/4000.0)));
+    LATAbits.LATA4 = 0;
+    _delay((unsigned long)((20)*(64000000/4000.0)));
 
-
-
-
-
-
-void color_writetoaddr(char address, char value);
-
-
-
-
-
-unsigned int color_read_Red(void);
-unsigned int color_read_Green(void);
-unsigned int color_read_Blue(void);
-unsigned int color_read_Clear(void);
-# 12 "read_colour.c" 2
-
-
-
-RGB_val read_colour(RGB_val current) {
-
-    current.R = color_read_Red();
-    current.G = color_read_Green();
-    current.B = color_read_Blue();
-    current.C = color_read_Clear();
+    LATFbits.LATF7 = 1;
+    current.B = colorclick_readBlue();
+    _delay((unsigned long)((1000)*(64000000/4000.0)));
+    LATFbits.LATF7 = 0;
+    _delay((unsigned long)((20)*(64000000/4000.0)));
 
     return current;
 }
 
-RGB_val read_card(RGB_val current) {
-
-    LATGbits.LATG1 = 1;
-    current.R = color_read_Red();
-    _delay((unsigned long)((1000)*(64000000/4000.0)));
-    LATGbits.LATG1 = 0;
-
-    LATAbits.LATA4 = 1;
-    current.G = color_read_Green();
-    _delay((unsigned long)((1000)*(64000000/4000.0)));
-    LATAbits.LATA4 = 0;
-
-    LATFbits.LATF7 = 1;
-    current.B = color_read_Blue();
-    _delay((unsigned long)((1000)*(64000000/4000.0)));
-    LATFbits.LATF7 = 0;
-
-    return current;
+void check_red(unsigned int initial, unsigned int current) {
+    unsigned int diff;
+    diff = current - initial;
+    if(diff>150) LATHbits.LATH3 = !LATHbits.LATH3;
 }

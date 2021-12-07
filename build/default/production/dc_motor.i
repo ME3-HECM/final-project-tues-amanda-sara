@@ -24174,29 +24174,28 @@ extern __attribute__((nonreentrant)) void _delay3(unsigned char);
 # 33 "/Applications/microchip/mplabx/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8/pic/include/xc.h" 2 3
 # 2 "dc_motor.c" 2
 # 1 "./dc_motor.h" 1
-
-
-
-
-
-
-
-struct DC_motor {
+# 23 "./dc_motor.h"
+typedef struct {
     char power;
     char direction;
     unsigned char *dutyHighByte;
     unsigned char *dir_LAT;
     char dir_pin;
     int PWMperiod;
-};
+} DC_motor;
 
 
-void initDCmotorsPWM(int PWMperiod);
-void setMotorPWM(struct DC_motor *m);
-void stop(struct DC_motor *mL, struct DC_motor *mR);
-void turnLeft(struct DC_motor *mL, struct DC_motor *mR);
-void turnRight(struct DC_motor *mL, struct DC_motor *mR);
-void fullSpeedAhead(struct DC_motor *mL, struct DC_motor *mR);
+void DCmotors_init(int PWMperiod);
+void clicker2buttons_init(void);
+void clicker2LEDs_init(void);
+void buggyLEDs_init(void);
+unsigned char check_battery_level(void);
+void setMotorPWM(DC_motor *m);
+void forward(DC_motor *mL, DC_motor *mR);
+void reverse(DC_motor *mL, DC_motor *mR);
+void stop(DC_motor *mL, DC_motor *mR);
+void turnLeft(DC_motor *mL, DC_motor *mR);
+void turnRight(DC_motor *mL, DC_motor *mR);
 # 3 "dc_motor.c" 2
 
 
@@ -24206,7 +24205,8 @@ void fullSpeedAhead(struct DC_motor *mL, struct DC_motor *mR);
 
 
 
-void initDCmotorsPWM(int PWMperiod){
+void DCmotors_init(int PWMperiod)
+{
 
     T2CONbits.CKPS=0b100;
     T2HLTbits.MODE=0b00000;
@@ -24235,22 +24235,26 @@ void initDCmotorsPWM(int PWMperiod){
 
     RE2PPS=0x0A;
     RC7PPS=0x0B;
+
+
+    clicker2buttons_init();
+    clicker2LEDs_init();
+    buggyLEDs_init();
+
+    LATDbits.LATD3 = 1;
 }
 
 
 
 
 
-void setMotorPWM(struct DC_motor *m)
+void setMotorPWM(DC_motor *m)
 {
  int PWMduty;
 
  if (m->direction){
-
   PWMduty=m->PWMperiod - ((int)(m->power)*(m->PWMperiod))/100;
- }
- else {
-
+ } else {
   PWMduty=((int)(m->power)*(m->PWMperiod))/100;
  }
 
@@ -24266,9 +24270,108 @@ void setMotorPWM(struct DC_motor *m)
 
 
 
-
-void stop(struct DC_motor *mL, struct DC_motor *mR)
+void clicker2buttons_init(void)
 {
+    TRISFbits.TRISF2 = 0;
+    TRISFbits.TRISF3 = 0;
+
+    LATFbits.LATF2 = 0;
+    LATFbits.LATF3 = 0;
+}
+
+
+
+
+void clicker2LEDs_init(void)
+{
+    TRISDbits.TRISD7 = 0;
+    TRISHbits.TRISH3 = 0;
+
+    LATDbits.LATD7 = 0;
+    LATHbits.LATH3 = 0;
+}
+
+
+
+
+void buggyLEDs_init(void)
+{
+    TRISHbits.TRISH1 = 0;
+    TRISDbits.TRISD3 = 0;
+    TRISDbits.TRISD4 = 0;
+    TRISFbits.TRISF0 = 0;
+    TRISHbits.TRISH0 = 0;
+
+    LATHbits.LATH1 = 0;
+    LATDbits.LATD3 = 0;
+    LATDbits.LATD4 = 0;
+    LATFbits.LATF0 = 0;
+    LATHbits.LATH0 = 0;
+}
+
+
+
+
+
+
+
+unsigned char check_battery_level(void)
+{
+    unsigned char tmp;
+
+    return tmp;
+}
+
+
+
+
+
+void forward(DC_motor *mL, DC_motor *mR)
+{
+
+    mL->direction = 1;
+    mR->direction = 1;
+
+
+    while(((mL->power)!=100) && ((mR->power)!=100)){
+        mL->power+=10;
+        mR->power+=10;
+
+        setMotorPWM(mL);
+        setMotorPWM(mR);
+        _delay((unsigned long)((100)*(64000000/4000.0)));
+    }
+}
+
+
+
+
+
+void reverse(DC_motor *mL, DC_motor *mR)
+{
+
+    mL->direction = 0;
+    mR->direction = 0;
+
+
+    while(((mL->power)!=100) && ((mR->power)!=100)){
+        mL->power+=10;
+        mR->power+=10;
+
+        setMotorPWM(mL);
+        setMotorPWM(mR);
+        _delay((unsigned long)((100)*(64000000/4000.0)));
+    }
+}
+
+
+
+
+
+void stop(DC_motor *mL, DC_motor *mR)
+{
+    LATDbits.LATD4 = 1;
+
 
     while(((mL->power)!=0) && ((mR->power)!=0)){
         mL->power = mL->power - 10;
@@ -24279,22 +24382,24 @@ void stop(struct DC_motor *mL, struct DC_motor *mR)
         setMotorPWM(mR);
         _delay((unsigned long)((100)*(64000000/4000.0)));
     }
+
+    LATDbits.LATD4 = 0;
 }
 
 
 
 
 
-void turnLeft(struct DC_motor *mL, struct DC_motor *mR)
+void turnLeft(DC_motor *mL, DC_motor *mR)
 {
 
-
     mL->direction = 0;
-
     mR->direction = 1;
 
 
     while(((mL->power)!=50) || ((mR->power)!=50)){
+        LATFbits.LATF0 = !LATFbits.LATF0;
+
         if (mL->power<50) {mL->power+=5;}
         if (mR->power<50) {mR->power+=5;}
 
@@ -24309,42 +24414,19 @@ void turnLeft(struct DC_motor *mL, struct DC_motor *mR)
 
 
 
-void turnRight(struct DC_motor *mL, struct DC_motor *mR)
+void turnRight(DC_motor *mL, DC_motor *mR)
 {
 
-
     mL->direction = 1;
-
     mR->direction = 0;
 
 
     while(((mL->power)!=50) || ((mR->power)!=50)){
+        LATHbits.LATH0 = !LATHbits.LATH0;
+
         if (mL->power<50) {mL->power+=5;}
         if (mR->power<50) {mR->power+=5;}
 
-
-        setMotorPWM(mL);
-        setMotorPWM(mR);
-        _delay((unsigned long)((100)*(64000000/4000.0)));
-    }
-}
-
-
-
-
-
-void fullSpeedAhead(struct DC_motor *mL, struct DC_motor *mR)
-{
-
-
-    mL->direction = 1;
-
-    mR->direction = 1;
-
-
-    while(((mL->power)!=100) && ((mR->power)!=100)){
-        mL->power+=10;
-        mR->power+=10;
 
         setMotorPWM(mL);
         setMotorPWM(mR);

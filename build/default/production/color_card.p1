@@ -1,29 +1,67 @@
 Version 4.0 HI-TECH Software Intermediate Code
-[p mainexit ]
-"10 ./ADC.h
-[; ;./ADC.h: 10: void ADC_init(void);
-[v _ADC_init `(v ~T0 @X0 0 ef ]
-"17 ./color_click.h
-[; ;./color_click.h: 17: void colorclick_init(void);
-[v _colorclick_init `(v ~T0 @X0 0 ef ]
-"16 ./interrupts.h
-[; ;./interrupts.h: 16: void interrupts_init(void);
-[v _interrupts_init `(v ~T0 @X0 0 ef ]
-"23 ./serial.h
-[; ;./serial.h: 23: void USART4_init(void);
-[v _USART4_init `(v ~T0 @X0 0 ef ]
-"30109 /Applications/microchip/mplabx/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8/pic/include/proc/pic18f67k40.h
-[; ;/Applications/microchip/mplabx/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8/pic/include/proc/pic18f67k40.h: 30109:     struct {
-[s S1395 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
-[n S1395 . TRISH0 TRISH1 TRISH2 TRISH3 ]
-"30108
-[; ;/Applications/microchip/mplabx/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8/pic/include/proc/pic18f67k40.h: 30108: typedef union {
-[u S1394 `S1395 1 ]
-[n S1394 . . ]
-"30116
-[; ;/Applications/microchip/mplabx/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8/pic/include/proc/pic18f67k40.h: 30116: extern volatile TRISHbits_t TRISHbits __attribute__((address(0xF88)));
-[v _TRISHbits `VS1394 ~T0 @X0 0 e@3976 ]
-"29280
+"12 ./color_click.h
+[; ;./color_click.h: 12: typedef struct {
+[s S2019 `ui 1 `ui 1 `ui 1 `ui 1 ]
+[n S2019 . R G B C ]
+"29191 /Applications/microchip/mplabx/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8/pic/include/proc/pic18f67k40.h
+[; ;/Applications/microchip/mplabx/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8/pic/include/proc/pic18f67k40.h: 29191:     struct {
+[s S1361 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S1361 . LATG0 LATG1 LATG2 LATG3 LATG4 . LATG6 LATG7 ]
+"29201
+[; ;/Applications/microchip/mplabx/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8/pic/include/proc/pic18f67k40.h: 29201:     struct {
+[s S1362 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S1362 . LG0 LG1 LG2 LG3 LG4 ]
+"29190
+[; ;/Applications/microchip/mplabx/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8/pic/include/proc/pic18f67k40.h: 29190: typedef union {
+[u S1360 `S1361 1 `S1362 1 ]
+[n S1360 . . . ]
+"29209
+[; ;/Applications/microchip/mplabx/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8/pic/include/proc/pic18f67k40.h: 29209: extern volatile LATGbits_t LATGbits __attribute__((address(0xF7F)));
+[v _LATGbits `VS1360 ~T0 @X0 0 e@3967 ]
+"21 ./color_click.h
+[; ;./color_click.h: 21: unsigned int colorclick_readRed(void);
+[v _colorclick_readRed `(ui ~T0 @X0 0 ef ]
+[v F14184 `(v ~T0 @X0 1 tf1`ul ]
+"203 /Applications/microchip/mplabx/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8/pic/include/pic18.h
+[v __delay `JF14184 ~T0 @X0 0 e ]
+[p i __delay ]
+"28519 /Applications/microchip/mplabx/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8/pic/include/proc/pic18f67k40.h
+[; ;/Applications/microchip/mplabx/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8/pic/include/proc/pic18f67k40.h: 28519:     struct {
+[s S1343 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S1343 . LATA0 LATA1 LATA2 LATA3 LATA4 LATA5 LATA6 LATA7 ]
+"28529
+[; ;/Applications/microchip/mplabx/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8/pic/include/proc/pic18f67k40.h: 28529:     struct {
+[s S1344 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S1344 . LA0 LA1 LA2 LA3 LA4 LA5 LA6 LA7 ]
+"28518
+[; ;/Applications/microchip/mplabx/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8/pic/include/proc/pic18f67k40.h: 28518: typedef union {
+[u S1342 `S1343 1 `S1344 1 ]
+[n S1342 . . . ]
+"28540
+[; ;/Applications/microchip/mplabx/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8/pic/include/proc/pic18f67k40.h: 28540: extern volatile LATAbits_t LATAbits __attribute__((address(0xF79)));
+[v _LATAbits `VS1342 ~T0 @X0 0 e@3961 ]
+"22 ./color_click.h
+[; ;./color_click.h: 22: unsigned int colorclick_readGreen(void);
+[v _colorclick_readGreen `(ui ~T0 @X0 0 ef ]
+"29079 /Applications/microchip/mplabx/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8/pic/include/proc/pic18f67k40.h
+[; ;/Applications/microchip/mplabx/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8/pic/include/proc/pic18f67k40.h: 29079:     struct {
+[s S1358 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S1358 . LATF0 LATF1 LATF2 LATF3 LATF4 LATF5 LATF6 LATF7 ]
+"29089
+[; ;/Applications/microchip/mplabx/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8/pic/include/proc/pic18f67k40.h: 29089:     struct {
+[s S1359 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S1359 . LF0 LF1 LF2 LF3 LF4 LF5 LF6 LF7 ]
+"29078
+[; ;/Applications/microchip/mplabx/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8/pic/include/proc/pic18f67k40.h: 29078: typedef union {
+[u S1357 `S1358 1 `S1359 1 ]
+[n S1357 . . . ]
+"29100
+[; ;/Applications/microchip/mplabx/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8/pic/include/proc/pic18f67k40.h: 29100: extern volatile LATFbits_t LATFbits __attribute__((address(0xF7E)));
+[v _LATFbits `VS1357 ~T0 @X0 0 e@3966 ]
+"23 ./color_click.h
+[; ;./color_click.h: 23: unsigned int colorclick_readBlue(void);
+[v _colorclick_readBlue `(ui ~T0 @X0 0 ef ]
+"29280 /Applications/microchip/mplabx/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8/pic/include/proc/pic18f67k40.h
 [; ;/Applications/microchip/mplabx/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8/pic/include/proc/pic18f67k40.h: 29280:     struct {
 [s S1364 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
 [n S1364 . LATH0 LATH1 LATH2 LATH3 ]
@@ -54,31 +92,6 @@ Version 4.0 HI-TECH Software Intermediate Code
 "29309
 [; ;/Applications/microchip/mplabx/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8/pic/include/proc/pic18f67k40.h: 29309: extern volatile LATHbits_t LATHbits __attribute__((address(0xF80)));
 [v _LATHbits `VS1363 ~T0 @X0 0 e@3968 ]
-"12 ./color_click.h
-[; ;./color_click.h: 12: typedef struct {
-[s S2021 `ui 1 `ui 1 `ui 1 `ui 1 ]
-[n S2021 . R G B C ]
-"27
-[; ;./color_click.h: 27: RGB_val colorclick_readColour(RGB_val current);
-[v _colorclick_readColour `(S2021 ~T0 @X0 0 ef1`S2021 ]
-"19
-[; ;./color_click.h: 19: void colorclick_toggleClearLED(unsigned char toggle);
-[v _colorclick_toggleClearLED `(v ~T0 @X0 0 ef1`uc ]
-"113 /Applications/microchip/xc8/v2.32/pic/include/c99/stdio.h
-[v _sprintf `(i ~T0 @X0 0 e1v`*uc`*Cuc ]
-"26 ./serial.h
-[; ;./serial.h: 26: void sendStringSerial4(char *string);
-[v _sendStringSerial4 `(v ~T0 @X0 0 ef1`*uc ]
-[v F14184 `(v ~T0 @X0 1 tf1`ul ]
-"203 /Applications/microchip/mplabx/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8/pic/include/pic18.h
-[v __delay `JF14184 ~T0 @X0 0 e ]
-[p i __delay ]
-"11 main.c
-[p x FEXTOSC  =  HS          ]
-"12
-[p x RSTOSC  =  EXTOSC_4PLL  ]
-"18
-[p x WDTE  =  OFF  ]
 "54 /Applications/microchip/mplabx/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8/pic/include/proc/pic18f67k40.h
 [; ;/Applications/microchip/mplabx/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8/pic/include/proc/pic18f67k40.h: 54: __asm("PPSLOCK equ 0DEFh");
 [; <" PPSLOCK equ 0DEFh ;# ">
@@ -2053,129 +2066,86 @@ Version 4.0 HI-TECH Software Intermediate Code
 "40981
 [; ;/Applications/microchip/mplabx/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8/pic/include/proc/pic18f67k40.h: 40981: __asm("TOSU equ 0FFFh");
 [; <" TOSU equ 0FFFh ;# ">
-"13 ./serial.h
-[; ;./serial.h: 13: volatile char EUSART4RXbuf[20];
-[v _EUSART4RXbuf `Vuc ~T0 @X0 -> 20 `i e ]
-"14
-[; ;./serial.h: 14: volatile char RxBufWriteCnt=0;
-[v _RxBufWriteCnt `Vuc ~T0 @X0 1 e ]
-[i _RxBufWriteCnt
--> -> 0 `i `uc
-]
-"15
-[; ;./serial.h: 15: volatile char RxBufReadCnt=0;
-[v _RxBufReadCnt `Vuc ~T0 @X0 1 e ]
-[i _RxBufReadCnt
--> -> 0 `i `uc
-]
-"17
-[; ;./serial.h: 17: volatile char EUSART4TXbuf[60];
-[v _EUSART4TXbuf `Vuc ~T0 @X0 -> 60 `i e ]
-"18
-[; ;./serial.h: 18: volatile char TxBufWriteCnt=0;
-[v _TxBufWriteCnt `Vuc ~T0 @X0 1 e ]
-[i _TxBufWriteCnt
--> -> 0 `i `uc
-]
-"19
-[; ;./serial.h: 19: volatile char TxBufReadCnt=0;
-[v _TxBufReadCnt `Vuc ~T0 @X0 1 e ]
-[i _TxBufReadCnt
--> -> 0 `i `uc
-]
-"12 ./interrupts.h
-[; ;./interrupts.h: 12: volatile unsigned char card_flag=0;
-[v _card_flag `Vuc ~T0 @X0 1 e ]
-[i _card_flag
--> -> 0 `i `uc
-]
-"13
-[; ;./interrupts.h: 13: volatile unsigned char battery_flag=0;
-[v _battery_flag `Vuc ~T0 @X0 1 e ]
-[i _battery_flag
--> -> 0 `i `uc
-]
-[v $root$_main `(v ~T0 @X0 0 e ]
-"37 main.c
-[; ;main.c: 37: void main(void) {
-[v _main `(v ~T0 @X0 1 ef ]
+"4 color_card.c
+[; ;color_card.c: 4: RGB_val read_card(RGB_val current) {
+[v _read_card `(S2019 ~T0 @X0 1 ef1`S2019 ]
 {
-[e :U _main ]
+[e :U _read_card ]
+[v _current `S2019 ~T0 @X0 1 r1 ]
 [f ]
-"39
-[; ;main.c: 39:     ADC_init();
-[e ( _ADC_init ..  ]
-"40
-[; ;main.c: 40:     colorclick_init();
-[e ( _colorclick_init ..  ]
-"41
-[; ;main.c: 41:     interrupts_init();
-[e ( _interrupts_init ..  ]
-"43
-[; ;main.c: 43:     USART4_init();
-[e ( _USART4_init ..  ]
-"45
-[; ;main.c: 45:     TRISHbits.TRISH3 = 0;
-[e = . . _TRISHbits 0 3 -> -> 0 `i `uc ]
-"46
-[; ;main.c: 46:     LATHbits.LATH3 = 0;
-[e = . . _LATHbits 0 3 -> -> 0 `i `uc ]
-"49
-[; ;main.c: 49:     RGB_val initial;
-[v _initial `S2021 ~T0 @X0 1 a ]
-"50
-[; ;main.c: 50:     RGB_val current;
-[v _current `S2021 ~T0 @X0 1 a ]
-"51
-[; ;main.c: 51:     initial = colorclick_readColour(initial);
-[e = _initial ( _colorclick_readColour (1 _initial ]
-"53
-[; ;main.c: 53:     colorclick_toggleClearLED(1);
-[e ( _colorclick_toggleClearLED (1 -> -> 1 `i `uc ]
-"58
-[; ;main.c: 58:     while(1) {
-[e :U 2025 ]
+"5
+[; ;color_card.c: 5:     LATGbits.LATG1 = 1;
+[e = . . _LATGbits 0 1 -> -> 1 `i `uc ]
+"6
+[; ;color_card.c: 6:     current.R = colorclick_readRed();
+[e = . _current 0 ( _colorclick_readRed ..  ]
+"7
+[; ;color_card.c: 7:     _delay((unsigned long)((1000)*(64000000/4000.0)));
+[e ( __delay (1 -> * -> -> 1000 `i `d / -> -> 64000000 `l `d .4000.0 `ul ]
+"8
+[; ;color_card.c: 8:     LATGbits.LATG1 = 0;
+[e = . . _LATGbits 0 1 -> -> 0 `i `uc ]
+"9
+[; ;color_card.c: 9:     _delay((unsigned long)((20)*(64000000/4000.0)));
+[e ( __delay (1 -> * -> -> 20 `i `d / -> -> 64000000 `l `d .4000.0 `ul ]
+"11
+[; ;color_card.c: 11:     LATAbits.LATA4 = 1;
+[e = . . _LATAbits 0 4 -> -> 1 `i `uc ]
+"12
+[; ;color_card.c: 12:     current.G = colorclick_readGreen();
+[e = . _current 1 ( _colorclick_readGreen ..  ]
+"13
+[; ;color_card.c: 13:     _delay((unsigned long)((1000)*(64000000/4000.0)));
+[e ( __delay (1 -> * -> -> 1000 `i `d / -> -> 64000000 `l `d .4000.0 `ul ]
+"14
+[; ;color_card.c: 14:     LATAbits.LATA4 = 0;
+[e = . . _LATAbits 0 4 -> -> 0 `i `uc ]
+"15
+[; ;color_card.c: 15:     _delay((unsigned long)((20)*(64000000/4000.0)));
+[e ( __delay (1 -> * -> -> 20 `i `d / -> -> 64000000 `l `d .4000.0 `ul ]
+"17
+[; ;color_card.c: 17:     LATFbits.LATF7 = 1;
+[e = . . _LATFbits 0 7 -> -> 1 `i `uc ]
+"18
+[; ;color_card.c: 18:     current.B = colorclick_readBlue();
+[e = . _current 2 ( _colorclick_readBlue ..  ]
+"19
+[; ;color_card.c: 19:     _delay((unsigned long)((1000)*(64000000/4000.0)));
+[e ( __delay (1 -> * -> -> 1000 `i `d / -> -> 64000000 `l `d .4000.0 `ul ]
+"20
+[; ;color_card.c: 20:     LATFbits.LATF7 = 0;
+[e = . . _LATFbits 0 7 -> -> 0 `i `uc ]
+"21
+[; ;color_card.c: 21:     _delay((unsigned long)((20)*(64000000/4000.0)));
+[e ( __delay (1 -> * -> -> 20 `i `d / -> -> 64000000 `l `d .4000.0 `ul ]
+"23
+[; ;color_card.c: 23:     return current;
+[e ) _current ]
+[e $UE 2020  ]
+"24
+[; ;color_card.c: 24: }
+[e :UE 2020 ]
+}
+"26
+[; ;color_card.c: 26: void check_red(unsigned int initial, unsigned int current) {
+[v _check_red `(v ~T0 @X0 1 ef2`ui`ui ]
 {
-"60
-[; ;main.c: 60:         current = colorclick_readColour(current);
-[e = _current ( _colorclick_readColour (1 _current ]
-"63
-[; ;main.c: 63:         char buf[40];
-[v _buf `uc ~T0 @X0 -> 40 `i a ]
-"64
-[; ;main.c: 64:         unsigned int tmpR = current.R;
-[v _tmpR `ui ~T0 @X0 1 a ]
-[e = _tmpR . _current 0 ]
-"65
-[; ;main.c: 65:         unsigned int tmpG = current.G;
-[v _tmpG `ui ~T0 @X0 1 a ]
-[e = _tmpG . _current 1 ]
-"66
-[; ;main.c: 66:         unsigned int tmpB = current.B;
-[v _tmpB `ui ~T0 @X0 1 a ]
-[e = _tmpB . _current 2 ]
-"67
-[; ;main.c: 67:         unsigned int tmpC = current.C;
-[v _tmpC `ui ~T0 @X0 1 a ]
-[e = _tmpC . _current 3 ]
-"68
-[; ;main.c: 68:         sprintf(buf,"%i %i %i %i\n",tmpR,tmpG,tmpB,tmpC);
-[e ( _sprintf (1 , , , , (. , &U _buf :s 1C _tmpR _tmpG _tmpB _tmpC ]
-"69
-[; ;main.c: 69:         sendStringSerial4(buf);
-[e ( _sendStringSerial4 (1 &U _buf ]
-"70
-[; ;main.c: 70:         _delay((unsigned long)((500)*(64000000/4000.0)));
-[e ( __delay (1 -> * -> -> 500 `i `d / -> -> 64000000 `l `d .4000.0 `ul ]
-"71
-[; ;main.c: 71:     }
+[e :U _check_red ]
+[v _initial `ui ~T0 @X0 1 r1 ]
+[v _current `ui ~T0 @X0 1 r2 ]
+[f ]
+"27
+[; ;color_card.c: 27:     unsigned int diff;
+[v _diff `ui ~T0 @X0 1 a ]
+"28
+[; ;color_card.c: 28:     diff = current - initial;
+[e = _diff - _current _initial ]
+"29
+[; ;color_card.c: 29:     if(diff>150) LATHbits.LATH3 = !LATHbits.LATH3;
+[e $ ! > _diff -> -> 150 `i `ui 2022  ]
+[e = . . _LATHbits 0 3 -> -> ! != -> . . _LATHbits 0 3 `i -> 0 `i `i `uc ]
+[e :U 2022 ]
+"30
+[; ;color_card.c: 30: }
+[e :UE 2021 ]
 }
-[e :U 2024 ]
-[e $U 2025  ]
-[e :U 2026 ]
-"72
-[; ;main.c: 72: }
-[e :UE 2023 ]
-}
-[p f _sprintf 8388736 ]
-[a 1C 37 105 32 37 105 32 37 105 32 37 105 10 0 ]

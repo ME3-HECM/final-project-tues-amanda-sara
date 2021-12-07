@@ -24332,107 +24332,70 @@ char *tempnam(const char *, const char *);
 void ADC_init(void);
 unsigned char ADC_getval(void);
 # 27 "main.c" 2
-# 1 "./color.h" 1
-# 11 "./color.h"
+# 1 "./color_card.h" 1
+
+
+
+
+# 1 "./color_click.h" 1
+# 12 "./color_click.h"
 typedef struct {
     unsigned int R, G, B, C;
 } RGB_val;
 
 
+void colorclick_init(void);
+void colorclick_cyclingRGBLED(void);
+void colorclick_toggleClearLED(unsigned char toggle);
+void colorclick_writetoaddr(char address, char value);
+unsigned int colorclick_readRed(void);
+unsigned int colorclick_readGreen(void);
+unsigned int colorclick_readBlue(void);
+unsigned int colorclick_readClear(void);
+void colorclick_int_clear(void);
+void colorclick_int_init(void);
+RGB_val colorclick_readColour(RGB_val current);
+# 6 "./color_card.h" 2
 
 
-void color_click_init(void);
 
-
-
-
-
-
-void color_writetoaddr(char address, char value);
-
-
-
-
-
-unsigned int color_read_Red(void);
-unsigned int color_read_Green(void);
-unsigned int color_read_Blue(void);
-unsigned int color_read_Clear(void);
+RGB_val read_card(RGB_val current);
 # 28 "main.c" 2
+
 # 1 "./dc_motor.h" 1
-
-
-
-
-
-
-
-struct DC_motor {
+# 23 "./dc_motor.h"
+typedef struct {
     char power;
     char direction;
     unsigned char *dutyHighByte;
     unsigned char *dir_LAT;
     char dir_pin;
     int PWMperiod;
-};
+} DC_motor;
 
 
-void initDCmotorsPWM(int PWMperiod);
-void setMotorPWM(struct DC_motor *m);
-void stop(struct DC_motor *mL, struct DC_motor *mR);
-void turnLeft(struct DC_motor *mL, struct DC_motor *mR);
-void turnRight(struct DC_motor *mL, struct DC_motor *mR);
-void fullSpeedAhead(struct DC_motor *mL, struct DC_motor *mR);
-# 29 "main.c" 2
-# 1 "./i2c.h" 1
-# 13 "./i2c.h"
-void I2C_2_Master_Init(void);
-
-
-
-
-void I2C_2_Master_Idle(void);
-
-
-
-
-void I2C_2_Master_Start(void);
-
-
-
-
-void I2C_2_Master_RepStart(void);
-
-
-
-
-void I2C_2_Master_Stop(void);
-
-
-
-
-void I2C_2_Master_Write(unsigned char data_byte);
-
-
-
-
-unsigned char I2C_2_Master_Read(unsigned char ack);
+void DCmotors_init(int PWMperiod);
+void clicker2buttons_init(void);
+void clicker2LEDs_init(void);
+void buggyLEDs_init(void);
+unsigned char check_battery_level(void);
+void setMotorPWM(DC_motor *m);
+void forward(DC_motor *mL, DC_motor *mR);
+void reverse(DC_motor *mL, DC_motor *mR);
+void stop(DC_motor *mL, DC_motor *mR);
+void turnLeft(DC_motor *mL, DC_motor *mR);
+void turnRight(DC_motor *mL, DC_motor *mR);
 # 30 "main.c" 2
-# 1 "./interrupts.h" 1
-# 18 "./interrupts.h"
-void interrupts_init(void);
-void __attribute__((picinterrupt(("high_priority")))) HighISR();
+# 1 "./i2c.h" 1
+# 10 "./i2c.h"
+void I2C_2_Master_Init(void);
+void I2C_2_Master_Idle(void);
+void I2C_2_Master_Start(void);
+void I2C_2_Master_RepStart(void);
+void I2C_2_Master_Stop(void);
+void I2C_2_Master_Write(unsigned char data_byte);
+unsigned char I2C_2_Master_Read(unsigned char ack);
 # 31 "main.c" 2
-# 1 "./RGB_LED.h" 1
-# 10 "./RGB_LED.h"
-void RGB_init(void);
-void whiteLED(unsigned char on_off);
-# 32 "main.c" 2
-# 1 "./read_colour.h" 1
-# 10 "./read_colour.h"
-RGB_val read_colour(RGB_val current);
-RGB_val read_card(RGB_val current);
-# 33 "main.c" 2
 # 1 "./serial.h" 1
 # 13 "./serial.h"
 volatile char EUSART4RXbuf[20];
@@ -24445,7 +24408,7 @@ volatile char TxBufReadCnt=0;
 
 
 
-void initUSART4(void);
+void USART4_init(void);
 char getCharSerial4(void);
 void sendCharSerial4(unsigned int charToSend);
 void sendStringSerial4(char *string);
@@ -24461,51 +24424,53 @@ void putCharToTxBuf(char byte);
 char isDataInTxBuf (void);
 void TxBufferedString(char *string);
 void sendTxBuf(void);
-# 34 "main.c" 2
+# 32 "main.c" 2
+# 1 "./interrupts.h" 1
+# 12 "./interrupts.h"
+volatile unsigned char card_flag=0;
+volatile unsigned char battery_flag=0;
 
+
+void interrupts_init(void);
+void __attribute__((picinterrupt(("high_priority")))) HighISR();
+# 33 "main.c" 2
 
 
 
 
 void main(void) {
 
-    I2C_2_Master_Init();
-    color_click_init();
-    RGB_init();
-    initUSART4();
+    ADC_init();
+    colorclick_init();
     interrupts_init();
 
+    USART4_init();
 
     TRISHbits.TRISH3 = 0;
     LATHbits.LATH3 = 0;
 
 
-    whiteLED(1);
-    TRISDbits.TRISD3 = 0;
-    LATDbits.LATD3 = 1;
-
     RGB_val initial;
-
-
-
     RGB_val current;
+    initial = colorclick_readColour(initial);
+
+    colorclick_toggleClearLED(1);
+
+
 
 
     while(1) {
 
-        initial = read_colour(initial);
+        current = colorclick_readColour(current);
+
 
         char buf[40];
-        unsigned int tmpR = initial.R;
-        unsigned int tmpG = initial.G;
-        unsigned int tmpB = initial.B;
-        unsigned int tmpC = initial.C;
+        unsigned int tmpR = current.R;
+        unsigned int tmpG = current.G;
+        unsigned int tmpB = current.B;
+        unsigned int tmpC = current.C;
         sprintf(buf,"%i %i %i %i\n",tmpR,tmpG,tmpB,tmpC);
         sendStringSerial4(buf);
         _delay((unsigned long)((500)*(64000000/4000.0)));
-
-
-
-
     }
 }
