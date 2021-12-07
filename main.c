@@ -31,6 +31,10 @@
 #include "serial.h"
 #include "interrupts.h"
 
+volatile unsigned int clear_lower = 0;
+volatile unsigned int clear_upper = 0;
+volatile unsigned char card_flag;
+
 /***************
  * Main function
  ***************/
@@ -41,17 +45,25 @@ void main(void) {
     interrupts_init();
 //    DCmotors_init();
     USART4_init();
+    buggyLEDs_init();
     
     TRISHbits.TRISH3 = 0;
     LATHbits.LATH3 = 0;
 
     // Colour calibration routine
+    
+    colorclick_toggleClearLED(1);
+    MAINBEAM_LED = 1;
+    
+    __delay_ms(500);
+    
     RGB_val initial; 
     RGB_val current;
     initial = colorclick_readColour(initial); //read ambient light value
     
-    colorclick_toggleClearLED(1);
-    
+    clear_lower = initial.C - 100;
+    clear_upper = initial.C + 300;
+   
     // Motor calibration routine
     
     
@@ -68,5 +80,15 @@ void main(void) {
         sprintf(buf,"%i %i %i %i\n",tmpR,tmpG,tmpB,tmpC);
         sendStringSerial4(buf);
         __delay_ms(500);
+        sprintf(buf,"%i %i %i %i\n",initial.R,initial.G,initial.B,initial.C);
+        sendStringSerial4(buf);
+        __delay_ms(500);
+        
+        if(card_flag==1){
+            LATHbits.LATH3 = !LATHbits.LATH3;
+            card_flag = 0;
+        }
+        
+        
     }
 }

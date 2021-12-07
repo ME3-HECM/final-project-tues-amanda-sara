@@ -2,6 +2,14 @@
 #include "color_click.h"
 #include "i2c.h"
 
+#define AILTL 0x04
+#define AILTH 0x05
+#define AIHTL 0x06
+#define AIHTH 0x07
+
+volatile unsigned int clear_lower;
+volatile unsigned int clear_upper;
+
 /***************************************************************
  * colorclick_init
  * Function used to initialise the colour click module using I2C
@@ -181,9 +189,9 @@ void colorclick_int_init(void){
     colorclick_writetoaddr(0x00, 0b10011);
     __delay_ms(3);
     colorclick_writetoaddr(0x0C, 0b0100);
-    colorclick_writetoaddr(0x04, 0x14);
-    colorclick_writetoaddr(0x05, 0x05);
-    colorclick_writetoaddr(0x06, 0x6C);
-    colorclick_writetoaddr(0x07, 0x07);
+    colorclick_writetoaddr(AILTL, (clear_lower&&0b11111111));
+    colorclick_writetoaddr(AILTH, (clear_lower>>8));
+    colorclick_writetoaddr(AIHTL, (clear_upper&&0b11111111));
+    colorclick_writetoaddr(AIHTH, (clear_upper>>8));
     
 }

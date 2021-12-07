@@ -24427,13 +24427,17 @@ void sendTxBuf(void);
 # 32 "main.c" 2
 # 1 "./interrupts.h" 1
 # 12 "./interrupts.h"
-volatile unsigned char card_flag=0;
-volatile unsigned char battery_flag=0;
+volatile unsigned char card_flag = 0;
+volatile unsigned char battery_flag = 0;
 
 
 void interrupts_init(void);
 void __attribute__((picinterrupt(("high_priority")))) HighISR();
 # 33 "main.c" 2
+
+volatile unsigned int clear_lower = 0;
+volatile unsigned int clear_upper = 0;
+volatile unsigned char card_flag;
 
 
 
@@ -24445,16 +24449,24 @@ void main(void) {
     interrupts_init();
 
     USART4_init();
+    buggyLEDs_init();
 
     TRISHbits.TRISH3 = 0;
     LATHbits.LATH3 = 0;
 
 
+
+    colorclick_toggleClearLED(1);
+    LATDbits.LATD3 = 1;
+
+    _delay((unsigned long)((500)*(64000000/4000.0)));
+
     RGB_val initial;
     RGB_val current;
     initial = colorclick_readColour(initial);
 
-    colorclick_toggleClearLED(1);
+    clear_lower = initial.C - 100;
+    clear_upper = initial.C + 300;
 
 
 
@@ -24472,5 +24484,15 @@ void main(void) {
         sprintf(buf,"%i %i %i %i\n",tmpR,tmpG,tmpB,tmpC);
         sendStringSerial4(buf);
         _delay((unsigned long)((500)*(64000000/4000.0)));
+        sprintf(buf,"%i %i %i %i\n",initial.R,initial.G,initial.B,initial.C);
+        sendStringSerial4(buf);
+        _delay((unsigned long)((500)*(64000000/4000.0)));
+
+        if(card_flag==1){
+            LATHbits.LATH3 = !LATHbits.LATH3;
+            card_flag = 0;
+        }
+
+
     }
 }

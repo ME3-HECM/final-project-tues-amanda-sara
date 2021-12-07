@@ -24212,14 +24212,23 @@ unsigned char I2C_2_Master_Read(unsigned char ack);
 
 
 
-volatile unsigned char card_flag=0;
-volatile unsigned char battery_flag=0;
+volatile unsigned char card_flag = 0;
+volatile unsigned char battery_flag = 0;
 
 
 void interrupts_init(void);
 void __attribute__((picinterrupt(("high_priority")))) HighISR();
 # 3 "interrupts.c" 2
-# 12 "interrupts.c"
+
+
+
+volatile unsigned char card_flag;
+
+
+
+
+
+
 void interrupts_init(void){
     TRISBbits.TRISB1 = 1;
     ANSELBbits.ANSELB1 = 0;
@@ -24247,7 +24256,7 @@ void interrupts_init(void){
 
 void __attribute__((picinterrupt(("high_priority")))) HighISR() {
     if (PIR0bits.INT1IF) {
-        LATHbits.LATH3 = !LATHbits.LATH3;
+        card_flag = 1;
         colorclick_int_clear();
         PIR0bits.INT1IF = 0;
     }

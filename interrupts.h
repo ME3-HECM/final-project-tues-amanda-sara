@@ -9,8 +9,8 @@
 #define _XTAL_FREQ 64000000
 
 // This allows use of global variables in other source files
-volatile unsigned char card_flag=0;          // Declare global variable to toggle when ?
-volatile unsigned char battery_flag=0;             // Declare global variable to toggle when ?
+volatile unsigned char card_flag = 0;          // Declare global variable to toggle when ?
+volatile unsigned char battery_flag = 0;             // Declare global variable to toggle when ?
 
 // Function prototypes
 void interrupts_init(void);
