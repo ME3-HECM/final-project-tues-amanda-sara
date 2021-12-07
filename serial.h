@@ -20,7 +20,7 @@ volatile char TxBufReadCnt=0;
 
 
 //basic EUSART funcitons
-void initUSART4(void);
+void USART4_init(void);
 char getCharSerial4(void);
 void sendCharSerial4(unsigned int charToSend);
 void sendStringSerial4(char *string);
@@ -36,6 +36,5 @@ void putCharToTxBuf(char byte);
 char isDataInTxBuf (void);
 void TxBufferedString(char *string); //Send buffered string with interrupts
 void sendTxBuf(void);
-
 
 #endif
