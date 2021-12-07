@@ -22,6 +22,8 @@ unsigned int colorclick_readRed(void);
 unsigned int colorclick_readGreen(void);
 unsigned int colorclick_readBlue(void);
 unsigned int colorclick_readClear(void);
+void colorclick_int_clear(void);
+void colorclick_int_init(void);
 RGB_val colorclick_readColour(RGB_val current);
 
 #endif

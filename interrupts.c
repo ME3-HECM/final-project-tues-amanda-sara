@@ -12,12 +12,7 @@
 void interrupts_init(void){
     TRISBbits.TRISB1 = 1;
     ANSELBbits.ANSELB1 = 0;
-//    INT1PPS=0x09;
-    
-    colorclick_writetoaddr(0x04, 0x14);
-    colorclick_writetoaddr(0x05, 0x05);
-    colorclick_writetoaddr(0x06, 0x6C);
-    colorclick_writetoaddr(0x07, 0x07);
+    INT1PPS=0x09;
     
     PIE0bits.INT1IE = 1; //enable external interrupt source
     //PIE?bits.? = 1; //enable ? interrupt source
@@ -25,7 +20,10 @@ void interrupts_init(void){
     IPR0bits.INT1IP = 1; //set clear channel interrupt to high priority 
     //IPR?bits.? = 0; //set ? interrupt to low priority
     
-    INTCONbits.IPEN = 1;                        // Enable priority levels on interrupts
+    colorclick_int_clear();
+    
+    INTCONbits.IPEN = 1; // Enable priority levels on interrupts
+    INTCONbits.INT1EDG = 0; //falling edge
     INTCONbits.PEIE = 1;                        // Enable peripheral interrupts
     INTCONbits.GIE = 1;                         // Enable global interrupts (when this is off, all interrupts are deactivated)
 }
@@ -37,10 +35,11 @@ void interrupts_init(void){
  * Approaching card
  ****************************************************************/
 void __interrupt(high_priority) HighISR() {
-//    if (PIR?bits.?) {                        // Check the interrupt source
-//        card_flag=1;           // Toggle this variable to inform that ?
-//        PIR?bits.? = 0;                      // Clear the interrupt flag
-//    }
+    if (PIR0bits.INT1IF) {                        // Check the interrupt source
+        LATHbits.LATH3 = !LATHbits.LATH3;   // Toggle this variable to inform that ?
+        colorclick_int_clear();
+        PIR0bits.INT1IF = 0;                      // Clear the interrupt flag
+    }
 }
 
 /****************************************************************

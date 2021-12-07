@@ -41,16 +41,22 @@ void main(void) {
     interrupts_init();
 //    DCmotors_init();
     USART4_init();
+    
+    TRISHbits.TRISH3 = 0;
+    LATHbits.LATH3 = 0;
 
     // Colour calibration routine
     RGB_val initial; 
     RGB_val current;
     initial = colorclick_readColour(initial); //read ambient light value
     
+    colorclick_toggleClearLED(1);
+    
     // Motor calibration routine
     
     
     while(1) {
+        
         current = colorclick_readColour(current); //read ambient light value
         
         // Testing using serial communication

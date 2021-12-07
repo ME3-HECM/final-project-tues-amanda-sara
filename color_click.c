@@ -167,3 +167,23 @@ RGB_val colorclick_readColour(RGB_val current)
 
     return current;
 }
+
+
+void colorclick_int_clear(void){
+    I2C_2_Master_Start();         //Start condition
+    I2C_2_Master_Write(0x52 | 0x00);     //7 bit device address + Write mode
+    I2C_2_Master_Write(0b11100110);    //command + register address  
+    I2C_2_Master_Stop(); 
+    colorclick_int_init();
+}
+
+void colorclick_int_init(void){
+    colorclick_writetoaddr(0x00, 0b10011);
+    __delay_ms(3);
+    colorclick_writetoaddr(0x0C, 0b0100);
+    colorclick_writetoaddr(0x04, 0x14);
+    colorclick_writetoaddr(0x05, 0x05);
+    colorclick_writetoaddr(0x06, 0x6C);
+    colorclick_writetoaddr(0x07, 0x07);
+    
+}
