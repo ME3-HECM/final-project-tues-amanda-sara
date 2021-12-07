@@ -3,6 +3,7 @@
 #include "color_click.h"
 #include "i2c.h"
 
+volatile unsigned char card_flag;
 /****************************************************************************************************
  * Interrupts_init
  * Function to turn on interrupts and set if priority is used
@@ -35,8 +36,8 @@ void interrupts_init(void){
  * Approaching card
  ****************************************************************/
 void __interrupt(high_priority) HighISR() {
-    if (PIR0bits.INT1IF) {                        // Check the interrupt source
-        LATHbits.LATH3 = !LATHbits.LATH3;   // Toggle this variable to inform that ?
+    if (PIR0bits.INT1IF) {                        // Check the interrupt source 
+        card_flag = 1;                            // Toggle variable to run read card routine 
         colorclick_int_clear();
         PIR0bits.INT1IF = 0;                      // Clear the interrupt flag
     }
