@@ -1,4 +1,73 @@
 Version 4.0 HI-TECH Software Intermediate Code
+"29507 C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\proc\pic18f67k40.h
+[; ;C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\proc\pic18f67k40.h: 29507:     struct {
+[s S1375 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S1375 . TRISB0 TRISB1 TRISB2 TRISB3 TRISB4 TRISB5 TRISB6 TRISB7 ]
+"29506
+[; ;C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\proc\pic18f67k40.h: 29506: typedef union {
+[u S1374 `S1375 1 ]
+[n S1374 . . ]
+"29518
+[; ;C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\proc\pic18f67k40.h: 29518: extern volatile TRISBbits_t TRISBbits __attribute__((address(0xF82)));
+[v _TRISBbits `VS1374 ~T0 @X0 0 e@3970 ]
+"10758
+[; ;C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\proc\pic18f67k40.h: 10758:     struct {
+[s S518 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S518 . ANSELB0 ANSELB1 ANSELB2 ANSELB3 ANSELB4 ANSELB5 ANSELB6 ANSELB7 ]
+"10757
+[; ;C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\proc\pic18f67k40.h: 10757: typedef union {
+[u S517 `S518 1 ]
+[n S517 . . ]
+"10769
+[; ;C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\proc\pic18f67k40.h: 10769: extern volatile ANSELBbits_t ANSELBbits __attribute__((address(0xE9A)));
+[v _ANSELBbits `VS517 ~T0 @X0 0 e@3738 ]
+"20 ./color_click.h
+[; ;./color_click.h: 20: void colorclick_writetoaddr(char address, char value);
+[v _colorclick_writetoaddr `(v ~T0 @X0 0 ef2`uc`uc ]
+"4548 C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\proc\pic18f67k40.h
+[; ;C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\proc\pic18f67k40.h: 4548:     struct {
+[s S262 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S262 . INT0IE INT1IE INT2IE INT3IE IOCIE TMR0IE ]
+"4547
+[; ;C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\proc\pic18f67k40.h: 4547: typedef union {
+[u S261 `S262 1 ]
+[n S261 . . ]
+"4557
+[; ;C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\proc\pic18f67k40.h: 4557: extern volatile PIE0bits_t PIE0bits __attribute__((address(0xE29)));
+[v _PIE0bits `VS261 ~T0 @X0 0 e@3625 ]
+"4000
+[; ;C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\proc\pic18f67k40.h: 4000:     struct {
+[s S237 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S237 . INT0IP INT1IP INT2IP INT3IP IOCIP TMR0IP ]
+"3999
+[; ;C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\proc\pic18f67k40.h: 3999: typedef union {
+[u S236 `S237 1 ]
+[n S236 . . ]
+"4009
+[; ;C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\proc\pic18f67k40.h: 4009: extern volatile IPR0bits_t IPR0bits __attribute__((address(0xE1F)));
+[v _IPR0bits `VS236 ~T0 @X0 0 e@3615 ]
+"40532
+[; ;C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\proc\pic18f67k40.h: 40532:     struct {
+[s S1989 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S1989 . INT0EDG INT1EDG INT2EDG INT3EDG . IPEN PEIE_GIEL GIE_GIEH ]
+"40542
+[; ;C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\proc\pic18f67k40.h: 40542:     struct {
+[s S1990 :6 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S1990 . . PEIE GIE ]
+"40547
+[; ;C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\proc\pic18f67k40.h: 40547:     struct {
+[s S1991 :6 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S1991 . . GIEL GIEH ]
+"40531
+[; ;C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\proc\pic18f67k40.h: 40531: typedef union {
+[u S1988 `S1989 1 `S1990 1 `S1991 1 ]
+[n S1988 . . . . ]
+"40553
+[; ;C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\proc\pic18f67k40.h: 40553: extern volatile INTCONbits_t INTCONbits __attribute__((address(0xFF2)));
+[v _INTCONbits `VS1988 ~T0 @X0 0 e@4082 ]
+[t ~ __interrupt . k ]
+[t T2 __interrupt high_priority ]
+[t T3 __interrupt low_priority ]
 "54 C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\proc\pic18f67k40.h
 [; ;C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\proc\pic18f67k40.h: 54: __asm("PPSLOCK equ 0DEFh");
 [; <" PPSLOCK equ 0DEFh ;# ">
@@ -1973,21 +2042,80 @@ Version 4.0 HI-TECH Software Intermediate Code
 "40981
 [; ;C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\proc\pic18f67k40.h: 40981: __asm("TOSU equ 0FFFh");
 [; <" TOSU equ 0FFFh ;# ">
-"29 interrupts.c
-[; ;interrupts.c: 29: volatile unsigned char sunrise_flag=0;
-[v _sunrise_flag `Vuc ~T0 @X0 1 e ]
-[i _sunrise_flag
+"12 ./interrupts.h
+[; ;./interrupts.h: 12: volatile unsigned char card_flag=0;
+[v _card_flag `Vuc ~T0 @X0 1 e ]
+[i _card_flag
 -> -> 0 `i `uc
 ]
+"13
+[; ;./interrupts.h: 13: volatile unsigned char battery_flag=0;
+[v _battery_flag `Vuc ~T0 @X0 1 e ]
+[i _battery_flag
+-> -> 0 `i `uc
+]
+"12 interrupts.c
+[; ;interrupts.c: 12: void interrupts_init(void){
+[v _interrupts_init `(v ~T0 @X0 1 ef ]
+{
+[e :U _interrupts_init ]
+[f ]
+"13
+[; ;interrupts.c: 13:     TRISBbits.TRISB1 = 1;
+[e = . . _TRISBbits 0 1 -> -> 1 `i `uc ]
+"14
+[; ;interrupts.c: 14:     ANSELBbits.ANSELB1 = 0;
+[e = . . _ANSELBbits 0 1 -> -> 0 `i `uc ]
+"17
+[; ;interrupts.c: 17:     colorclick_writetoaddr(0x04, 0x14);
+[e ( _colorclick_writetoaddr (2 , -> -> 4 `i `uc -> -> 20 `i `uc ]
+"18
+[; ;interrupts.c: 18:     colorclick_writetoaddr(0x05, 0x05);
+[e ( _colorclick_writetoaddr (2 , -> -> 5 `i `uc -> -> 5 `i `uc ]
+"19
+[; ;interrupts.c: 19:     colorclick_writetoaddr(0x06, 0x6C);
+[e ( _colorclick_writetoaddr (2 , -> -> 6 `i `uc -> -> 108 `i `uc ]
+"20
+[; ;interrupts.c: 20:     colorclick_writetoaddr(0x07, 0x07);
+[e ( _colorclick_writetoaddr (2 , -> -> 7 `i `uc -> -> 7 `i `uc ]
+"22
+[; ;interrupts.c: 22:     PIE0bits.INT1IE = 1;
+[e = . . _PIE0bits 0 1 -> -> 1 `i `uc ]
+"25
+[; ;interrupts.c: 25:     IPR0bits.INT1IP = 1;
+[e = . . _IPR0bits 0 1 -> -> 1 `i `uc ]
+"28
+[; ;interrupts.c: 28:     INTCONbits.IPEN = 1;
+[e = . . _INTCONbits 0 5 -> -> 1 `i `uc ]
+"29
+[; ;interrupts.c: 29:     INTCONbits.PEIE = 1;
+[e = . . _INTCONbits 1 1 -> -> 1 `i `uc ]
 "30
-[; ;interrupts.c: 30: volatile unsigned char sunset_flag=0;
-[v _sunset_flag `Vuc ~T0 @X0 1 e ]
-[i _sunset_flag
--> -> 0 `i `uc
-]
-"46
-[; ;interrupts.c: 46: volatile unsigned char time_flag=0;
-[v _time_flag `Vuc ~T0 @X0 1 e ]
-[i _time_flag
--> -> 0 `i `uc
-]
+[; ;interrupts.c: 30:     INTCONbits.GIE = 1;
+[e = . . _INTCONbits 1 2 -> -> 1 `i `uc ]
+"31
+[; ;interrupts.c: 31: }
+[e :UE 2020 ]
+}
+[v $root$_HighISR `(v ~T0 @X0 0 e ]
+"39
+[; ;interrupts.c: 39: void __attribute__((picinterrupt(("high_priority")))) HighISR() {
+[v _HighISR `(v ~T2 @X0 1 ef ]
+{
+[e :U _HighISR ]
+[f ]
+"44
+[; ;interrupts.c: 44: }
+[e :UE 2021 ]
+}
+[v $root$_LowISR `(v ~T0 @X0 0 e ]
+"52
+[; ;interrupts.c: 52: void __attribute__((picinterrupt(("low_priority")))) LowISR() {
+[v _LowISR `(v ~T3 @X0 1 ef ]
+{
+[e :U _LowISR ]
+[f ]
+"57
+[; ;interrupts.c: 57: }
+[e :UE 2022 ]
+}

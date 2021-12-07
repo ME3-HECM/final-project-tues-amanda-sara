@@ -1,95 +1,24 @@
 Version 4.0 HI-TECH Software Intermediate Code
 [p mainexit ]
-"13 ./i2c.h
-[; ;./i2c.h: 13: void I2C_2_Master_Init(void);
-[v _I2C_2_Master_Init `(v ~T0 @X0 0 ef ]
-"18 ./color.h
-[; ;./color.h: 18: void color_click_init(void);
-[v _color_click_init `(v ~T0 @X0 0 ef ]
-"10 ./RGB_LED.h
-[; ;./RGB_LED.h: 10: void RGB_init(void);
-[v _RGB_init `(v ~T0 @X0 0 ef ]
+"10 ./ADC.h
+[; ;./ADC.h: 10: void ADC_init(void);
+[v _ADC_init `(v ~T0 @X0 0 ef ]
+"17 ./color_click.h
+[; ;./color_click.h: 17: void colorclick_init(void);
+[v _colorclick_init `(v ~T0 @X0 0 ef ]
+"16 ./interrupts.h
+[; ;./interrupts.h: 16: void interrupts_init(void);
+[v _interrupts_init `(v ~T0 @X0 0 ef ]
 "23 ./serial.h
-[; ;./serial.h: 23: void initUSART4(void);
-[v _initUSART4 `(v ~T0 @X0 0 ef ]
-"30109 C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\proc\pic18f67k40.h
-[; ;C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\proc\pic18f67k40.h: 30109:     struct {
-[s S1395 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
-[n S1395 . TRISH0 TRISH1 TRISH2 TRISH3 ]
-"30108
-[; ;C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\proc\pic18f67k40.h: 30108: typedef union {
-[u S1394 `S1395 1 ]
-[n S1394 . . ]
-"30116
-[; ;C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\proc\pic18f67k40.h: 30116: extern volatile TRISHbits_t TRISHbits __attribute__((address(0xF88)));
-[v _TRISHbits `VS1394 ~T0 @X0 0 e@3976 ]
-"29280
-[; ;C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\proc\pic18f67k40.h: 29280:     struct {
-[s S1364 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
-[n S1364 . LATH0 LATH1 LATH2 LATH3 ]
-"29286
-[; ;C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\proc\pic18f67k40.h: 29286:     struct {
-[s S1365 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
-[n S1365 . LH0 LH1 LH2 LH3 ]
-"29292
-[; ;C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\proc\pic18f67k40.h: 29292:     struct {
-[s S1366 :4 `uc 1 :1 `uc 1 ]
-[n S1366 . . LH4 ]
-"29296
-[; ;C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\proc\pic18f67k40.h: 29296:     struct {
-[s S1367 :5 `uc 1 :1 `uc 1 ]
-[n S1367 . . LH5 ]
-"29300
-[; ;C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\proc\pic18f67k40.h: 29300:     struct {
-[s S1368 :6 `uc 1 :1 `uc 1 ]
-[n S1368 . . LH6 ]
-"29304
-[; ;C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\proc\pic18f67k40.h: 29304:     struct {
-[s S1369 :7 `uc 1 :1 `uc 1 ]
-[n S1369 . . LH7 ]
-"29279
-[; ;C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\proc\pic18f67k40.h: 29279: typedef union {
-[u S1363 `S1364 1 `S1365 1 `S1366 1 `S1367 1 `S1368 1 `S1369 1 ]
-[n S1363 . . . . . . . ]
-"29309
-[; ;C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\proc\pic18f67k40.h: 29309: extern volatile LATHbits_t LATHbits __attribute__((address(0xF80)));
-[v _LATHbits `VS1363 ~T0 @X0 0 e@3968 ]
-"11 ./RGB_LED.h
-[; ;./RGB_LED.h: 11: void whiteLED(unsigned char on_off);
-[v _whiteLED `(v ~T0 @X0 0 ef1`uc ]
-"29751 C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\proc\pic18f67k40.h
-[; ;C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\proc\pic18f67k40.h: 29751:     struct {
-[s S1383 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
-[n S1383 . TRISD0 TRISD1 TRISD2 TRISD3 TRISD4 TRISD5 TRISD6 TRISD7 ]
-"29750
-[; ;C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\proc\pic18f67k40.h: 29750: typedef union {
-[u S1382 `S1383 1 ]
-[n S1382 . . ]
-"29762
-[; ;C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\proc\pic18f67k40.h: 29762: extern volatile TRISDbits_t TRISDbits __attribute__((address(0xF84)));
-[v _TRISDbits `VS1382 ~T0 @X0 0 e@3972 ]
-"28855
-[; ;C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\proc\pic18f67k40.h: 28855:     struct {
-[s S1352 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
-[n S1352 . LATD0 LATD1 LATD2 LATD3 LATD4 LATD5 LATD6 LATD7 ]
-"28865
-[; ;C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\proc\pic18f67k40.h: 28865:     struct {
-[s S1353 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
-[n S1353 . LD0 LD1 LD2 LD3 LD4 LD5 LD6 LD7 ]
-"28854
-[; ;C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\proc\pic18f67k40.h: 28854: typedef union {
-[u S1351 `S1352 1 `S1353 1 ]
-[n S1351 . . . ]
-"28876
-[; ;C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\proc\pic18f67k40.h: 28876: extern volatile LATDbits_t LATDbits __attribute__((address(0xF7C)));
-[v _LATDbits `VS1351 ~T0 @X0 0 e@3964 ]
-"11 ./color.h
-[; ;./color.h: 11: typedef struct {
+[; ;./serial.h: 23: void USART4_init(void);
+[v _USART4_init `(v ~T0 @X0 0 ef ]
+"12 ./color_click.h
+[; ;./color_click.h: 12: typedef struct {
 [s S2021 `ui 1 `ui 1 `ui 1 `ui 1 ]
 [n S2021 . R G B C ]
-"10 ./read_colour.h
-[; ;./read_colour.h: 10: RGB_val read_colour(RGB_val current);
-[v _read_colour `(S2021 ~T0 @X0 0 ef1`S2021 ]
+"25
+[; ;./color_click.h: 25: RGB_val colorclick_readColour(RGB_val current);
+[v _colorclick_readColour `(S2021 ~T0 @X0 0 ef1`S2021 ]
 "113 C:\Program Files\Microchip\xc8\v2.32\pic\include\c99\stdio.h
 [v _sprintf `(i ~T0 @X0 0 e1v`*uc`*Cuc ]
 "26 ./serial.h
@@ -104,7 +33,7 @@ Version 4.0 HI-TECH Software Intermediate Code
 "12
 [p x RSTOSC  =  EXTOSC_4PLL  ]
 "18
-[p x WDTE  =  OFF            ]
+[p x WDTE  =  OFF  ]
 "54 C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\proc\pic18f67k40.h
 [; ;C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\proc\pic18f67k40.h: 54: __asm("PPSLOCK equ 0DEFh");
 [; <" PPSLOCK equ 0DEFh ;# ">
@@ -2109,89 +2038,89 @@ Version 4.0 HI-TECH Software Intermediate Code
 [i _TxBufReadCnt
 -> -> 0 `i `uc
 ]
+"12 ./interrupts.h
+[; ;./interrupts.h: 12: volatile unsigned char card_flag=0;
+[v _card_flag `Vuc ~T0 @X0 1 e ]
+[i _card_flag
+-> -> 0 `i `uc
+]
+"13
+[; ;./interrupts.h: 13: volatile unsigned char battery_flag=0;
+[v _battery_flag `Vuc ~T0 @X0 1 e ]
+[i _battery_flag
+-> -> 0 `i `uc
+]
 [v $root$_main `(v ~T0 @X0 0 e ]
-"39 main.c
-[; ;main.c: 39: void main(void) {
+"37 main.c
+[; ;main.c: 37: void main(void) {
 [v _main `(v ~T0 @X0 1 ef ]
 {
 [e :U _main ]
 [f ]
+"39
+[; ;main.c: 39:     ADC_init();
+[e ( _ADC_init ..  ]
+"40
+[; ;main.c: 40:     colorclick_init();
+[e ( _colorclick_init ..  ]
 "41
-[; ;main.c: 41:     I2C_2_Master_Init();
-[e ( _I2C_2_Master_Init ..  ]
-"42
-[; ;main.c: 42:     color_click_init();
-[e ( _color_click_init ..  ]
+[; ;main.c: 41:     interrupts_init();
+[e ( _interrupts_init ..  ]
 "43
-[; ;main.c: 43:     RGB_init();
-[e ( _RGB_init ..  ]
-"44
-[; ;main.c: 44:     initUSART4();
-[e ( _initUSART4 ..  ]
-"47
-[; ;main.c: 47:     TRISHbits.TRISH3 = 0;
-[e = . . _TRISHbits 0 3 -> -> 0 `i `uc ]
-"48
-[; ;main.c: 48:     LATHbits.LATH3 = 0;
-[e = . . _LATHbits 0 3 -> -> 0 `i `uc ]
-"52
-[; ;main.c: 52:     whiteLED(1);
-[e ( _whiteLED (1 -> -> 1 `i `uc ]
-"53
-[; ;main.c: 53:     TRISDbits.TRISD3 = 0;
-[e = . . _TRISDbits 0 3 -> -> 0 `i `uc ]
-"54
-[; ;main.c: 54:     LATDbits.LATD3 = 1;
-[e = . . _LATDbits 0 3 -> -> 1 `i `uc ]
-"56
-[; ;main.c: 56:     RGB_val initial;
+[; ;main.c: 43:     USART4_init();
+[e ( _USART4_init ..  ]
+"46
+[; ;main.c: 46:     RGB_val initial;
 [v _initial `S2021 ~T0 @X0 1 a ]
-"60
-[; ;main.c: 60:     RGB_val current;
+"47
+[; ;main.c: 47:     RGB_val current;
 [v _current `S2021 ~T0 @X0 1 a ]
-"62
-[; ;main.c: 62:     while(1) {
+"48
+[; ;main.c: 48:     initial = colorclick_readColour(initial);
+[e = _initial ( _colorclick_readColour (1 _initial ]
+"53
+[; ;main.c: 53:     while(1) {
 [e :U 2025 ]
 {
-"64
-[; ;main.c: 64:         initial = read_colour(initial);
-[e = _initial ( _read_colour (1 _initial ]
-"66
-[; ;main.c: 66:         char buf[40];
+"54
+[; ;main.c: 54:         current = colorclick_readColour(current);
+[e = _current ( _colorclick_readColour (1 _current ]
+"57
+[; ;main.c: 57:         char buf[40];
 [v _buf `uc ~T0 @X0 -> 40 `i a ]
-"67
-[; ;main.c: 67:         unsigned int tmpR = initial.R;
+"58
+[; ;main.c: 58:         unsigned int tmpR = current.R;
 [v _tmpR `ui ~T0 @X0 1 a ]
-[e = _tmpR . _initial 0 ]
-"68
-[; ;main.c: 68:         unsigned int tmpG = initial.G;
+[e = _tmpR . _current 0 ]
+"59
+[; ;main.c: 59:         unsigned int tmpG = current.G;
 [v _tmpG `ui ~T0 @X0 1 a ]
-[e = _tmpG . _initial 1 ]
-"69
-[; ;main.c: 69:         unsigned int tmpB = initial.B;
+[e = _tmpG . _current 1 ]
+"60
+[; ;main.c: 60:         unsigned int tmpB = current.B;
 [v _tmpB `ui ~T0 @X0 1 a ]
-[e = _tmpB . _initial 2 ]
-"70
-[; ;main.c: 70:         unsigned int tmpC = initial.C;
+[e = _tmpB . _current 2 ]
+"61
+[; ;main.c: 61:         unsigned int tmpC = current.C;
 [v _tmpC `ui ~T0 @X0 1 a ]
-[e = _tmpC . _initial 3 ]
-"71
-[; ;main.c: 71:         sprintf(buf,"%i %i %i %i\n",tmpR,tmpG,tmpB,tmpC);
+[e = _tmpC . _current 3 ]
+"62
+[; ;main.c: 62:         sprintf(buf,"%i %i %i %i\n",tmpR,tmpG,tmpB,tmpC);
 [e ( _sprintf (1 , , , , (. , &U _buf :s 1C _tmpR _tmpG _tmpB _tmpC ]
-"72
-[; ;main.c: 72:         sendStringSerial4(buf);
+"63
+[; ;main.c: 63:         sendStringSerial4(buf);
 [e ( _sendStringSerial4 (1 &U _buf ]
-"73
-[; ;main.c: 73:         _delay((unsigned long)((500)*(64000000/4000.0)));
+"64
+[; ;main.c: 64:         _delay((unsigned long)((500)*(64000000/4000.0)));
 [e ( __delay (1 -> * -> -> 500 `i `d / -> -> 64000000 `l `d .4000.0 `ul ]
-"78
-[; ;main.c: 78:     }
+"65
+[; ;main.c: 65:     }
 }
 [e :U 2024 ]
 [e $U 2025  ]
 [e :U 2026 ]
-"79
-[; ;main.c: 79: }
+"66
+[; ;main.c: 66: }
 [e :UE 2023 ]
 }
 [p f _sprintf 8388736 ]

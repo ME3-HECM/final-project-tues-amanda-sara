@@ -24189,7 +24189,7 @@ volatile char TxBufReadCnt=0;
 
 
 
-void initUSART4(void);
+void USART4_init(void);
 char getCharSerial4(void);
 void sendCharSerial4(unsigned int charToSend);
 void sendStringSerial4(char *string);
@@ -24208,7 +24208,10 @@ void sendTxBuf(void);
 # 2 "serial.c" 2
 
 
-void initUSART4(void) {
+
+
+
+void USART4_init(void) {
 
 
     RC0PPS = 0x12;
@@ -24226,16 +24229,24 @@ void initUSART4(void) {
 }
 
 
+
+
+
 char getCharSerial4(void) {
     while (!PIR4bits.RC4IF);
     return RC4REG;
 }
 
 
+
+
+
 void sendCharSerial4(unsigned int charToSend) {
     while (!PIR4bits.TX4IF);
     TX4REG = charToSend;
 }
+
+
 
 
 
@@ -24257,10 +24268,16 @@ char getCharFromRxBuf(void){
 }
 
 
+
+
+
 void putCharToRxBuf(char byte){
     if (RxBufWriteCnt>=20) {RxBufWriteCnt=0;}
     EUSART4RXbuf[RxBufWriteCnt++]=byte;
 }
+
+
+
 
 
 
@@ -24271,10 +24288,16 @@ char isDataInRxBuf (void){
 
 
 
+
+
+
 char getCharFromTxBuf(void){
     if (TxBufReadCnt>=60) {TxBufReadCnt=0;}
     return EUSART4TXbuf[TxBufReadCnt++];
 }
+
+
+
 
 
 void putCharToTxBuf(char byte){
@@ -24285,14 +24308,23 @@ void putCharToTxBuf(char byte){
 
 
 
+
+
+
 char isDataInTxBuf (void){
     return (TxBufWriteCnt!=TxBufReadCnt);
 }
 
 
+
+
+
 void TxBufferedString(char *string){
 
 }
+
+
+
 
 
 

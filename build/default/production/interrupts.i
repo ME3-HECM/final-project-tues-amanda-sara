@@ -24176,8 +24176,97 @@ extern __attribute__((nonreentrant)) void _delaywdt(unsigned long);
 extern __attribute__((nonreentrant)) void _delay3(unsigned char);
 # 33 "C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\\pic\\include\\xc.h" 2 3
 # 1 "interrupts.c" 2
-# 29 "interrupts.c"
-volatile unsigned char sunrise_flag=0;
-volatile unsigned char sunset_flag=0;
-# 46 "interrupts.c"
-volatile unsigned char time_flag=0;
+
+# 1 "./interrupts.h" 1
+
+
+
+
+
+# 1 "./color_click.h" 1
+# 12 "./color_click.h"
+typedef struct {
+    unsigned int R, G, B, C;
+} RGB_val;
+
+
+void colorclick_init(void);
+void colorclick_cyclingRGBLED(void);
+void colorclick_toggleClearLED(unsigned char toggle);
+void colorclick_writetoaddr(char address, char value);
+unsigned int colorclick_readRed(void);
+unsigned int colorclick_readGreen(void);
+unsigned int colorclick_readBlue(void);
+unsigned int colorclick_readClear(void);
+RGB_val colorclick_readColour(RGB_val current);
+# 6 "./interrupts.h" 2
+
+# 1 "./i2c.h" 1
+# 10 "./i2c.h"
+void I2C_2_Master_Init(void);
+void I2C_2_Master_Idle(void);
+void I2C_2_Master_Start(void);
+void I2C_2_Master_RepStart(void);
+void I2C_2_Master_Stop(void);
+void I2C_2_Master_Write(unsigned char data_byte);
+unsigned char I2C_2_Master_Read(unsigned char ack);
+# 7 "./interrupts.h" 2
+
+
+
+
+
+volatile unsigned char card_flag=0;
+volatile unsigned char battery_flag=0;
+
+
+void interrupts_init(void);
+void __attribute__((picinterrupt(("high_priority")))) HighISR();
+# 2 "interrupts.c" 2
+# 12 "interrupts.c"
+void interrupts_init(void){
+    TRISBbits.TRISB1 = 1;
+    ANSELBbits.ANSELB1 = 0;
+
+
+    colorclick_writetoaddr(0x04, 0x14);
+    colorclick_writetoaddr(0x05, 0x05);
+    colorclick_writetoaddr(0x06, 0x6C);
+    colorclick_writetoaddr(0x07, 0x07);
+
+    PIE0bits.INT1IE = 1;
+
+
+    IPR0bits.INT1IP = 1;
+
+
+    INTCONbits.IPEN = 1;
+    INTCONbits.PEIE = 1;
+    INTCONbits.GIE = 1;
+}
+
+
+
+
+
+
+
+void __attribute__((picinterrupt(("high_priority")))) HighISR() {
+
+
+
+
+}
+
+
+
+
+
+
+
+void __attribute__((picinterrupt(("low_priority")))) LowISR() {
+
+
+
+
+}

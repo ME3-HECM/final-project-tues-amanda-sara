@@ -4,11 +4,12 @@
 #define LOW 50
 #define HIGH 50
 
-/*************************************************
- * initDCmotorsPWM
- * function initialise T2 and PWM for DC motor control
- *****************************************************/
-void initDCmotorsPWM(int PWMperiod){
+/********************************************************
+ * DCmotors_init
+ * function to initialise T2 and PWM for DC motor control
+ ********************************************************/
+void DCmotors_init(int PWMperiod)
+{    
 	// timer 2 config
     T2CONbits.CKPS=0b100; // 1:16 prescaler
     T2HLTbits.MODE=0b00000; // Free Running Mode, software gate only
@@ -37,23 +38,27 @@ void initDCmotorsPWM(int PWMperiod){
     
     RE2PPS=0x0A; //PWM6 on RE2
     RC7PPS=0x0B; //PMW7 on RC7
+    
+    //
+    clicker2buttons_init();
+    clicker2LEDs_init();
+    buggyLEDs_init();
+    
+    MAINBEAM_LED = 1;
 }
 
-/*****************
+/*******************************************************************
  * setMotorPWM
  * function to set PWM output from the values in the motor structure
- ************************************/
-void setMotorPWM(struct DC_motor *m)
+ *******************************************************************/
+void setMotorPWM(DC_motor *m)
 {
 	int PWMduty; //tmp variable to store PWM duty cycle
 
 	if (m->direction){ //if forward
-		// low time increases with power
-		PWMduty=m->PWMperiod - ((int)(m->power)*(m->PWMperiod))/100;
-	}
-	else { //if reverse
-		// high time increases with power
-		PWMduty=((int)(m->power)*(m->PWMperiod))/100;
+		PWMduty=m->PWMperiod - ((int)(m->power)*(m->PWMperiod))/100; // low time increases with power
+	} else { //if reverse
+		PWMduty=((int)(m->power)*(m->PWMperiod))/100; // high time increases with power
 	}
 
 	*(m->dutyHighByte) = (unsigned char)(PWMduty); //set high duty cycle byte
@@ -65,12 +70,111 @@ void setMotorPWM(struct DC_motor *m)
 	}
 }
 
-/********************************
+/**********************
+ * clicker2buttons_init
+ **********************/
+void clicker2buttons_init(void)
+{
+    TRISFbits.TRISF2 = 0;
+    TRISFbits.TRISF3 = 0;
+    
+    RF2_BUTTON = 0;
+    RF3_BUTTON = 0;
+}
+
+/*******************
+ * clicker2LEDs_init
+ *******************/
+void clicker2LEDs_init(void)
+{
+    TRISDbits.TRISD7 = 0;
+    TRISHbits.TRISH3 = 0;
+    
+    RD7_LED = 0;
+    RH3_LED = 0;
+}
+
+/****************
+ * buggyLEDs_init
+ ****************/
+void buggyLEDs_init(void)
+{
+    TRISHbits.TRISH1 = 0; // H.LAMPS
+    TRISDbits.TRISD3 = 0; // M.BEAM
+    TRISDbits.TRISD4 = 0; // BRAKE
+    TRISFbits.TRISF0 = 0; // TURN-L
+    TRISHbits.TRISH0 = 0; // TURN-R
+    
+    HEADLAMPS_LED = 0;
+    MAINBEAM_LED = 0;
+    BRAKE_LED = 0;
+    TURNLEFT_LED = 0;
+    TURNRIGHT_LED = 0;
+}
+
+/***************************************************************************
+ * check_battery_level
+ * function to check battery level
+ * Monitor the battery voltage via an analogue input pin
+ * The voltage at BAT-VSENSE will always be one third of that at the battery
+ ***************************************************************************/
+unsigned char check_battery_level(void)
+{
+    unsigned char tmp;
+    //tmp = ADC_getval();
+    return tmp;
+}
+
+/************************************************
+ * forward
+ * function to make the robot go straight forward
+ ************************************************/
+void forward(DC_motor *mL, DC_motor *mR)
+{
+    // Assume it was stationary before
+    mL->direction = 1; // left wheels go forward
+    mR->direction = 1; // right wheels go forward
+    
+    // make both motors accelerate to 100
+    while(((mL->power)!=100) && ((mR->power)!=100)){    // will be True until both motors have 100 power
+        mL->power+=10;
+        mR->power+=10;
+        // set PWM output
+        setMotorPWM(mL);
+        setMotorPWM(mR);
+        __delay_ms(100);
+    }
+}
+
+/************************************************
+ * reverse
+ * function to make the robot go straight reverse
+ ************************************************/
+void reverse(DC_motor *mL, DC_motor *mR)
+{
+    // Assume it was stationary before
+    mL->direction = 0; // left wheels go forward
+    mR->direction = 0; // right wheels go forward
+    
+    // make both motors accelerate to 100
+    while(((mL->power)!=100) && ((mR->power)!=100)){    // will be True until both motors have 100 power
+        mL->power+=10;
+        mR->power+=10;
+        // set PWM output
+        setMotorPWM(mL);
+        setMotorPWM(mR);
+        __delay_ms(100);
+    }
+}
+
+/**************************************
  * stop
  * function to stop the robot gradually 
- ***********************************/
-void stop(struct DC_motor *mL, struct DC_motor *mR)
+ **************************************/
+void stop(DC_motor *mL, DC_motor *mR)
 {
+    BRAKE_LED = 1;
+    
     // need to slowly bring both motors to a stop
     while(((mL->power)!=0) && ((mR->power)!=0)){    // will be True until both motors have 0 power
         mL->power = mL->power - 10;
@@ -81,22 +185,24 @@ void stop(struct DC_motor *mL, struct DC_motor *mR)
         setMotorPWM(mR);
         __delay_ms(100);    // set a delay so that motor decelerates non-instantaneously
     }
+    
+    BRAKE_LED = 0;
 }
 
-/**************************
+/**************************************
  * turnLeft
  * function to make the robot turn left 
- **************************/
-void turnLeft(struct DC_motor *mL, struct DC_motor *mR)
+ **************************************/
+void turnLeft(DC_motor *mL, DC_motor *mR)
 {
     // in order for it to make it turn on the spot: (Assume it was stationary before)
-    // left wheels go backward
-    mL->direction = 0;
-    // right wheels go forward
-    mR->direction = 1;
+    mL->direction = 0; // left wheels go backward
+    mR->direction = 1; // right wheels go forward
     
     // make both motors accelerate to 50
     while(((mL->power)!=LOW) || ((mR->power)!=HIGH)){
+        TURNLEFT_LED = !TURNLEFT_LED;
+        
         if (mL->power<LOW) {mL->power+=5;}
         if (mR->power<HIGH) {mR->power+=5;}
         
@@ -107,46 +213,23 @@ void turnLeft(struct DC_motor *mL, struct DC_motor *mR)
     }
 }
 
-/*******************
+/***************************************
  * turnRight
  * function to make the robot turn right 
- **************************************/
-void turnRight(struct DC_motor *mL, struct DC_motor *mR)
+ ***************************************/
+void turnRight(DC_motor *mL, DC_motor *mR)
 {
     // in order for it to make it turn on the spot: (Assume it was stationary before)
-    // left wheels go forward
-    mL->direction = 1;
-    // right wheels go backward
-    mR->direction = 0;
+    mL->direction = 1; // left wheels go forward
+    mR->direction = 0; // right wheels go backward
     
     // make both motors accelerate to 70
     while(((mL->power)!=HIGH) || ((mR->power)!=LOW)){
+        TURNRIGHT_LED = !TURNRIGHT_LED;
+        
         if (mL->power<HIGH) {mL->power+=5;}
         if (mR->power<LOW) {mR->power+=5;}
         
-        // set PWM output
-        setMotorPWM(mL);
-        setMotorPWM(mR);
-        __delay_ms(100);
-    }
-}
-
-/****************************
- * fullSpeedAhead
- * function to make the robot go straight
- *********************************/
-void fullSpeedAhead(struct DC_motor *mL, struct DC_motor *mR)
-{
-    // Assume it was stationary before
-    // left wheels go forward
-    mL->direction = 1;
-    // right wheels go forward
-    mR->direction = 1;
-    
-    // make both motors accelerate to 100
-    while(((mL->power)!=100) && ((mR->power)!=100)){    // will be True until both motors have 100 power
-        mL->power+=10;
-        mR->power+=10;
         // set PWM output
         setMotorPWM(mL);
         setMotorPWM(mR);

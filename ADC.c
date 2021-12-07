@@ -1,12 +1,12 @@
 #include <xc.h>
 #include "ADC.h"
 
-/***************************************************************************
+/*******************************************************************************************
  * ADC_init
- * Function used to initialise ADC module and set it up to sample on pin RF6 (BAT-VSENSE)
- ***************************************************************************/
+ * Function used to initialise ADC module and set it up to sample on pin RF6 (for BAT-VSENSE)
+ ********************************************************************************************/
 void ADC_init(void) {
-    // Initialise pin RF7
+    // Initialise pin RF6
     TRISFbits.TRISF6=1;         // Select pin RF6 as input
     ANSELFbits.ANSELF6=1;       // Ensure analogue circuitry is active (it is by default)
 
@@ -29,7 +29,7 @@ unsigned char ADC_getval(void) {
     ADCON0bits.GO = 1;          // Start ADC conversion
     while (ADCON0bits.GO);      // Wait until conversion done (bit is cleared automatically when done)
     tmpval = ADRESH;            // Get the 8 most significant bits of the ADC result (an 8-bit result is sufficient for our needs here)
-                                // If we wanted the full 10bit result we would also need to read the 2 LSBs from ADRESL and combine the result
+    // If we wanted the full 10bit result we would also need to read the 2 LSBs from ADRESL and combine the result
     
     return tmpval;              // Return this value when the function is called
 }

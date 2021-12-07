@@ -3,18 +3,18 @@
 #define	_interrupts_H
 
 #include <xc.h>
-//#include "dateandtime.h"
+#include "color_click.h"
+#include "i2c.h"
 
 #define _XTAL_FREQ 64000000
 
-// This allows use of global variables in other source files)
-//extern volatile unsigned char sunrise_flag;
-//extern volatile unsigned char sunset_flag;
-//extern volatile unsigned char time_flag;
-//
-//// Function prototypes
-//void Interrupts_init(dateandtime current);
-//void __interrupt(high_priority) HighISR();
+// This allows use of global variables in other source files
+volatile unsigned char card_flag=0;          // Declare global variable to toggle when ?
+volatile unsigned char battery_flag=0;             // Declare global variable to toggle when ?
+
+// Function prototypes
+void interrupts_init(void);
+void __interrupt(high_priority) HighISR();
 //void __interrupt(low_priority) LowISR();
 
 #endif	/* _interrupts_H */

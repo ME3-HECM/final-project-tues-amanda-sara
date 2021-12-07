@@ -1,4 +1,4 @@
-# 1 "RGB_LED.c"
+# 1 "color_click.c"
 # 1 "<built-in>" 1
 # 1 "<built-in>" 3
 # 288 "<built-in>" 3
@@ -6,7 +6,7 @@
 # 1 "<built-in>" 2
 # 1 "C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\\pic\\include\\language_support.h" 1 3
 # 2 "<built-in>" 2
-# 1 "RGB_LED.c" 2
+# 1 "color_click.c" 2
 # 1 "C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\\pic\\include\\xc.h" 1 3
 # 18 "C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\\pic\\include\\xc.h" 3
 extern const char __xc8_OPTIM_SPEED;
@@ -24175,31 +24175,200 @@ extern __attribute__((nonreentrant)) void _delaywdt(unsigned long);
 #pragma intrinsic(_delay3)
 extern __attribute__((nonreentrant)) void _delay3(unsigned char);
 # 33 "C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\\pic\\include\\xc.h" 2 3
-# 1 "RGB_LED.c" 2
+# 1 "color_click.c" 2
 
-# 1 "./RGB_LED.h" 1
-# 10 "./RGB_LED.h"
-void RGB_init(void);
-void whiteLED(unsigned char on_off);
-# 2 "RGB_LED.c" 2
-
-
+# 1 "./color_click.h" 1
+# 12 "./color_click.h"
+typedef struct {
+    unsigned int R, G, B, C;
+} RGB_val;
 
 
+void colorclick_init(void);
+void colorclick_cyclingRGBLED(void);
+void colorclick_toggleClearLED(unsigned char toggle);
+void colorclick_writetoaddr(char address, char value);
+unsigned int colorclick_readRed(void);
+unsigned int colorclick_readGreen(void);
+unsigned int colorclick_readBlue(void);
+unsigned int colorclick_readClear(void);
+RGB_val colorclick_readColour(RGB_val current);
+# 2 "color_click.c" 2
+
+# 1 "./i2c.h" 1
+# 10 "./i2c.h"
+void I2C_2_Master_Init(void);
+void I2C_2_Master_Idle(void);
+void I2C_2_Master_Start(void);
+void I2C_2_Master_RepStart(void);
+void I2C_2_Master_Stop(void);
+void I2C_2_Master_Write(unsigned char data_byte);
+unsigned char I2C_2_Master_Read(unsigned char ack);
+# 3 "color_click.c" 2
 
 
-void RGB_init(void) {
+
+
+
+
+void colorclick_init(void)
+{
+
+    I2C_2_Master_Init();
+
+
+  colorclick_writetoaddr(0x00, 0x01);
+    _delay((unsigned long)((3)*(64000000/4000.0)));
+
+
+ colorclick_writetoaddr(0x00, 0x03);
+
+
+ colorclick_writetoaddr(0x01, 0xD5);
+
+
     TRISGbits.TRISG1 = 0;
     TRISAbits.TRISA4 = 0;
     TRISFbits.TRISF7 = 0;
 
-    LATGbits.LATG1 = 0;
-    LATAbits.LATA4 = 0;
-    LATFbits.LATF7 = 0;
+
+    colorclick_toggleClearLED(1);
 }
 
-void whiteLED(unsigned char on_off) {
-    LATGbits.LATG1 = on_off;
-    LATAbits.LATA4 = on_off;
-    LATFbits.LATF7 = on_off;
+
+
+
+
+void colorclick_cyclingRGBLED(void)
+{
+    LATGbits.LATG1 = 1;
+    _delay((unsigned long)((50)*(64000000/4000.0)));
+    LATGbits.LATG1 = 0;
+    _delay((unsigned long)((20)*(64000000/4000.0)));
+
+    LATAbits.LATA4 = 1;
+    _delay((unsigned long)((50)*(64000000/4000.0)));
+    LATAbits.LATA4 = 0;
+    _delay((unsigned long)((20)*(64000000/4000.0)));
+
+    LATFbits.LATF7 = 1;
+    _delay((unsigned long)((50)*(64000000/4000.0)));
+    LATFbits.LATF7 = 0;
+    _delay((unsigned long)((20)*(64000000/4000.0)));
+}
+
+
+
+
+
+void colorclick_toggleClearLED(unsigned char toggle)
+{
+    LATGbits.LATG1 = toggle;
+    LATFbits.LATF7 = toggle;
+    LATAbits.LATA4 = toggle;
+}
+
+
+
+
+
+
+
+void colorclick_writetoaddr(char address, char value)
+{
+    I2C_2_Master_Start();
+    I2C_2_Master_Write(0x52 | 0x00);
+    I2C_2_Master_Write(0x80 | address);
+    I2C_2_Master_Write(value);
+    I2C_2_Master_Stop();
+}
+
+
+
+
+
+
+unsigned int colorclick_readRed(void)
+{
+ unsigned int tmp;
+ I2C_2_Master_Start();
+ I2C_2_Master_Write(0x52 | 0x00);
+ I2C_2_Master_Write(0xA0 | 0x16);
+ I2C_2_Master_RepStart();
+ I2C_2_Master_Write(0x52 | 0x01);
+ tmp=I2C_2_Master_Read(1);
+ tmp=tmp | (I2C_2_Master_Read(0)<<8);
+ I2C_2_Master_Stop();
+ return tmp;
+}
+
+
+
+
+
+
+unsigned int colorclick_readGreen(void)
+{
+ unsigned int tmp;
+ I2C_2_Master_Start();
+ I2C_2_Master_Write(0x52 | 0x00);
+ I2C_2_Master_Write(0xA0 | 0x18);
+ I2C_2_Master_RepStart();
+ I2C_2_Master_Write(0x52 | 0x01);
+ tmp=I2C_2_Master_Read(1);
+ tmp=tmp | (I2C_2_Master_Read(0)<<8);
+ I2C_2_Master_Stop();
+ return tmp;
+}
+
+
+
+
+
+
+unsigned int colorclick_readBlue(void)
+{
+ unsigned int tmp;
+ I2C_2_Master_Start();
+ I2C_2_Master_Write(0x52 | 0x00);
+ I2C_2_Master_Write(0xA0 | 0x1A);
+ I2C_2_Master_RepStart();
+ I2C_2_Master_Write(0x52 | 0x01);
+ tmp=I2C_2_Master_Read(1);
+ tmp=tmp | (I2C_2_Master_Read(0)<<8);
+ I2C_2_Master_Stop();
+ return tmp;
+}
+
+
+
+
+
+
+unsigned int colorclick_readClear(void)
+{
+ unsigned int tmp;
+ I2C_2_Master_Start();
+ I2C_2_Master_Write(0x52 | 0x00);
+ I2C_2_Master_Write(0xA0 | 0x14);
+ I2C_2_Master_RepStart();
+ I2C_2_Master_Write(0x52 | 0x01);
+ tmp=I2C_2_Master_Read(1);
+ tmp=tmp | (I2C_2_Master_Read(0)<<8);
+ I2C_2_Master_Stop();
+ return tmp;
+}
+
+
+
+
+
+RGB_val colorclick_readColour(RGB_val current)
+{
+    current.R = colorclick_readRed();
+    current.G = colorclick_readGreen();
+    current.B = colorclick_readBlue();
+    current.C = colorclick_readClear();
+
+    return current;
 }
