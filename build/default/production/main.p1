@@ -15,7 +15,26 @@ Version 4.0 HI-TECH Software Intermediate Code
 "36 ./dc_motor.h
 [; ;./dc_motor.h: 36: void buggyLEDs_init(void);
 [v _buggyLEDs_init `(v ~T0 @X0 0 ef ]
-"30109 /Applications/microchip/mplabx/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8/pic/include/proc/pic18f67k40.h
+"33
+[; ;./dc_motor.h: 33: void DCmotors_init(int PWMperiod);
+[v _DCmotors_init `(v ~T0 @X0 0 ef1`i ]
+"23
+[; ;./dc_motor.h: 23: typedef struct {
+[s S2022 `uc 1 `uc 1 `*uc 1 `*uc 1 `uc 1 `i 1 ]
+[n S2022 . power direction dutyHighByte dir_LAT dir_pin PWMperiod ]
+"33981 /Applications/microchip/mplabx/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8/pic/include/proc/pic18f67k40.h
+[; ;/Applications/microchip/mplabx/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8/pic/include/proc/pic18f67k40.h: 33981: extern volatile unsigned char PWM6DCH __attribute__((address(0xFA3)));
+[v _PWM6DCH `Vuc ~T0 @X0 0 e@4003 ]
+"28961
+[; ;/Applications/microchip/mplabx/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8/pic/include/proc/pic18f67k40.h: 28961: extern volatile unsigned char LATE __attribute__((address(0xF7D)));
+[v _LATE `Vuc ~T0 @X0 0 e@3965 ]
+"33672
+[; ;/Applications/microchip/mplabx/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8/pic/include/proc/pic18f67k40.h: 33672: extern volatile unsigned char PWM7DCH __attribute__((address(0xFA0)));
+[v _PWM7DCH `Vuc ~T0 @X0 0 e@4000 ]
+"29185
+[; ;/Applications/microchip/mplabx/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8/pic/include/proc/pic18f67k40.h: 29185: extern volatile unsigned char LATG __attribute__((address(0xF7F)));
+[v _LATG `Vuc ~T0 @X0 0 e@3967 ]
+"30109
 [; ;/Applications/microchip/mplabx/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8/pic/include/proc/pic18f67k40.h: 30109:     struct {
 [s S1395 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
 [n S1395 . TRISH0 TRISH1 TRISH2 TRISH3 ]
@@ -91,6 +110,9 @@ Version 4.0 HI-TECH Software Intermediate Code
 "26 ./serial.h
 [; ;./serial.h: 26: void sendStringSerial4(char *string);
 [v _sendStringSerial4 `(v ~T0 @X0 0 ef1`*uc ]
+"39 ./dc_motor.h
+[; ;./dc_motor.h: 39: void forward(DC_motor *mL, DC_motor *mR);
+[v _forward `(v ~T0 @X0 0 ef2`*S2022`*S2022 ]
 "11 main.c
 [p x FEXTOSC  =  HS          ]
 "12
@@ -2144,108 +2166,172 @@ Version 4.0 HI-TECH Software Intermediate Code
 "45
 [; ;main.c: 45:     interrupts_init();
 [e ( _interrupts_init ..  ]
-"47
-[; ;main.c: 47:     USART4_init();
+"46
+[; ;main.c: 46:     USART4_init();
 [e ( _USART4_init ..  ]
-"48
-[; ;main.c: 48:     buggyLEDs_init();
+"47
+[; ;main.c: 47:     buggyLEDs_init();
 [e ( _buggyLEDs_init ..  ]
+"49
+[; ;main.c: 49:     int PWMcycle = 99;
+[v _PWMcycle `i ~T0 @X0 1 a ]
+[e = _PWMcycle -> 99 `i ]
 "50
-[; ;main.c: 50:     TRISHbits.TRISH3 = 0;
-[e = . . _TRISHbits 0 3 -> -> 0 `i `uc ]
-"51
-[; ;main.c: 51:     LATHbits.LATH3 = 0;
-[e = . . _LATHbits 0 3 -> -> 0 `i `uc ]
+[; ;main.c: 50:     DCmotors_init(PWMcycle);
+[e ( _DCmotors_init (1 _PWMcycle ]
+"52
+[; ;main.c: 52:     DC_motor motorL, motorR;
+[v _motorL `S2022 ~T0 @X0 1 a ]
+[v _motorR `S2022 ~T0 @X0 1 a ]
+"54
+[; ;main.c: 54:     motorL.power=0;
+[e = . _motorL 0 -> -> 0 `i `uc ]
 "55
-[; ;main.c: 55:     colorclick_toggleClearLED(1);
-[e ( _colorclick_toggleClearLED (1 -> -> 1 `i `uc ]
+[; ;main.c: 55:     motorL.direction=1;
+[e = . _motorL 1 -> -> 1 `i `uc ]
 "56
-[; ;main.c: 56:     LATDbits.LATD3 = 1;
-[e = . . _LATDbits 0 3 -> -> 1 `i `uc ]
+[; ;main.c: 56:     motorL.dutyHighByte=(unsigned char *)(&PWM6DCH);
+[e = . _motorL 2 -> &U _PWM6DCH `*uc ]
+"57
+[; ;main.c: 57:     motorL.dir_LAT=(unsigned char *)(&LATE);
+[e = . _motorL 3 -> &U _LATE `*uc ]
 "58
-[; ;main.c: 58:     _delay((unsigned long)((500)*(64000000/4000.0)));
-[e ( __delay (1 -> * -> -> 500 `i `d / -> -> 64000000 `l `d .4000.0 `ul ]
-"60
-[; ;main.c: 60:     RGB_val initial;
-[v _initial `S2021 ~T0 @X0 1 a ]
-"61
-[; ;main.c: 61:     RGB_val current;
-[v _current `S2021 ~T0 @X0 1 a ]
+[; ;main.c: 58:     motorL.dir_pin=4;
+[e = . _motorL 4 -> -> 4 `i `uc ]
+"59
+[; ;main.c: 59:     motorL.PWMperiod=PWMcycle;
+[e = . _motorL 5 _PWMcycle ]
 "62
-[; ;main.c: 62:     initial = colorclick_readColour(initial);
-[e = _initial ( _colorclick_readColour (1 _initial ]
+[; ;main.c: 62:     motorR.power=0;
+[e = . _motorR 0 -> -> 0 `i `uc ]
+"63
+[; ;main.c: 63:     motorR.direction=1;
+[e = . _motorR 1 -> -> 1 `i `uc ]
 "64
-[; ;main.c: 64:     clear_lower = initial.C - 100;
-[e = _clear_lower - . _initial 3 -> -> 100 `i `ui ]
+[; ;main.c: 64:     motorR.dutyHighByte=(unsigned char *)(&PWM7DCH);
+[e = . _motorR 2 -> &U _PWM7DCH `*uc ]
 "65
-[; ;main.c: 65:     clear_upper = initial.C + 300;
-[e = _clear_upper + . _initial 3 -> -> 300 `i `ui ]
+[; ;main.c: 65:     motorR.dir_LAT=(unsigned char *)(&LATG);
+[e = . _motorR 3 -> &U _LATG `*uc ]
+"66
+[; ;main.c: 66:     motorR.dir_pin=6;
+[e = . _motorR 4 -> -> 6 `i `uc ]
+"67
+[; ;main.c: 67:     motorR.PWMperiod=PWMcycle;
+[e = . _motorR 5 _PWMcycle ]
+"69
+[; ;main.c: 69:     TRISHbits.TRISH3 = 0;
+[e = . . _TRISHbits 0 3 -> -> 0 `i `uc ]
 "70
-[; ;main.c: 70:     while(1) {
+[; ;main.c: 70:     LATHbits.LATH3 = 0;
+[e = . . _LATHbits 0 3 -> -> 0 `i `uc ]
+"74
+[; ;main.c: 74:     colorclick_toggleClearLED(1);
+[e ( _colorclick_toggleClearLED (1 -> -> 1 `i `uc ]
+"75
+[; ;main.c: 75:     LATDbits.LATD3 = 1;
+[e = . . _LATDbits 0 3 -> -> 1 `i `uc ]
+"77
+[; ;main.c: 77:     _delay((unsigned long)((500)*(64000000/4000.0)));
+[e ( __delay (1 -> * -> -> 500 `i `d / -> -> 64000000 `l `d .4000.0 `ul ]
+"79
+[; ;main.c: 79:     RGB_val initial;
+[v _initial `S2021 ~T0 @X0 1 a ]
+"80
+[; ;main.c: 80:     RGB_val current;
+[v _current `S2021 ~T0 @X0 1 a ]
+"81
+[; ;main.c: 81:     initial = colorclick_readColour(initial);
+[e = _initial ( _colorclick_readColour (1 _initial ]
+"83
+[; ;main.c: 83:     clear_lower = initial.C - 100;
+[e = _clear_lower - . _initial 3 -> -> 100 `i `ui ]
+"84
+[; ;main.c: 84:     clear_upper = initial.C + 300;
+[e = _clear_upper + . _initial 3 -> -> 300 `i `ui ]
+"88
+[; ;main.c: 88:     unsigned char halt = 0;
+[v _halt `uc ~T0 @X0 1 a ]
+[e = _halt -> -> 0 `i `uc ]
+"89
+[; ;main.c: 89:     unsigned char start = 0;
+[v _start `uc ~T0 @X0 1 a ]
+[e = _start -> -> 0 `i `uc ]
+"91
+[; ;main.c: 91:     while(1) {
 [e :U 2025 ]
 {
-"72
-[; ;main.c: 72:         current = colorclick_readColour(current);
+"93
+[; ;main.c: 93:         current = colorclick_readColour(current);
 [e = _current ( _colorclick_readColour (1 _current ]
-"75
-[; ;main.c: 75:         char buf[40];
+"96
+[; ;main.c: 96:         char buf[40];
 [v _buf `uc ~T0 @X0 -> 40 `i a ]
-"76
-[; ;main.c: 76:         unsigned int tmpR = current.R;
+"97
+[; ;main.c: 97:         unsigned int tmpR = current.R;
 [v _tmpR `ui ~T0 @X0 1 a ]
 [e = _tmpR . _current 0 ]
-"77
-[; ;main.c: 77:         unsigned int tmpG = current.G;
+"98
+[; ;main.c: 98:         unsigned int tmpG = current.G;
 [v _tmpG `ui ~T0 @X0 1 a ]
 [e = _tmpG . _current 1 ]
-"78
-[; ;main.c: 78:         unsigned int tmpB = current.B;
+"99
+[; ;main.c: 99:         unsigned int tmpB = current.B;
 [v _tmpB `ui ~T0 @X0 1 a ]
 [e = _tmpB . _current 2 ]
-"79
-[; ;main.c: 79:         unsigned int tmpC = current.C;
+"100
+[; ;main.c: 100:         unsigned int tmpC = current.C;
 [v _tmpC `ui ~T0 @X0 1 a ]
 [e = _tmpC . _current 3 ]
-"80
-[; ;main.c: 80:         sprintf(buf,"%i %i %i %i\n",tmpR,tmpG,tmpB,tmpC);
+"101
+[; ;main.c: 101:         sprintf(buf,"%i %i %i %i\n",tmpR,tmpG,tmpB,tmpC);
 [e ( _sprintf (1 , , , , (. , &U _buf :s 1C _tmpR _tmpG _tmpB _tmpC ]
-"81
-[; ;main.c: 81:         sendStringSerial4(buf);
+"102
+[; ;main.c: 102:         sendStringSerial4(buf);
 [e ( _sendStringSerial4 (1 &U _buf ]
-"82
-[; ;main.c: 82:         _delay((unsigned long)((500)*(64000000/4000.0)));
+"103
+[; ;main.c: 103:         _delay((unsigned long)((500)*(64000000/4000.0)));
 [e ( __delay (1 -> * -> -> 500 `i `d / -> -> 64000000 `l `d .4000.0 `ul ]
-"83
-[; ;main.c: 83:         sprintf(buf,"%i %i %i %i\n",initial.R,initial.G,initial.B,initial.C);
-[e ( _sprintf (1 , , , , (. , &U _buf :s 2C . _initial 0 . _initial 1 . _initial 2 . _initial 3 ]
-"84
-[; ;main.c: 84:         sendStringSerial4(buf);
+"104
+[; ;main.c: 104:         sprintf(buf,"%i %i %i %i\n",clear_upper,clear_lower,card_flag,initial.C);
+[e ( _sprintf (1 , , , , (. , &U _buf :s 2C _clear_upper _clear_lower -> _card_flag `i . _initial 3 ]
+"105
+[; ;main.c: 105:         sendStringSerial4(buf);
 [e ( _sendStringSerial4 (1 &U _buf ]
-"85
-[; ;main.c: 85:         _delay((unsigned long)((500)*(64000000/4000.0)));
+"106
+[; ;main.c: 106:         _delay((unsigned long)((500)*(64000000/4000.0)));
 [e ( __delay (1 -> * -> -> 500 `i `d / -> -> 64000000 `l `d .4000.0 `ul ]
-"87
-[; ;main.c: 87:         if(card_flag==1){
-[e $ ! == -> _card_flag `i -> 1 `i 2027  ]
+"108
+[; ;main.c: 108:         if(start==0 && card_flag){
+[e $ ! && == -> _start `i -> 0 `i != -> _card_flag `i -> 0 `i 2027  ]
 {
-"88
-[; ;main.c: 88:             LATHbits.LATH3 = !LATHbits.LATH3;
-[e = . . _LATHbits 0 3 -> -> ! != -> . . _LATHbits 0 3 `i -> 0 `i `i `uc ]
-"89
-[; ;main.c: 89:             card_flag = 0;
+"109
+[; ;main.c: 109:             card_flag = 0;
 [e = _card_flag -> -> 0 `i `uc ]
-"90
-[; ;main.c: 90:         }
+"110
+[; ;main.c: 110:             start = 1;
+[e = _start -> -> 1 `i `uc ]
+"111
+[; ;main.c: 111:         }
 }
 [e :U 2027 ]
-"93
-[; ;main.c: 93:     }
+"113
+[; ;main.c: 113:         LATHbits.LATH3 = card_flag;
+[e = . . _LATHbits 0 3 _card_flag ]
+"114
+[; ;main.c: 114:         LATDbits.LATD7 = start;
+[e = . . _LATDbits 0 7 _start ]
+"128
+[; ;main.c: 128:         forward(&motorL,&motorR);
+[e ( _forward (2 , &U _motorL &U _motorR ]
+"134
+[; ;main.c: 134:     }
 }
 [e :U 2024 ]
 [e $U 2025  ]
 [e :U 2026 ]
-"94
-[; ;main.c: 94: }
+"135
+[; ;main.c: 135: }
 [e :UE 2023 ]
 }
 [p f _sprintf 8388736 ]

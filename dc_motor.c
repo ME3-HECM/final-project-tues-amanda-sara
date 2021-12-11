@@ -3,6 +3,7 @@
 
 #define LOW 50
 #define HIGH 50
+#define DUTY_CYCLE 0
 
 /********************************************************
  * DCmotors_init
@@ -30,8 +31,8 @@ void DCmotors_init(int PWMperiod)
     LATCbits.LATC7=0; // set RC7 output to 0
     LATGbits.LATG6=0; // set RG6 output to 0
 
-    PWM6DCH=0; // 0% power
-    PWM7DCH=0; // 0% power
+    PWM6DCH=DUTY_CYCLE; // 0% power
+    PWM7DCH=DUTY_CYCLE; // 0% power
     
     PWM6CONbits.EN = 1; // enable PWM generation
     PWM7CONbits.EN = 1; // enable PWM generation
@@ -136,9 +137,9 @@ void forward(DC_motor *mL, DC_motor *mR)
     mR->direction = 1; // right wheels go forward
     
     // make both motors accelerate to 100
-    while(((mL->power)!=100) && ((mR->power)!=100)){    // will be True until both motors have 100 power
-        mL->power+=10;
-        mR->power+=10;
+    while(((mL->power)<50) && ((mR->power)<50)){    // will be True until both motors have 100 power
+        mL->power+=5;
+        mR->power+=5;
         // set PWM output
         setMotorPWM(mL);
         setMotorPWM(mR);
@@ -176,9 +177,9 @@ void stop(DC_motor *mL, DC_motor *mR)
     BRAKE_LED = 1;
     
     // need to slowly bring both motors to a stop
-    while(((mL->power)!=0) && ((mR->power)!=0)){    // will be True until both motors have 0 power
-        mL->power = mL->power - 10;
-        mR->power = mR->power - 10;
+    while(((mL->power)>=0) && ((mR->power)>=0)){    // will be True until both motors have 0 power
+        mL->power = mL->power - 5;
+        mR->power = mR->power - 5;
         
         // set PWM output
         setMotorPWM(mL);

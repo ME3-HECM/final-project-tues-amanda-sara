@@ -13,63 +13,69 @@
 %PSECTS
 $dist/default/production/final-project-tues-amanda-sara.X.production.o
 intcodelo CODE 0 18 18 E 1
-cinit CODE 0 1D4E 1D4E 36 1
+cinit CODE 0 20DE 20DE 36 1
 idloc IDLOC 5 200000 200000 10 1
-intcode_body CODE 0 1E56 1E56 22 1
-text0 CODE 0 12A6 12A6 1B2 1
-text1 CODE 0 1A3A 1A3A 52 1
-text2 CODE 0 19D8 19D8 62 1
-text3 CODE 0 10F2 10F2 1B4 1
-text4 CODE 0 E10 E10 2E2 1
-text5 CODE 0 180E 180E C6 1
-text6 CODE 0 1D84 1D84 36 1
-text7 CODE 0 1BCC 1BCC 44 1
-text8 CODE 0 1744 1744 CA 1
-text9 CODE 0 1FBC 1FBC 2 1
-text10 CODE 0 1C96 1C96 40 1
-text11 CODE 0 15E0 15E0 164 1
-text12 CODE 0 1458 1458 188 1
-text13 CODE 0 1D16 1D16 38 1
-text14 CODE 0 1F46 1F46 16 1
-text15 CODE 0 1E78 1E78 20 1
-text16 CODE 0 1EF8 1EF8 1A 1
-text17 CODE 0 18D4 18D4 82 1
-text18 CODE 0 1C10 1C10 44 1
-text19 CODE 0 1A8C 1A8C 50 1
-text20 CODE 0 1ADC 1ADC 50 1
-text21 CODE 0 1B2C 1B2C 50 1
-text22 CODE 0 1B7C 1B7C 50 1
-text23 CODE 0 1F8A 1F8A A 1
-text24 CODE 0 1C54 1C54 42 1
-text25 CODE 0 1CD6 1CD6 40 1
-text26 CODE 0 1E98 1E98 20 1
-text27 CODE 0 1F72 1F72 C 1
-text28 CODE 0 1F94 1F94 A 1
-text29 CODE 0 1F9E 1F9E A 1
-text30 CODE 0 1DE4 1DE4 28 1
-text31 CODE 0 1E34 1E34 22 1
-text32 CODE 0 1DBA 1DBA 2A 1
-text33 CODE 0 1F5C 1F5C 16 1
-text34 CODE 0 1EB8 1EB8 20 1
-text35 CODE 0 1F12 1F12 1A 1
-text38 CODE 0 1F2C 1F2C 1A 1
-text39 CODE 0 1956 1956 82 1
-text40 CODE 0 1ED8 1ED8 20 1
-text41 CODE 0 1F7E 1F7E C 1
-text42 CODE 0 1FA8 1FA8 A 1
-text43 CODE 0 1FB2 1FB2 A 1
-text44 CODE 0 1E0C 1E0C 28 1
-cstackCOMRAM COMRAM 1 1 1 4D 1
-cstackBANK0 BANK0 1 9D 9D 28 1
-cstackBANK1 BANK1 1 100 100 40 1
-temp COMRAM 1 57 57 1 1
-bssBANK0 BANK0 1 60 60 3D 1
-bssBANK1 BANK1 1 140 140 3C 1
+intcode_body CODE 0 220C 220C 22 1
+text0 CODE 0 10F0 10F0 222 1
+text1 CODE 0 1CD6 1CD6 52 1
+text2 CODE 0 1C74 1C74 62 1
+text3 CODE 0 14E6 14E6 1B4 1
+text4 CODE 0 E10 E10 2E0 1
+text5 CODE 0 1B14 1B14 C2 1
+text6 CODE 0 2114 2114 36 1
+text7 CODE 0 1F5C 1F5C 44 1
+text8 CODE 0 1986 1986 CA 1
+text9 CODE 0 2386 2386 2 1
+text10 CODE 0 2026 2026 40 1
+text11 CODE 0 1822 1822 164 1
+text12 CODE 0 169A 169A 188 1
+text13 CODE 0 20A6 20A6 38 1
+text14 CODE 0 22FC 22FC 16 1
+text15 CODE 0 222E 222E 20 1
+text16 CODE 0 22AE 22AE 1A 1
+text17 CODE 0 1D28 1D28 52 1
+text18 CODE 0 1BD6 1BD6 9E 1
+text19 CODE 0 1312 1312 1D4 1
+text20 CODE 0 21C4 21C4 26 1
+text21 CODE 0 1A50 1A50 C4 1
+text22 CODE 0 1FA0 1FA0 44 1
+text23 CODE 0 1DCC 1DCC 50 1
+text24 CODE 0 1E1C 1E1C 50 1
+text25 CODE 0 1E6C 1E6C 50 1
+text26 CODE 0 1EBC 1EBC 50 1
+text27 CODE 0 2340 2340 A 1
+text28 CODE 0 1FE4 1FE4 42 1
+text29 CODE 0 2066 2066 40 1
+text30 CODE 0 224E 224E 20 1
+text31 CODE 0 2328 2328 C 1
+text32 CODE 0 234A 234A A 1
+text33 CODE 0 2354 2354 A 1
+text34 CODE 0 2174 2174 28 1
+text35 CODE 0 21EA 21EA 22 1
+text36 CODE 0 214A 214A 2A 1
+text37 CODE 0 226E 226E 20 1
+text38 CODE 0 1F0C 1F0C 50 1
+text39 CODE 0 235E 235E A 1
+text40 CODE 0 2368 2368 A 1
+text41 CODE 0 2312 2312 16 1
+text42 CODE 0 22C8 22C8 1A 1
+text45 CODE 0 22E2 22E2 1A 1
+text46 CODE 0 1D7A 1D7A 52 1
+text47 CODE 0 228E 228E 20 1
+text48 CODE 0 2334 2334 C 1
+text49 CODE 0 2372 2372 A 1
+text50 CODE 0 237C 237C A 1
+text51 CODE 0 219C 219C 28 1
+cstackCOMRAM COMRAM 1 1 1 51 1
+cstackBANK0 BANK0 1 60 60 75 1
+temp COMRAM 1 59 59 1 1
+bssBANK0 BANK0 1 D5 D5 1F 1
+bssBANK1 BANK1 1 100 100 5C 1
 intcode CODE 0 8 8 6 1
 smallconst SMALLCONST 0 E00 E00 10 1
-bssCOMRAM COMRAM 1 4E 4E 9 1
+bssCOMRAM COMRAM 1 52 52 7 1
 config CONFIG 4 300000 300000 C 1
-$/tmp/xc6PRSUNO.o
+$/tmp/xccKNBf5G.o
 idloc IDLOC 5 200000 200000 10 1
 init CODE 0 26 26 4 1
 reset_vec CODE 0 0 0 4 1
@@ -80,11 +86,11 @@ config CONFIG 4 300000 300000 C 1
 #    <class name> <range> <delta>
 # Addresses given in the range are in hexadecimal and units of delta.
 %UNUSED
-RAM C5-FF 1
-RAM 17C-DE9 1
+RAM F4-FF 1
+RAM 15C-DE9 1
 SFR DEF-FFF 1
-BANK0 C5-FF 1
-BANK1 17C-1FF 1
+BANK0 F4-FF 1
+BANK1 15C-1FF 1
 BANK2 200-2FF 1
 BANK3 300-3FF 1
 BANK4 400-4FF 1
@@ -96,23 +102,23 @@ BANK9 900-9FF 1
 CONST 4-7 1
 CONST E-17 1
 CONST 2A-DFF 1
-CONST 1FBE-1FFFF 1
-STACK 17C-DE9 1
-SMALLCONST 1FBE-1FFFF 1
+CONST 2388-1FFFF 1
+STACK 15C-DE9 1
+SMALLCONST 2388-1FFFF 1
 CODE 4-7 1
 CODE E-17 1
 CODE 2A-DFF 1
-CODE 1FBE-1FFFF 1
+CODE 2388-1FFFF 1
 BANK10 A00-AFF 1
 BANK11 B00-BFF 1
 BANK12 C00-CFF 1
 BANK13 D00-DE9 1
-BIGRAM 58-5F 1
-BIGRAM C5-FF 1
-BIGRAM 17C-DE9 1
-COMRAM 58-5F 1
+BIGRAM 5A-5F 1
+BIGRAM F4-FF 1
+BIGRAM 15C-DE9 1
+COMRAM 5A-5F 1
 EEDATA 310000-3103FF 1
-MEDIUMCONST 1FBE-FFFF 1
+MEDIUMCONST 2388-FFFF 1
 MEDIUMCONST 10E00-1FFFF 1
 # %LINETAB Section
 # This section enumerates the file/line to address mappings.
@@ -128,328 +134,418 @@ MEDIUMCONST 10E00-1FFFF 1
 # All other numeric values are in decimal.
 %LINETAB
 $dist/default/production/final-project-tues-amanda-sara.X.production.o
-18 intcodelo CODE >16987:/tmp/xcqeA2Kd7.s
-18 intcodelo CODE >52:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/interrupts.c
-1E intcodelo CODE >57:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/interrupts.c
-8 intcode CODE >17045:/tmp/xcqeA2Kd7.s
-8 intcode CODE >38:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/interrupts.c
-1E0C text44 CODE >30:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/i2c.c
-1E0C text44 CODE >32:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/i2c.c
-1E32 text44 CODE >33:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/i2c.c
-1FB2 text43 CODE >39:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/i2c.c
-1FB2 text43 CODE >41:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/i2c.c
-1FB6 text43 CODE >42:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/i2c.c
-1FBA text43 CODE >43:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/i2c.c
-1FA8 text42 CODE >59:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/i2c.c
-1FA8 text42 CODE >61:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/i2c.c
-1FAC text42 CODE >62:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/i2c.c
-1FB0 text42 CODE >63:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/i2c.c
-1F7E text41 CODE >69:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/i2c.c
-1F80 text41 CODE >71:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/i2c.c
-1F84 text41 CODE >72:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/i2c.c
-1F88 text41 CODE >73:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/i2c.c
-1ED8 text40 CODE >80:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/color_click.c
-1EDA text40 CODE >82:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/color_click.c
-1EDE text40 CODE >83:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/color_click.c
-1EE4 text40 CODE >84:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/color_click.c
-1EEC text40 CODE >85:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/color_click.c
-1EF2 text40 CODE >86:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/color_click.c
-1EF6 text40 CODE >87:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/color_click.c
-1956 text39 CODE >188:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/color_click.c
-1956 text39 CODE >189:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/color_click.c
-1960 text39 CODE >190:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/color_click.c
-1970 text39 CODE >191:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/color_click.c
-197A text39 CODE >192:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/color_click.c
-199E text39 CODE >193:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/color_click.c
-19A8 text39 CODE >194:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/color_click.c
-19CC text39 CODE >195:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/color_click.c
-19D6 text39 CODE >197:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/color_click.c
-1F2C text38 CODE >180:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/color_click.c
-1F2C text38 CODE >181:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/color_click.c
-1F30 text38 CODE >182:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/color_click.c
-1F36 text38 CODE >183:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/color_click.c
-1F3C text38 CODE >184:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/color_click.c
-1F40 text38 CODE >185:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/color_click.c
-1F44 text38 CODE >186:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/color_click.c
-1E56 intcode_body CODE >38:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/interrupts.c
-1E56 intcode_body CODE >39:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/interrupts.c
-1E66 intcode_body CODE >40:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/interrupts.c
-1E6C intcode_body CODE >41:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/interrupts.c
-1E70 intcode_body CODE >42:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/interrupts.c
-1E74 intcode_body CODE >44:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/interrupts.c
-1F12 text35 CODE >8:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/ADC.c
-1F12 text35 CODE >10:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/ADC.c
-1F14 text35 CODE >11:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/ADC.c
-1F18 text35 CODE >14:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/ADC.c
-1F1C text35 CODE >15:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/ADC.c
-1F20 text35 CODE >16:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/ADC.c
-1F24 text35 CODE >17:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/ADC.c
-1F26 text35 CODE >18:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/ADC.c
-1F28 text35 CODE >19:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/ADC.c
-1F2A text35 CODE >20:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/ADC.c
-1EB8 text34 CODE >7:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/serial.c
-1EB8 text34 CODE >10:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/serial.c
-1EBE text34 CODE >11:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/serial.c
-1EC2 text34 CODE >12:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/serial.c
-1EC4 text34 CODE >14:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/serial.c
-1EC6 text34 CODE >15:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/serial.c
-1EC8 text34 CODE >16:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/serial.c
-1ECC text34 CODE >17:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/serial.c
-1ED0 text34 CODE >19:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/serial.c
-1ED2 text34 CODE >20:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/serial.c
-1ED4 text34 CODE >21:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/serial.c
-1ED6 text34 CODE >22:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/serial.c
-1F5C text33 CODE >100:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/dc_motor.c
-1F5C text33 CODE >102:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/dc_motor.c
-1F5E text33 CODE >103:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/dc_motor.c
-1F60 text33 CODE >104:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/dc_motor.c
-1F62 text33 CODE >105:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/dc_motor.c
-1F64 text33 CODE >106:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/dc_motor.c
-1F66 text33 CODE >108:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/dc_motor.c
-1F68 text33 CODE >109:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/dc_motor.c
-1F6A text33 CODE >110:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/dc_motor.c
-1F6C text33 CODE >111:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/dc_motor.c
-1F6E text33 CODE >112:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/dc_motor.c
-1F70 text33 CODE >113:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/dc_motor.c
-1DBA text32 CODE >8:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/i2c.c
-1DBA text32 CODE >11:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/i2c.c
-1DC4 text32 CODE >12:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/i2c.c
-1DC6 text32 CODE >13:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/i2c.c
-1DCA text32 CODE >16:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/i2c.c
-1DCC text32 CODE >17:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/i2c.c
-1DCE text32 CODE >18:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/i2c.c
-1DD0 text32 CODE >19:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/i2c.c
-1DD2 text32 CODE >20:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/i2c.c
-1DD6 text32 CODE >21:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/i2c.c
-1DDA text32 CODE >22:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/i2c.c
-1DDE text32 CODE >23:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/i2c.c
-1DE2 text32 CODE >24:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/i2c.c
-1E34 text31 CODE >67:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/color_click.c
-1E36 text31 CODE >69:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/color_click.c
-1E40 text31 CODE >70:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/color_click.c
-1E4A text31 CODE >71:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/color_click.c
-1E54 text31 CODE >72:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/color_click.c
-1DE4 text30 CODE >30:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/i2c.c
-1DE4 text30 CODE >32:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/i2c.c
-1E0A text30 CODE >33:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/i2c.c
-1F9E text29 CODE >39:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/i2c.c
-1F9E text29 CODE >41:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/i2c.c
-1FA2 text29 CODE >42:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/i2c.c
-1FA6 text29 CODE >43:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/i2c.c
-1F94 text28 CODE >59:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/i2c.c
-1F94 text28 CODE >61:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/i2c.c
-1F98 text28 CODE >62:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/i2c.c
-1F9C text28 CODE >63:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/i2c.c
-1F72 text27 CODE >69:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/i2c.c
-1F74 text27 CODE >71:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/i2c.c
-1F78 text27 CODE >72:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/i2c.c
-1F7C text27 CODE >73:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/i2c.c
-1E98 text26 CODE >80:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/color_click.c
-1E9A text26 CODE >82:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/color_click.c
-1E9E text26 CODE >83:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/color_click.c
-1EA4 text26 CODE >84:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/color_click.c
-1EAC text26 CODE >85:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/color_click.c
-1EB2 text26 CODE >86:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/color_click.c
-1EB6 text26 CODE >87:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/color_click.c
-1CD6 text25 CODE >17:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/color_click.c
-1CD6 text25 CODE >20:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/color_click.c
-1CDA text25 CODE >23:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/color_click.c
-1CE4 text25 CODE >24:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/color_click.c
-1CF4 text25 CODE >27:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/color_click.c
-1CFE text25 CODE >30:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/color_click.c
-1D08 text25 CODE >33:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/color_click.c
-1D0A text25 CODE >34:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/color_click.c
-1D0C text25 CODE >35:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/color_click.c
-1D0E text25 CODE >38:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/color_click.c
-1D14 text25 CODE >39:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/color_click.c
-1C54 text24 CODE >79:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/i2c.c
-1C56 text24 CODE >82:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/i2c.c
-1C5A text24 CODE >83:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/i2c.c
-1C5E text24 CODE >84:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/i2c.c
-1C62 text24 CODE >85:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/i2c.c
-1C66 text24 CODE >86:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/i2c.c
-1C6A text24 CODE >87:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/i2c.c
-1C90 text24 CODE >88:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/i2c.c
-1C92 text24 CODE >89:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/i2c.c
-1C94 text24 CODE >90:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/i2c.c
-1F8A text23 CODE >49:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/i2c.c
-1F8A text23 CODE >51:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/i2c.c
-1F8E text23 CODE >52:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/i2c.c
-1F92 text23 CODE >53:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/i2c.c
-1B7C text22 CODE >132:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/color_click.c
-1B7C text22 CODE >135:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/color_click.c
-1B80 text22 CODE >136:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/color_click.c
-1B86 text22 CODE >137:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/color_click.c
-1B8C text22 CODE >138:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/color_click.c
-1B90 text22 CODE >139:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/color_click.c
-1B96 text22 CODE >140:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/color_click.c
-1BA4 text22 CODE >141:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/color_click.c
-1BBE text22 CODE >142:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/color_click.c
-1BC2 text22 CODE >143:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/color_click.c
-1BCA text22 CODE >144:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/color_click.c
-1B2C text21 CODE >151:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/color_click.c
-1B2C text21 CODE >154:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/color_click.c
-1B30 text21 CODE >155:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/color_click.c
-1B36 text21 CODE >156:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/color_click.c
-1B3C text21 CODE >157:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/color_click.c
-1B40 text21 CODE >158:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/color_click.c
-1B46 text21 CODE >159:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/color_click.c
-1B54 text21 CODE >160:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/color_click.c
-1B6E text21 CODE >161:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/color_click.c
-1B72 text21 CODE >162:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/color_click.c
-1B7A text21 CODE >163:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/color_click.c
-1ADC text20 CODE >113:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/color_click.c
-1ADC text20 CODE >116:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/color_click.c
-1AE0 text20 CODE >117:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/color_click.c
-1AE6 text20 CODE >118:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/color_click.c
-1AEC text20 CODE >119:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/color_click.c
-1AF0 text20 CODE >120:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/color_click.c
-1AF6 text20 CODE >121:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/color_click.c
-1B04 text20 CODE >122:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/color_click.c
-1B1E text20 CODE >123:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/color_click.c
-1B22 text20 CODE >124:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/color_click.c
-1B2A text20 CODE >125:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/color_click.c
-1A8C text19 CODE >94:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/color_click.c
-1A8C text19 CODE >97:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/color_click.c
-1A90 text19 CODE >98:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/color_click.c
-1A96 text19 CODE >99:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/color_click.c
-1A9C text19 CODE >100:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/color_click.c
-1AA0 text19 CODE >101:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/color_click.c
-1AA6 text19 CODE >102:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/color_click.c
-1AB4 text19 CODE >103:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/color_click.c
-1ACE text19 CODE >104:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/color_click.c
-1AD2 text19 CODE >105:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/color_click.c
-1ADA text19 CODE >106:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/color_click.c
-1C10 text18 CODE >169:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/color_click.c
-1C10 text18 CODE >171:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/color_click.c
-1C1C text18 CODE >172:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/color_click.c
-1C28 text18 CODE >173:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/color_click.c
-1C34 text18 CODE >174:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/color_click.c
-1C40 text18 CODE >176:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/color_click.c
-1C52 text18 CODE >177:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/color_click.c
-18D4 text17 CODE >188:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/color_click.c
-18D4 text17 CODE >189:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/color_click.c
-18DE text17 CODE >190:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/color_click.c
-18EE text17 CODE >191:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/color_click.c
-18F8 text17 CODE >192:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/color_click.c
-191C text17 CODE >193:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/color_click.c
-1926 text17 CODE >194:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/color_click.c
-194A text17 CODE >195:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/color_click.c
-1954 text17 CODE >197:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/color_click.c
-1EF8 text16 CODE >180:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/color_click.c
-1EF8 text16 CODE >181:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/color_click.c
-1EFC text16 CODE >182:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/color_click.c
-1F02 text16 CODE >183:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/color_click.c
-1F08 text16 CODE >184:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/color_click.c
-1F0C text16 CODE >185:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/color_click.c
-1F10 text16 CODE >186:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/color_click.c
-1E78 text15 CODE >13:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/interrupts.c
-1E78 text15 CODE >14:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/interrupts.c
-1E7A text15 CODE >15:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/interrupts.c
-1E7E text15 CODE >16:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/interrupts.c
-1E84 text15 CODE >18:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/interrupts.c
-1E88 text15 CODE >21:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/interrupts.c
-1E8A text15 CODE >24:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/interrupts.c
-1E8E text15 CODE >26:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/interrupts.c
-1E90 text15 CODE >27:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/interrupts.c
-1E92 text15 CODE >28:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/interrupts.c
-1E94 text15 CODE >29:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/interrupts.c
-1E96 text15 CODE >30:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/interrupts.c
-1F46 text14 CODE >37:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/serial.c
-1F46 text14 CODE >38:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/serial.c
-1F56 text14 CODE >39:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/serial.c
-1F5A text14 CODE >40:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/serial.c
-1D16 text13 CODE >46:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/serial.c
-1D16 text13 CODE >48:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/serial.c
-1D1A text13 CODE >49:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/serial.c
-1D34 text13 CODE >48:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/serial.c
-1D4C text13 CODE >51:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/serial.c
-1458 text12 CODE >9:/Applications/microchip/xc8/v2.32/pic/sources/c99/common/aodiv.c
-1458 text12 CODE >15:/Applications/microchip/xc8/v2.32/pic/sources/c99/common/aodiv.c
-145C text12 CODE >16:/Applications/microchip/xc8/v2.32/pic/sources/c99/common/aodiv.c
-146A text12 CODE >17:/Applications/microchip/xc8/v2.32/pic/sources/c99/common/aodiv.c
-148A text12 CODE >18:/Applications/microchip/xc8/v2.32/pic/sources/c99/common/aodiv.c
-148E text12 CODE >20:/Applications/microchip/xc8/v2.32/pic/sources/c99/common/aodiv.c
-149C text12 CODE >21:/Applications/microchip/xc8/v2.32/pic/sources/c99/common/aodiv.c
-14BC text12 CODE >22:/Applications/microchip/xc8/v2.32/pic/sources/c99/common/aodiv.c
-14C0 text12 CODE >24:/Applications/microchip/xc8/v2.32/pic/sources/c99/common/aodiv.c
-14CC text12 CODE >25:/Applications/microchip/xc8/v2.32/pic/sources/c99/common/aodiv.c
-14EA text12 CODE >26:/Applications/microchip/xc8/v2.32/pic/sources/c99/common/aodiv.c
-14EE text12 CODE >27:/Applications/microchip/xc8/v2.32/pic/sources/c99/common/aodiv.c
-14F2 text12 CODE >28:/Applications/microchip/xc8/v2.32/pic/sources/c99/common/aodiv.c
-1504 text12 CODE >29:/Applications/microchip/xc8/v2.32/pic/sources/c99/common/aodiv.c
-1506 text12 CODE >27:/Applications/microchip/xc8/v2.32/pic/sources/c99/common/aodiv.c
-1514 text12 CODE >32:/Applications/microchip/xc8/v2.32/pic/sources/c99/common/aodiv.c
-1526 text12 CODE >33:/Applications/microchip/xc8/v2.32/pic/sources/c99/common/aodiv.c
-1554 text12 CODE >34:/Applications/microchip/xc8/v2.32/pic/sources/c99/common/aodiv.c
-1574 text12 CODE >35:/Applications/microchip/xc8/v2.32/pic/sources/c99/common/aodiv.c
-1576 text12 CODE >37:/Applications/microchip/xc8/v2.32/pic/sources/c99/common/aodiv.c
-1588 text12 CODE >38:/Applications/microchip/xc8/v2.32/pic/sources/c99/common/aodiv.c
-158E text12 CODE >40:/Applications/microchip/xc8/v2.32/pic/sources/c99/common/aodiv.c
-159E text12 CODE >41:/Applications/microchip/xc8/v2.32/pic/sources/c99/common/aodiv.c
-15BE text12 CODE >42:/Applications/microchip/xc8/v2.32/pic/sources/c99/common/aodiv.c
-15DE text12 CODE >43:/Applications/microchip/xc8/v2.32/pic/sources/c99/common/aodiv.c
-15E0 text11 CODE >9:/Applications/microchip/xc8/v2.32/pic/sources/c99/common/aomod.c
-15E0 text11 CODE >14:/Applications/microchip/xc8/v2.32/pic/sources/c99/common/aomod.c
-15E4 text11 CODE >15:/Applications/microchip/xc8/v2.32/pic/sources/c99/common/aomod.c
-15F2 text11 CODE >16:/Applications/microchip/xc8/v2.32/pic/sources/c99/common/aomod.c
-1612 text11 CODE >17:/Applications/microchip/xc8/v2.32/pic/sources/c99/common/aomod.c
-1616 text11 CODE >19:/Applications/microchip/xc8/v2.32/pic/sources/c99/common/aomod.c
-1624 text11 CODE >20:/Applications/microchip/xc8/v2.32/pic/sources/c99/common/aomod.c
-1644 text11 CODE >21:/Applications/microchip/xc8/v2.32/pic/sources/c99/common/aomod.c
-1662 text11 CODE >22:/Applications/microchip/xc8/v2.32/pic/sources/c99/common/aomod.c
-1666 text11 CODE >23:/Applications/microchip/xc8/v2.32/pic/sources/c99/common/aomod.c
-166A text11 CODE >24:/Applications/microchip/xc8/v2.32/pic/sources/c99/common/aomod.c
-167C text11 CODE >25:/Applications/microchip/xc8/v2.32/pic/sources/c99/common/aomod.c
-167E text11 CODE >23:/Applications/microchip/xc8/v2.32/pic/sources/c99/common/aomod.c
-168C text11 CODE >28:/Applications/microchip/xc8/v2.32/pic/sources/c99/common/aomod.c
-16BA text11 CODE >29:/Applications/microchip/xc8/v2.32/pic/sources/c99/common/aomod.c
-16DA text11 CODE >30:/Applications/microchip/xc8/v2.32/pic/sources/c99/common/aomod.c
-16EC text11 CODE >31:/Applications/microchip/xc8/v2.32/pic/sources/c99/common/aomod.c
-16F2 text11 CODE >33:/Applications/microchip/xc8/v2.32/pic/sources/c99/common/aomod.c
-1702 text11 CODE >34:/Applications/microchip/xc8/v2.32/pic/sources/c99/common/aomod.c
-1722 text11 CODE >35:/Applications/microchip/xc8/v2.32/pic/sources/c99/common/aomod.c
-1742 text11 CODE >36:/Applications/microchip/xc8/v2.32/pic/sources/c99/common/aomod.c
-1C96 text10 CODE >1:/Applications/microchip/xc8/v2.32/pic/sources/c99/common/abs.c
-1C96 text10 CODE >3:/Applications/microchip/xc8/v2.32/pic/sources/c99/common/abs.c
-1CD4 text10 CODE >4:/Applications/microchip/xc8/v2.32/pic/sources/c99/common/abs.c
-1FBC text9 CODE >7:/Applications/microchip/xc8/v2.32/pic/sources/c99/common/putch.c
-1FBC text9 CODE >9:/Applications/microchip/xc8/v2.32/pic/sources/c99/common/putch.c
-1744 text8 CODE >8:/Applications/microchip/xc8/v2.32/pic/sources/c99/common/nf_fputc.c
-1744 text8 CODE >12:/Applications/microchip/xc8/v2.32/pic/sources/c99/common/nf_fputc.c
-1768 text8 CODE >13:/Applications/microchip/xc8/v2.32/pic/sources/c99/common/nf_fputc.c
-176E text8 CODE >14:/Applications/microchip/xc8/v2.32/pic/sources/c99/common/nf_fputc.c
-1772 text8 CODE >15:/Applications/microchip/xc8/v2.32/pic/sources/c99/common/nf_fputc.c
-17C6 text8 CODE >18:/Applications/microchip/xc8/v2.32/pic/sources/c99/common/nf_fputc.c
-17FA text8 CODE >20:/Applications/microchip/xc8/v2.32/pic/sources/c99/common/nf_fputc.c
-180C text8 CODE >24:/Applications/microchip/xc8/v2.32/pic/sources/c99/common/nf_fputc.c
-1BCC text7 CODE >8:/Applications/microchip/xc8/v2.32/pic/sources/c99/common/nf_fputs.c
-1BCC text7 CODE >13:/Applications/microchip/xc8/v2.32/pic/sources/c99/common/nf_fputs.c
-1BD4 text7 CODE >14:/Applications/microchip/xc8/v2.32/pic/sources/c99/common/nf_fputs.c
-1BD8 text7 CODE >15:/Applications/microchip/xc8/v2.32/pic/sources/c99/common/nf_fputs.c
-1BEA text7 CODE >16:/Applications/microchip/xc8/v2.32/pic/sources/c99/common/nf_fputs.c
-1BEE text7 CODE >14:/Applications/microchip/xc8/v2.32/pic/sources/c99/common/nf_fputs.c
-1C0E text7 CODE >19:/Applications/microchip/xc8/v2.32/pic/sources/c99/common/nf_fputs.c
-1D84 text6 CODE >5:/Applications/microchip/xc8/v2.32/pic/sources/c99/common/strlen.c
-1D84 text6 CODE >7:/Applications/microchip/xc8/v2.32/pic/sources/c99/common/strlen.c
-1D8C text6 CODE >8:/Applications/microchip/xc8/v2.32/pic/sources/c99/common/strlen.c
-1D90 text6 CODE >9:/Applications/microchip/xc8/v2.32/pic/sources/c99/common/strlen.c
-1D94 text6 CODE >8:/Applications/microchip/xc8/v2.32/pic/sources/c99/common/strlen.c
-1DAC text6 CODE >11:/Applications/microchip/xc8/v2.32/pic/sources/c99/common/strlen.c
-1DB8 text6 CODE >12:/Applications/microchip/xc8/v2.32/pic/sources/c99/common/strlen.c
-180E text5 CODE >72:/Applications/microchip/xc8/v2.32/pic/sources/c99/common/doprnt.c
-180E text5 CODE >77:/Applications/microchip/xc8/v2.32/pic/sources/c99/common/doprnt.c
-181E text5 CODE >78:/Applications/microchip/xc8/v2.32/pic/sources/c99/common/doprnt.c
-1832 text5 CODE >82:/Applications/microchip/xc8/v2.32/pic/sources/c99/common/doprnt.c
-1854 text5 CODE >83:/Applications/microchip/xc8/v2.32/pic/sources/c99/common/doprnt.c
-185C text5 CODE >84:/Applications/microchip/xc8/v2.32/pic/sources/c99/common/doprnt.c
-1860 text5 CODE >85:/Applications/microchip/xc8/v2.32/pic/sources/c99/common/doprnt.c
-1874 text5 CODE >86:/Applications/microchip/xc8/v2.32/pic/sources/c99/common/doprnt.c
-1878 text5 CODE >84:/Applications/microchip/xc8/v2.32/pic/sources/c99/common/doprnt.c
-1896 text5 CODE >90:/Applications/microchip/xc8/v2.32/pic/sources/c99/common/doprnt.c
-18A6 text5 CODE >91:/Applications/microchip/xc8/v2.32/pic/sources/c99/common/doprnt.c
-18BA text5 CODE >94:/Applications/microchip/xc8/v2.32/pic/sources/c99/common/doprnt.c
-18D2 text5 CODE >95:/Applications/microchip/xc8/v2.32/pic/sources/c99/common/doprnt.c
+18 intcodelo CODE >18262:/tmp/xcz8B1yuc.s
+18 intcodelo CODE >53:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/interrupts.c
+1E intcodelo CODE >58:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/interrupts.c
+8 intcode CODE >18320:/tmp/xcz8B1yuc.s
+8 intcode CODE >39:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/interrupts.c
+219C text51 CODE >30:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/i2c.c
+219C text51 CODE >32:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/i2c.c
+21C2 text51 CODE >33:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/i2c.c
+237C text50 CODE >39:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/i2c.c
+237C text50 CODE >41:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/i2c.c
+2380 text50 CODE >42:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/i2c.c
+2384 text50 CODE >43:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/i2c.c
+2372 text49 CODE >59:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/i2c.c
+2372 text49 CODE >61:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/i2c.c
+2376 text49 CODE >62:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/i2c.c
+237A text49 CODE >63:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/i2c.c
+2334 text48 CODE >69:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/i2c.c
+2336 text48 CODE >71:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/i2c.c
+233A text48 CODE >72:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/i2c.c
+233E text48 CODE >73:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/i2c.c
+228E text47 CODE >80:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/color_click.c
+2290 text47 CODE >82:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/color_click.c
+2294 text47 CODE >83:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/color_click.c
+229A text47 CODE >84:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/color_click.c
+22A2 text47 CODE >85:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/color_click.c
+22A8 text47 CODE >86:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/color_click.c
+22AC text47 CODE >87:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/color_click.c
+1D7A text46 CODE >188:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/color_click.c
+1D7A text46 CODE >189:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/color_click.c
+1D84 text46 CODE >190:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/color_click.c
+1D94 text46 CODE >191:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/color_click.c
+1D9E text46 CODE >192:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/color_click.c
+1DA8 text46 CODE >193:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/color_click.c
+1DB4 text46 CODE >194:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/color_click.c
+1DBE text46 CODE >195:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/color_click.c
+1DCA text46 CODE >197:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/color_click.c
+22E2 text45 CODE >180:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/color_click.c
+22E2 text45 CODE >181:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/color_click.c
+22E6 text45 CODE >182:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/color_click.c
+22EC text45 CODE >183:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/color_click.c
+22F2 text45 CODE >184:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/color_click.c
+22F6 text45 CODE >185:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/color_click.c
+22FA text45 CODE >186:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/color_click.c
+220C intcode_body CODE >39:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/interrupts.c
+220C intcode_body CODE >40:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/interrupts.c
+221C intcode_body CODE >41:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/interrupts.c
+2222 intcode_body CODE >42:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/interrupts.c
+2226 intcode_body CODE >43:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/interrupts.c
+222A intcode_body CODE >45:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/interrupts.c
+22C8 text42 CODE >8:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/ADC.c
+22C8 text42 CODE >10:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/ADC.c
+22CA text42 CODE >11:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/ADC.c
+22CE text42 CODE >14:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/ADC.c
+22D2 text42 CODE >15:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/ADC.c
+22D6 text42 CODE >16:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/ADC.c
+22DA text42 CODE >17:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/ADC.c
+22DC text42 CODE >18:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/ADC.c
+22DE text42 CODE >19:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/ADC.c
+22E0 text42 CODE >20:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/ADC.c
+2312 text41 CODE >101:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/dc_motor.c
+2312 text41 CODE >103:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/dc_motor.c
+2314 text41 CODE >104:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/dc_motor.c
+2316 text41 CODE >105:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/dc_motor.c
+2318 text41 CODE >106:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/dc_motor.c
+231A text41 CODE >107:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/dc_motor.c
+231C text41 CODE >109:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/dc_motor.c
+231E text41 CODE >110:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/dc_motor.c
+2320 text41 CODE >111:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/dc_motor.c
+2322 text41 CODE >112:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/dc_motor.c
+2324 text41 CODE >113:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/dc_motor.c
+2326 text41 CODE >114:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/dc_motor.c
+2368 text40 CODE >89:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/dc_motor.c
+2368 text40 CODE >91:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/dc_motor.c
+236A text40 CODE >92:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/dc_motor.c
+236C text40 CODE >94:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/dc_motor.c
+236E text40 CODE >95:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/dc_motor.c
+2370 text40 CODE >96:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/dc_motor.c
+235E text39 CODE >77:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/dc_motor.c
+235E text39 CODE >79:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/dc_motor.c
+2360 text39 CODE >80:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/dc_motor.c
+2362 text39 CODE >82:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/dc_motor.c
+2364 text39 CODE >83:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/dc_motor.c
+2366 text39 CODE >84:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/dc_motor.c
+1F0C text38 CODE >12:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/dc_motor.c
+1F0C text38 CODE >15:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/dc_motor.c
+1F14 text38 CODE >16:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/dc_motor.c
+1F18 text38 CODE >17:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/dc_motor.c
+1F20 text38 CODE >20:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/dc_motor.c
+1F24 text38 CODE >21:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/dc_motor.c
+1F26 text38 CODE >24:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/dc_motor.c
+1F28 text38 CODE >25:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/dc_motor.c
+1F2A text38 CODE >26:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/dc_motor.c
+1F2C text38 CODE >27:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/dc_motor.c
+1F2E text38 CODE >29:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/dc_motor.c
+1F30 text38 CODE >30:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/dc_motor.c
+1F32 text38 CODE >31:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/dc_motor.c
+1F34 text38 CODE >32:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/dc_motor.c
+1F36 text38 CODE >34:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/dc_motor.c
+1F3A text38 CODE >35:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/dc_motor.c
+1F3E text38 CODE >37:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/dc_motor.c
+1F40 text38 CODE >38:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/dc_motor.c
+1F42 text38 CODE >40:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/dc_motor.c
+1F48 text38 CODE >41:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/dc_motor.c
+1F4C text38 CODE >44:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/dc_motor.c
+1F50 text38 CODE >45:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/dc_motor.c
+1F54 text38 CODE >46:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/dc_motor.c
+1F58 text38 CODE >48:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/dc_motor.c
+1F5A text38 CODE >49:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/dc_motor.c
+226E text37 CODE >7:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/serial.c
+226E text37 CODE >10:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/serial.c
+2274 text37 CODE >11:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/serial.c
+2278 text37 CODE >12:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/serial.c
+227A text37 CODE >14:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/serial.c
+227C text37 CODE >15:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/serial.c
+227E text37 CODE >16:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/serial.c
+2282 text37 CODE >17:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/serial.c
+2286 text37 CODE >19:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/serial.c
+2288 text37 CODE >20:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/serial.c
+228A text37 CODE >21:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/serial.c
+228C text37 CODE >22:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/serial.c
+214A text36 CODE >8:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/i2c.c
+214A text36 CODE >11:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/i2c.c
+2154 text36 CODE >12:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/i2c.c
+2156 text36 CODE >13:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/i2c.c
+215A text36 CODE >16:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/i2c.c
+215C text36 CODE >17:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/i2c.c
+215E text36 CODE >18:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/i2c.c
+2160 text36 CODE >19:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/i2c.c
+2162 text36 CODE >20:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/i2c.c
+2166 text36 CODE >21:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/i2c.c
+216A text36 CODE >22:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/i2c.c
+216E text36 CODE >23:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/i2c.c
+2172 text36 CODE >24:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/i2c.c
+21EA text35 CODE >67:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/color_click.c
+21EC text35 CODE >69:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/color_click.c
+21F6 text35 CODE >70:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/color_click.c
+2200 text35 CODE >71:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/color_click.c
+220A text35 CODE >72:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/color_click.c
+2174 text34 CODE >30:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/i2c.c
+2174 text34 CODE >32:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/i2c.c
+219A text34 CODE >33:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/i2c.c
+2354 text33 CODE >39:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/i2c.c
+2354 text33 CODE >41:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/i2c.c
+2358 text33 CODE >42:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/i2c.c
+235C text33 CODE >43:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/i2c.c
+234A text32 CODE >59:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/i2c.c
+234A text32 CODE >61:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/i2c.c
+234E text32 CODE >62:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/i2c.c
+2352 text32 CODE >63:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/i2c.c
+2328 text31 CODE >69:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/i2c.c
+232A text31 CODE >71:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/i2c.c
+232E text31 CODE >72:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/i2c.c
+2332 text31 CODE >73:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/i2c.c
+224E text30 CODE >80:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/color_click.c
+2250 text30 CODE >82:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/color_click.c
+2254 text30 CODE >83:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/color_click.c
+225A text30 CODE >84:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/color_click.c
+2262 text30 CODE >85:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/color_click.c
+2268 text30 CODE >86:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/color_click.c
+226C text30 CODE >87:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/color_click.c
+2066 text29 CODE >17:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/color_click.c
+2066 text29 CODE >20:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/color_click.c
+206A text29 CODE >23:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/color_click.c
+2074 text29 CODE >24:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/color_click.c
+2084 text29 CODE >27:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/color_click.c
+208E text29 CODE >30:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/color_click.c
+2098 text29 CODE >33:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/color_click.c
+209A text29 CODE >34:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/color_click.c
+209C text29 CODE >35:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/color_click.c
+209E text29 CODE >38:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/color_click.c
+20A4 text29 CODE >39:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/color_click.c
+1FE4 text28 CODE >79:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/i2c.c
+1FE6 text28 CODE >82:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/i2c.c
+1FEA text28 CODE >83:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/i2c.c
+1FEE text28 CODE >84:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/i2c.c
+1FF2 text28 CODE >85:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/i2c.c
+1FF6 text28 CODE >86:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/i2c.c
+1FFA text28 CODE >87:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/i2c.c
+2020 text28 CODE >88:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/i2c.c
+2022 text28 CODE >89:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/i2c.c
+2024 text28 CODE >90:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/i2c.c
+2340 text27 CODE >49:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/i2c.c
+2340 text27 CODE >51:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/i2c.c
+2344 text27 CODE >52:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/i2c.c
+2348 text27 CODE >53:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/i2c.c
+1EBC text26 CODE >132:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/color_click.c
+1EBC text26 CODE >135:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/color_click.c
+1EC0 text26 CODE >136:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/color_click.c
+1EC6 text26 CODE >137:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/color_click.c
+1ECC text26 CODE >138:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/color_click.c
+1ED0 text26 CODE >139:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/color_click.c
+1ED6 text26 CODE >140:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/color_click.c
+1EE4 text26 CODE >141:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/color_click.c
+1EFE text26 CODE >142:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/color_click.c
+1F02 text26 CODE >143:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/color_click.c
+1F0A text26 CODE >144:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/color_click.c
+1E6C text25 CODE >151:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/color_click.c
+1E6C text25 CODE >154:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/color_click.c
+1E70 text25 CODE >155:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/color_click.c
+1E76 text25 CODE >156:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/color_click.c
+1E7C text25 CODE >157:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/color_click.c
+1E80 text25 CODE >158:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/color_click.c
+1E86 text25 CODE >159:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/color_click.c
+1E94 text25 CODE >160:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/color_click.c
+1EAE text25 CODE >161:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/color_click.c
+1EB2 text25 CODE >162:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/color_click.c
+1EBA text25 CODE >163:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/color_click.c
+1E1C text24 CODE >113:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/color_click.c
+1E1C text24 CODE >116:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/color_click.c
+1E20 text24 CODE >117:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/color_click.c
+1E26 text24 CODE >118:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/color_click.c
+1E2C text24 CODE >119:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/color_click.c
+1E30 text24 CODE >120:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/color_click.c
+1E36 text24 CODE >121:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/color_click.c
+1E44 text24 CODE >122:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/color_click.c
+1E5E text24 CODE >123:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/color_click.c
+1E62 text24 CODE >124:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/color_click.c
+1E6A text24 CODE >125:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/color_click.c
+1DCC text23 CODE >94:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/color_click.c
+1DCC text23 CODE >97:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/color_click.c
+1DD0 text23 CODE >98:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/color_click.c
+1DD6 text23 CODE >99:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/color_click.c
+1DDC text23 CODE >100:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/color_click.c
+1DE0 text23 CODE >101:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/color_click.c
+1DE6 text23 CODE >102:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/color_click.c
+1DF4 text23 CODE >103:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/color_click.c
+1E0E text23 CODE >104:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/color_click.c
+1E12 text23 CODE >105:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/color_click.c
+1E1A text23 CODE >106:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/color_click.c
+1FA0 text22 CODE >169:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/color_click.c
+1FA0 text22 CODE >171:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/color_click.c
+1FAC text22 CODE >172:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/color_click.c
+1FB8 text22 CODE >173:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/color_click.c
+1FC4 text22 CODE >174:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/color_click.c
+1FD0 text22 CODE >176:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/color_click.c
+1FE2 text22 CODE >177:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/color_click.c
+1A50 text21 CODE >7:/Applications/microchip/xc8/v2.32/pic/sources/c99/common/awdiv.c
+1A50 text21 CODE >13:/Applications/microchip/xc8/v2.32/pic/sources/c99/common/awdiv.c
+1A54 text21 CODE >14:/Applications/microchip/xc8/v2.32/pic/sources/c99/common/awdiv.c
+1A62 text21 CODE >15:/Applications/microchip/xc8/v2.32/pic/sources/c99/common/awdiv.c
+1A6A text21 CODE >16:/Applications/microchip/xc8/v2.32/pic/sources/c99/common/awdiv.c
+1A6E text21 CODE >18:/Applications/microchip/xc8/v2.32/pic/sources/c99/common/awdiv.c
+1A7C text21 CODE >19:/Applications/microchip/xc8/v2.32/pic/sources/c99/common/awdiv.c
+1A84 text21 CODE >20:/Applications/microchip/xc8/v2.32/pic/sources/c99/common/awdiv.c
+1A88 text21 CODE >22:/Applications/microchip/xc8/v2.32/pic/sources/c99/common/awdiv.c
+1A90 text21 CODE >23:/Applications/microchip/xc8/v2.32/pic/sources/c99/common/awdiv.c
+1AA2 text21 CODE >24:/Applications/microchip/xc8/v2.32/pic/sources/c99/common/awdiv.c
+1AA6 text21 CODE >25:/Applications/microchip/xc8/v2.32/pic/sources/c99/common/awdiv.c
+1AAA text21 CODE >26:/Applications/microchip/xc8/v2.32/pic/sources/c99/common/awdiv.c
+1AB0 text21 CODE >27:/Applications/microchip/xc8/v2.32/pic/sources/c99/common/awdiv.c
+1AB2 text21 CODE >25:/Applications/microchip/xc8/v2.32/pic/sources/c99/common/awdiv.c
+1AC0 text21 CODE >30:/Applications/microchip/xc8/v2.32/pic/sources/c99/common/awdiv.c
+1AC6 text21 CODE >31:/Applications/microchip/xc8/v2.32/pic/sources/c99/common/awdiv.c
+1ADC text21 CODE >32:/Applications/microchip/xc8/v2.32/pic/sources/c99/common/awdiv.c
+1AE4 text21 CODE >33:/Applications/microchip/xc8/v2.32/pic/sources/c99/common/awdiv.c
+1AE6 text21 CODE >35:/Applications/microchip/xc8/v2.32/pic/sources/c99/common/awdiv.c
+1AEC text21 CODE >36:/Applications/microchip/xc8/v2.32/pic/sources/c99/common/awdiv.c
+1AF2 text21 CODE >38:/Applications/microchip/xc8/v2.32/pic/sources/c99/common/awdiv.c
+1B02 text21 CODE >39:/Applications/microchip/xc8/v2.32/pic/sources/c99/common/awdiv.c
+1B0A text21 CODE >40:/Applications/microchip/xc8/v2.32/pic/sources/c99/common/awdiv.c
+1B12 text21 CODE >41:/Applications/microchip/xc8/v2.32/pic/sources/c99/common/awdiv.c
+21C4 text20 CODE >15:/Applications/microchip/xc8/v2.32/pic/sources/c99/common/Umul16.c
+21C4 text20 CODE >37:/Applications/microchip/xc8/v2.32/pic/sources/c99/common/Umul16.c
+21D0 text20 CODE >38:/Applications/microchip/xc8/v2.32/pic/sources/c99/common/Umul16.c
+21D8 text20 CODE >39:/Applications/microchip/xc8/v2.32/pic/sources/c99/common/Umul16.c
+21E0 text20 CODE >52:/Applications/microchip/xc8/v2.32/pic/sources/c99/common/Umul16.c
+21E8 text20 CODE >53:/Applications/microchip/xc8/v2.32/pic/sources/c99/common/Umul16.c
+1312 text19 CODE >55:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/dc_motor.c
+1312 text19 CODE >59:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/dc_motor.c
+132E text19 CODE >60:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/dc_motor.c
+138C text19 CODE >61:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/dc_motor.c
+1390 text19 CODE >62:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/dc_motor.c
+13D6 text19 CODE >65:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/dc_motor.c
+13F6 text19 CODE >67:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/dc_motor.c
+1412 text19 CODE >68:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/dc_motor.c
+1478 text19 CODE >69:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/dc_motor.c
+147C text19 CODE >70:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/dc_motor.c
+14E4 text19 CODE >72:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/dc_motor.c
+1BD6 text18 CODE >133:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/dc_motor.c
+1BD6 text18 CODE >136:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/dc_motor.c
+1BE6 text18 CODE >137:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/dc_motor.c
+1BF6 text18 CODE >140:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/dc_motor.c
+1BFA text18 CODE >141:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/dc_motor.c
+1C06 text18 CODE >142:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/dc_motor.c
+1C12 text18 CODE >144:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/dc_motor.c
+1C1E text18 CODE >145:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/dc_motor.c
+1C2A text18 CODE >146:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/dc_motor.c
+1C42 text18 CODE >140:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/dc_motor.c
+1C72 text18 CODE >148:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/dc_motor.c
+1D28 text17 CODE >188:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/color_click.c
+1D28 text17 CODE >189:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/color_click.c
+1D32 text17 CODE >190:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/color_click.c
+1D42 text17 CODE >191:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/color_click.c
+1D4C text17 CODE >192:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/color_click.c
+1D56 text17 CODE >193:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/color_click.c
+1D62 text17 CODE >194:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/color_click.c
+1D6C text17 CODE >195:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/color_click.c
+1D78 text17 CODE >197:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/color_click.c
+22AE text16 CODE >180:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/color_click.c
+22AE text16 CODE >181:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/color_click.c
+22B2 text16 CODE >182:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/color_click.c
+22B8 text16 CODE >183:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/color_click.c
+22BE text16 CODE >184:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/color_click.c
+22C2 text16 CODE >185:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/color_click.c
+22C6 text16 CODE >186:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/color_click.c
+222E text15 CODE >14:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/interrupts.c
+222E text15 CODE >15:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/interrupts.c
+2230 text15 CODE >16:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/interrupts.c
+2234 text15 CODE >17:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/interrupts.c
+223A text15 CODE >19:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/interrupts.c
+223E text15 CODE >22:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/interrupts.c
+2240 text15 CODE >25:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/interrupts.c
+2244 text15 CODE >27:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/interrupts.c
+2246 text15 CODE >28:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/interrupts.c
+2248 text15 CODE >29:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/interrupts.c
+224A text15 CODE >30:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/interrupts.c
+224C text15 CODE >31:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/interrupts.c
+22FC text14 CODE >37:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/serial.c
+22FC text14 CODE >38:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/serial.c
+230C text14 CODE >39:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/serial.c
+2310 text14 CODE >40:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/serial.c
+20A6 text13 CODE >46:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/serial.c
+20A6 text13 CODE >48:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/serial.c
+20AA text13 CODE >49:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/serial.c
+20C4 text13 CODE >48:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/serial.c
+20DC text13 CODE >51:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/serial.c
+169A text12 CODE >9:/Applications/microchip/xc8/v2.32/pic/sources/c99/common/aodiv.c
+169A text12 CODE >15:/Applications/microchip/xc8/v2.32/pic/sources/c99/common/aodiv.c
+169E text12 CODE >16:/Applications/microchip/xc8/v2.32/pic/sources/c99/common/aodiv.c
+16AC text12 CODE >17:/Applications/microchip/xc8/v2.32/pic/sources/c99/common/aodiv.c
+16CC text12 CODE >18:/Applications/microchip/xc8/v2.32/pic/sources/c99/common/aodiv.c
+16D0 text12 CODE >20:/Applications/microchip/xc8/v2.32/pic/sources/c99/common/aodiv.c
+16DE text12 CODE >21:/Applications/microchip/xc8/v2.32/pic/sources/c99/common/aodiv.c
+16FE text12 CODE >22:/Applications/microchip/xc8/v2.32/pic/sources/c99/common/aodiv.c
+1702 text12 CODE >24:/Applications/microchip/xc8/v2.32/pic/sources/c99/common/aodiv.c
+170E text12 CODE >25:/Applications/microchip/xc8/v2.32/pic/sources/c99/common/aodiv.c
+172C text12 CODE >26:/Applications/microchip/xc8/v2.32/pic/sources/c99/common/aodiv.c
+1730 text12 CODE >27:/Applications/microchip/xc8/v2.32/pic/sources/c99/common/aodiv.c
+1734 text12 CODE >28:/Applications/microchip/xc8/v2.32/pic/sources/c99/common/aodiv.c
+1746 text12 CODE >29:/Applications/microchip/xc8/v2.32/pic/sources/c99/common/aodiv.c
+1748 text12 CODE >27:/Applications/microchip/xc8/v2.32/pic/sources/c99/common/aodiv.c
+1756 text12 CODE >32:/Applications/microchip/xc8/v2.32/pic/sources/c99/common/aodiv.c
+1768 text12 CODE >33:/Applications/microchip/xc8/v2.32/pic/sources/c99/common/aodiv.c
+1796 text12 CODE >34:/Applications/microchip/xc8/v2.32/pic/sources/c99/common/aodiv.c
+17B6 text12 CODE >35:/Applications/microchip/xc8/v2.32/pic/sources/c99/common/aodiv.c
+17B8 text12 CODE >37:/Applications/microchip/xc8/v2.32/pic/sources/c99/common/aodiv.c
+17CA text12 CODE >38:/Applications/microchip/xc8/v2.32/pic/sources/c99/common/aodiv.c
+17D0 text12 CODE >40:/Applications/microchip/xc8/v2.32/pic/sources/c99/common/aodiv.c
+17E0 text12 CODE >41:/Applications/microchip/xc8/v2.32/pic/sources/c99/common/aodiv.c
+1800 text12 CODE >42:/Applications/microchip/xc8/v2.32/pic/sources/c99/common/aodiv.c
+1820 text12 CODE >43:/Applications/microchip/xc8/v2.32/pic/sources/c99/common/aodiv.c
+1822 text11 CODE >9:/Applications/microchip/xc8/v2.32/pic/sources/c99/common/aomod.c
+1822 text11 CODE >14:/Applications/microchip/xc8/v2.32/pic/sources/c99/common/aomod.c
+1826 text11 CODE >15:/Applications/microchip/xc8/v2.32/pic/sources/c99/common/aomod.c
+1834 text11 CODE >16:/Applications/microchip/xc8/v2.32/pic/sources/c99/common/aomod.c
+1854 text11 CODE >17:/Applications/microchip/xc8/v2.32/pic/sources/c99/common/aomod.c
+1858 text11 CODE >19:/Applications/microchip/xc8/v2.32/pic/sources/c99/common/aomod.c
+1866 text11 CODE >20:/Applications/microchip/xc8/v2.32/pic/sources/c99/common/aomod.c
+1886 text11 CODE >21:/Applications/microchip/xc8/v2.32/pic/sources/c99/common/aomod.c
+18A4 text11 CODE >22:/Applications/microchip/xc8/v2.32/pic/sources/c99/common/aomod.c
+18A8 text11 CODE >23:/Applications/microchip/xc8/v2.32/pic/sources/c99/common/aomod.c
+18AC text11 CODE >24:/Applications/microchip/xc8/v2.32/pic/sources/c99/common/aomod.c
+18BE text11 CODE >25:/Applications/microchip/xc8/v2.32/pic/sources/c99/common/aomod.c
+18C0 text11 CODE >23:/Applications/microchip/xc8/v2.32/pic/sources/c99/common/aomod.c
+18CE text11 CODE >28:/Applications/microchip/xc8/v2.32/pic/sources/c99/common/aomod.c
+18FC text11 CODE >29:/Applications/microchip/xc8/v2.32/pic/sources/c99/common/aomod.c
+191C text11 CODE >30:/Applications/microchip/xc8/v2.32/pic/sources/c99/common/aomod.c
+192E text11 CODE >31:/Applications/microchip/xc8/v2.32/pic/sources/c99/common/aomod.c
+1934 text11 CODE >33:/Applications/microchip/xc8/v2.32/pic/sources/c99/common/aomod.c
+1944 text11 CODE >34:/Applications/microchip/xc8/v2.32/pic/sources/c99/common/aomod.c
+1964 text11 CODE >35:/Applications/microchip/xc8/v2.32/pic/sources/c99/common/aomod.c
+1984 text11 CODE >36:/Applications/microchip/xc8/v2.32/pic/sources/c99/common/aomod.c
+2026 text10 CODE >1:/Applications/microchip/xc8/v2.32/pic/sources/c99/common/abs.c
+2026 text10 CODE >3:/Applications/microchip/xc8/v2.32/pic/sources/c99/common/abs.c
+2064 text10 CODE >4:/Applications/microchip/xc8/v2.32/pic/sources/c99/common/abs.c
+2386 text9 CODE >7:/Applications/microchip/xc8/v2.32/pic/sources/c99/common/putch.c
+2386 text9 CODE >9:/Applications/microchip/xc8/v2.32/pic/sources/c99/common/putch.c
+1986 text8 CODE >8:/Applications/microchip/xc8/v2.32/pic/sources/c99/common/nf_fputc.c
+1986 text8 CODE >12:/Applications/microchip/xc8/v2.32/pic/sources/c99/common/nf_fputc.c
+19AA text8 CODE >13:/Applications/microchip/xc8/v2.32/pic/sources/c99/common/nf_fputc.c
+19B0 text8 CODE >14:/Applications/microchip/xc8/v2.32/pic/sources/c99/common/nf_fputc.c
+19B4 text8 CODE >15:/Applications/microchip/xc8/v2.32/pic/sources/c99/common/nf_fputc.c
+1A08 text8 CODE >18:/Applications/microchip/xc8/v2.32/pic/sources/c99/common/nf_fputc.c
+1A3C text8 CODE >20:/Applications/microchip/xc8/v2.32/pic/sources/c99/common/nf_fputc.c
+1A4E text8 CODE >24:/Applications/microchip/xc8/v2.32/pic/sources/c99/common/nf_fputc.c
+1F5C text7 CODE >8:/Applications/microchip/xc8/v2.32/pic/sources/c99/common/nf_fputs.c
+1F5C text7 CODE >13:/Applications/microchip/xc8/v2.32/pic/sources/c99/common/nf_fputs.c
+1F64 text7 CODE >14:/Applications/microchip/xc8/v2.32/pic/sources/c99/common/nf_fputs.c
+1F68 text7 CODE >15:/Applications/microchip/xc8/v2.32/pic/sources/c99/common/nf_fputs.c
+1F7A text7 CODE >16:/Applications/microchip/xc8/v2.32/pic/sources/c99/common/nf_fputs.c
+1F7E text7 CODE >14:/Applications/microchip/xc8/v2.32/pic/sources/c99/common/nf_fputs.c
+1F9E text7 CODE >19:/Applications/microchip/xc8/v2.32/pic/sources/c99/common/nf_fputs.c
+2114 text6 CODE >5:/Applications/microchip/xc8/v2.32/pic/sources/c99/common/strlen.c
+2114 text6 CODE >7:/Applications/microchip/xc8/v2.32/pic/sources/c99/common/strlen.c
+211C text6 CODE >8:/Applications/microchip/xc8/v2.32/pic/sources/c99/common/strlen.c
+2120 text6 CODE >9:/Applications/microchip/xc8/v2.32/pic/sources/c99/common/strlen.c
+2124 text6 CODE >8:/Applications/microchip/xc8/v2.32/pic/sources/c99/common/strlen.c
+213C text6 CODE >11:/Applications/microchip/xc8/v2.32/pic/sources/c99/common/strlen.c
+2148 text6 CODE >12:/Applications/microchip/xc8/v2.32/pic/sources/c99/common/strlen.c
+1B14 text5 CODE >72:/Applications/microchip/xc8/v2.32/pic/sources/c99/common/doprnt.c
+1B14 text5 CODE >77:/Applications/microchip/xc8/v2.32/pic/sources/c99/common/doprnt.c
+1B22 text5 CODE >78:/Applications/microchip/xc8/v2.32/pic/sources/c99/common/doprnt.c
+1B36 text5 CODE >82:/Applications/microchip/xc8/v2.32/pic/sources/c99/common/doprnt.c
+1B58 text5 CODE >83:/Applications/microchip/xc8/v2.32/pic/sources/c99/common/doprnt.c
+1B60 text5 CODE >84:/Applications/microchip/xc8/v2.32/pic/sources/c99/common/doprnt.c
+1B64 text5 CODE >85:/Applications/microchip/xc8/v2.32/pic/sources/c99/common/doprnt.c
+1B78 text5 CODE >86:/Applications/microchip/xc8/v2.32/pic/sources/c99/common/doprnt.c
+1B7C text5 CODE >84:/Applications/microchip/xc8/v2.32/pic/sources/c99/common/doprnt.c
+1B9A text5 CODE >90:/Applications/microchip/xc8/v2.32/pic/sources/c99/common/doprnt.c
+1BA8 text5 CODE >91:/Applications/microchip/xc8/v2.32/pic/sources/c99/common/doprnt.c
+1BBC text5 CODE >94:/Applications/microchip/xc8/v2.32/pic/sources/c99/common/doprnt.c
+1BD4 text5 CODE >95:/Applications/microchip/xc8/v2.32/pic/sources/c99/common/doprnt.c
 E10 text4 CODE >287:/Applications/microchip/xc8/v2.32/pic/sources/c99/common/doprnt.c
 E10 text4 CODE >293:/Applications/microchip/xc8/v2.32/pic/sources/c99/common/doprnt.c
 E30 text4 CODE >294:/Applications/microchip/xc8/v2.32/pic/sources/c99/common/doprnt.c
@@ -463,126 +559,144 @@ EC0 text4 CODE >305:/Applications/microchip/xc8/v2.32/pic/sources/c99/common/dop
 EE0 text4 CODE >306:/Applications/microchip/xc8/v2.32/pic/sources/c99/common/doprnt.c
 EE6 text4 CODE >310:/Applications/microchip/xc8/v2.32/pic/sources/c99/common/doprnt.c
 EEE text4 CODE >311:/Applications/microchip/xc8/v2.32/pic/sources/c99/common/doprnt.c
-EF2 text4 CODE >312:/Applications/microchip/xc8/v2.32/pic/sources/c99/common/doprnt.c
-EF6 text4 CODE >313:/Applications/microchip/xc8/v2.32/pic/sources/c99/common/doprnt.c
-EFC text4 CODE >314:/Applications/microchip/xc8/v2.32/pic/sources/c99/common/doprnt.c
-F28 text4 CODE >314:/Applications/microchip/xc8/v2.32/pic/sources/c99/common/doprnt.c
-F2C text4 CODE >314:/Applications/microchip/xc8/v2.32/pic/sources/c99/common/doprnt.c
-F30 text4 CODE >314:/Applications/microchip/xc8/v2.32/pic/sources/c99/common/doprnt.c
-F34 text4 CODE >314:/Applications/microchip/xc8/v2.32/pic/sources/c99/common/doprnt.c
-F38 text4 CODE >314:/Applications/microchip/xc8/v2.32/pic/sources/c99/common/doprnt.c
-F3C text4 CODE >314:/Applications/microchip/xc8/v2.32/pic/sources/c99/common/doprnt.c
-F40 text4 CODE >314:/Applications/microchip/xc8/v2.32/pic/sources/c99/common/doprnt.c
-F44 text4 CODE >314:/Applications/microchip/xc8/v2.32/pic/sources/c99/common/doprnt.c
-F7E text4 CODE >315:/Applications/microchip/xc8/v2.32/pic/sources/c99/common/doprnt.c
-F84 text4 CODE >316:/Applications/microchip/xc8/v2.32/pic/sources/c99/common/doprnt.c
-F8A text4 CODE >317:/Applications/microchip/xc8/v2.32/pic/sources/c99/common/doprnt.c
-FAA text4 CODE >317:/Applications/microchip/xc8/v2.32/pic/sources/c99/common/doprnt.c
-FAE text4 CODE >317:/Applications/microchip/xc8/v2.32/pic/sources/c99/common/doprnt.c
-FB2 text4 CODE >317:/Applications/microchip/xc8/v2.32/pic/sources/c99/common/doprnt.c
-FB6 text4 CODE >317:/Applications/microchip/xc8/v2.32/pic/sources/c99/common/doprnt.c
-FBA text4 CODE >317:/Applications/microchip/xc8/v2.32/pic/sources/c99/common/doprnt.c
-FBE text4 CODE >317:/Applications/microchip/xc8/v2.32/pic/sources/c99/common/doprnt.c
-FC2 text4 CODE >317:/Applications/microchip/xc8/v2.32/pic/sources/c99/common/doprnt.c
-FC6 text4 CODE >317:/Applications/microchip/xc8/v2.32/pic/sources/c99/common/doprnt.c
-FEE text4 CODE >312:/Applications/microchip/xc8/v2.32/pic/sources/c99/common/doprnt.c
+EF4 text4 CODE >312:/Applications/microchip/xc8/v2.32/pic/sources/c99/common/doprnt.c
+EF8 text4 CODE >313:/Applications/microchip/xc8/v2.32/pic/sources/c99/common/doprnt.c
+EFE text4 CODE >314:/Applications/microchip/xc8/v2.32/pic/sources/c99/common/doprnt.c
+F2A text4 CODE >314:/Applications/microchip/xc8/v2.32/pic/sources/c99/common/doprnt.c
+F2E text4 CODE >314:/Applications/microchip/xc8/v2.32/pic/sources/c99/common/doprnt.c
+F32 text4 CODE >314:/Applications/microchip/xc8/v2.32/pic/sources/c99/common/doprnt.c
+F36 text4 CODE >314:/Applications/microchip/xc8/v2.32/pic/sources/c99/common/doprnt.c
+F3A text4 CODE >314:/Applications/microchip/xc8/v2.32/pic/sources/c99/common/doprnt.c
+F3E text4 CODE >314:/Applications/microchip/xc8/v2.32/pic/sources/c99/common/doprnt.c
+F42 text4 CODE >314:/Applications/microchip/xc8/v2.32/pic/sources/c99/common/doprnt.c
+F46 text4 CODE >314:/Applications/microchip/xc8/v2.32/pic/sources/c99/common/doprnt.c
+F80 text4 CODE >315:/Applications/microchip/xc8/v2.32/pic/sources/c99/common/doprnt.c
+F86 text4 CODE >316:/Applications/microchip/xc8/v2.32/pic/sources/c99/common/doprnt.c
+F8C text4 CODE >317:/Applications/microchip/xc8/v2.32/pic/sources/c99/common/doprnt.c
+FAC text4 CODE >317:/Applications/microchip/xc8/v2.32/pic/sources/c99/common/doprnt.c
+FB0 text4 CODE >317:/Applications/microchip/xc8/v2.32/pic/sources/c99/common/doprnt.c
+FB4 text4 CODE >317:/Applications/microchip/xc8/v2.32/pic/sources/c99/common/doprnt.c
+FB8 text4 CODE >317:/Applications/microchip/xc8/v2.32/pic/sources/c99/common/doprnt.c
+FBC text4 CODE >317:/Applications/microchip/xc8/v2.32/pic/sources/c99/common/doprnt.c
+FC0 text4 CODE >317:/Applications/microchip/xc8/v2.32/pic/sources/c99/common/doprnt.c
+FC4 text4 CODE >317:/Applications/microchip/xc8/v2.32/pic/sources/c99/common/doprnt.c
+FC8 text4 CODE >317:/Applications/microchip/xc8/v2.32/pic/sources/c99/common/doprnt.c
+FF0 text4 CODE >312:/Applications/microchip/xc8/v2.32/pic/sources/c99/common/doprnt.c
 106A text4 CODE >321:/Applications/microchip/xc8/v2.32/pic/sources/c99/common/doprnt.c
-108C text4 CODE >322:/Applications/microchip/xc8/v2.32/pic/sources/c99/common/doprnt.c
-1092 text4 CODE >323:/Applications/microchip/xc8/v2.32/pic/sources/c99/common/doprnt.c
-10C8 text4 CODE >327:/Applications/microchip/xc8/v2.32/pic/sources/c99/common/doprnt.c
-10F0 text4 CODE >328:/Applications/microchip/xc8/v2.32/pic/sources/c99/common/doprnt.c
-10F2 text3 CODE >692:/Applications/microchip/xc8/v2.32/pic/sources/c99/common/doprnt.c
-10F2 text3 CODE >702:/Applications/microchip/xc8/v2.32/pic/sources/c99/common/doprnt.c
-1116 text3 CODE >703:/Applications/microchip/xc8/v2.32/pic/sources/c99/common/doprnt.c
-1124 text3 CODE >705:/Applications/microchip/xc8/v2.32/pic/sources/c99/common/doprnt.c
-1136 text3 CODE >706:/Applications/microchip/xc8/v2.32/pic/sources/c99/common/doprnt.c
-113A text3 CODE >847:/Applications/microchip/xc8/v2.32/pic/sources/c99/common/doprnt.c
-1182 text3 CODE >849:/Applications/microchip/xc8/v2.32/pic/sources/c99/common/doprnt.c
-1190 text3 CODE >850:/Applications/microchip/xc8/v2.32/pic/sources/c99/common/doprnt.c
-11CA text3 CODE >852:/Applications/microchip/xc8/v2.32/pic/sources/c99/common/doprnt.c
-1202 text3 CODE >1372:/Applications/microchip/xc8/v2.32/pic/sources/c99/common/doprnt.c
-1226 text3 CODE >1373:/Applications/microchip/xc8/v2.32/pic/sources/c99/common/doprnt.c
-1234 text3 CODE >1374:/Applications/microchip/xc8/v2.32/pic/sources/c99/common/doprnt.c
-1248 text3 CODE >1375:/Applications/microchip/xc8/v2.32/pic/sources/c99/common/doprnt.c
-1254 text3 CODE >1379:/Applications/microchip/xc8/v2.32/pic/sources/c99/common/doprnt.c
-1262 text3 CODE >1380:/Applications/microchip/xc8/v2.32/pic/sources/c99/common/doprnt.c
-126E text3 CODE >1384:/Applications/microchip/xc8/v2.32/pic/sources/c99/common/doprnt.c
-1292 text3 CODE >1385:/Applications/microchip/xc8/v2.32/pic/sources/c99/common/doprnt.c
-12A4 text3 CODE >1387:/Applications/microchip/xc8/v2.32/pic/sources/c99/common/doprnt.c
-19D8 text2 CODE >1390:/Applications/microchip/xc8/v2.32/pic/sources/c99/common/doprnt.c
-19D8 text2 CODE >1395:/Applications/microchip/xc8/v2.32/pic/sources/c99/common/doprnt.c
-19E0 text2 CODE >1396:/Applications/microchip/xc8/v2.32/pic/sources/c99/common/doprnt.c
-19EA text2 CODE >1397:/Applications/microchip/xc8/v2.32/pic/sources/c99/common/doprnt.c
-19EE text2 CODE >1398:/Applications/microchip/xc8/v2.32/pic/sources/c99/common/doprnt.c
-1A14 text2 CODE >1397:/Applications/microchip/xc8/v2.32/pic/sources/c99/common/doprnt.c
-1A30 text2 CODE >1400:/Applications/microchip/xc8/v2.32/pic/sources/c99/common/doprnt.c
-1A38 text2 CODE >1404:/Applications/microchip/xc8/v2.32/pic/sources/c99/common/doprnt.c
-1A3A text1 CODE >9:/Applications/microchip/xc8/v2.32/pic/sources/c99/common/nf_sprintf.c
-1A3A text1 CODE >15:/Applications/microchip/xc8/v2.32/pic/sources/c99/common/nf_sprintf.c
-1A44 text1 CODE >16:/Applications/microchip/xc8/v2.32/pic/sources/c99/common/nf_sprintf.c
-1A4C text1 CODE >17:/Applications/microchip/xc8/v2.32/pic/sources/c99/common/nf_sprintf.c
-1A54 text1 CODE >18:/Applications/microchip/xc8/v2.32/pic/sources/c99/common/nf_sprintf.c
-1A5C text1 CODE >19:/Applications/microchip/xc8/v2.32/pic/sources/c99/common/nf_sprintf.c
-1A78 text1 CODE >20:/Applications/microchip/xc8/v2.32/pic/sources/c99/common/nf_sprintf.c
-1A8A text1 CODE >23:/Applications/microchip/xc8/v2.32/pic/sources/c99/common/nf_sprintf.c
-12A6 text0 CODE >41:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/main.c
-12A6 text0 CODE >43:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/main.c
-12AA text0 CODE >44:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/main.c
-12AE text0 CODE >45:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/main.c
-12B2 text0 CODE >47:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/main.c
-12B6 text0 CODE >48:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/main.c
-12BA text0 CODE >50:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/main.c
-12BC text0 CODE >51:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/main.c
-12BE text0 CODE >55:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/main.c
-12C4 text0 CODE >56:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/main.c
-12C6 text0 CODE >58:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/main.c
-12DE text0 CODE >62:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/main.c
-1302 text0 CODE >64:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/main.c
-1310 text0 CODE >65:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/main.c
-131C text0 CODE >72:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/main.c
-1340 text0 CODE >76:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/main.c
-1348 text0 CODE >77:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/main.c
-1350 text0 CODE >78:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/main.c
-1358 text0 CODE >79:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/main.c
-1360 text0 CODE >80:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/main.c
-1396 text0 CODE >81:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/main.c
-13A2 text0 CODE >82:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/main.c
-13BA text0 CODE >83:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/main.c
-13F0 text0 CODE >84:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/main.c
-13FC text0 CODE >85:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/main.c
-1414 text0 CODE >87:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/main.c
-1426 text0 CODE >88:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/main.c
-144C text0 CODE >89:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/main.c
-1D4E cinit CODE >10885:/tmp/xcqeA2Kd7.s
-1D4E cinit CODE >10887:/tmp/xcqeA2Kd7.s
-1D4E cinit CODE >10890:/tmp/xcqeA2Kd7.s
-1D4E cinit CODE >10946:/tmp/xcqeA2Kd7.s
-1D52 cinit CODE >10947:/tmp/xcqeA2Kd7.s
-1D54 cinit CODE >10948:/tmp/xcqeA2Kd7.s
-1D54 cinit CODE >10949:/tmp/xcqeA2Kd7.s
-1D56 cinit CODE >10950:/tmp/xcqeA2Kd7.s
-1D58 cinit CODE >10951:/tmp/xcqeA2Kd7.s
-1D5A cinit CODE >10954:/tmp/xcqeA2Kd7.s
-1D5E cinit CODE >10955:/tmp/xcqeA2Kd7.s
-1D60 cinit CODE >10956:/tmp/xcqeA2Kd7.s
-1D60 cinit CODE >10957:/tmp/xcqeA2Kd7.s
-1D62 cinit CODE >10958:/tmp/xcqeA2Kd7.s
-1D64 cinit CODE >10959:/tmp/xcqeA2Kd7.s
-1D66 cinit CODE >10962:/tmp/xcqeA2Kd7.s
-1D6A cinit CODE >10963:/tmp/xcqeA2Kd7.s
-1D6C cinit CODE >10964:/tmp/xcqeA2Kd7.s
-1D6C cinit CODE >10965:/tmp/xcqeA2Kd7.s
-1D6E cinit CODE >10966:/tmp/xcqeA2Kd7.s
-1D70 cinit CODE >10967:/tmp/xcqeA2Kd7.s
-1D72 cinit CODE >10973:/tmp/xcqeA2Kd7.s
-1D72 cinit CODE >10975:/tmp/xcqeA2Kd7.s
-1D74 cinit CODE >10976:/tmp/xcqeA2Kd7.s
-1D76 cinit CODE >10978:/tmp/xcqeA2Kd7.s
-1D78 cinit CODE >10979:/tmp/xcqeA2Kd7.s
-1D7A cinit CODE >10980:/tmp/xcqeA2Kd7.s
-1D7C cinit CODE >10981:/tmp/xcqeA2Kd7.s
-1D7E cinit CODE >10982:/tmp/xcqeA2Kd7.s
-1D80 cinit CODE >10983:/tmp/xcqeA2Kd7.s
+108A text4 CODE >322:/Applications/microchip/xc8/v2.32/pic/sources/c99/common/doprnt.c
+1090 text4 CODE >323:/Applications/microchip/xc8/v2.32/pic/sources/c99/common/doprnt.c
+10C6 text4 CODE >327:/Applications/microchip/xc8/v2.32/pic/sources/c99/common/doprnt.c
+10EE text4 CODE >328:/Applications/microchip/xc8/v2.32/pic/sources/c99/common/doprnt.c
+14E6 text3 CODE >692:/Applications/microchip/xc8/v2.32/pic/sources/c99/common/doprnt.c
+14E6 text3 CODE >702:/Applications/microchip/xc8/v2.32/pic/sources/c99/common/doprnt.c
+150A text3 CODE >703:/Applications/microchip/xc8/v2.32/pic/sources/c99/common/doprnt.c
+1518 text3 CODE >705:/Applications/microchip/xc8/v2.32/pic/sources/c99/common/doprnt.c
+152A text3 CODE >706:/Applications/microchip/xc8/v2.32/pic/sources/c99/common/doprnt.c
+152E text3 CODE >847:/Applications/microchip/xc8/v2.32/pic/sources/c99/common/doprnt.c
+1576 text3 CODE >849:/Applications/microchip/xc8/v2.32/pic/sources/c99/common/doprnt.c
+1584 text3 CODE >850:/Applications/microchip/xc8/v2.32/pic/sources/c99/common/doprnt.c
+15BE text3 CODE >852:/Applications/microchip/xc8/v2.32/pic/sources/c99/common/doprnt.c
+15F6 text3 CODE >1372:/Applications/microchip/xc8/v2.32/pic/sources/c99/common/doprnt.c
+161A text3 CODE >1373:/Applications/microchip/xc8/v2.32/pic/sources/c99/common/doprnt.c
+1628 text3 CODE >1374:/Applications/microchip/xc8/v2.32/pic/sources/c99/common/doprnt.c
+163C text3 CODE >1375:/Applications/microchip/xc8/v2.32/pic/sources/c99/common/doprnt.c
+1648 text3 CODE >1379:/Applications/microchip/xc8/v2.32/pic/sources/c99/common/doprnt.c
+1656 text3 CODE >1380:/Applications/microchip/xc8/v2.32/pic/sources/c99/common/doprnt.c
+1662 text3 CODE >1384:/Applications/microchip/xc8/v2.32/pic/sources/c99/common/doprnt.c
+1686 text3 CODE >1385:/Applications/microchip/xc8/v2.32/pic/sources/c99/common/doprnt.c
+1698 text3 CODE >1387:/Applications/microchip/xc8/v2.32/pic/sources/c99/common/doprnt.c
+1C74 text2 CODE >1390:/Applications/microchip/xc8/v2.32/pic/sources/c99/common/doprnt.c
+1C74 text2 CODE >1395:/Applications/microchip/xc8/v2.32/pic/sources/c99/common/doprnt.c
+1C7C text2 CODE >1396:/Applications/microchip/xc8/v2.32/pic/sources/c99/common/doprnt.c
+1C86 text2 CODE >1397:/Applications/microchip/xc8/v2.32/pic/sources/c99/common/doprnt.c
+1C8A text2 CODE >1398:/Applications/microchip/xc8/v2.32/pic/sources/c99/common/doprnt.c
+1CB0 text2 CODE >1397:/Applications/microchip/xc8/v2.32/pic/sources/c99/common/doprnt.c
+1CCC text2 CODE >1400:/Applications/microchip/xc8/v2.32/pic/sources/c99/common/doprnt.c
+1CD4 text2 CODE >1404:/Applications/microchip/xc8/v2.32/pic/sources/c99/common/doprnt.c
+1CD6 text1 CODE >9:/Applications/microchip/xc8/v2.32/pic/sources/c99/common/nf_sprintf.c
+1CD6 text1 CODE >15:/Applications/microchip/xc8/v2.32/pic/sources/c99/common/nf_sprintf.c
+1CE0 text1 CODE >16:/Applications/microchip/xc8/v2.32/pic/sources/c99/common/nf_sprintf.c
+1CE8 text1 CODE >17:/Applications/microchip/xc8/v2.32/pic/sources/c99/common/nf_sprintf.c
+1CF0 text1 CODE >18:/Applications/microchip/xc8/v2.32/pic/sources/c99/common/nf_sprintf.c
+1CF8 text1 CODE >19:/Applications/microchip/xc8/v2.32/pic/sources/c99/common/nf_sprintf.c
+1D14 text1 CODE >20:/Applications/microchip/xc8/v2.32/pic/sources/c99/common/nf_sprintf.c
+1D26 text1 CODE >23:/Applications/microchip/xc8/v2.32/pic/sources/c99/common/nf_sprintf.c
+10F0 text0 CODE >41:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/main.c
+10F0 text0 CODE >43:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/main.c
+10F4 text0 CODE >44:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/main.c
+10F8 text0 CODE >45:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/main.c
+10FC text0 CODE >46:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/main.c
+1100 text0 CODE >47:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/main.c
+1104 text0 CODE >50:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/main.c
+1110 text0 CODE >54:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/main.c
+1116 text0 CODE >55:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/main.c
+111A text0 CODE >56:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/main.c
+1122 text0 CODE >57:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/main.c
+112A text0 CODE >58:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/main.c
+112E text0 CODE >59:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/main.c
+1136 text0 CODE >62:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/main.c
+113A text0 CODE >63:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/main.c
+113E text0 CODE >64:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/main.c
+1146 text0 CODE >65:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/main.c
+114E text0 CODE >66:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/main.c
+1152 text0 CODE >67:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/main.c
+115A text0 CODE >69:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/main.c
+115C text0 CODE >70:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/main.c
+115E text0 CODE >74:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/main.c
+1164 text0 CODE >75:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/main.c
+1166 text0 CODE >77:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/main.c
+117E text0 CODE >81:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/main.c
+11A2 text0 CODE >83:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/main.c
+11B0 text0 CODE >84:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/main.c
+11BC text0 CODE >88:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/main.c
+11BC text0 CODE >89:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/main.c
+11C0 text0 CODE >93:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/main.c
+11E4 text0 CODE >97:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/main.c
+11EC text0 CODE >98:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/main.c
+11F4 text0 CODE >99:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/main.c
+11FC text0 CODE >100:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/main.c
+1204 text0 CODE >101:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/main.c
+123A text0 CODE >102:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/main.c
+1246 text0 CODE >103:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/main.c
+125E text0 CODE >104:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/main.c
+1292 text0 CODE >105:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/main.c
+129E text0 CODE >106:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/main.c
+12B6 text0 CODE >108:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/main.c
+12D8 text0 CODE >109:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/main.c
+12DC text0 CODE >110:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/main.c
+12E0 text0 CODE >113:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/main.c
+12EA text0 CODE >114:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/main.c
+12F6 text0 CODE >128:/Users/s/MPLABXProjects/final-project-tues-amanda-sara.X/main.c
+20DE cinit CODE >10897:/tmp/xcz8B1yuc.s
+20DE cinit CODE >10899:/tmp/xcz8B1yuc.s
+20DE cinit CODE >10902:/tmp/xcz8B1yuc.s
+20DE cinit CODE >10958:/tmp/xcz8B1yuc.s
+20E2 cinit CODE >10959:/tmp/xcz8B1yuc.s
+20E4 cinit CODE >10960:/tmp/xcz8B1yuc.s
+20E4 cinit CODE >10961:/tmp/xcz8B1yuc.s
+20E6 cinit CODE >10962:/tmp/xcz8B1yuc.s
+20E8 cinit CODE >10963:/tmp/xcz8B1yuc.s
+20EA cinit CODE >10966:/tmp/xcz8B1yuc.s
+20EE cinit CODE >10967:/tmp/xcz8B1yuc.s
+20F0 cinit CODE >10968:/tmp/xcz8B1yuc.s
+20F0 cinit CODE >10969:/tmp/xcz8B1yuc.s
+20F2 cinit CODE >10970:/tmp/xcz8B1yuc.s
+20F4 cinit CODE >10971:/tmp/xcz8B1yuc.s
+20F6 cinit CODE >10974:/tmp/xcz8B1yuc.s
+20FA cinit CODE >10975:/tmp/xcz8B1yuc.s
+20FC cinit CODE >10976:/tmp/xcz8B1yuc.s
+20FC cinit CODE >10977:/tmp/xcz8B1yuc.s
+20FE cinit CODE >10978:/tmp/xcz8B1yuc.s
+2100 cinit CODE >10979:/tmp/xcz8B1yuc.s
+2102 cinit CODE >10985:/tmp/xcz8B1yuc.s
+2102 cinit CODE >10987:/tmp/xcz8B1yuc.s
+2104 cinit CODE >10988:/tmp/xcz8B1yuc.s
+2106 cinit CODE >10990:/tmp/xcz8B1yuc.s
+2108 cinit CODE >10991:/tmp/xcz8B1yuc.s
+210A cinit CODE >10992:/tmp/xcz8B1yuc.s
+210C cinit CODE >10993:/tmp/xcz8B1yuc.s
+210E cinit CODE >10994:/tmp/xcz8B1yuc.s
+2110 cinit CODE >10995:/tmp/xcz8B1yuc.s
 # %SYMTAB Section
 # An enumeration of all symbols in the program.
 # The beginning of the section is indicated by %SYMTAB.
@@ -595,126 +709,146 @@ FEE text4 CODE >312:/Applications/microchip/xc8/v2.32/pic/sources/c99/common/dop
 # was defined in a psect then <psect> will be "-". File-name
 # is the name of the object file in which the symbol was defined.
 %SYMTAB
+___awdiv@counter 11 0 COMRAM 1 cstackCOMRAM dist/default/production/final-project-tues-amanda-sara.X.production.o
 __Lmediumconst 0 0 MEDIUMCONST 0 mediumconst dist/default/production/final-project-tues-amanda-sara.X.production.o
-__Hspace_0 1FBE 0 ABS 0 - dist/default/production/final-project-tues-amanda-sara.X.production.o
-__Hspace_1 17C 0 ABS 0 - dist/default/production/final-project-tues-amanda-sara.X.production.o
+__Hspace_0 2388 0 ABS 0 - dist/default/production/final-project-tues-amanda-sara.X.production.o
+__Hspace_1 15C 0 ABS 0 - dist/default/production/final-project-tues-amanda-sara.X.production.o
 __Hspace_2 0 0 ABS 0 - dist/default/production/final-project-tues-amanda-sara.X.production.o
 __Hspace_4 60000C 0 ABS 0 - dist/default/production/final-project-tues-amanda-sara.X.production.o
-_colorclick_int_init 18D4 0 CODE 0 text17 dist/default/production/final-project-tues-amanda-sara.X.production.o
-__end_of_colorclick_readRed 1ADC 0 CODE 0 text19 dist/default/production/final-project-tues-amanda-sara.X.production.o
-_sendCharSerial4 1F46 0 CODE 0 text14 dist/default/production/final-project-tues-amanda-sara.X.production.o
+_colorclick_int_init 1D28 0 CODE 0 text17 dist/default/production/final-project-tues-amanda-sara.X.production.o
+__end_of_colorclick_readRed 1E1C 0 CODE 0 text23 dist/default/production/final-project-tues-amanda-sara.X.production.o
+_sendCharSerial4 22FC 0 CODE 0 text14 dist/default/production/final-project-tues-amanda-sara.X.production.o
 _PWM6DCH FA3 0 ABS 0 - dist/default/production/final-project-tues-amanda-sara.X.production.o
 _PWM7DCH FA0 0 ABS 0 - dist/default/production/final-project-tues-amanda-sara.X.production.o
 __Hibigdata 0 0 CODE 0 ibigdata dist/default/production/final-project-tues-amanda-sara.X.production.o
-__mediumconst 0 0 MEDIUMCONST 0 mediumconst /tmp/xc6PRSUNO.o
+__mediumconst 0 0 MEDIUMCONST 0 mediumconst /tmp/xccKNBf5G.o
 __Heeprom_data 0 0 EEDATA 0 eeprom_data dist/default/production/final-project-tues-amanda-sara.X.production.o
-__end_ofi2_colorclick_writetoaddr 1EF8 0 CODE 0 text40 dist/default/production/final-project-tues-amanda-sara.X.production.o
-?_abs 1B 0 COMRAM 1 cstackCOMRAM dist/default/production/final-project-tues-amanda-sara.X.production.o
-?_pad 19 0 COMRAM 1 cstackCOMRAM dist/default/production/final-project-tues-amanda-sara.X.production.o
+setMotorPWM@m 15 0 COMRAM 1 cstackCOMRAM dist/default/production/final-project-tues-amanda-sara.X.production.o
+__end_ofi2_colorclick_writetoaddr 22AE 0 CODE 0 text47 dist/default/production/final-project-tues-amanda-sara.X.production.o
+_DCmotors_init 1F0C 0 CODE 0 text38 dist/default/production/final-project-tues-amanda-sara.X.production.o
+?_abs 19 0 COMRAM 1 cstackCOMRAM dist/default/production/final-project-tues-amanda-sara.X.production.o
+?_pad 17 0 COMRAM 1 cstackCOMRAM dist/default/production/final-project-tues-amanda-sara.X.production.o
 __end_of_LowISR 26 0 CODE 0 intcodelo dist/default/production/final-project-tues-amanda-sara.X.production.o
-?_vfprintf A7 0 BANK0 1 cstackBANK0 dist/default/production/final-project-tues-amanda-sara.X.production.o
-_colorclick_writetoaddr 1E98 0 CODE 0 text26 dist/default/production/final-project-tues-amanda-sara.X.production.o
+?_vfprintf 68 0 BANK0 1 cstackBANK0 dist/default/production/final-project-tues-amanda-sara.X.production.o
+_colorclick_writetoaddr 224E 0 CODE 0 text30 dist/default/production/final-project-tues-amanda-sara.X.production.o
 __Lsmallconst E00 0 SMALLCONST 0 smallconst dist/default/production/final-project-tues-amanda-sara.X.production.o
+_LATE F7D 0 ABS 0 - dist/default/production/final-project-tues-amanda-sara.X.production.o
+_LATG F7F 0 ABS 0 - dist/default/production/final-project-tues-amanda-sara.X.production.o
 _T2PR FBC 0 ABS 0 - dist/default/production/final-project-tues-amanda-sara.X.production.o
-___sp 0 0 STACK 2 stack /tmp/xc6PRSUNO.o
-_dbuf 7D 0 BANK0 1 bssBANK0 dist/default/production/final-project-tues-amanda-sara.X.production.o
+___sp 0 0 STACK 2 stack /tmp/xccKNBf5G.o
+_dbuf 13C 0 BANK1 1 bssBANK1 dist/default/production/final-project-tues-amanda-sara.X.production.o
 _dtoa E10 0 CODE 0 text4 dist/default/production/final-project-tues-amanda-sara.X.production.o
-_main 12A6 0 CODE 0 text0 dist/default/production/final-project-tues-amanda-sara.X.production.o
-_nout 74 0 BANK0 1 bssBANK0 dist/default/production/final-project-tues-amanda-sara.X.production.o
-_prec 78 0 BANK0 1 bssBANK0 dist/default/production/final-project-tues-amanda-sara.X.production.o
-abs@a 1B 0 COMRAM 1 cstackCOMRAM dist/default/production/final-project-tues-amanda-sara.X.production.o
-btemp 57 0 COMRAM 1 temp dist/default/production/final-project-tues-amanda-sara.X.production.o
-pad@i 20 0 COMRAM 1 cstackCOMRAM dist/default/production/final-project-tues-amanda-sara.X.production.o
-pad@p 1D 0 COMRAM 1 cstackCOMRAM dist/default/production/final-project-tues-amanda-sara.X.production.o
-pad@w 22 0 COMRAM 1 cstackCOMRAM dist/default/production/final-project-tues-amanda-sara.X.production.o
-start 26 0 CODE 0 init /tmp/xc6PRSUNO.o
-___aomod@counter 19 0 COMRAM 1 cstackCOMRAM dist/default/production/final-project-tues-amanda-sara.X.production.o
+_main 10F0 0 CODE 0 text0 dist/default/production/final-project-tues-amanda-sara.X.production.o
+_nout E9 0 BANK0 1 bssBANK0 dist/default/production/final-project-tues-amanda-sara.X.production.o
+_prec ED 0 BANK0 1 bssBANK0 dist/default/production/final-project-tues-amanda-sara.X.production.o
+abs@a 19 0 COMRAM 1 cstackCOMRAM dist/default/production/final-project-tues-amanda-sara.X.production.o
+btemp 59 0 COMRAM 1 temp dist/default/production/final-project-tues-amanda-sara.X.production.o
+pad@i 1E 0 COMRAM 1 cstackCOMRAM dist/default/production/final-project-tues-amanda-sara.X.production.o
+pad@p 1B 0 COMRAM 1 cstackCOMRAM dist/default/production/final-project-tues-amanda-sara.X.production.o
+pad@w 20 0 COMRAM 1 cstackCOMRAM dist/default/production/final-project-tues-amanda-sara.X.production.o
+start 26 0 CODE 0 init /tmp/xccKNBf5G.o
+___aomod@counter 17 0 COMRAM 1 cstackCOMRAM dist/default/production/final-project-tues-amanda-sara.X.production.o
 __size_of___aodiv 0 0 ABS 0 - dist/default/production/final-project-tues-amanda-sara.X.production.o
 __size_of___aomod 0 0 ABS 0 - dist/default/production/final-project-tues-amanda-sara.X.production.o
+__size_of___awdiv 0 0 ABS 0 - dist/default/production/final-project-tues-amanda-sara.X.production.o
 __size_of_dtoa 0 0 ABS 0 - dist/default/production/final-project-tues-amanda-sara.X.production.o
 __size_of_main 0 0 ABS 0 - dist/default/production/final-project-tues-amanda-sara.X.production.o
+DCmotors_init@PWMperiod 7 0 COMRAM 1 cstackCOMRAM dist/default/production/final-project-tues-amanda-sara.X.production.o
 __HbssCOMRAM 0 0 ABS 0 bssCOMRAM dist/default/production/final-project-tues-amanda-sara.X.production.o
-pad@fp 19 0 COMRAM 1 cstackCOMRAM dist/default/production/final-project-tues-amanda-sara.X.production.o
-_RxBufReadCnt 55 0 COMRAM 1 bssCOMRAM dist/default/production/final-project-tues-amanda-sara.X.production.o
+pad@fp 17 0 COMRAM 1 cstackCOMRAM dist/default/production/final-project-tues-amanda-sara.X.production.o
+?___wmul 7 0 COMRAM 1 cstackCOMRAM dist/default/production/final-project-tues-amanda-sara.X.production.o
+_RxBufReadCnt 57 0 COMRAM 1 bssCOMRAM dist/default/production/final-project-tues-amanda-sara.X.production.o
 __size_of_colorclick_int_clear 0 0 ABS 0 - dist/default/production/final-project-tues-amanda-sara.X.production.o
-main@initial 138 0 BANK1 1 cstackBANK1 dist/default/production/final-project-tues-amanda-sara.X.production.o
-_colorclick_readRed 1A8C 0 CODE 0 text19 dist/default/production/final-project-tues-amanda-sara.X.production.o
+main@initial B3 0 BANK0 1 cstackBANK0 dist/default/production/final-project-tues-amanda-sara.X.production.o
+_colorclick_readRed 1DCC 0 CODE 0 text23 dist/default/production/final-project-tues-amanda-sara.X.production.o
 __Hpowerup 26 0 CODE 0 powerup dist/default/production/final-project-tues-amanda-sara.X.production.o
-_USART4_init 1EB8 0 CODE 0 text34 dist/default/production/final-project-tues-amanda-sara.X.production.o
-__end_of_vfpfcnvrt 12A6 0 CODE 0 text3 dist/default/production/final-project-tues-amanda-sara.X.production.o
-?_colorclick_readBlue D 0 COMRAM 1 cstackCOMRAM dist/default/production/final-project-tues-amanda-sara.X.production.o
-ttemp5 58 0 COMRAM 1 temp dist/default/production/final-project-tues-amanda-sara.X.production.o
-ttemp6 5B 0 COMRAM 1 temp dist/default/production/final-project-tues-amanda-sara.X.production.o
-ttemp7 5F 0 COMRAM 1 temp dist/default/production/final-project-tues-amanda-sara.X.production.o
+_USART4_init 226E 0 CODE 0 text37 dist/default/production/final-project-tues-amanda-sara.X.production.o
+__end_of_vfpfcnvrt 169A 0 CODE 0 text3 dist/default/production/final-project-tues-amanda-sara.X.production.o
+?_colorclick_readBlue B 0 COMRAM 1 cstackCOMRAM dist/default/production/final-project-tues-amanda-sara.X.production.o
+ttemp5 5A 0 COMRAM 1 temp dist/default/production/final-project-tues-amanda-sara.X.production.o
+ttemp6 5D 0 COMRAM 1 temp dist/default/production/final-project-tues-amanda-sara.X.production.o
+ttemp7 61 0 COMRAM 1 temp dist/default/production/final-project-tues-amanda-sara.X.production.o
 __size_of_ADC_init 0 0 ABS 0 - dist/default/production/final-project-tues-amanda-sara.X.production.o
 __size_of_vfpfcnvrt 0 0 ABS 0 - dist/default/production/final-project-tues-amanda-sara.X.production.o
-colorclick_readBlue@tmp 12 0 COMRAM 1 cstackCOMRAM dist/default/production/final-project-tues-amanda-sara.X.production.o
-__accesstop 60 0 ABS 0 - /tmp/xc6PRSUNO.o
-intlevel0 0 0 CODE 0 text /tmp/xc6PRSUNO.o
-intlevel1 0 0 CODE 0 text /tmp/xc6PRSUNO.o
-intlevel2 0 0 CODE 0 text /tmp/xc6PRSUNO.o
-intlevel3 0 0 CODE 0 text /tmp/xc6PRSUNO.o
-i2_colorclick_int_init$1848 6 0 COMRAM 1 cstackCOMRAM dist/default/production/final-project-tues-amanda-sara.X.production.o
-i2_colorclick_int_init$1849 7 0 COMRAM 1 cstackCOMRAM dist/default/production/final-project-tues-amanda-sara.X.production.o
+colorclick_readBlue@tmp 10 0 COMRAM 1 cstackCOMRAM dist/default/production/final-project-tues-amanda-sara.X.production.o
+__accesstop 60 0 ABS 0 - /tmp/xccKNBf5G.o
+intlevel0 0 0 CODE 0 text /tmp/xccKNBf5G.o
+intlevel1 0 0 CODE 0 text /tmp/xccKNBf5G.o
+intlevel2 0 0 CODE 0 text /tmp/xccKNBf5G.o
+intlevel3 0 0 CODE 0 text /tmp/xccKNBf5G.o
 __LbssCOMRAM 0 0 ABS 0 bssCOMRAM dist/default/production/final-project-tues-amanda-sara.X.production.o
 i2colorclick_writetoaddr@address 4 0 COMRAM 1 cstackCOMRAM dist/default/production/final-project-tues-amanda-sara.X.production.o
-__end_of_colorclick_int_clear 1F12 0 CODE 0 text16 dist/default/production/final-project-tues-amanda-sara.X.production.o
+__end_of_colorclick_int_clear 22C8 0 CODE 0 text16 dist/default/production/final-project-tues-amanda-sara.X.production.o
 __LnvFARRAM 0 0 FARRAM 0 nvFARRAM dist/default/production/final-project-tues-amanda-sara.X.production.o
-wtemp8 58 0 COMRAM 1 temp dist/default/production/final-project-tues-amanda-sara.X.production.o
+wtemp8 5A 0 COMRAM 1 temp dist/default/production/final-project-tues-amanda-sara.X.production.o
 __Hifardata 0 0 CODE 0 ifardata dist/default/production/final-project-tues-amanda-sara.X.production.o
+___awdiv@sign 12 0 COMRAM 1 cstackCOMRAM dist/default/production/final-project-tues-amanda-sara.X.production.o
 __Hclrtext 0 0 ABS 0 clrtext dist/default/production/final-project-tues-amanda-sara.X.production.o
-_vfpfcnvrt 10F2 0 CODE 0 text3 dist/default/production/final-project-tues-amanda-sara.X.production.o
-dtoa@fp 24 0 COMRAM 1 cstackCOMRAM dist/default/production/final-project-tues-amanda-sara.X.production.o
+_vfpfcnvrt 14E6 0 CODE 0 text3 dist/default/production/final-project-tues-amanda-sara.X.production.o
+dtoa@fp 22 0 COMRAM 1 cstackCOMRAM dist/default/production/final-project-tues-amanda-sara.X.production.o
+___wmul@multiplicand 9 0 COMRAM 1 cstackCOMRAM dist/default/production/final-project-tues-amanda-sara.X.production.o
 _ADRESH F64 0 ABS 0 - dist/default/production/final-project-tues-amanda-sara.X.production.o
-_buggyLEDs_init 1F5C 0 CODE 0 text33 dist/default/production/final-project-tues-amanda-sara.X.production.o
-___inthi_sp 0 0 STACK 2 stack /tmp/xc6PRSUNO.o
-___intlo_sp 0 0 STACK 2 stack /tmp/xc6PRSUNO.o
-__end_of_colorclick_toggleClearLED 1E56 0 CODE 0 text31 dist/default/production/final-project-tues-amanda-sara.X.production.o
-__end_ofi2_colorclick_int_clear 1F46 0 CODE 0 text38 dist/default/production/final-project-tues-amanda-sara.X.production.o
-I2C_2_Master_Read@ack B 0 COMRAM 1 cstackCOMRAM dist/default/production/final-project-tues-amanda-sara.X.production.o
-I2C_2_Master_Read@tmp C 0 COMRAM 1 cstackCOMRAM dist/default/production/final-project-tues-amanda-sara.X.production.o
+_buggyLEDs_init 2312 0 CODE 0 text41 dist/default/production/final-project-tues-amanda-sara.X.production.o
+___awdiv@dividend D 0 COMRAM 1 cstackCOMRAM dist/default/production/final-project-tues-amanda-sara.X.production.o
+___inthi_sp 0 0 STACK 2 stack /tmp/xccKNBf5G.o
+___intlo_sp 0 0 STACK 2 stack /tmp/xccKNBf5G.o
+__end_of_colorclick_toggleClearLED 220C 0 CODE 0 text35 dist/default/production/final-project-tues-amanda-sara.X.production.o
+__end_ofi2_colorclick_int_clear 22FC 0 CODE 0 text45 dist/default/production/final-project-tues-amanda-sara.X.production.o
+I2C_2_Master_Read@ack 9 0 COMRAM 1 cstackCOMRAM dist/default/production/final-project-tues-amanda-sara.X.production.o
+I2C_2_Master_Read@tmp A 0 COMRAM 1 cstackCOMRAM dist/default/production/final-project-tues-amanda-sara.X.production.o
 __size_of_colorclick_readClear 0 0 ABS 0 - dist/default/production/final-project-tues-amanda-sara.X.production.o
 __size_of_colorclick_readGreen 0 0 ABS 0 - dist/default/production/final-project-tues-amanda-sara.X.production.o
 __size_of_sendCharSerial4 0 0 ABS 0 - dist/default/production/final-project-tues-amanda-sara.X.production.o
-__end_of_colorclick_int_init 1956 0 CODE 0 text17 dist/default/production/final-project-tues-amanda-sara.X.production.o
+__end_of_colorclick_int_init 1D7A 0 CODE 0 text17 dist/default/production/final-project-tues-amanda-sara.X.production.o
 __Hintcode_body 0 0 ABS 0 intcode_body dist/default/production/final-project-tues-amanda-sara.X.production.o
-_TxBufWriteCnt 54 0 COMRAM 1 bssCOMRAM dist/default/production/final-project-tues-amanda-sara.X.production.o
+__end_of___wmul 21EA 0 CODE 0 text20 dist/default/production/final-project-tues-amanda-sara.X.production.o
+_TxBufWriteCnt 56 0 COMRAM 1 bssCOMRAM dist/default/production/final-project-tues-amanda-sara.X.production.o
 __Lintsave_regs 0 0 BIGRAM 1 intsave_regs dist/default/production/final-project-tues-amanda-sara.X.production.o
-main@buf 100 0 BANK1 1 cstackBANK1 dist/default/production/final-project-tues-amanda-sara.X.production.o
+main@buf 82 0 BANK0 1 cstackBANK0 dist/default/production/final-project-tues-amanda-sara.X.production.o
+forward@mL 20 0 COMRAM 1 cstackCOMRAM dist/default/production/final-project-tues-amanda-sara.X.production.o
+forward@mR 22 0 COMRAM 1 cstackCOMRAM dist/default/production/final-project-tues-amanda-sara.X.production.o
 __size_of_sprintf 0 0 ABS 0 - dist/default/production/final-project-tues-amanda-sara.X.production.o
-colorclick_readGreen@tmp 12 0 COMRAM 1 cstackCOMRAM dist/default/production/final-project-tues-amanda-sara.X.production.o
+__size_of_DCmotors_init 0 0 ABS 0 - dist/default/production/final-project-tues-amanda-sara.X.production.o
+colorclick_readGreen@tmp 10 0 COMRAM 1 cstackCOMRAM dist/default/production/final-project-tues-amanda-sara.X.production.o
 __Hmediumconst 0 0 MEDIUMCONST 0 mediumconst dist/default/production/final-project-tues-amanda-sara.X.production.o
 __size_of_I2C_2_Master_RepStart 0 0 ABS 0 - dist/default/production/final-project-tues-amanda-sara.X.production.o
 __size_of_HighISR 0 0 ABS 0 - dist/default/production/final-project-tues-amanda-sara.X.production.o
 _PWM7CONbits FA1 0 ABS 0 - dist/default/production/final-project-tues-amanda-sara.X.production.o
-_ADC_init 1F12 0 CODE 0 text35 dist/default/production/final-project-tues-amanda-sara.X.production.o
+_ADC_init 22C8 0 CODE 0 text42 dist/default/production/final-project-tues-amanda-sara.X.production.o
 __Hintcodelo 26 0 CODE 0 intcodelo dist/default/production/final-project-tues-amanda-sara.X.production.o
-__end_of___aodiv 15E0 0 CODE 0 text12 dist/default/production/final-project-tues-amanda-sara.X.production.o
-__end_of___aomod 1744 0 CODE 0 text11 dist/default/production/final-project-tues-amanda-sara.X.production.o
-__end_of_colorclick_readClear 1B7C 0 CODE 0 text21 dist/default/production/final-project-tues-amanda-sara.X.production.o
-__end_of_colorclick_readGreen 1B2C 0 CODE 0 text20 dist/default/production/final-project-tues-amanda-sara.X.production.o
-___aodiv@quotient 1B 0 COMRAM 1 cstackCOMRAM dist/default/production/final-project-tues-amanda-sara.X.production.o
+___awdiv@divisor F 0 COMRAM 1 cstackCOMRAM dist/default/production/final-project-tues-amanda-sara.X.production.o
+__end_of___aodiv 1822 0 CODE 0 text12 dist/default/production/final-project-tues-amanda-sara.X.production.o
+__end_of___aomod 1986 0 CODE 0 text11 dist/default/production/final-project-tues-amanda-sara.X.production.o
+__end_of___awdiv 1B14 0 CODE 0 text21 dist/default/production/final-project-tues-amanda-sara.X.production.o
+__end_of_colorclick_readClear 1EBC 0 CODE 0 text25 dist/default/production/final-project-tues-amanda-sara.X.production.o
+__end_of_colorclick_readGreen 1E6C 0 CODE 0 text24 dist/default/production/final-project-tues-amanda-sara.X.production.o
+___aodiv@quotient 19 0 COMRAM 1 cstackCOMRAM dist/default/production/final-project-tues-amanda-sara.X.production.o
 __size_ofi2_I2C_2_Master_Start 0 0 ABS 0 - dist/default/production/final-project-tues-amanda-sara.X.production.o
 __size_ofi2_I2C_2_Master_Write 0 0 ABS 0 - dist/default/production/final-project-tues-amanda-sara.X.production.o
-?_strlen 9 0 COMRAM 1 cstackCOMRAM dist/default/production/final-project-tues-amanda-sara.X.production.o
-__end_of_ADC_init 1F2C 0 CODE 0 text35 dist/default/production/final-project-tues-amanda-sara.X.production.o
+?_strlen 7 0 COMRAM 1 cstackCOMRAM dist/default/production/final-project-tues-amanda-sara.X.production.o
+__end_of_ADC_init 22E2 0 CODE 0 text42 dist/default/production/final-project-tues-amanda-sara.X.production.o
 __size_ofi2_I2C_2_Master_Idle 0 0 ABS 0 - dist/default/production/final-project-tues-amanda-sara.X.production.o
 __size_ofi2_I2C_2_Master_Stop 0 0 ABS 0 - dist/default/production/final-project-tues-amanda-sara.X.production.o
-___aomod@dividend 9 0 COMRAM 1 cstackCOMRAM dist/default/production/final-project-tues-amanda-sara.X.production.o
+___aomod@dividend 7 0 COMRAM 1 cstackCOMRAM dist/default/production/final-project-tues-amanda-sara.X.production.o
+__size_of_clicker2buttons_init 0 0 ABS 0 - dist/default/production/final-project-tues-amanda-sara.X.production.o
 __size_of_fputc 0 0 ABS 0 - dist/default/production/final-project-tues-amanda-sara.X.production.o
 __size_of_fputs 0 0 ABS 0 - dist/default/production/final-project-tues-amanda-sara.X.production.o
 __size_of_putch 0 0 ABS 0 - dist/default/production/final-project-tues-amanda-sara.X.production.o
 _LowISR 18 0 CODE 0 intcodelo dist/default/production/final-project-tues-amanda-sara.X.production.o
 __Lintcodelo 18 0 CODE 0 intcodelo dist/default/production/final-project-tues-amanda-sara.X.production.o
-__end_of_buggyLEDs_init 1F72 0 CODE 0 text33 dist/default/production/final-project-tues-amanda-sara.X.production.o
-___aomod@divisor 11 0 COMRAM 1 cstackCOMRAM dist/default/production/final-project-tues-amanda-sara.X.production.o
-__end_ofi2_I2C_2_Master_Start 1FBC 0 CODE 0 text43 dist/default/production/final-project-tues-amanda-sara.X.production.o
-__end_ofi2_I2C_2_Master_Write 1F8A 0 CODE 0 text41 dist/default/production/final-project-tues-amanda-sara.X.production.o
+__end_of_buggyLEDs_init 2328 0 CODE 0 text41 dist/default/production/final-project-tues-amanda-sara.X.production.o
+___aomod@divisor F 0 COMRAM 1 cstackCOMRAM dist/default/production/final-project-tues-amanda-sara.X.production.o
+__end_ofi2_I2C_2_Master_Start 2386 0 CODE 0 text50 dist/default/production/final-project-tues-amanda-sara.X.production.o
+__end_ofi2_I2C_2_Master_Write 2340 0 CODE 0 text48 dist/default/production/final-project-tues-amanda-sara.X.production.o
 _SSP2CON1bits ED9 0 ABS 0 - dist/default/production/final-project-tues-amanda-sara.X.production.o
-start_initialization 1D4E 0 CODE 0 cinit dist/default/production/final-project-tues-amanda-sara.X.production.o
+start_initialization 20DE 0 CODE 0 cinit dist/default/production/final-project-tues-amanda-sara.X.production.o
 _SSP2CON2bits EDA 0 ABS 0 - dist/default/production/final-project-tues-amanda-sara.X.production.o
+__end_of_DCmotors_init 1F5C 0 CODE 0 text38 dist/default/production/final-project-tues-amanda-sara.X.production.o
 _PWM6CONbits FA4 0 ABS 0 - dist/default/production/final-project-tues-amanda-sara.X.production.o
+__size_of_forward 0 0 ABS 0 - dist/default/production/final-project-tues-amanda-sara.X.production.o
+_setMotorPWM 1312 0 CODE 0 text19 dist/default/production/final-project-tues-amanda-sara.X.production.o
 __HnvFARRAM 0 0 FARRAM 0 nvFARRAM dist/default/production/final-project-tues-amanda-sara.X.production.o
+__end_of_clicker2buttons_init 2368 0 CODE 0 text39 dist/default/production/final-project-tues-amanda-sara.X.production.o
 _TRISAbits F81 0 ABS 0 - dist/default/production/final-project-tues-amanda-sara.X.production.o
 _TRISBbits F82 0 ABS 0 - dist/default/production/final-project-tues-amanda-sara.X.production.o
 _TRISCbits F83 0 ABS 0 - dist/default/production/final-project-tues-amanda-sara.X.production.o
@@ -733,26 +867,23 @@ _RD6PPS E70 0 ABS 0 - dist/default/production/final-project-tues-amanda-sara.X.p
 _RE2PPS E74 0 ABS 0 - dist/default/production/final-project-tues-amanda-sara.X.production.o
 _ADREFbits F58 0 ABS 0 - dist/default/production/final-project-tues-amanda-sara.X.production.o
 _RX4PPS E15 0 ABS 0 - dist/default/production/final-project-tues-amanda-sara.X.production.o
-__pcstackBANK0 9D 0 BANK0 1 cstackBANK0 dist/default/production/final-project-tues-amanda-sara.X.production.o
-__pcstackBANK1 100 0 BANK1 1 cstackBANK1 dist/default/production/final-project-tues-amanda-sara.X.production.o
-__end_of_colorclick_writetoaddr 1EB8 0 CODE 0 text26 dist/default/production/final-project-tues-amanda-sara.X.production.o
+__pcstackBANK0 60 0 BANK0 1 cstackBANK0 dist/default/production/final-project-tues-amanda-sara.X.production.o
+__end_of_colorclick_writetoaddr 226E 0 CODE 0 text30 dist/default/production/final-project-tues-amanda-sara.X.production.o
 _IPR0bits E1F 0 ABS 0 - dist/default/production/final-project-tues-amanda-sara.X.production.o
-main@current 130 0 BANK1 1 cstackBANK1 dist/default/production/final-project-tues-amanda-sara.X.production.o
-_colorclick_int_init$1848 E 0 COMRAM 1 cstackCOMRAM dist/default/production/final-project-tues-amanda-sara.X.production.o
-_colorclick_int_init$1849 F 0 COMRAM 1 cstackCOMRAM dist/default/production/final-project-tues-amanda-sara.X.production.o
-__end_of_I2C_2_Master_Start 1FA8 0 CODE 0 text29 dist/default/production/final-project-tues-amanda-sara.X.production.o
+main@current BB 0 BANK0 1 cstackBANK0 dist/default/production/final-project-tues-amanda-sara.X.production.o
+__end_of_I2C_2_Master_Start 235E 0 CODE 0 text33 dist/default/production/final-project-tues-amanda-sara.X.production.o
 __size_of_colorclick_toggleClearLED 0 0 ABS 0 - dist/default/production/final-project-tues-amanda-sara.X.production.o
-__end_of_I2C_2_Master_Write 1F7E 0 CODE 0 text27 dist/default/production/final-project-tues-amanda-sara.X.production.o
+__end_of_I2C_2_Master_Write 2334 0 CODE 0 text31 dist/default/production/final-project-tues-amanda-sara.X.production.o
 _TX4REG EE4 0 ABS 0 - dist/default/production/final-project-tues-amanda-sara.X.production.o
 __size_of_sendStringSerial4 0 0 ABS 0 - dist/default/production/final-project-tues-amanda-sara.X.production.o
-I2C_2_Master_Write@data_byte A 0 COMRAM 1 cstackCOMRAM dist/default/production/final-project-tues-amanda-sara.X.production.o
-isa$xinst 0 0 ABS 0 - /tmp/xc6PRSUNO.o
-_battery_flag 52 0 COMRAM 1 bssCOMRAM dist/default/production/final-project-tues-amanda-sara.X.production.o
-i2_I2C_2_Master_Idle 1E0C 0 CODE 0 text44 dist/default/production/final-project-tues-amanda-sara.X.production.o
-i2_I2C_2_Master_Stop 1FA8 0 CODE 0 text42 dist/default/production/final-project-tues-amanda-sara.X.production.o
-colorclick_writetoaddr@value B 0 COMRAM 1 cstackCOMRAM dist/default/production/final-project-tues-amanda-sara.X.production.o
-fputc@fp B 0 COMRAM 1 cstackCOMRAM dist/default/production/final-project-tues-amanda-sara.X.production.o
-fputs@fp 14 0 COMRAM 1 cstackCOMRAM dist/default/production/final-project-tues-amanda-sara.X.production.o
+I2C_2_Master_Write@data_byte 8 0 COMRAM 1 cstackCOMRAM dist/default/production/final-project-tues-amanda-sara.X.production.o
+isa$xinst 0 0 ABS 0 - /tmp/xccKNBf5G.o
+_battery_flag 54 0 COMRAM 1 bssCOMRAM dist/default/production/final-project-tues-amanda-sara.X.production.o
+i2_I2C_2_Master_Idle 219C 0 CODE 0 text51 dist/default/production/final-project-tues-amanda-sara.X.production.o
+i2_I2C_2_Master_Stop 2372 0 CODE 0 text49 dist/default/production/final-project-tues-amanda-sara.X.production.o
+colorclick_writetoaddr@value 9 0 COMRAM 1 cstackCOMRAM dist/default/production/final-project-tues-amanda-sara.X.production.o
+fputc@fp 9 0 COMRAM 1 cstackCOMRAM dist/default/production/final-project-tues-amanda-sara.X.production.o
+fputs@fp 12 0 COMRAM 1 cstackCOMRAM dist/default/production/final-project-tues-amanda-sara.X.production.o
 __Hbank0 0 0 ABS 0 bank0 dist/default/production/final-project-tues-amanda-sara.X.production.o
 __Hbank1 0 0 ABS 0 bank1 dist/default/production/final-project-tues-amanda-sara.X.production.o
 __Hbank2 0 0 ABS 0 bank2 dist/default/production/final-project-tues-amanda-sara.X.production.o
@@ -765,7 +896,7 @@ __Hbank8 0 0 ABS 0 bank8 dist/default/production/final-project-tues-amanda-sara.
 __Hbank9 0 0 ABS 0 bank9 dist/default/production/final-project-tues-amanda-sara.X.production.o
 __Hcinit 0 0 ABS 0 cinit dist/default/production/final-project-tues-amanda-sara.X.production.o
 __Hconst 0 0 CONST 0 const dist/default/production/final-project-tues-amanda-sara.X.production.o
-__end_of_strlen 1DBA 0 CODE 0 text6 dist/default/production/final-project-tues-amanda-sara.X.production.o
+__end_of_strlen 214A 0 CODE 0 text6 dist/default/production/final-project-tues-amanda-sara.X.production.o
 __Hidata 0 0 CODE 0 idata dist/default/production/final-project-tues-amanda-sara.X.production.o
 __Hidloc 200010 0 IDLOC 5 idloc dist/default/production/final-project-tues-amanda-sara.X.production.o
 __size_of_LowISR 0 0 ABS 0 - dist/default/production/final-project-tues-amanda-sara.X.production.o
@@ -793,13 +924,13 @@ __size_of_I2C_2_Master_Read 0 0 ABS 0 - dist/default/production/final-project-tu
 __size_of_I2C_2_Master_Stop 0 0 ABS 0 - dist/default/production/final-project-tues-amanda-sara.X.production.o
 __Hbigbss 0 0 BIGRAM 1 bigbss dist/default/production/final-project-tues-amanda-sara.X.production.o
 __Hbigram 0 0 ABS 0 bigram dist/default/production/final-project-tues-amanda-sara.X.production.o
-__smallconst E00 0 SMALLCONST 0 smallconst /tmp/xc6PRSUNO.o
-__end_of_sprintf 1A8C 0 CODE 0 text1 dist/default/production/final-project-tues-amanda-sara.X.production.o
-__end_of_HighISR 1E78 0 CODE 0 intcode_body dist/default/production/final-project-tues-amanda-sara.X.production.o
+__smallconst E00 0 SMALLCONST 0 smallconst /tmp/xccKNBf5G.o
+__end_of_sprintf 1D28 0 CODE 0 text1 dist/default/production/final-project-tues-amanda-sara.X.production.o
+__end_of_HighISR 222E 0 CODE 0 intcode_body dist/default/production/final-project-tues-amanda-sara.X.production.o
 __Hcomram 0 0 ABS 0 comram dist/default/production/final-project-tues-amanda-sara.X.production.o
 __Hconfig 30000C 0 CONFIG 4 config dist/default/production/final-project-tues-amanda-sara.X.production.o
 _T2HLTbits FBE 0 ABS 0 - dist/default/production/final-project-tues-amanda-sara.X.production.o
-_clear_lower 50 0 COMRAM 1 bssCOMRAM dist/default/production/final-project-tues-amanda-sara.X.production.o
+_clear_lower F1 0 BANK0 1 bssBANK0 dist/default/production/final-project-tues-amanda-sara.X.production.o
 __Lbank0 0 0 ABS 0 bank0 dist/default/production/final-project-tues-amanda-sara.X.production.o
 __Lbank1 0 0 ABS 0 bank1 dist/default/production/final-project-tues-amanda-sara.X.production.o
 __Lbank2 0 0 ABS 0 bank2 dist/default/production/final-project-tues-amanda-sara.X.production.o
@@ -812,8 +943,8 @@ __Lbank8 0 0 ABS 0 bank8 dist/default/production/final-project-tues-amanda-sara.
 __Lbank9 0 0 ABS 0 bank9 dist/default/production/final-project-tues-amanda-sara.X.production.o
 __Lcinit 0 0 ABS 0 cinit dist/default/production/final-project-tues-amanda-sara.X.production.o
 __Lconst 0 0 CONST 0 const dist/default/production/final-project-tues-amanda-sara.X.production.o
-_clear_upper 4E 0 COMRAM 1 bssCOMRAM dist/default/production/final-project-tues-amanda-sara.X.production.o
-_colorclick_readBlue 1B7C 0 CODE 0 text22 dist/default/production/final-project-tues-amanda-sara.X.production.o
+_clear_upper EF 0 BANK0 1 bssBANK0 dist/default/production/final-project-tues-amanda-sara.X.production.o
+_colorclick_readBlue 1EBC 0 CODE 0 text26 dist/default/production/final-project-tues-amanda-sara.X.production.o
 __Lidata 0 0 CODE 0 idata dist/default/production/final-project-tues-amanda-sara.X.production.o
 __Lidloc 0 0 IDLOC 5 idloc dist/default/production/final-project-tues-amanda-sara.X.production.o
 __Lnvbit 0 0 COMRAM 1 nvbit dist/default/production/final-project-tues-amanda-sara.X.production.o
@@ -830,76 +961,79 @@ __Ltext6 0 0 ABS 0 text6 dist/default/production/final-project-tues-amanda-sara.
 __Ltext7 0 0 ABS 0 text7 dist/default/production/final-project-tues-amanda-sara.X.production.o
 __Ltext8 0 0 ABS 0 text8 dist/default/production/final-project-tues-amanda-sara.X.production.o
 __Ltext9 0 0 ABS 0 text9 dist/default/production/final-project-tues-amanda-sara.X.production.o
-_I2C_2_Master_Start 1F9E 0 CODE 0 text29 dist/default/production/final-project-tues-amanda-sara.X.production.o
-__end_of_colorclick_readColour 1C54 0 CODE 0 text18 dist/default/production/final-project-tues-amanda-sara.X.production.o
-_I2C_2_Master_Write 1F72 0 CODE 0 text27 dist/default/production/final-project-tues-amanda-sara.X.production.o
+_I2C_2_Master_Start 2354 0 CODE 0 text33 dist/default/production/final-project-tues-amanda-sara.X.production.o
+__end_of_colorclick_readColour 1FE4 0 CODE 0 text22 dist/default/production/final-project-tues-amanda-sara.X.production.o
+_I2C_2_Master_Write 2328 0 CODE 0 text31 dist/default/production/final-project-tues-amanda-sara.X.production.o
 __Hfarbss 0 0 FARRAM 0 farbss dist/default/production/final-project-tues-amanda-sara.X.production.o
 __Lintcode_body 0 0 ABS 0 intcode_body dist/default/production/final-project-tues-amanda-sara.X.production.o
 _INTCONbits FF2 0 ABS 0 - dist/default/production/final-project-tues-amanda-sara.X.production.o
 __size_of_colorclick_readRed 0 0 ABS 0 - dist/default/production/final-project-tues-amanda-sara.X.production.o
-__end_of_colorclick_init 1D16 0 CODE 0 text25 dist/default/production/final-project-tues-amanda-sara.X.production.o
+__end_of_colorclick_init 20A6 0 CODE 0 text29 dist/default/production/final-project-tues-amanda-sara.X.production.o
 __Habs1 0 0 ABS 0 abs1 dist/default/production/final-project-tues-amanda-sara.X.production.o
 __Hdata 0 0 ABS 0 data dist/default/production/final-project-tues-amanda-sara.X.production.o
 __Hinit 2A 0 CODE 0 init dist/default/production/final-project-tues-amanda-sara.X.production.o
 __Hrbit 0 0 COMRAM 1 rbit dist/default/production/final-project-tues-amanda-sara.X.production.o
 __Hrbss 0 0 COMRAM 1 rbss dist/default/production/final-project-tues-amanda-sara.X.production.o
-__Htemp 58 0 COMRAM 1 temp dist/default/production/final-project-tues-amanda-sara.X.production.o
+__Htemp 5A 0 COMRAM 1 temp dist/default/production/final-project-tues-amanda-sara.X.production.o
 __Htext 0 0 ABS 0 text dist/default/production/final-project-tues-amanda-sara.X.production.o
 __Labs1 0 0 ABS 0 abs1 dist/default/production/final-project-tues-amanda-sara.X.production.o
 __Ldata 0 0 ABS 0 data dist/default/production/final-project-tues-amanda-sara.X.production.o
 __Linit 26 0 CODE 0 init dist/default/production/final-project-tues-amanda-sara.X.production.o
 __Lrbit 0 0 COMRAM 1 rbit dist/default/production/final-project-tues-amanda-sara.X.production.o
 __Lrbss 0 0 COMRAM 1 rbss dist/default/production/final-project-tues-amanda-sara.X.production.o
-__Ltemp 57 0 COMRAM 1 temp dist/default/production/final-project-tues-amanda-sara.X.production.o
+__Ltemp 59 0 COMRAM 1 temp dist/default/production/final-project-tues-amanda-sara.X.production.o
 __Ltext 0 0 ABS 0 text dist/default/production/final-project-tues-amanda-sara.X.production.o
-___aodiv@counter 19 0 COMRAM 1 cstackCOMRAM dist/default/production/final-project-tues-amanda-sara.X.production.o
+___aodiv@counter 17 0 COMRAM 1 cstackCOMRAM dist/default/production/final-project-tues-amanda-sara.X.production.o
 _SSP2CON2 EDA 0 ABS 0 - dist/default/production/final-project-tues-amanda-sara.X.production.o
 _SSP2STAT ED8 0 ABS 0 - dist/default/production/final-project-tues-amanda-sara.X.production.o
-_TxBufReadCnt 53 0 COMRAM 1 bssCOMRAM dist/default/production/final-project-tues-amanda-sara.X.production.o
-___aomod@sign 1A 0 COMRAM 1 cstackCOMRAM dist/default/production/final-project-tues-amanda-sara.X.production.o
+___wmul 21C4 0 CODE 0 text20 dist/default/production/final-project-tues-amanda-sara.X.production.o
+_TxBufReadCnt 55 0 COMRAM 1 bssCOMRAM dist/default/production/final-project-tues-amanda-sara.X.production.o
+___aomod@sign 18 0 COMRAM 1 cstackCOMRAM dist/default/production/final-project-tues-amanda-sara.X.production.o
 __LcstackBANK0 0 0 ABS 0 cstackBANK0 dist/default/production/final-project-tues-amanda-sara.X.production.o
-__LcstackBANK1 0 0 ABS 0 cstackBANK1 dist/default/production/final-project-tues-amanda-sara.X.production.o
-int$flags 57 0 COMRAM 1 temp dist/default/production/final-project-tues-amanda-sara.X.production.o
+int$flags 59 0 COMRAM 1 temp dist/default/production/final-project-tues-amanda-sara.X.production.o
 __HcstackCOMRAM 0 0 ABS 0 cstackCOMRAM dist/default/production/final-project-tues-amanda-sara.X.production.o
 __Hintret 0 0 ABS 0 intret dist/default/production/final-project-tues-amanda-sara.X.production.o
 __Hirdata 0 0 CODE 0 irdata dist/default/production/final-project-tues-amanda-sara.X.production.o
-__S0 1FBE 0 ABS 0 - dist/default/production/final-project-tues-amanda-sara.X.production.o
-__S1 17C 0 ABS 0 - dist/default/production/final-project-tues-amanda-sara.X.production.o
+__S0 2388 0 ABS 0 - dist/default/production/final-project-tues-amanda-sara.X.production.o
+__S1 15C 0 ABS 0 - dist/default/production/final-project-tues-amanda-sara.X.production.o
 __S2 0 0 ABS 0 - dist/default/production/final-project-tues-amanda-sara.X.production.o
 __S4 0 0 ABS 0 - dist/default/production/final-project-tues-amanda-sara.X.production.o
 __S5 0 0 ABS 0 - dist/default/production/final-project-tues-amanda-sara.X.production.o
-_abs 1C96 0 CODE 0 text10 dist/default/production/final-project-tues-amanda-sara.X.production.o
-_pad 180E 0 CODE 0 text5 dist/default/production/final-project-tues-amanda-sara.X.production.o
-__end_ofi2_colorclick_int_init 19D8 0 CODE 0 text39 dist/default/production/final-project-tues-amanda-sara.X.production.o
-_card_flag 7C 0 BANK0 1 bssBANK0 dist/default/production/final-project-tues-amanda-sara.X.production.o
-_colorclick_readColour 1C10 0 CODE 0 text18 dist/default/production/final-project-tues-amanda-sara.X.production.o
+_abs 2026 0 CODE 0 text10 dist/default/production/final-project-tues-amanda-sara.X.production.o
+_pad 1B14 0 CODE 0 text5 dist/default/production/final-project-tues-amanda-sara.X.production.o
+__end_ofi2_colorclick_int_init 1DCC 0 CODE 0 text46 dist/default/production/final-project-tues-amanda-sara.X.production.o
+_card_flag F3 0 BANK0 1 bssBANK0 dist/default/production/final-project-tues-amanda-sara.X.production.o
+_colorclick_readColour 1FA0 0 CODE 0 text22 dist/default/production/final-project-tues-amanda-sara.X.production.o
+__end_of_forward 1C74 0 CODE 0 text18 dist/default/production/final-project-tues-amanda-sara.X.production.o
 _TX4STAbits EE8 0 ABS 0 - dist/default/production/final-project-tues-amanda-sara.X.production.o
-__end_of_USART4_init 1ED8 0 CODE 0 text34 dist/default/production/final-project-tues-amanda-sara.X.production.o
+__end_of_USART4_init 228E 0 CODE 0 text37 dist/default/production/final-project-tues-amanda-sara.X.production.o
 _BAUD4CONbits EE9 0 ABS 0 - dist/default/production/final-project-tues-amanda-sara.X.production.o
 __size_ofi2_colorclick_int_clear 0 0 ABS 0 - dist/default/production/final-project-tues-amanda-sara.X.production.o
-___aodiv@sign 1A 0 COMRAM 1 cstackCOMRAM dist/default/production/final-project-tues-amanda-sara.X.production.o
+___aodiv@sign 18 0 COMRAM 1 cstackCOMRAM dist/default/production/final-project-tues-amanda-sara.X.production.o
 __Lbigdata 0 0 BIGRAM 1 bigdata dist/default/production/final-project-tues-amanda-sara.X.production.o
 __Hnvrram 0 0 COMRAM 1 nvrram dist/default/production/final-project-tues-amanda-sara.X.production.o
-colorclick_readColour@current 14 0 COMRAM 1 cstackCOMRAM dist/default/production/final-project-tues-amanda-sara.X.production.o
-sprintf@fmt B1 0 BANK0 1 cstackBANK0 dist/default/production/final-project-tues-amanda-sara.X.production.o
-_dtoa$2473 36 0 COMRAM 1 cstackCOMRAM dist/default/production/final-project-tues-amanda-sara.X.production.o
-i2_colorclick_int_init 1956 0 CODE 0 text39 dist/default/production/final-project-tues-amanda-sara.X.production.o
-__end_of_abs 1CD6 0 CODE 0 text10 dist/default/production/final-project-tues-amanda-sara.X.production.o
-__end_of_pad 18D4 0 CODE 0 text5 dist/default/production/final-project-tues-amanda-sara.X.production.o
-int_func 1E56 0 CODE 0 intcode_body dist/default/production/final-project-tues-amanda-sara.X.production.o
+colorclick_readColour@current 12 0 COMRAM 1 cstackCOMRAM dist/default/production/final-project-tues-amanda-sara.X.production.o
+sprintf@fmt 70 0 BANK0 1 cstackBANK0 dist/default/production/final-project-tues-amanda-sara.X.production.o
+_dtoa$2510 34 0 COMRAM 1 cstackCOMRAM dist/default/production/final-project-tues-amanda-sara.X.production.o
+i2_colorclick_int_init 1D7A 0 CODE 0 text46 dist/default/production/final-project-tues-amanda-sara.X.production.o
+__end_of_abs 2066 0 CODE 0 text10 dist/default/production/final-project-tues-amanda-sara.X.production.o
+__end_of_pad 1BD6 0 CODE 0 text5 dist/default/production/final-project-tues-amanda-sara.X.production.o
+int_func 220C 0 CODE 0 intcode_body dist/default/production/final-project-tues-amanda-sara.X.production.o
 __Lintentry 0 0 ABS 0 intentry dist/default/production/final-project-tues-amanda-sara.X.production.o
 __Hramtop E00 0 RAM 0 ramtop dist/default/production/final-project-tues-amanda-sara.X.production.o
-strlen@a B 0 COMRAM 1 cstackCOMRAM dist/default/production/final-project-tues-amanda-sara.X.production.o
-strlen@s 9 0 COMRAM 1 cstackCOMRAM dist/default/production/final-project-tues-amanda-sara.X.production.o
+strlen@a 9 0 COMRAM 1 cstackCOMRAM dist/default/production/final-project-tues-amanda-sara.X.production.o
+strlen@s 7 0 COMRAM 1 cstackCOMRAM dist/default/production/final-project-tues-amanda-sara.X.production.o
 __Hrparam 0 0 COMRAM 1 rparam dist/default/production/final-project-tues-amanda-sara.X.production.o
-_colorclick_int_clear 1EF8 0 CODE 0 text16 dist/default/production/final-project-tues-amanda-sara.X.production.o
+_colorclick_int_clear 22AE 0 CODE 0 text16 dist/default/production/final-project-tues-amanda-sara.X.production.o
 __activetblptr 1 0 ABS 0 - dist/default/production/final-project-tues-amanda-sara.X.production.o
 __Hstruct 0 0 COMRAM 1 struct dist/default/production/final-project-tues-amanda-sara.X.production.o
-colorclick_toggleClearLED@toggle 9 0 COMRAM 1 cstackCOMRAM dist/default/production/final-project-tues-amanda-sara.X.production.o
+__size_of___wmul 0 0 ABS 0 - dist/default/production/final-project-tues-amanda-sara.X.production.o
+colorclick_toggleClearLED@toggle 7 0 COMRAM 1 cstackCOMRAM dist/default/production/final-project-tues-amanda-sara.X.production.o
+__size_of_clicker2LEDs_init 0 0 ABS 0 - dist/default/production/final-project-tues-amanda-sara.X.production.o
 __LbssBANK0 0 0 ABS 0 bssBANK0 dist/default/production/final-project-tues-amanda-sara.X.production.o
 __LbssBANK1 0 0 ABS 0 bssBANK1 dist/default/production/final-project-tues-amanda-sara.X.production.o
-_colorclick_init 1CD6 0 CODE 0 text25 dist/default/production/final-project-tues-amanda-sara.X.production.o
-_colorclick_toggleClearLED 1E34 0 CODE 0 text31 dist/default/production/final-project-tues-amanda-sara.X.production.o
+_colorclick_init 2066 0 CODE 0 text29 dist/default/production/final-project-tues-amanda-sara.X.production.o
+_colorclick_toggleClearLED 21EA 0 CODE 0 text35 dist/default/production/final-project-tues-amanda-sara.X.production.o
 __Htext10 0 0 ABS 0 text10 dist/default/production/final-project-tues-amanda-sara.X.production.o
 __Htext11 0 0 ABS 0 text11 dist/default/production/final-project-tues-amanda-sara.X.production.o
 __Htext12 0 0 ABS 0 text12 dist/default/production/final-project-tues-amanda-sara.X.production.o
@@ -926,68 +1060,84 @@ __Htext32 0 0 ABS 0 text32 dist/default/production/final-project-tues-amanda-sar
 __Htext33 0 0 ABS 0 text33 dist/default/production/final-project-tues-amanda-sara.X.production.o
 __Htext34 0 0 ABS 0 text34 dist/default/production/final-project-tues-amanda-sara.X.production.o
 __Htext35 0 0 ABS 0 text35 dist/default/production/final-project-tues-amanda-sara.X.production.o
+__Htext36 0 0 ABS 0 text36 dist/default/production/final-project-tues-amanda-sara.X.production.o
+__Htext37 0 0 ABS 0 text37 dist/default/production/final-project-tues-amanda-sara.X.production.o
 __Htext38 0 0 ABS 0 text38 dist/default/production/final-project-tues-amanda-sara.X.production.o
 __Htext39 0 0 ABS 0 text39 dist/default/production/final-project-tues-amanda-sara.X.production.o
 __Htext40 0 0 ABS 0 text40 dist/default/production/final-project-tues-amanda-sara.X.production.o
 __Htext41 0 0 ABS 0 text41 dist/default/production/final-project-tues-amanda-sara.X.production.o
 __Htext42 0 0 ABS 0 text42 dist/default/production/final-project-tues-amanda-sara.X.production.o
-__Htext43 0 0 ABS 0 text43 dist/default/production/final-project-tues-amanda-sara.X.production.o
-__Htext44 0 0 ABS 0 text44 dist/default/production/final-project-tues-amanda-sara.X.production.o
-__end_ofi2_I2C_2_Master_Idle 1E34 0 CODE 0 text44 dist/default/production/final-project-tues-amanda-sara.X.production.o
-__end_ofi2_I2C_2_Master_Stop 1FB2 0 CODE 0 text42 dist/default/production/final-project-tues-amanda-sara.X.production.o
-vfpfcnvrt@fmt 4A 0 COMRAM 1 cstackCOMRAM dist/default/production/final-project-tues-amanda-sara.X.production.o
+__Htext45 0 0 ABS 0 text45 dist/default/production/final-project-tues-amanda-sara.X.production.o
+__Htext46 0 0 ABS 0 text46 dist/default/production/final-project-tues-amanda-sara.X.production.o
+__Htext47 0 0 ABS 0 text47 dist/default/production/final-project-tues-amanda-sara.X.production.o
+__Htext48 0 0 ABS 0 text48 dist/default/production/final-project-tues-amanda-sara.X.production.o
+__Htext49 0 0 ABS 0 text49 dist/default/production/final-project-tues-amanda-sara.X.production.o
+__Htext50 0 0 ABS 0 text50 dist/default/production/final-project-tues-amanda-sara.X.production.o
+__Htext51 0 0 ABS 0 text51 dist/default/production/final-project-tues-amanda-sara.X.production.o
+__end_ofi2_I2C_2_Master_Idle 21C4 0 CODE 0 text51 dist/default/production/final-project-tues-amanda-sara.X.production.o
+__end_ofi2_I2C_2_Master_Stop 237C 0 CODE 0 text49 dist/default/production/final-project-tues-amanda-sara.X.production.o
+vfpfcnvrt@fmt 48 0 COMRAM 1 cstackCOMRAM dist/default/production/final-project-tues-amanda-sara.X.production.o
 _PIE0bits E29 0 ABS 0 - dist/default/production/final-project-tues-amanda-sara.X.production.o
 _PIE4bits E2D 0 ABS 0 - dist/default/production/final-project-tues-amanda-sara.X.production.o
-pad@buf 1B 0 COMRAM 1 cstackCOMRAM dist/default/production/final-project-tues-amanda-sara.X.production.o
-__end_of_sendStringSerial4 1D4E 0 CODE 0 text13 dist/default/production/final-project-tues-amanda-sara.X.production.o
-__end_of_interrupts_init 1E98 0 CODE 0 text15 dist/default/production/final-project-tues-amanda-sara.X.production.o
-_RxBufWriteCnt 56 0 COMRAM 1 bssCOMRAM dist/default/production/final-project-tues-amanda-sara.X.production.o
-__ptext10 1C96 0 CODE 0 text10 dist/default/production/final-project-tues-amanda-sara.X.production.o
-__ptext11 15E0 0 CODE 0 text11 dist/default/production/final-project-tues-amanda-sara.X.production.o
-__ptext12 1458 0 CODE 0 text12 dist/default/production/final-project-tues-amanda-sara.X.production.o
-__ptext13 1D16 0 CODE 0 text13 dist/default/production/final-project-tues-amanda-sara.X.production.o
-__ptext14 1F46 0 CODE 0 text14 dist/default/production/final-project-tues-amanda-sara.X.production.o
-__ptext15 1E78 0 CODE 0 text15 dist/default/production/final-project-tues-amanda-sara.X.production.o
-__ptext16 1EF8 0 CODE 0 text16 dist/default/production/final-project-tues-amanda-sara.X.production.o
-__ptext17 18D4 0 CODE 0 text17 dist/default/production/final-project-tues-amanda-sara.X.production.o
-__ptext18 1C10 0 CODE 0 text18 dist/default/production/final-project-tues-amanda-sara.X.production.o
-__ptext19 1A8C 0 CODE 0 text19 dist/default/production/final-project-tues-amanda-sara.X.production.o
-__ptext20 1ADC 0 CODE 0 text20 dist/default/production/final-project-tues-amanda-sara.X.production.o
-__ptext21 1B2C 0 CODE 0 text21 dist/default/production/final-project-tues-amanda-sara.X.production.o
-__ptext22 1B7C 0 CODE 0 text22 dist/default/production/final-project-tues-amanda-sara.X.production.o
-__ptext23 1F8A 0 CODE 0 text23 dist/default/production/final-project-tues-amanda-sara.X.production.o
-__ptext24 1C54 0 CODE 0 text24 dist/default/production/final-project-tues-amanda-sara.X.production.o
-__ptext25 1CD6 0 CODE 0 text25 dist/default/production/final-project-tues-amanda-sara.X.production.o
-__ptext26 1E98 0 CODE 0 text26 dist/default/production/final-project-tues-amanda-sara.X.production.o
-__ptext27 1F72 0 CODE 0 text27 dist/default/production/final-project-tues-amanda-sara.X.production.o
-__ptext28 1F94 0 CODE 0 text28 dist/default/production/final-project-tues-amanda-sara.X.production.o
-__ptext29 1F9E 0 CODE 0 text29 dist/default/production/final-project-tues-amanda-sara.X.production.o
-__ptext30 1DE4 0 CODE 0 text30 dist/default/production/final-project-tues-amanda-sara.X.production.o
-__ptext31 1E34 0 CODE 0 text31 dist/default/production/final-project-tues-amanda-sara.X.production.o
-__ptext32 1DBA 0 CODE 0 text32 dist/default/production/final-project-tues-amanda-sara.X.production.o
-__ptext33 1F5C 0 CODE 0 text33 dist/default/production/final-project-tues-amanda-sara.X.production.o
-__ptext34 1EB8 0 CODE 0 text34 dist/default/production/final-project-tues-amanda-sara.X.production.o
-__ptext35 1F12 0 CODE 0 text35 dist/default/production/final-project-tues-amanda-sara.X.production.o
-__ptext38 1F2C 0 CODE 0 text38 dist/default/production/final-project-tues-amanda-sara.X.production.o
-__ptext39 1956 0 CODE 0 text39 dist/default/production/final-project-tues-amanda-sara.X.production.o
-__ptext40 1ED8 0 CODE 0 text40 dist/default/production/final-project-tues-amanda-sara.X.production.o
-__ptext41 1F7E 0 CODE 0 text41 dist/default/production/final-project-tues-amanda-sara.X.production.o
-__ptext42 1FA8 0 CODE 0 text42 dist/default/production/final-project-tues-amanda-sara.X.production.o
-__ptext43 1FB2 0 CODE 0 text43 dist/default/production/final-project-tues-amanda-sara.X.production.o
-__ptext44 1E0C 0 CODE 0 text44 dist/default/production/final-project-tues-amanda-sara.X.production.o
-___aodiv 1458 0 CODE 0 text12 dist/default/production/final-project-tues-amanda-sara.X.production.o
-___aomod 15E0 0 CODE 0 text11 dist/default/production/final-project-tues-amanda-sara.X.production.o
-__pintcode_body 1E56 0 CODE 0 intcode_body dist/default/production/final-project-tues-amanda-sara.X.production.o
+pad@buf 19 0 COMRAM 1 cstackCOMRAM dist/default/production/final-project-tues-amanda-sara.X.production.o
+__end_of_sendStringSerial4 20DE 0 CODE 0 text13 dist/default/production/final-project-tues-amanda-sara.X.production.o
+__end_of_interrupts_init 224E 0 CODE 0 text15 dist/default/production/final-project-tues-amanda-sara.X.production.o
+_RxBufWriteCnt 58 0 COMRAM 1 bssCOMRAM dist/default/production/final-project-tues-amanda-sara.X.production.o
+__ptext10 2026 0 CODE 0 text10 dist/default/production/final-project-tues-amanda-sara.X.production.o
+__ptext11 1822 0 CODE 0 text11 dist/default/production/final-project-tues-amanda-sara.X.production.o
+__ptext12 169A 0 CODE 0 text12 dist/default/production/final-project-tues-amanda-sara.X.production.o
+__ptext13 20A6 0 CODE 0 text13 dist/default/production/final-project-tues-amanda-sara.X.production.o
+__ptext14 22FC 0 CODE 0 text14 dist/default/production/final-project-tues-amanda-sara.X.production.o
+__ptext15 222E 0 CODE 0 text15 dist/default/production/final-project-tues-amanda-sara.X.production.o
+__ptext16 22AE 0 CODE 0 text16 dist/default/production/final-project-tues-amanda-sara.X.production.o
+__ptext17 1D28 0 CODE 0 text17 dist/default/production/final-project-tues-amanda-sara.X.production.o
+__ptext18 1BD6 0 CODE 0 text18 dist/default/production/final-project-tues-amanda-sara.X.production.o
+__ptext19 1312 0 CODE 0 text19 dist/default/production/final-project-tues-amanda-sara.X.production.o
+__ptext20 21C4 0 CODE 0 text20 dist/default/production/final-project-tues-amanda-sara.X.production.o
+__ptext21 1A50 0 CODE 0 text21 dist/default/production/final-project-tues-amanda-sara.X.production.o
+__ptext22 1FA0 0 CODE 0 text22 dist/default/production/final-project-tues-amanda-sara.X.production.o
+__ptext23 1DCC 0 CODE 0 text23 dist/default/production/final-project-tues-amanda-sara.X.production.o
+__ptext24 1E1C 0 CODE 0 text24 dist/default/production/final-project-tues-amanda-sara.X.production.o
+__ptext25 1E6C 0 CODE 0 text25 dist/default/production/final-project-tues-amanda-sara.X.production.o
+__ptext26 1EBC 0 CODE 0 text26 dist/default/production/final-project-tues-amanda-sara.X.production.o
+__ptext27 2340 0 CODE 0 text27 dist/default/production/final-project-tues-amanda-sara.X.production.o
+__ptext28 1FE4 0 CODE 0 text28 dist/default/production/final-project-tues-amanda-sara.X.production.o
+__ptext29 2066 0 CODE 0 text29 dist/default/production/final-project-tues-amanda-sara.X.production.o
+__ptext30 224E 0 CODE 0 text30 dist/default/production/final-project-tues-amanda-sara.X.production.o
+__ptext31 2328 0 CODE 0 text31 dist/default/production/final-project-tues-amanda-sara.X.production.o
+__ptext32 234A 0 CODE 0 text32 dist/default/production/final-project-tues-amanda-sara.X.production.o
+__ptext33 2354 0 CODE 0 text33 dist/default/production/final-project-tues-amanda-sara.X.production.o
+__ptext34 2174 0 CODE 0 text34 dist/default/production/final-project-tues-amanda-sara.X.production.o
+__ptext35 21EA 0 CODE 0 text35 dist/default/production/final-project-tues-amanda-sara.X.production.o
+__ptext36 214A 0 CODE 0 text36 dist/default/production/final-project-tues-amanda-sara.X.production.o
+__ptext37 226E 0 CODE 0 text37 dist/default/production/final-project-tues-amanda-sara.X.production.o
+__ptext38 1F0C 0 CODE 0 text38 dist/default/production/final-project-tues-amanda-sara.X.production.o
+__ptext39 235E 0 CODE 0 text39 dist/default/production/final-project-tues-amanda-sara.X.production.o
+__ptext40 2368 0 CODE 0 text40 dist/default/production/final-project-tues-amanda-sara.X.production.o
+__ptext41 2312 0 CODE 0 text41 dist/default/production/final-project-tues-amanda-sara.X.production.o
+__ptext42 22C8 0 CODE 0 text42 dist/default/production/final-project-tues-amanda-sara.X.production.o
+__ptext45 22E2 0 CODE 0 text45 dist/default/production/final-project-tues-amanda-sara.X.production.o
+__ptext46 1D7A 0 CODE 0 text46 dist/default/production/final-project-tues-amanda-sara.X.production.o
+__ptext47 228E 0 CODE 0 text47 dist/default/production/final-project-tues-amanda-sara.X.production.o
+__ptext48 2334 0 CODE 0 text48 dist/default/production/final-project-tues-amanda-sara.X.production.o
+__ptext49 2372 0 CODE 0 text49 dist/default/production/final-project-tues-amanda-sara.X.production.o
+__ptext50 237C 0 CODE 0 text50 dist/default/production/final-project-tues-amanda-sara.X.production.o
+__ptext51 219C 0 CODE 0 text51 dist/default/production/final-project-tues-amanda-sara.X.production.o
+___aodiv 169A 0 CODE 0 text12 dist/default/production/final-project-tues-amanda-sara.X.production.o
+___aomod 1822 0 CODE 0 text11 dist/default/production/final-project-tues-amanda-sara.X.production.o
+___awdiv 1A50 0 CODE 0 text21 dist/default/production/final-project-tues-amanda-sara.X.production.o
+__pintcode_body 220C 0 CODE 0 intcode_body dist/default/production/final-project-tues-amanda-sara.X.production.o
 __Lbank10 0 0 ABS 0 bank10 dist/default/production/final-project-tues-amanda-sara.X.production.o
 __Lbank11 0 0 ABS 0 bank11 dist/default/production/final-project-tues-amanda-sara.X.production.o
 __Lbank12 0 0 ABS 0 bank12 dist/default/production/final-project-tues-amanda-sara.X.production.o
 __Lbank13 0 0 ABS 0 bank13 dist/default/production/final-project-tues-amanda-sara.X.production.o
 __Lbigbss 0 0 BIGRAM 1 bigbss dist/default/production/final-project-tues-amanda-sara.X.production.o
 __Lbigram 0 0 ABS 0 bigram dist/default/production/final-project-tues-amanda-sara.X.production.o
-i2_colorclick_writetoaddr 1ED8 0 CODE 0 text40 dist/default/production/final-project-tues-amanda-sara.X.production.o
-?_dtoa 24 0 COMRAM 1 cstackCOMRAM dist/default/production/final-project-tues-amanda-sara.X.production.o
+i2_colorclick_writetoaddr 228E 0 CODE 0 text47 dist/default/production/final-project-tues-amanda-sara.X.production.o
+?_dtoa 22 0 COMRAM 1 cstackCOMRAM dist/default/production/final-project-tues-amanda-sara.X.production.o
 __Lcomram 0 0 ABS 0 comram dist/default/production/final-project-tues-amanda-sara.X.production.o
 __Lconfig 0 0 CONFIG 4 config dist/default/production/final-project-tues-amanda-sara.X.production.o
+___wmul@multiplier 7 0 COMRAM 1 cstackCOMRAM dist/default/production/final-project-tues-amanda-sara.X.production.o
 _LATAbits F79 0 ABS 0 - dist/default/production/final-project-tues-amanda-sara.X.production.o
 _LATCbits F7B 0 ABS 0 - dist/default/production/final-project-tues-amanda-sara.X.production.o
 _LATDbits F7C 0 ABS 0 - dist/default/production/final-project-tues-amanda-sara.X.production.o
@@ -995,88 +1145,93 @@ _LATEbits F7D 0 ABS 0 - dist/default/production/final-project-tues-amanda-sara.X
 _LATFbits F7E 0 ABS 0 - dist/default/production/final-project-tues-amanda-sara.X.production.o
 _LATGbits F7F 0 ABS 0 - dist/default/production/final-project-tues-amanda-sara.X.production.o
 _LATHbits F80 0 ABS 0 - dist/default/production/final-project-tues-amanda-sara.X.production.o
-__end_of_colorclick_readBlue 1BCC 0 CODE 0 text22 dist/default/production/final-project-tues-amanda-sara.X.production.o
-__end_of_I2C_2_Master_Idle 1E0C 0 CODE 0 text30 dist/default/production/final-project-tues-amanda-sara.X.production.o
-__end_of_I2C_2_Master_Init 1DE4 0 CODE 0 text32 dist/default/production/final-project-tues-amanda-sara.X.production.o
-__end_of_I2C_2_Master_Read 1C96 0 CODE 0 text24 dist/default/production/final-project-tues-amanda-sara.X.production.o
-__end_of_I2C_2_Master_Stop 1F9E 0 CODE 0 text28 dist/default/production/final-project-tues-amanda-sara.X.production.o
-?_colorclick_readColour 14 0 COMRAM 1 cstackCOMRAM dist/default/production/final-project-tues-amanda-sara.X.production.o
+__end_of_colorclick_readBlue 1F0C 0 CODE 0 text26 dist/default/production/final-project-tues-amanda-sara.X.production.o
+__end_of_I2C_2_Master_Idle 219C 0 CODE 0 text34 dist/default/production/final-project-tues-amanda-sara.X.production.o
+__end_of_I2C_2_Master_Init 2174 0 CODE 0 text36 dist/default/production/final-project-tues-amanda-sara.X.production.o
+__end_of_I2C_2_Master_Read 2026 0 CODE 0 text28 dist/default/production/final-project-tues-amanda-sara.X.production.o
+__end_of_I2C_2_Master_Stop 2354 0 CODE 0 text32 dist/default/production/final-project-tues-amanda-sara.X.production.o
+?_colorclick_readColour 12 0 COMRAM 1 cstackCOMRAM dist/default/production/final-project-tues-amanda-sara.X.production.o
 __Lfarbss 0 0 FARRAM 0 farbss dist/default/production/final-project-tues-amanda-sara.X.production.o
-main@tmpB 12C 0 BANK1 1 cstackBANK1 dist/default/production/final-project-tues-amanda-sara.X.production.o
-main@tmpC 12E 0 BANK1 1 cstackBANK1 dist/default/production/final-project-tues-amanda-sara.X.production.o
-main@tmpG 12A 0 BANK1 1 cstackBANK1 dist/default/production/final-project-tues-amanda-sara.X.production.o
-main@tmpR 128 0 BANK1 1 cstackBANK1 dist/default/production/final-project-tues-amanda-sara.X.production.o
-_strlen 1D84 0 CODE 0 text6 dist/default/production/final-project-tues-amanda-sara.X.production.o
+main@tmpB AE 0 BANK0 1 cstackBANK0 dist/default/production/final-project-tues-amanda-sara.X.production.o
+main@tmpC B0 0 BANK0 1 cstackBANK0 dist/default/production/final-project-tues-amanda-sara.X.production.o
+main@tmpG AC 0 BANK0 1 cstackBANK0 dist/default/production/final-project-tues-amanda-sara.X.production.o
+main@tmpR AA 0 BANK0 1 cstackBANK0 dist/default/production/final-project-tues-amanda-sara.X.production.o
+_strlen 2114 0 CODE 0 text6 dist/default/production/final-project-tues-amanda-sara.X.production.o
+main@start B2 0 BANK0 1 cstackBANK0 dist/default/production/final-project-tues-amanda-sara.X.production.o
 __Lfardata 0 0 FARRAM 0 fardata dist/default/production/final-project-tues-amanda-sara.X.production.o
-isa$std 1 0 ABS 0 - /tmp/xc6PRSUNO.o
-_EUSART4RXbuf 60 0 BANK0 1 bssBANK0 dist/default/production/final-project-tues-amanda-sara.X.production.o
-_EUSART4TXbuf 140 0 BANK1 1 bssBANK1 dist/default/production/final-project-tues-amanda-sara.X.production.o
+isa$std 1 0 ABS 0 - /tmp/xccKNBf5G.o
+setMotorPWM@PWMduty 1E 0 COMRAM 1 cstackCOMRAM dist/default/production/final-project-tues-amanda-sara.X.production.o
+_EUSART4RXbuf D5 0 BANK0 1 bssBANK0 dist/default/production/final-project-tues-amanda-sara.X.production.o
+_EUSART4TXbuf 100 0 BANK1 1 bssBANK1 dist/default/production/final-project-tues-amanda-sara.X.production.o
 __size_of_vfprintf 0 0 ABS 0 - dist/default/production/final-project-tues-amanda-sara.X.production.o
 __size_of_colorclick_writetoaddr 0 0 ABS 0 - dist/default/production/final-project-tues-amanda-sara.X.production.o
-stackhi DE9 0 ABS 0 - /tmp/xc6PRSUNO.o
-stacklo 17C 0 ABS 0 - /tmp/xc6PRSUNO.o
-_colorclick_readClear 1B2C 0 CODE 0 text21 dist/default/production/final-project-tues-amanda-sara.X.production.o
-_colorclick_readGreen 1ADC 0 CODE 0 text20 dist/default/production/final-project-tues-amanda-sara.X.production.o
+stackhi DE9 0 ABS 0 - /tmp/xccKNBf5G.o
+stacklo 15C 0 ABS 0 - /tmp/xccKNBf5G.o
+_colorclick_readClear 1E6C 0 CODE 0 text25 dist/default/production/final-project-tues-amanda-sara.X.production.o
+_colorclick_readGreen 1E1C 0 CODE 0 text24 dist/default/production/final-project-tues-amanda-sara.X.production.o
 __Lintcode 8 0 CODE 0 intcode dist/default/production/final-project-tues-amanda-sara.X.production.o
 __Lintret 0 0 ABS 0 intret dist/default/production/final-project-tues-amanda-sara.X.production.o
 __Lirdata 0 0 CODE 0 irdata dist/default/production/final-project-tues-amanda-sara.X.production.o
 _ADCON0bits F60 0 ABS 0 - dist/default/production/final-project-tues-amanda-sara.X.production.o
-?_vfpfcnvrt 48 0 COMRAM 1 cstackCOMRAM dist/default/production/final-project-tues-amanda-sara.X.production.o
+?_vfpfcnvrt 46 0 COMRAM 1 cstackCOMRAM dist/default/production/final-project-tues-amanda-sara.X.production.o
 __Lspace_0 0 0 ABS 0 - dist/default/production/final-project-tues-amanda-sara.X.production.o
 __Lspace_1 0 0 ABS 0 - dist/default/production/final-project-tues-amanda-sara.X.production.o
 __Lspace_2 0 0 ABS 0 - dist/default/production/final-project-tues-amanda-sara.X.production.o
 __Lspace_4 0 0 ABS 0 - dist/default/production/final-project-tues-amanda-sara.X.production.o
-__pbssCOMRAM 4E 0 COMRAM 1 bssCOMRAM dist/default/production/final-project-tues-amanda-sara.X.production.o
+__pbssCOMRAM 52 0 COMRAM 1 bssCOMRAM dist/default/production/final-project-tues-amanda-sara.X.production.o
 __HcstackBANK0 0 0 ABS 0 cstackBANK0 dist/default/production/final-project-tues-amanda-sara.X.production.o
-__HcstackBANK1 0 0 ABS 0 cstackBANK1 dist/default/production/final-project-tues-amanda-sara.X.production.o
 _PIR0bits E33 0 ABS 0 - dist/default/production/final-project-tues-amanda-sara.X.production.o
 _PIR4bits E37 0 ABS 0 - dist/default/production/final-project-tues-amanda-sara.X.production.o
-___aodiv@divisor 11 0 COMRAM 1 cstackCOMRAM dist/default/production/final-project-tues-amanda-sara.X.production.o
-___aodiv@dividend 9 0 COMRAM 1 cstackCOMRAM dist/default/production/final-project-tues-amanda-sara.X.production.o
+___aodiv@divisor F 0 COMRAM 1 cstackCOMRAM dist/default/production/final-project-tues-amanda-sara.X.production.o
+___aodiv@dividend 7 0 COMRAM 1 cstackCOMRAM dist/default/production/final-project-tues-amanda-sara.X.production.o
 __LcstackCOMRAM 0 0 ABS 0 cstackCOMRAM dist/default/production/final-project-tues-amanda-sara.X.production.o
-_interrupts_init 1E78 0 CODE 0 text15 dist/default/production/final-project-tues-amanda-sara.X.production.o
-end_of_initialization 1D72 0 CODE 0 cinit dist/default/production/final-project-tues-amanda-sara.X.production.o
+_interrupts_init 222E 0 CODE 0 text15 dist/default/production/final-project-tues-amanda-sara.X.production.o
+__end_of_setMotorPWM 14E6 0 CODE 0 text19 dist/default/production/final-project-tues-amanda-sara.X.production.o
+end_of_initialization 2102 0 CODE 0 cinit dist/default/production/final-project-tues-amanda-sara.X.production.o
 _T2CLKCONbits FBF 0 ABS 0 - dist/default/production/final-project-tues-amanda-sara.X.production.o
 __Lnvrram 0 0 COMRAM 1 nvrram dist/default/production/final-project-tues-amanda-sara.X.production.o
 __Hintentry 0 0 ABS 0 intentry dist/default/production/final-project-tues-amanda-sara.X.production.o
-i2_I2C_2_Master_Start 1FB2 0 CODE 0 text43 dist/default/production/final-project-tues-amanda-sara.X.production.o
-fputc@c 9 0 COMRAM 1 cstackCOMRAM dist/default/production/final-project-tues-amanda-sara.X.production.o
-fputs@c 16 0 COMRAM 1 cstackCOMRAM dist/default/production/final-project-tues-amanda-sara.X.production.o
-fputs@i 17 0 COMRAM 1 cstackCOMRAM dist/default/production/final-project-tues-amanda-sara.X.production.o
-fputs@s 12 0 COMRAM 1 cstackCOMRAM dist/default/production/final-project-tues-amanda-sara.X.production.o
-i2_I2C_2_Master_Write 1F7E 0 CODE 0 text41 dist/default/production/final-project-tues-amanda-sara.X.production.o
+i2_I2C_2_Master_Start 237C 0 CODE 0 text50 dist/default/production/final-project-tues-amanda-sara.X.production.o
+fputc@c 7 0 COMRAM 1 cstackCOMRAM dist/default/production/final-project-tues-amanda-sara.X.production.o
+fputs@c 14 0 COMRAM 1 cstackCOMRAM dist/default/production/final-project-tues-amanda-sara.X.production.o
+fputs@i 15 0 COMRAM 1 cstackCOMRAM dist/default/production/final-project-tues-amanda-sara.X.production.o
+fputs@s 10 0 COMRAM 1 cstackCOMRAM dist/default/production/final-project-tues-amanda-sara.X.production.o
+i2_I2C_2_Master_Write 2334 0 CODE 0 text48 dist/default/production/final-project-tues-amanda-sara.X.production.o
 __size_of_buggyLEDs_init 0 0 ABS 0 - dist/default/production/final-project-tues-amanda-sara.X.production.o
-?___aodiv 9 0 COMRAM 1 cstackCOMRAM dist/default/production/final-project-tues-amanda-sara.X.production.o
-?___aomod 9 0 COMRAM 1 cstackCOMRAM dist/default/production/final-project-tues-amanda-sara.X.production.o
-vfprintf@fmt A9 0 BANK0 1 cstackBANK0 dist/default/production/final-project-tues-amanda-sara.X.production.o
+___awdiv@quotient 13 0 COMRAM 1 cstackCOMRAM dist/default/production/final-project-tues-amanda-sara.X.production.o
+?___aodiv 7 0 COMRAM 1 cstackCOMRAM dist/default/production/final-project-tues-amanda-sara.X.production.o
+?___aomod 7 0 COMRAM 1 cstackCOMRAM dist/default/production/final-project-tues-amanda-sara.X.production.o
+?___awdiv D 0 COMRAM 1 cstackCOMRAM dist/default/production/final-project-tues-amanda-sara.X.production.o
+vfprintf@fmt 6A 0 BANK0 1 cstackBANK0 dist/default/production/final-project-tues-amanda-sara.X.production.o
 __Hreset_vec 4 0 CODE 0 reset_vec dist/default/production/final-project-tues-amanda-sara.X.production.o
+_clicker2buttons_init 235E 0 CODE 0 text39 dist/default/production/final-project-tues-amanda-sara.X.production.o
 __HbssBANK0 0 0 ABS 0 bssBANK0 dist/default/production/final-project-tues-amanda-sara.X.production.o
 __HbssBANK1 0 0 ABS 0 bssBANK1 dist/default/production/final-project-tues-amanda-sara.X.production.o
-sendStringSerial4@string B 0 COMRAM 1 cstackCOMRAM dist/default/production/final-project-tues-amanda-sara.X.production.o
+sendStringSerial4@string 9 0 COMRAM 1 cstackCOMRAM dist/default/production/final-project-tues-amanda-sara.X.production.o
 __Lramtop E00 0 RAM 0 ramtop dist/default/production/final-project-tues-amanda-sara.X.production.o
 __size_of_strlen 0 0 ABS 0 - dist/default/production/final-project-tues-amanda-sara.X.production.o
 __size_of_colorclick_init 0 0 ABS 0 - dist/default/production/final-project-tues-amanda-sara.X.production.o
 __Lrparam 0 0 COMRAM 1 rparam dist/default/production/final-project-tues-amanda-sara.X.production.o
-__pcinit 1D4E 0 CODE 0 cinit dist/default/production/final-project-tues-amanda-sara.X.production.o
-vfpfcnvrt@ap 4C 0 COMRAM 1 cstackCOMRAM dist/default/production/final-project-tues-amanda-sara.X.production.o
-vfpfcnvrt@fp 48 0 COMRAM 1 cstackCOMRAM dist/default/production/final-project-tues-amanda-sara.X.production.o
-vfpfcnvrt@ll 9F 0 BANK0 1 cstackBANK0 dist/default/production/final-project-tues-amanda-sara.X.production.o
-__ptext0 12A6 0 CODE 0 text0 dist/default/production/final-project-tues-amanda-sara.X.production.o
-__ptext1 1A3A 0 CODE 0 text1 dist/default/production/final-project-tues-amanda-sara.X.production.o
-__ptext2 19D8 0 CODE 0 text2 dist/default/production/final-project-tues-amanda-sara.X.production.o
-__ptext3 10F2 0 CODE 0 text3 dist/default/production/final-project-tues-amanda-sara.X.production.o
+__pcinit 20DE 0 CODE 0 cinit dist/default/production/final-project-tues-amanda-sara.X.production.o
+vfpfcnvrt@ap 4A 0 COMRAM 1 cstackCOMRAM dist/default/production/final-project-tues-amanda-sara.X.production.o
+vfpfcnvrt@fp 46 0 COMRAM 1 cstackCOMRAM dist/default/production/final-project-tues-amanda-sara.X.production.o
+vfpfcnvrt@ll 60 0 BANK0 1 cstackBANK0 dist/default/production/final-project-tues-amanda-sara.X.production.o
+__ptext0 10F0 0 CODE 0 text0 dist/default/production/final-project-tues-amanda-sara.X.production.o
+__ptext1 1CD6 0 CODE 0 text1 dist/default/production/final-project-tues-amanda-sara.X.production.o
+__ptext2 1C74 0 CODE 0 text2 dist/default/production/final-project-tues-amanda-sara.X.production.o
+__ptext3 14E6 0 CODE 0 text3 dist/default/production/final-project-tues-amanda-sara.X.production.o
 __ptext4 E10 0 CODE 0 text4 dist/default/production/final-project-tues-amanda-sara.X.production.o
-__ptext5 180E 0 CODE 0 text5 dist/default/production/final-project-tues-amanda-sara.X.production.o
-__ptext6 1D84 0 CODE 0 text6 dist/default/production/final-project-tues-amanda-sara.X.production.o
-__ptext7 1BCC 0 CODE 0 text7 dist/default/production/final-project-tues-amanda-sara.X.production.o
-__ptext8 1744 0 CODE 0 text8 dist/default/production/final-project-tues-amanda-sara.X.production.o
-__ptext9 1FBC 0 CODE 0 text9 dist/default/production/final-project-tues-amanda-sara.X.production.o
-__end_of_I2C_2_Master_RepStart 1F94 0 CODE 0 text23 dist/default/production/final-project-tues-amanda-sara.X.production.o
+__ptext5 1B14 0 CODE 0 text5 dist/default/production/final-project-tues-amanda-sara.X.production.o
+__ptext6 2114 0 CODE 0 text6 dist/default/production/final-project-tues-amanda-sara.X.production.o
+__ptext7 1F5C 0 CODE 0 text7 dist/default/production/final-project-tues-amanda-sara.X.production.o
+__ptext8 1986 0 CODE 0 text8 dist/default/production/final-project-tues-amanda-sara.X.production.o
+__ptext9 2386 0 CODE 0 text9 dist/default/production/final-project-tues-amanda-sara.X.production.o
+__end_of_I2C_2_Master_RepStart 234A 0 CODE 0 text27 dist/default/production/final-project-tues-amanda-sara.X.production.o
 __Lstruct 0 0 COMRAM 1 struct dist/default/production/final-project-tues-amanda-sara.X.production.o
-vfprintf@ap AB 0 BANK0 1 cstackBANK0 dist/default/production/final-project-tues-amanda-sara.X.production.o
-vfprintf@fp A7 0 BANK0 1 cstackBANK0 dist/default/production/final-project-tues-amanda-sara.X.production.o
-sendCharSerial4@charToSend 9 0 COMRAM 1 cstackCOMRAM dist/default/production/final-project-tues-amanda-sara.X.production.o
-vfprintf@cfmt AD 0 BANK0 1 cstackBANK0 dist/default/production/final-project-tues-amanda-sara.X.production.o
+vfprintf@ap 6C 0 BANK0 1 cstackBANK0 dist/default/production/final-project-tues-amanda-sara.X.production.o
+vfprintf@fp 68 0 BANK0 1 cstackBANK0 dist/default/production/final-project-tues-amanda-sara.X.production.o
+sendCharSerial4@charToSend 7 0 COMRAM 1 cstackCOMRAM dist/default/production/final-project-tues-amanda-sara.X.production.o
+vfprintf@cfmt 4E 0 COMRAM 1 cstackCOMRAM dist/default/production/final-project-tues-amanda-sara.X.production.o
 __size_of_USART4_init 0 0 ABS 0 - dist/default/production/final-project-tues-amanda-sara.X.production.o
 __Ltext10 0 0 ABS 0 text10 dist/default/production/final-project-tues-amanda-sara.X.production.o
 __Ltext11 0 0 ABS 0 text11 dist/default/production/final-project-tues-amanda-sara.X.production.o
@@ -1104,67 +1259,78 @@ __Ltext32 0 0 ABS 0 text32 dist/default/production/final-project-tues-amanda-sar
 __Ltext33 0 0 ABS 0 text33 dist/default/production/final-project-tues-amanda-sara.X.production.o
 __Ltext34 0 0 ABS 0 text34 dist/default/production/final-project-tues-amanda-sara.X.production.o
 __Ltext35 0 0 ABS 0 text35 dist/default/production/final-project-tues-amanda-sara.X.production.o
+__Ltext36 0 0 ABS 0 text36 dist/default/production/final-project-tues-amanda-sara.X.production.o
+__Ltext37 0 0 ABS 0 text37 dist/default/production/final-project-tues-amanda-sara.X.production.o
 __Ltext38 0 0 ABS 0 text38 dist/default/production/final-project-tues-amanda-sara.X.production.o
 __Ltext39 0 0 ABS 0 text39 dist/default/production/final-project-tues-amanda-sara.X.production.o
 __Ltext40 0 0 ABS 0 text40 dist/default/production/final-project-tues-amanda-sara.X.production.o
 __Ltext41 0 0 ABS 0 text41 dist/default/production/final-project-tues-amanda-sara.X.production.o
 __Ltext42 0 0 ABS 0 text42 dist/default/production/final-project-tues-amanda-sara.X.production.o
-__Ltext43 0 0 ABS 0 text43 dist/default/production/final-project-tues-amanda-sara.X.production.o
-__Ltext44 0 0 ABS 0 text44 dist/default/production/final-project-tues-amanda-sara.X.production.o
-__ramtop E00 0 RAM 0 ramtop /tmp/xc6PRSUNO.o
-_sprintf 1A3A 0 CODE 0 text1 dist/default/production/final-project-tues-amanda-sara.X.production.o
-_sendStringSerial4 1D16 0 CODE 0 text13 dist/default/production/final-project-tues-amanda-sara.X.production.o
-?_colorclick_readRed D 0 COMRAM 1 cstackCOMRAM dist/default/production/final-project-tues-amanda-sara.X.production.o
+__Ltext45 0 0 ABS 0 text45 dist/default/production/final-project-tues-amanda-sara.X.production.o
+__Ltext46 0 0 ABS 0 text46 dist/default/production/final-project-tues-amanda-sara.X.production.o
+__Ltext47 0 0 ABS 0 text47 dist/default/production/final-project-tues-amanda-sara.X.production.o
+__Ltext48 0 0 ABS 0 text48 dist/default/production/final-project-tues-amanda-sara.X.production.o
+__Ltext49 0 0 ABS 0 text49 dist/default/production/final-project-tues-amanda-sara.X.production.o
+__Ltext50 0 0 ABS 0 text50 dist/default/production/final-project-tues-amanda-sara.X.production.o
+__Ltext51 0 0 ABS 0 text51 dist/default/production/final-project-tues-amanda-sara.X.production.o
+__ramtop E00 0 RAM 0 ramtop /tmp/xccKNBf5G.o
+_sprintf 1CD6 0 CODE 0 text1 dist/default/production/final-project-tues-amanda-sara.X.production.o
+_sendStringSerial4 20A6 0 CODE 0 text13 dist/default/production/final-project-tues-amanda-sara.X.production.o
+?_colorclick_readRed B 0 COMRAM 1 cstackCOMRAM dist/default/production/final-project-tues-amanda-sara.X.production.o
 _HighISR 8 0 CODE 0 intcode dist/default/production/final-project-tues-amanda-sara.X.production.o
-_vfprintf 19D8 0 CODE 0 text2 dist/default/production/final-project-tues-amanda-sara.X.production.o
+_vfprintf 1C74 0 CODE 0 text2 dist/default/production/final-project-tues-amanda-sara.X.production.o
+main@motorL C3 0 BANK0 1 cstackBANK0 dist/default/production/final-project-tues-amanda-sara.X.production.o
+main@motorR CC 0 BANK0 1 cstackBANK0 dist/default/production/final-project-tues-amanda-sara.X.production.o
 __Lpowerup 26 0 CODE 0 powerup dist/default/production/final-project-tues-amanda-sara.X.production.o
-colorclick_writetoaddr@address C 0 COMRAM 1 cstackCOMRAM dist/default/production/final-project-tues-amanda-sara.X.production.o
+colorclick_writetoaddr@address A 0 COMRAM 1 cstackCOMRAM dist/default/production/final-project-tues-amanda-sara.X.production.o
 __Leeprom_data 0 0 EEDATA 0 eeprom_data dist/default/production/final-project-tues-amanda-sara.X.production.o
-sprintf@ap BB 0 BANK0 1 cstackBANK0 dist/default/production/final-project-tues-amanda-sara.X.production.o
-colorclick_readRed@tmp 12 0 COMRAM 1 cstackCOMRAM dist/default/production/final-project-tues-amanda-sara.X.production.o
+sprintf@ap 7A 0 BANK0 1 cstackBANK0 dist/default/production/final-project-tues-amanda-sara.X.production.o
+colorclick_readRed@tmp 10 0 COMRAM 1 cstackCOMRAM dist/default/production/final-project-tues-amanda-sara.X.production.o
+__end_of_clicker2LEDs_init 2372 0 CODE 0 text40 dist/default/production/final-project-tues-amanda-sara.X.production.o
 __psmallconst E00 0 SMALLCONST 0 smallconst dist/default/production/final-project-tues-amanda-sara.X.production.o
 __size_of_I2C_2_Master_Start 0 0 ABS 0 - dist/default/production/final-project-tues-amanda-sara.X.production.o
 __size_of_I2C_2_Master_Write 0 0 ABS 0 - dist/default/production/final-project-tues-amanda-sara.X.production.o
 __Lreset_vec 0 0 CODE 0 reset_vec dist/default/production/final-project-tues-amanda-sara.X.production.o
-__end_of_vfprintf 1A3A 0 CODE 0 text2 dist/default/production/final-project-tues-amanda-sara.X.production.o
-_I2C_2_Master_RepStart 1F8A 0 CODE 0 text23 dist/default/production/final-project-tues-amanda-sara.X.production.o
-_I2C_2_Master_Idle 1DE4 0 CODE 0 text30 dist/default/production/final-project-tues-amanda-sara.X.production.o
-_I2C_2_Master_Init 1DBA 0 CODE 0 text32 dist/default/production/final-project-tues-amanda-sara.X.production.o
-_I2C_2_Master_Read 1C54 0 CODE 0 text24 dist/default/production/final-project-tues-amanda-sara.X.production.o
-_I2C_2_Master_Stop 1F94 0 CODE 0 text28 dist/default/production/final-project-tues-amanda-sara.X.production.o
+__end_of_vfprintf 1CD6 0 CODE 0 text2 dist/default/production/final-project-tues-amanda-sara.X.production.o
+_I2C_2_Master_RepStart 2340 0 CODE 0 text27 dist/default/production/final-project-tues-amanda-sara.X.production.o
+_I2C_2_Master_Idle 2174 0 CODE 0 text34 dist/default/production/final-project-tues-amanda-sara.X.production.o
+_I2C_2_Master_Init 214A 0 CODE 0 text36 dist/default/production/final-project-tues-amanda-sara.X.production.o
+_I2C_2_Master_Read 1FE4 0 CODE 0 text28 dist/default/production/final-project-tues-amanda-sara.X.production.o
+_I2C_2_Master_Stop 234A 0 CODE 0 text32 dist/default/production/final-project-tues-amanda-sara.X.production.o
 ___param_bank 0 0 ABS 0 - dist/default/production/final-project-tues-amanda-sara.X.production.o
 __Hbigdata 0 0 BIGRAM 1 bigdata dist/default/production/final-project-tues-amanda-sara.X.production.o
-?_colorclick_readClear D 0 COMRAM 1 cstackCOMRAM dist/default/production/final-project-tues-amanda-sara.X.production.o
-?_colorclick_readGreen D 0 COMRAM 1 cstackCOMRAM dist/default/production/final-project-tues-amanda-sara.X.production.o
-__end_of__initialization 1D72 0 CODE 0 cinit dist/default/production/final-project-tues-amanda-sara.X.production.o
+?_colorclick_readClear B 0 COMRAM 1 cstackCOMRAM dist/default/production/final-project-tues-amanda-sara.X.production.o
+?_colorclick_readGreen B 0 COMRAM 1 cstackCOMRAM dist/default/production/final-project-tues-amanda-sara.X.production.o
+__end_of__initialization 2102 0 CODE 0 cinit dist/default/production/final-project-tues-amanda-sara.X.production.o
 _INT1PPS DF1 0 ABS 0 - dist/default/production/final-project-tues-amanda-sara.X.production.o
 __Libigdata 0 0 CODE 0 ibigdata dist/default/production/final-project-tues-amanda-sara.X.production.o
-colorclick_readClear@tmp 12 0 COMRAM 1 cstackCOMRAM dist/default/production/final-project-tues-amanda-sara.X.production.o
+colorclick_readClear@tmp 10 0 COMRAM 1 cstackCOMRAM dist/default/production/final-project-tues-amanda-sara.X.production.o
 _SP4BRGH EE6 0 ABS 0 - dist/default/production/final-project-tues-amanda-sara.X.production.o
 _SP4BRGL EE5 0 ABS 0 - dist/default/production/final-project-tues-amanda-sara.X.production.o
 __Lclrtext 0 0 ABS 0 clrtext dist/default/production/final-project-tues-amanda-sara.X.production.o
 __size_ofi2_colorclick_writetoaddr 0 0 ABS 0 - dist/default/production/final-project-tues-amanda-sara.X.production.o
+_forward 1BD6 0 CODE 0 text18 dist/default/production/final-project-tues-amanda-sara.X.production.o
 i2I2C_2_Master_Write@data_byte 2 0 COMRAM 1 cstackCOMRAM dist/default/production/final-project-tues-amanda-sara.X.production.o
 __pintcodelo 18 0 CODE 0 intcodelo dist/default/production/final-project-tues-amanda-sara.X.production.o
 i2colorclick_writetoaddr@value 3 0 COMRAM 1 cstackCOMRAM dist/default/production/final-project-tues-amanda-sara.X.production.o
 __pcstackCOMRAM 1 0 COMRAM 1 cstackCOMRAM dist/default/production/final-project-tues-amanda-sara.X.production.o
 _SSP2ADD ED6 0 ABS 0 - dist/default/production/final-project-tues-amanda-sara.X.production.o
 _SSP2BUF ED5 0 ABS 0 - dist/default/production/final-project-tues-amanda-sara.X.production.o
-i2_colorclick_int_clear 1F2C 0 CODE 0 text38 dist/default/production/final-project-tues-amanda-sara.X.production.o
-sprintf@f BD 0 BANK0 1 cstackBANK0 dist/default/production/final-project-tues-amanda-sara.X.production.o
-sprintf@s AF 0 BANK0 1 cstackBANK0 dist/default/production/final-project-tues-amanda-sara.X.production.o
-__end_of_dtoa 10F2 0 CODE 0 text4 dist/default/production/final-project-tues-amanda-sara.X.production.o
-__end_of_main 1458 0 CODE 0 text0 dist/default/production/final-project-tues-amanda-sara.X.production.o
-__end_of_sendCharSerial4 1F5C 0 CODE 0 text14 dist/default/production/final-project-tues-amanda-sara.X.production.o
+i2_colorclick_int_clear 22E2 0 CODE 0 text45 dist/default/production/final-project-tues-amanda-sara.X.production.o
+sprintf@f 7C 0 BANK0 1 cstackBANK0 dist/default/production/final-project-tues-amanda-sara.X.production.o
+sprintf@s 6E 0 BANK0 1 cstackBANK0 dist/default/production/final-project-tues-amanda-sara.X.production.o
+__end_of_dtoa 10F0 0 CODE 0 text4 dist/default/production/final-project-tues-amanda-sara.X.production.o
+__end_of_main 1312 0 CODE 0 text0 dist/default/production/final-project-tues-amanda-sara.X.production.o
+__end_of_sendCharSerial4 2312 0 CODE 0 text14 dist/default/production/final-project-tues-amanda-sara.X.production.o
 __pintcode 8 0 CODE 0 intcode dist/default/production/final-project-tues-amanda-sara.X.production.o
 __size_of_interrupts_init 0 0 ABS 0 - dist/default/production/final-project-tues-amanda-sara.X.production.o
 __size_of_colorclick_int_init 0 0 ABS 0 - dist/default/production/final-project-tues-amanda-sara.X.production.o
 __size_of_colorclick_readColour 0 0 ABS 0 - dist/default/production/final-project-tues-amanda-sara.X.production.o
 _ADPCH F5F 0 ABS 0 - dist/default/production/final-project-tues-amanda-sara.X.production.o
-__end_of_fputc 180E 0 CODE 0 text8 dist/default/production/final-project-tues-amanda-sara.X.production.o
-__end_of_fputs 1C10 0 CODE 0 text7 dist/default/production/final-project-tues-amanda-sara.X.production.o
-?_sprintf AF 0 BANK0 1 cstackBANK0 dist/default/production/final-project-tues-amanda-sara.X.production.o
-__end_of_putch 1FBE 0 CODE 0 text9 dist/default/production/final-project-tues-amanda-sara.X.production.o
+__end_of_fputc 1A50 0 CODE 0 text8 dist/default/production/final-project-tues-amanda-sara.X.production.o
+__end_of_fputs 1FA0 0 CODE 0 text7 dist/default/production/final-project-tues-amanda-sara.X.production.o
+?_sprintf 6E 0 BANK0 1 cstackBANK0 dist/default/production/final-project-tues-amanda-sara.X.production.o
+__end_of_putch 2388 0 CODE 0 text9 dist/default/production/final-project-tues-amanda-sara.X.production.o
 _RC4STAbits EE7 0 ABS 0 - dist/default/production/final-project-tues-amanda-sara.X.production.o
 __HRAM 0 0 ABS 0 - dist/default/production/final-project-tues-amanda-sara.X.production.o
 __Hbss 0 0 RAM 1 bss dist/default/production/final-project-tues-amanda-sara.X.production.o
@@ -1174,26 +1340,27 @@ __LRAM 1 0 ABS 0 - dist/default/production/final-project-tues-amanda-sara.X.prod
 __Lbss 0 0 RAM 1 bss dist/default/production/final-project-tues-amanda-sara.X.production.o
 __Lram 0 0 ABS 0 ram dist/default/production/final-project-tues-amanda-sara.X.production.o
 __Lsfr 0 0 ABS 0 sfr dist/default/production/final-project-tues-amanda-sara.X.production.o
-_flags 7A 0 BANK0 1 bssBANK0 dist/default/production/final-project-tues-amanda-sara.X.production.o
-_fputc 1744 0 CODE 0 text8 dist/default/production/final-project-tues-amanda-sara.X.production.o
-_fputs 1BCC 0 CODE 0 text7 dist/default/production/final-project-tues-amanda-sara.X.production.o
-_putch 1FBC 0 CODE 0 text9 dist/default/production/final-project-tues-amanda-sara.X.production.o
-_width 76 0 BANK0 1 bssBANK0 dist/default/production/final-project-tues-amanda-sara.X.production.o
+_flags 52 0 COMRAM 1 bssCOMRAM dist/default/production/final-project-tues-amanda-sara.X.production.o
+_fputc 1986 0 CODE 0 text8 dist/default/production/final-project-tues-amanda-sara.X.production.o
+_fputs 1F5C 0 CODE 0 text7 dist/default/production/final-project-tues-amanda-sara.X.production.o
+_putch 2386 0 CODE 0 text9 dist/default/production/final-project-tues-amanda-sara.X.production.o
+_width EB 0 BANK0 1 bssBANK0 dist/default/production/final-project-tues-amanda-sara.X.production.o
 __size_of_abs 0 0 ABS 0 - dist/default/production/final-project-tues-amanda-sara.X.production.o
 __size_of_pad 0 0 ABS 0 - dist/default/production/final-project-tues-amanda-sara.X.production.o
 __size_ofi2_colorclick_int_init 0 0 ABS 0 - dist/default/production/final-project-tues-amanda-sara.X.production.o
-__initialization 1D4E 0 CODE 0 cinit dist/default/production/final-project-tues-amanda-sara.X.production.o
-__pbssBANK0 60 0 BANK0 1 bssBANK0 dist/default/production/final-project-tues-amanda-sara.X.production.o
-__pbssBANK1 140 0 BANK1 1 bssBANK1 dist/default/production/final-project-tues-amanda-sara.X.production.o
+__initialization 20DE 0 CODE 0 cinit dist/default/production/final-project-tues-amanda-sara.X.production.o
+__pbssBANK0 D5 0 BANK0 1 bssBANK0 dist/default/production/final-project-tues-amanda-sara.X.production.o
+__pbssBANK1 100 0 BANK1 1 bssBANK1 dist/default/production/final-project-tues-amanda-sara.X.production.o
 _T2CONbits FBD 0 ABS 0 - dist/default/production/final-project-tues-amanda-sara.X.production.o
 __Hfardata 0 0 FARRAM 0 fardata dist/default/production/final-project-tues-amanda-sara.X.production.o
+___wmul@product B 0 COMRAM 1 cstackCOMRAM dist/default/production/final-project-tues-amanda-sara.X.production.o
 __Hsmallconst E10 0 SMALLCONST 0 smallconst dist/default/production/final-project-tues-amanda-sara.X.production.o
-dtoa@d 26 0 COMRAM 1 cstackCOMRAM dist/default/production/final-project-tues-amanda-sara.X.production.o
-dtoa@i 46 0 COMRAM 1 cstackCOMRAM dist/default/production/final-project-tues-amanda-sara.X.production.o
-dtoa@n 3E 0 COMRAM 1 cstackCOMRAM dist/default/production/final-project-tues-amanda-sara.X.production.o
-dtoa@p 38 0 COMRAM 1 cstackCOMRAM dist/default/production/final-project-tues-amanda-sara.X.production.o
-dtoa@s 3C 0 COMRAM 1 cstackCOMRAM dist/default/production/final-project-tues-amanda-sara.X.production.o
-dtoa@w 3A 0 COMRAM 1 cstackCOMRAM dist/default/production/final-project-tues-amanda-sara.X.production.o
+dtoa@d 24 0 COMRAM 1 cstackCOMRAM dist/default/production/final-project-tues-amanda-sara.X.production.o
+dtoa@i 44 0 COMRAM 1 cstackCOMRAM dist/default/production/final-project-tues-amanda-sara.X.production.o
+dtoa@n 3C 0 COMRAM 1 cstackCOMRAM dist/default/production/final-project-tues-amanda-sara.X.production.o
+dtoa@p 36 0 COMRAM 1 cstackCOMRAM dist/default/production/final-project-tues-amanda-sara.X.production.o
+dtoa@s 3A 0 COMRAM 1 cstackCOMRAM dist/default/production/final-project-tues-amanda-sara.X.production.o
+dtoa@w 38 0 COMRAM 1 cstackCOMRAM dist/default/production/final-project-tues-amanda-sara.X.production.o
 __Lifardata 0 0 CODE 0 ifardata dist/default/production/final-project-tues-amanda-sara.X.production.o
 _SSP2CLKPPS E1C 0 ABS 0 - dist/default/production/final-project-tues-amanda-sara.X.production.o
 _ANSELBbits E9A 0 ABS 0 - dist/default/production/final-project-tues-amanda-sara.X.production.o
@@ -1202,6 +1369,8 @@ _ANSELFbits EB4 0 ABS 0 - dist/default/production/final-project-tues-amanda-sara
 __Hintsave_regs 0 0 BIGRAM 1 intsave_regs dist/default/production/final-project-tues-amanda-sara.X.production.o
 _SSP2DATPPS E1D 0 ABS 0 - dist/default/production/final-project-tues-amanda-sara.X.production.o
 __Hintcode E 0 CODE 0 intcode dist/default/production/final-project-tues-amanda-sara.X.production.o
+_clicker2LEDs_init 2368 0 CODE 0 text40 dist/default/production/final-project-tues-amanda-sara.X.production.o
+__size_of_setMotorPWM 0 0 ABS 0 - dist/default/production/final-project-tues-amanda-sara.X.production.o
 # %SPLITSTAB Section
 # This section enumerates all the psect splits performed by the assembler.
 # The beginning of the section is indicated by %SPLITSTAB.
@@ -1227,11 +1396,11 @@ __Hintcode E 0 CODE 0 intcode dist/default/production/final-project-tues-amanda-
 # All other numeric quantities are in decimal.
 %SEGMENTS
 intcodelo 0 18 18 12 1
-text4 0 E10 E10 11AE 1
-cstackCOMRAM 1 1 1 57 1
-cstackBANK1 1 100 100 7C 1
+text4 0 E10 E10 1578 1
+cstackCOMRAM 1 1 1 59 1
+cstackBANK0 1 60 60 94 1
 reset_vec 0 0 0 4 1
-bssBANK0 1 60 60 65 1
+bssBANK1 1 100 100 5C 1
 intcode 0 8 8 6 1
 smallconst 0 E00 E00 10 1
 # %NOTES Section

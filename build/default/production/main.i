@@ -24447,9 +24447,28 @@ void main(void) {
     ADC_init();
     colorclick_init();
     interrupts_init();
-
     USART4_init();
     buggyLEDs_init();
+
+    int PWMcycle = 99;
+    DCmotors_init(PWMcycle);
+
+    DC_motor motorL, motorR;
+
+    motorL.power=0;
+    motorL.direction=1;
+    motorL.dutyHighByte=(unsigned char *)(&PWM6DCH);
+    motorL.dir_LAT=(unsigned char *)(&LATE);
+    motorL.dir_pin=4;
+    motorL.PWMperiod=PWMcycle;
+
+
+    motorR.power=0;
+    motorR.direction=1;
+    motorR.dutyHighByte=(unsigned char *)(&PWM7DCH);
+    motorR.dir_LAT=(unsigned char *)(&LATG);
+    motorR.dir_pin=6;
+    motorR.PWMperiod=PWMcycle;
 
     TRISHbits.TRISH3 = 0;
     LATHbits.LATH3 = 0;
@@ -24470,6 +24489,8 @@ void main(void) {
 
 
 
+    unsigned char halt = 0;
+    unsigned char start = 0;
 
     while(1) {
 
@@ -24484,14 +24505,22 @@ void main(void) {
         sprintf(buf,"%i %i %i %i\n",tmpR,tmpG,tmpB,tmpC);
         sendStringSerial4(buf);
         _delay((unsigned long)((500)*(64000000/4000.0)));
-        sprintf(buf,"%i %i %i %i\n",initial.R,initial.G,initial.B,initial.C);
+        sprintf(buf,"%i %i %i %i\n",clear_upper,clear_lower,card_flag,initial.C);
         sendStringSerial4(buf);
         _delay((unsigned long)((500)*(64000000/4000.0)));
 
-        if(card_flag==1){
-            LATHbits.LATH3 = !LATHbits.LATH3;
+        if(start==0 && card_flag){
             card_flag = 0;
+            start = 1;
         }
+
+        LATHbits.LATH3 = card_flag;
+        LATDbits.LATD7 = start;
+# 128 "main.c"
+        forward(&motorL,&motorR);
+
+
+
 
 
     }

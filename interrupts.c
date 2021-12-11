@@ -10,6 +10,7 @@ volatile unsigned char card_flag;
  * Turn on the interrupt sources, peripheral interrupts and global interrupts
  * It's a good idea to turn on global interrupts last, once all other interrupt configuration is done
  ****************************************************************************************************/
+
 void interrupts_init(void){
     TRISBbits.TRISB1 = 1;
     ANSELBbits.ANSELB1 = 0;

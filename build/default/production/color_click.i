@@ -24390,9 +24390,9 @@ void colorclick_int_init(void){
     colorclick_writetoaddr(0x00, 0b10011);
     _delay((unsigned long)((3)*(64000000/4000.0)));
     colorclick_writetoaddr(0x0C, 0b0100);
-    colorclick_writetoaddr(0x04, (clear_lower&&0b11111111));
+    colorclick_writetoaddr(0x04, (clear_lower&0b11111111));
     colorclick_writetoaddr(0x05, (clear_lower>>8));
-    colorclick_writetoaddr(0x06, (clear_upper&&0b11111111));
+    colorclick_writetoaddr(0x06, (clear_upper&0b11111111));
     colorclick_writetoaddr(0x07, (clear_upper>>8));
 
 }

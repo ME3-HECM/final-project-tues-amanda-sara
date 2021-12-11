@@ -24229,6 +24229,7 @@ volatile unsigned char card_flag;
 
 
 
+
 void interrupts_init(void){
     TRISBbits.TRISB1 = 1;
     ANSELBbits.ANSELB1 = 0;

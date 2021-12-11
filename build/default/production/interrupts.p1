@@ -2071,82 +2071,82 @@ Version 4.0 HI-TECH Software Intermediate Code
 "6 interrupts.c
 [; ;interrupts.c: 6: volatile unsigned char card_flag;
 [v _card_flag `Vuc ~T0 @X0 1 e ]
-"13
-[; ;interrupts.c: 13: void interrupts_init(void){
+"14
+[; ;interrupts.c: 14: void interrupts_init(void){
 [v _interrupts_init `(v ~T0 @X0 1 ef ]
 {
 [e :U _interrupts_init ]
 [f ]
-"14
-[; ;interrupts.c: 14:     TRISBbits.TRISB1 = 1;
-[e = . . _TRISBbits 0 1 -> -> 1 `i `uc ]
 "15
-[; ;interrupts.c: 15:     ANSELBbits.ANSELB1 = 0;
-[e = . . _ANSELBbits 0 1 -> -> 0 `i `uc ]
+[; ;interrupts.c: 15:     TRISBbits.TRISB1 = 1;
+[e = . . _TRISBbits 0 1 -> -> 1 `i `uc ]
 "16
-[; ;interrupts.c: 16:     INT1PPS=0x09;
+[; ;interrupts.c: 16:     ANSELBbits.ANSELB1 = 0;
+[e = . . _ANSELBbits 0 1 -> -> 0 `i `uc ]
+"17
+[; ;interrupts.c: 17:     INT1PPS=0x09;
 [e = _INT1PPS -> -> 9 `i `uc ]
-"18
-[; ;interrupts.c: 18:     PIE0bits.INT1IE = 1;
+"19
+[; ;interrupts.c: 19:     PIE0bits.INT1IE = 1;
 [e = . . _PIE0bits 0 1 -> -> 1 `i `uc ]
-"21
-[; ;interrupts.c: 21:     IPR0bits.INT1IP = 1;
+"22
+[; ;interrupts.c: 22:     IPR0bits.INT1IP = 1;
 [e = . . _IPR0bits 0 1 -> -> 1 `i `uc ]
-"24
-[; ;interrupts.c: 24:     colorclick_int_clear();
+"25
+[; ;interrupts.c: 25:     colorclick_int_clear();
 [e ( _colorclick_int_clear ..  ]
-"26
-[; ;interrupts.c: 26:     INTCONbits.IPEN = 1;
-[e = . . _INTCONbits 0 5 -> -> 1 `i `uc ]
 "27
-[; ;interrupts.c: 27:     INTCONbits.INT1EDG = 0;
-[e = . . _INTCONbits 0 1 -> -> 0 `i `uc ]
+[; ;interrupts.c: 27:     INTCONbits.IPEN = 1;
+[e = . . _INTCONbits 0 5 -> -> 1 `i `uc ]
 "28
-[; ;interrupts.c: 28:     INTCONbits.PEIE = 1;
-[e = . . _INTCONbits 1 1 -> -> 1 `i `uc ]
+[; ;interrupts.c: 28:     INTCONbits.INT1EDG = 0;
+[e = . . _INTCONbits 0 1 -> -> 0 `i `uc ]
 "29
-[; ;interrupts.c: 29:     INTCONbits.GIE = 1;
-[e = . . _INTCONbits 1 2 -> -> 1 `i `uc ]
+[; ;interrupts.c: 29:     INTCONbits.PEIE = 1;
+[e = . . _INTCONbits 1 1 -> -> 1 `i `uc ]
 "30
-[; ;interrupts.c: 30: }
+[; ;interrupts.c: 30:     INTCONbits.GIE = 1;
+[e = . . _INTCONbits 1 2 -> -> 1 `i `uc ]
+"31
+[; ;interrupts.c: 31: }
 [e :UE 2020 ]
 }
 [v $root$_HighISR `(v ~T0 @X0 0 e ]
-"38
-[; ;interrupts.c: 38: void __attribute__((picinterrupt(("high_priority")))) HighISR() {
+"39
+[; ;interrupts.c: 39: void __attribute__((picinterrupt(("high_priority")))) HighISR() {
 [v _HighISR `(v ~T2 @X0 1 ef ]
 {
 [e :U _HighISR ]
 [f ]
-"39
-[; ;interrupts.c: 39:     if (PIR0bits.INT1IF) {
+"40
+[; ;interrupts.c: 40:     if (PIR0bits.INT1IF) {
 [e $ ! != -> . . _PIR0bits 0 1 `i -> 0 `i 2022  ]
 {
-"40
-[; ;interrupts.c: 40:         card_flag = 1;
-[e = _card_flag -> -> 1 `i `uc ]
 "41
-[; ;interrupts.c: 41:         colorclick_int_clear();
-[e ( _colorclick_int_clear ..  ]
+[; ;interrupts.c: 41:         card_flag = 1;
+[e = _card_flag -> -> 1 `i `uc ]
 "42
-[; ;interrupts.c: 42:         PIR0bits.INT1IF = 0;
-[e = . . _PIR0bits 0 1 -> -> 0 `i `uc ]
+[; ;interrupts.c: 42:         colorclick_int_clear();
+[e ( _colorclick_int_clear ..  ]
 "43
-[; ;interrupts.c: 43:     }
+[; ;interrupts.c: 43:         PIR0bits.INT1IF = 0;
+[e = . . _PIR0bits 0 1 -> -> 0 `i `uc ]
+"44
+[; ;interrupts.c: 44:     }
 }
 [e :U 2022 ]
-"44
-[; ;interrupts.c: 44: }
+"45
+[; ;interrupts.c: 45: }
 [e :UE 2021 ]
 }
 [v $root$_LowISR `(v ~T0 @X0 0 e ]
-"52
-[; ;interrupts.c: 52: void __attribute__((picinterrupt(("low_priority")))) LowISR() {
+"53
+[; ;interrupts.c: 53: void __attribute__((picinterrupt(("low_priority")))) LowISR() {
 [v _LowISR `(v ~T3 @X0 1 ef ]
 {
 [e :U _LowISR ]
 [f ]
-"57
-[; ;interrupts.c: 57: }
+"58
+[; ;interrupts.c: 58: }
 [e :UE 2023 ]
 }

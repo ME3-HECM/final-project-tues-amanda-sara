@@ -24197,14 +24197,7 @@ void stop(DC_motor *mL, DC_motor *mR);
 void turnLeft(DC_motor *mL, DC_motor *mR);
 void turnRight(DC_motor *mL, DC_motor *mR);
 # 3 "dc_motor.c" 2
-
-
-
-
-
-
-
-
+# 12 "dc_motor.c"
 void DCmotors_init(int PWMperiod)
 {
 
@@ -24333,9 +24326,9 @@ void forward(DC_motor *mL, DC_motor *mR)
     mR->direction = 1;
 
 
-    while(((mL->power)!=100) && ((mR->power)!=100)){
-        mL->power+=10;
-        mR->power+=10;
+    while(((mL->power)<50) && ((mR->power)<50)){
+        mL->power+=5;
+        mR->power+=5;
 
         setMotorPWM(mL);
         setMotorPWM(mR);
@@ -24373,9 +24366,9 @@ void stop(DC_motor *mL, DC_motor *mR)
     LATDbits.LATD4 = 1;
 
 
-    while(((mL->power)!=0) && ((mR->power)!=0)){
-        mL->power = mL->power - 10;
-        mR->power = mR->power - 10;
+    while(((mL->power)>=0) && ((mR->power)>=0)){
+        mL->power = mL->power - 5;
+        mR->power = mR->power - 5;
 
 
         setMotorPWM(mL);

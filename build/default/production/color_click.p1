@@ -2484,14 +2484,14 @@ Version 4.0 HI-TECH Software Intermediate Code
 [; ;color_click.c: 191:     colorclick_writetoaddr(0x0C, 0b0100);
 [e ( _colorclick_writetoaddr (2 , -> -> 12 `i `uc -> -> 4 `i `uc ]
 "192
-[; ;color_click.c: 192:     colorclick_writetoaddr(0x04, (clear_lower&&0b11111111));
-[e ( _colorclick_writetoaddr (2 , -> -> 4 `i `uc -> -> && != _clear_lower -> -> 0 `i `ui != -> 255 `i -> 0 `i `i `uc ]
+[; ;color_click.c: 192:     colorclick_writetoaddr(0x04, (clear_lower&0b11111111));
+[e ( _colorclick_writetoaddr (2 , -> -> 4 `i `uc -> & _clear_lower -> -> 255 `i `ui `uc ]
 "193
 [; ;color_click.c: 193:     colorclick_writetoaddr(0x05, (clear_lower>>8));
 [e ( _colorclick_writetoaddr (2 , -> -> 5 `i `uc -> >> _clear_lower -> 8 `i `uc ]
 "194
-[; ;color_click.c: 194:     colorclick_writetoaddr(0x06, (clear_upper&&0b11111111));
-[e ( _colorclick_writetoaddr (2 , -> -> 6 `i `uc -> -> && != _clear_upper -> -> 0 `i `ui != -> 255 `i -> 0 `i `i `uc ]
+[; ;color_click.c: 194:     colorclick_writetoaddr(0x06, (clear_upper&0b11111111));
+[e ( _colorclick_writetoaddr (2 , -> -> 6 `i `uc -> & _clear_upper -> -> 255 `i `ui `uc ]
 "195
 [; ;color_click.c: 195:     colorclick_writetoaddr(0x07, (clear_upper>>8));
 [e ( _colorclick_writetoaddr (2 , -> -> 7 `i `uc -> >> _clear_upper -> 8 `i `uc ]

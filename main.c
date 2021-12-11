@@ -43,9 +43,28 @@ void main(void) {
     ADC_init();
     colorclick_init();
     interrupts_init();
-//    DCmotors_init();
     USART4_init();
     buggyLEDs_init();
+    
+    int PWMcycle = 99; //PWM period = 10kHz
+    DCmotors_init(PWMcycle);
+    
+    DC_motor motorL, motorR; 		//declare two DC_motor structures 
+    
+    motorL.power=0; 						//set motor power to 0 at start
+    motorL.direction=1; 					//set default motor direction
+    motorL.dutyHighByte=(unsigned char *)(&PWM6DCH);	//store address of PWM duty high byte
+    motorL.dir_LAT=(unsigned char *)(&LATE); 		//store address of LAT
+    motorL.dir_pin=4; 						//pin RE4 controls direction
+    motorL.PWMperiod=PWMcycle; 			//store PWMperiod for motor
+
+    //same for motorR but different PWM register, LAT and direction pin
+    motorR.power=0; 						//set motor power to 0 at start
+    motorR.direction=1; 					//set default motor direction
+    motorR.dutyHighByte=(unsigned char *)(&PWM7DCH);	//store address of PWM duty high byte
+    motorR.dir_LAT=(unsigned char *)(&LATG); 		//store address of LAT
+    motorR.dir_pin=6; 						//pin RG6 controls direction
+    motorR.PWMperiod=PWMcycle; 		
     
     TRISHbits.TRISH3 = 0;
     LATHbits.LATH3 = 0;
@@ -63,14 +82,16 @@ void main(void) {
     
     clear_lower = initial.C - 100;
     clear_upper = initial.C + 300;
-   
+    
     // Motor calibration routine
     
+    unsigned char halt = 0;
+    unsigned char start = 0;
     
     while(1) {
         
         current = colorclick_readColour(current); //read ambient light value
-        
+//        
         // Testing using serial communication
         char buf[40];
         unsigned int tmpR = current.R;
@@ -80,14 +101,34 @@ void main(void) {
         sprintf(buf,"%i %i %i %i\n",tmpR,tmpG,tmpB,tmpC);
         sendStringSerial4(buf);
         __delay_ms(500);
-        sprintf(buf,"%i %i %i %i\n",initial.R,initial.G,initial.B,initial.C);
+        sprintf(buf,"%i %i %i %i\n",clear_upper,clear_lower,card_flag,initial.C);
         sendStringSerial4(buf);
         __delay_ms(500);
         
-        if(card_flag==1){
-            LATHbits.LATH3 = !LATHbits.LATH3;
+        if(start==0 && card_flag){
             card_flag = 0;
+            start = 1;
         }
+                
+        RH3_LED = card_flag;
+        RD7_LED = start;
+        
+//        while(halt<1){
+//            if (halt==0){
+//                forward(&motorL,&motorR);
+//                
+//            }
+////            else if(card_flag==1){
+////                stop(&motorL,&motorR);
+////                card_flag;
+////                halt = 1;
+////            }
+//        }
+        
+        forward(&motorL,&motorR);
+        
+//        RH3_LED = !RH3_LED;
+//        __delay_ms(200);
         
         
     }
