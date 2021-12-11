@@ -34,7 +34,7 @@ char getCharSerial4(void) {
  * sendCharSerial4
  * function to check the TX reg is free and send a byte
  **************************/
-void sendCharSerial4(unsigned int charToSend) {
+void sendCharSerial4(unsigned char charToSend) {
     while (!PIR4bits.TX4IF); // wait for flag to be set
     TX4REG = charToSend; //transfer char to transmitter
 }
