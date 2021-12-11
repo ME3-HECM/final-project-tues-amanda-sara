@@ -14,7 +14,7 @@ void main(void) {
     returnhome_flag = 0;
     ADC_init();
     colorclick_init();
-    interrupts_init();
+//    interrupts_init();
     DCmotors_init(PWMperiod);
     USART4_init();
 
@@ -45,9 +45,9 @@ void main(void) {
 //    RD7_LED = 1;
 //    RH3_LED = 1;
 //    
-    RGB_val initial;
-    initial = colorclick_readColour(initial); //read initial light value
-    __delay_ms(100);
+//    RGB_val initial;
+//    initial = colorclick_readColour(initial); //read initial light value
+//    __delay_ms(100);
 //    
 //    RD7_LED = 0;
 //    RH3_LED = 0;
@@ -96,19 +96,19 @@ void main(void) {
     /*********************
      * Check battery level
      *********************/
-    unsigned char battery = ADC_getval();
-    if (battery<100) {
-        RD7_LED = 1;
-        RH3_LED = 1;
-    } else if (battery<200) {
-        RD7_LED = 1;
-        RH3_LED = 0;
-    } else {
-        RD7_LED = 0;
-        RH3_LED = 0;
-    }
-    __delay_ms(1000);
-    forward(&motorL, &motorR);
+//    unsigned char battery = ADC_getval();
+//    if (battery<100) {
+//        RD7_LED = 1;
+//        RH3_LED = 1;
+//    } else if (battery<200) {
+//        RD7_LED = 1;
+//        RH3_LED = 0;
+//    } else {
+//        RD7_LED = 0;
+//        RH3_LED = 0;
+//    }
+//    __delay_ms(1000);
+//    forward(&motorL, &motorR);
     
     /**************************
      * Infinite while loop
@@ -131,19 +131,20 @@ void main(void) {
         /*****************
          * Maze navigation
          *****************/
+        while(RF2_BUTTON && RF3_BUTTON);
         current = colorclick_readColour(current); //read current light value
-        read_card(initial, current, &motorL, &motorR);
+        read_card_RGB(current, &motorL, &motorR);
         
-        if (card_flag==1) {
-            current = colorclick_readColour(current); //read current light value
-            read_card(initial, current, &motorL, &motorR);
-            card_flag = 0;
-        }
-        
-        if (battery_flag==1) {
-            RD7_LED = 1;
-            RH3_LED = 1;
-            battery_flag = 0;
-        }
+//        if (card_flag==1) {
+//            current = colorclick_readColour(current); //read current light value
+//            read_card_RGB(initial, current, &motorL, &motorR);
+//            card_flag = 0;
+//        }
+//        
+//        if (battery_flag==1) {
+//            RD7_LED = 1;
+//            RH3_LED = 1;
+//            battery_flag = 0;
+//        }
     }
 }

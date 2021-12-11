@@ -6,5 +6,4 @@ color_card.h  \
 color_click.h  \
 dc_motor.h  \
 i2c.h  \
-serial.h  \
-interrupts.h 
+serial.h 

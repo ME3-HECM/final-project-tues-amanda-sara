@@ -34,7 +34,7 @@
 #include "dc_motor.h"
 #include "i2c.h"
 #include "serial.h"
-#include "interrupts.h"
+//#include "interrupts.h"
 
 extern volatile unsigned char card_flag;
 extern volatile unsigned char battery_flag;

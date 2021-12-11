@@ -2667,16 +2667,16 @@ Version 4.0 HI-TECH Software Intermediate Code
 [; ;dc_motor.c: 174:     LATDbits.LATD4 = 1;
 [e = . . _LATDbits 0 4 -> -> 1 `i `uc ]
 "177
-[; ;dc_motor.c: 177:     while(((mL->power)!=0) && ((mR->power)!=0)){
+[; ;dc_motor.c: 177:     while(((mL->power)>0) && ((mR->power)>0)){
 [e $U 2039  ]
 [e :U 2040 ]
 {
 "178
-[; ;dc_motor.c: 178:         mL->power = mL->power - 10;
-[e = . *U _mL 0 -> - -> . *U _mL 0 `i -> 10 `i `uc ]
+[; ;dc_motor.c: 178:         mL->power = mL->power - 1;
+[e = . *U _mL 0 -> - -> . *U _mL 0 `i -> 1 `i `uc ]
 "179
-[; ;dc_motor.c: 179:         mR->power = mR->power - 10;
-[e = . *U _mR 0 -> - -> . *U _mR 0 `i -> 10 `i `uc ]
+[; ;dc_motor.c: 179:         mR->power = mR->power - 1;
+[e = . *U _mR 0 -> - -> . *U _mR 0 `i -> 1 `i `uc ]
 "182
 [; ;dc_motor.c: 182:         setMotorPWM(mL);
 [e ( _setMotorPWM (1 _mL ]
@@ -2691,8 +2691,8 @@ Version 4.0 HI-TECH Software Intermediate Code
 }
 [e :U 2039 ]
 "177
-[; ;dc_motor.c: 177:     while(((mL->power)!=0) && ((mR->power)!=0)){
-[e $ && != -> . *U _mL 0 `i -> 0 `i != -> . *U _mR 0 `i -> 0 `i 2040  ]
+[; ;dc_motor.c: 177:     while(((mL->power)>0) && ((mR->power)>0)){
+[e $ && > -> . *U _mL 0 `i -> 0 `i > -> . *U _mR 0 `i -> 0 `i 2040  ]
 [e :U 2041 ]
 "187
 [; ;dc_motor.c: 187:     LATDbits.LATD4 = 0;

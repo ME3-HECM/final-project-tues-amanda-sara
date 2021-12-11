@@ -1997,27 +1997,26 @@ Version 4.0 HI-TECH Software Intermediate Code
 [; ;./color_card.h: 10: volatile unsigned char returnhome_flag;
 [v _returnhome_flag `Vuc ~T0 @X0 1 e ]
 "6 color_card.c
-[; ;color_card.c: 6: void read_card(RGB_val initial, RGB_val current, DC_motor *mL, DC_motor *mR) {
-[v _read_card `(v ~T0 @X0 1 ef4`S2019`S2019`*S2020`*S2020 ]
+[; ;color_card.c: 6: void read_card_RGB(RGB_val current, DC_motor *mL, DC_motor *mR) {
+[v _read_card_RGB `(v ~T0 @X0 1 ef3`S2019`*S2020`*S2020 ]
 {
-[e :U _read_card ]
-[v _initial `S2019 ~T0 @X0 1 r1 ]
-[v _current `S2019 ~T0 @X0 1 r2 ]
-[v _mL `*S2020 ~T0 @X0 1 r3 ]
-[v _mR `*S2020 ~T0 @X0 1 r4 ]
+[e :U _read_card_RGB ]
+[v _current `S2019 ~T0 @X0 1 r1 ]
+[v _mL `*S2020 ~T0 @X0 1 r2 ]
+[v _mR `*S2020 ~T0 @X0 1 r3 ]
 [f ]
 "8
-[; ;color_card.c: 8:     unsigned int R_rel = current.R/current.C;
-[v _R_rel `ui ~T0 @X0 1 a ]
-[e = _R_rel / . _current 0 . _current 3 ]
+[; ;color_card.c: 8:     float R_rel = current.R/current.C;
+[v _R_rel `f ~T0 @X0 1 a ]
+[e = _R_rel -> / . _current 0 . _current 3 `f ]
 "9
-[; ;color_card.c: 9:     unsigned int G_rel = current.G/current.C;
-[v _G_rel `ui ~T0 @X0 1 a ]
-[e = _G_rel / . _current 1 . _current 3 ]
+[; ;color_card.c: 9:     float G_rel = current.G/current.C;
+[v _G_rel `f ~T0 @X0 1 a ]
+[e = _G_rel -> / . _current 1 . _current 3 `f ]
 "10
-[; ;color_card.c: 10:     unsigned int B_rel = current.B/current.C;
-[v _B_rel `ui ~T0 @X0 1 a ]
-[e = _B_rel / . _current 2 . _current 3 ]
+[; ;color_card.c: 10:     float B_rel = current.B/current.C;
+[v _B_rel `f ~T0 @X0 1 a ]
+[e = _B_rel -> / . _current 2 . _current 3 `f ]
 "12
 [; ;color_card.c: 12:     if ((R_rel>0.54) && (G_rel<0.245) && (B_rel<0.18)) {
 [e $ ! && && > -> _R_rel `d .0.54 < -> _G_rel `d .0.245 < -> _B_rel `d .0.18 2022  ]

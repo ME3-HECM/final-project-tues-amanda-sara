@@ -24395,8 +24395,7 @@ void turnRight(DC_motor *mL, DC_motor *mR, unsigned char deg);
 
 volatile unsigned char returnhome_flag;
 
-RGB_val read_colour(RGB_val current);
-void read_card(RGB_val initial, RGB_val current, DC_motor *mL, DC_motor *mR);
+void read_card_RGB(RGB_val current, DC_motor *mL, DC_motor *mR);
 # 32 "./main.h" 2
 
 
@@ -24442,17 +24441,6 @@ void TxBufferedString(char *string);
 void sendTxBuf(void);
 # 36 "./main.h" 2
 
-# 1 "./interrupts.h" 1
-# 12 "./interrupts.h"
-volatile unsigned char card_flag;
-volatile unsigned char battery_flag;
-
-
-void interrupts_init(void);
-void interrupts_clear(void);
-void __attribute__((picinterrupt(("high_priority")))) HighISR();
-void __attribute__((picinterrupt(("low_priority")))) LowISR();
-# 37 "./main.h" 2
 
 
 extern volatile unsigned char card_flag;
@@ -24474,7 +24462,7 @@ void main(void) {
     returnhome_flag = 0;
     ADC_init();
     colorclick_init();
-    interrupts_init();
+
     DCmotors_init(PWMperiod);
     USART4_init();
 
@@ -24497,44 +24485,13 @@ void main(void) {
     motorR.dir_LAT=(unsigned char *)(&LATG);
     motorR.dir_pin=6;
     motorR.PWMperiod=PWMperiod;
-# 48 "main.c"
-    RGB_val initial;
-    initial = colorclick_readColour(initial);
-    _delay((unsigned long)((100)*(64000000/4000.0)));
-# 99 "main.c"
-    unsigned char battery = ADC_getval();
-    if (battery<100) {
-        LATDbits.LATD7 = 1;
-        LATHbits.LATH3 = 1;
-    } else if (battery<200) {
-        LATDbits.LATD7 = 1;
-        LATHbits.LATH3 = 0;
-    } else {
-        LATDbits.LATD7 = 0;
-        LATHbits.LATH3 = 0;
-    }
-    _delay((unsigned long)((1000)*(64000000/4000.0)));
-    forward(&motorL, &motorR);
-
-
-
-
+# 116 "main.c"
     RGB_val current;
     while(1) {
 # 134 "main.c"
+        while(PORTFbits.RF2 && PORTFbits.RF3);
         current = colorclick_readColour(current);
-        read_card(initial, current, &motorL, &motorR);
-
-        if (card_flag==1) {
-            current = colorclick_readColour(current);
-            read_card(initial, current, &motorL, &motorR);
-            card_flag = 0;
-        }
-
-        if (battery_flag==1) {
-            LATDbits.LATD7 = 1;
-            LATHbits.LATH3 = 1;
-            battery_flag = 0;
-        }
+        read_card_RGB(current, &motorL, &motorR);
+# 149 "main.c"
     }
 }

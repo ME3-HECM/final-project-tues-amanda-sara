@@ -3,11 +3,11 @@
 #include "color_click.h"
 #include "dc_motor.h"
 
-void read_card(RGB_val initial, RGB_val current, DC_motor *mL, DC_motor *mR) {
+void read_card_RGB(RGB_val current, DC_motor *mL, DC_motor *mR) {
     // At 5 cm distance
-    unsigned int R_rel = current.R/current.C;
-    unsigned int G_rel = current.G/current.C;
-    unsigned int B_rel = current.B/current.C;
+    float R_rel = current.R/current.C;
+    float G_rel = current.G/current.C;
+    float B_rel = current.B/current.C;
     
     if ((R_rel>0.54) && (G_rel<0.245) && (B_rel<0.18)) {
         // Red card - Turn right 90 degrees

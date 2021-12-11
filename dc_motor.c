@@ -174,9 +174,9 @@ void stop(DC_motor *mL, DC_motor *mR)
     BRAKE_LED = 1;
     
     // need to slowly bring both motors to a stop
-    while(((mL->power)!=0) && ((mR->power)!=0)){    // will be True until both motors have 0 power
-        mL->power = mL->power - 10;
-        mR->power = mR->power - 10;
+    while(((mL->power)>0) && ((mR->power)>0)){    // will be True until both motors have 0 power
+        mL->power = mL->power - 1;
+        mR->power = mR->power - 1;
         
         // set PWM output
         setMotorPWM(mL);
