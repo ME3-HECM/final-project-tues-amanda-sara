@@ -9,6 +9,7 @@
 
 volatile unsigned char returnhome_flag;
 
-void read_card_RGB(RGB_val current, DC_motor *mL, DC_motor *mR);
+float read_card_RGB(RGB_val current, DC_motor *mL, DC_motor *mR);
+void read_card_HSV(RGB_val current, DC_motor *mL, DC_motor *mR);
 
 #endif

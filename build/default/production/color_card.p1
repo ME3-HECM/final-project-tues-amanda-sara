@@ -1997,8 +1997,8 @@ Version 4.0 HI-TECH Software Intermediate Code
 [; ;./color_card.h: 10: volatile unsigned char returnhome_flag;
 [v _returnhome_flag `Vuc ~T0 @X0 1 e ]
 "6 color_card.c
-[; ;color_card.c: 6: void read_card_RGB(RGB_val current, DC_motor *mL, DC_motor *mR) {
-[v _read_card_RGB `(v ~T0 @X0 1 ef3`S2019`*S2020`*S2020 ]
+[; ;color_card.c: 6: float read_card_RGB(RGB_val current, DC_motor *mL, DC_motor *mR) {
+[v _read_card_RGB `(f ~T0 @X0 1 ef3`S2019`*S2020`*S2020 ]
 {
 [e :U _read_card_RGB ]
 [v _current `S2019 ~T0 @X0 1 r1 ]
@@ -2006,17 +2006,17 @@ Version 4.0 HI-TECH Software Intermediate Code
 [v _mR `*S2020 ~T0 @X0 1 r3 ]
 [f ]
 "8
-[; ;color_card.c: 8:     float R_rel = current.R/current.C;
+[; ;color_card.c: 8:     float R_rel = (float)current.R / (float)current.C;
 [v _R_rel `f ~T0 @X0 1 a ]
-[e = _R_rel -> / . _current 0 . _current 3 `f ]
+[e = _R_rel / -> . _current 0 `f -> . _current 3 `f ]
 "9
-[; ;color_card.c: 9:     float G_rel = current.G/current.C;
+[; ;color_card.c: 9:     float G_rel = (float)current.G / (float)current.C;
 [v _G_rel `f ~T0 @X0 1 a ]
-[e = _G_rel -> / . _current 1 . _current 3 `f ]
+[e = _G_rel / -> . _current 1 `f -> . _current 3 `f ]
 "10
-[; ;color_card.c: 10:     float B_rel = current.B/current.C;
+[; ;color_card.c: 10:     float B_rel = (float)current.B / (float)current.C;
 [v _B_rel `f ~T0 @X0 1 a ]
-[e = _B_rel -> / . _current 2 . _current 3 `f ]
+[e = _B_rel / -> . _current 2 `f -> . _current 3 `f ]
 "12
 [; ;color_card.c: 12:     if ((R_rel>0.54) && (G_rel<0.245) && (B_rel<0.18)) {
 [e $ ! && && > -> _R_rel `d .0.54 < -> _G_rel `d .0.245 < -> _B_rel `d .0.18 2022  ]
@@ -2064,83 +2064,92 @@ Version 4.0 HI-TECH Software Intermediate Code
 [; ;color_card.c: 29:         reverse(mL, mR);
 [e ( _reverse (2 , _mL _mR ]
 "30
-[; ;color_card.c: 30:         turnRight(mL, mR, 90);
-[e ( _turnRight (3 , , _mL _mR -> -> 90 `i `uc ]
-"31
-[; ;color_card.c: 31:         stop(mL, mR);
+[; ;color_card.c: 30:         stop(mL, mR);
 [e ( _stop (2 , _mL _mR ]
-"33
-[; ;color_card.c: 33:     } else if ((R_rel>0.49) && (G_rel<0.275) && (B_rel>0.195)) {
+"31
+[; ;color_card.c: 31:         turnRight(mL, mR, 90);
+[e ( _turnRight (3 , , _mL _mR -> -> 90 `i `uc ]
+"32
+[; ;color_card.c: 32:         stop(mL, mR);
+[e ( _stop (2 , _mL _mR ]
+"34
+[; ;color_card.c: 34:     } else if ((R_rel>0.49) && (G_rel<0.275) && (B_rel>0.195)) {
 }
 [e $U 2029  ]
 [e :U 2028 ]
 [e $ ! && && > -> _R_rel `d .0.49 < -> _G_rel `d .0.275 > -> _B_rel `d .0.195 2030  ]
 {
-"35
-[; ;color_card.c: 35:         reverse(mL, mR);
-[e ( _reverse (2 , _mL _mR ]
 "36
-[; ;color_card.c: 36:         turnLeft(mL, mR, 90);
-[e ( _turnLeft (3 , , _mL _mR -> -> 90 `i `uc ]
+[; ;color_card.c: 36:         reverse(mL, mR);
+[e ( _reverse (2 , _mL _mR ]
 "37
 [; ;color_card.c: 37:         stop(mL, mR);
 [e ( _stop (2 , _mL _mR ]
+"38
+[; ;color_card.c: 38:         turnLeft(mL, mR, 90);
+[e ( _turnLeft (3 , , _mL _mR -> -> 90 `i `uc ]
 "39
-[; ;color_card.c: 39:     } else if ((R_rel>0.54) && (G_rel<0.24) && (B_rel<0.18)) {
+[; ;color_card.c: 39:         stop(mL, mR);
+[e ( _stop (2 , _mL _mR ]
+"41
+[; ;color_card.c: 41:     } else if ((R_rel>0.54) && (G_rel<0.24) && (B_rel<0.18)) {
 }
 [e $U 2031  ]
 [e :U 2030 ]
 [e $ ! && && > -> _R_rel `d .0.54 < -> _G_rel `d .0.24 < -> _B_rel `d .0.18 2032  ]
 {
-"41
-[; ;color_card.c: 41:         turnRight(mL, mR, 135);
+"43
+[; ;color_card.c: 43:         turnRight(mL, mR, 135);
 [e ( _turnRight (3 , , _mL _mR -> -> 135 `i `uc ]
-"42
-[; ;color_card.c: 42:         stop(mL, mR);
-[e ( _stop (2 , _mL _mR ]
 "44
-[; ;color_card.c: 44:     } else if ((R_rel<0.44) && (G_rel>0.305) && (B_rel>0.21)) {
+[; ;color_card.c: 44:         stop(mL, mR);
+[e ( _stop (2 , _mL _mR ]
+"46
+[; ;color_card.c: 46:     } else if ((R_rel<0.44) && (G_rel>0.305) && (B_rel>0.21)) {
 }
 [e $U 2033  ]
 [e :U 2032 ]
 [e $ ! && && < -> _R_rel `d .0.44 > -> _G_rel `d .0.305 > -> _B_rel `d .0.21 2034  ]
 {
-"46
-[; ;color_card.c: 46:         turnLeft(mL, mR, 135);
+"48
+[; ;color_card.c: 48:         turnLeft(mL, mR, 135);
 [e ( _turnLeft (3 , , _mL _mR -> -> 135 `i `uc ]
-"47
-[; ;color_card.c: 47:         stop(mL, mR);
-[e ( _stop (2 , _mL _mR ]
 "49
-[; ;color_card.c: 49:     } else if ((R_rel<0.46) && (G_rel>0.295) && (B_rel>0.21)) {
+[; ;color_card.c: 49:         stop(mL, mR);
+[e ( _stop (2 , _mL _mR ]
+"51
+[; ;color_card.c: 51:     } else if ((R_rel<0.46) && (G_rel>0.295) && (B_rel>0.21)) {
 }
 [e $U 2035  ]
 [e :U 2034 ]
 [e $ ! && && < -> _R_rel `d .0.46 > -> _G_rel `d .0.295 > -> _B_rel `d .0.21 2036  ]
 {
-"51
-[; ;color_card.c: 51:         turnRight(mL, mR, 180);
+"53
+[; ;color_card.c: 53:         turnRight(mL, mR, 180);
 [e ( _turnRight (3 , , _mL _mR -> -> 180 `i `uc ]
-"52
-[; ;color_card.c: 52:         stop(mL, mR);
-[e ( _stop (2 , _mL _mR ]
 "54
-[; ;color_card.c: 54:     } else {
+[; ;color_card.c: 54:         stop(mL, mR);
+[e ( _stop (2 , _mL _mR ]
+"55
+[; ;color_card.c: 55:         returnhome_flag = 1;
+[e = _returnhome_flag -> -> 1 `i `uc ]
+"57
+[; ;color_card.c: 57:     } else {
 }
 [e $U 2037  ]
 [e :U 2036 ]
 {
-"56
-[; ;color_card.c: 56:         returnhome_flag = 1;
-[e = _returnhome_flag -> -> 1 `i `uc ]
-"57
-[; ;color_card.c: 57:         turnRight(mL, mR, 180);
-[e ( _turnRight (3 , , _mL _mR -> -> 180 `i `uc ]
-"58
-[; ;color_card.c: 58:         stop(mL, mR);
-[e ( _stop (2 , _mL _mR ]
 "59
-[; ;color_card.c: 59:     }
+[; ;color_card.c: 59:         turnRight(mL, mR, 180);
+[e ( _turnRight (3 , , _mL _mR -> -> 180 `i `uc ]
+"60
+[; ;color_card.c: 60:         stop(mL, mR);
+[e ( _stop (2 , _mL _mR ]
+"61
+[; ;color_card.c: 61:         returnhome_flag = 1;
+[e = _returnhome_flag -> -> 1 `i `uc ]
+"62
+[; ;color_card.c: 62:     }
 }
 [e :U 2037 ]
 [e :U 2035 ]
@@ -2150,7 +2159,36 @@ Version 4.0 HI-TECH Software Intermediate Code
 [e :U 2027 ]
 [e :U 2025 ]
 [e :U 2023 ]
-"60
-[; ;color_card.c: 60: }
+"64
+[; ;color_card.c: 64:     return R_rel;
+[e ) _R_rel ]
+[e $UE 2021  ]
+"65
+[; ;color_card.c: 65: }
 [e :UE 2021 ]
+}
+"69
+[; ;color_card.c: 69: void read_card_HSV(RGB_val current, DC_motor *mL, DC_motor *mR) {
+[v _read_card_HSV `(v ~T0 @X0 1 ef3`S2019`*S2020`*S2020 ]
+{
+[e :U _read_card_HSV ]
+[v _current `S2019 ~T0 @X0 1 r1 ]
+[v _mL `*S2020 ~T0 @X0 1 r2 ]
+[v _mR `*S2020 ~T0 @X0 1 r3 ]
+[f ]
+"71
+[; ;color_card.c: 71:     float R_rel = current.R/current.C;
+[v _R_rel `f ~T0 @X0 1 a ]
+[e = _R_rel -> / . _current 0 . _current 3 `f ]
+"72
+[; ;color_card.c: 72:     float G_rel = current.G/current.C;
+[v _G_rel `f ~T0 @X0 1 a ]
+[e = _G_rel -> / . _current 1 . _current 3 `f ]
+"73
+[; ;color_card.c: 73:     float B_rel = current.B/current.C;
+[v _B_rel `f ~T0 @X0 1 a ]
+[e = _B_rel -> / . _current 2 . _current 3 `f ]
+"74
+[; ;color_card.c: 74: }
+[e :UE 2038 ]
 }

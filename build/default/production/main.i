@@ -24395,7 +24395,8 @@ void turnRight(DC_motor *mL, DC_motor *mR, unsigned char deg);
 
 volatile unsigned char returnhome_flag;
 
-void read_card_RGB(RGB_val current, DC_motor *mL, DC_motor *mR);
+float read_card_RGB(RGB_val current, DC_motor *mL, DC_motor *mR);
+void read_card_HSV(RGB_val current, DC_motor *mL, DC_motor *mR);
 # 32 "./main.h" 2
 
 
@@ -24485,13 +24486,34 @@ void main(void) {
     motorR.dir_LAT=(unsigned char *)(&LATG);
     motorR.dir_pin=6;
     motorR.PWMperiod=PWMperiod;
+# 90 "main.c"
+    while(PORTFbits.RF2 && PORTFbits.RF3);
+    LATDbits.LATD3 = 1;
+    colorclick_toggleClearLED(1);
+    _delay((unsigned long)((1000)*(64000000/4000.0)));
 # 116 "main.c"
     RGB_val current;
     while(1) {
-# 134 "main.c"
+
+
+
         while(PORTFbits.RF2 && PORTFbits.RF3);
         current = colorclick_readColour(current);
+        char buf[100];
+        float R_rel = (float)current.R / (float)current.C;
+        float G_rel = (float)current.G / (float)current.C;
+        float B_rel = (float)current.B / (float)current.C;
+        float C_rel = (float)current.C / (float)current.C;
+        sprintf(buf,"RGBC: %i %i %i %i     RGBC_rel: %.3f %.3f %.3f %.3f\n\r", current.R, current.G, current.B, current.C, R_rel, G_rel, B_rel, C_rel);
+
+        sendStringSerial4(buf);
+        _delay((unsigned long)((500)*(64000000/4000.0)));
+
+
+
+
+
         read_card_RGB(current, &motorL, &motorR);
-# 149 "main.c"
+# 150 "main.c"
     }
 }

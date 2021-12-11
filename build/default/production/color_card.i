@@ -24232,17 +24232,18 @@ void turnRight(DC_motor *mL, DC_motor *mR, unsigned char deg);
 
 volatile unsigned char returnhome_flag;
 
-void read_card_RGB(RGB_val current, DC_motor *mL, DC_motor *mR);
+float read_card_RGB(RGB_val current, DC_motor *mL, DC_motor *mR);
+void read_card_HSV(RGB_val current, DC_motor *mL, DC_motor *mR);
 # 2 "color_card.c" 2
 
 
 
 
-void read_card_RGB(RGB_val current, DC_motor *mL, DC_motor *mR) {
+float read_card_RGB(RGB_val current, DC_motor *mL, DC_motor *mR) {
 
-    float R_rel = current.R/current.C;
-    float G_rel = current.G/current.C;
-    float B_rel = current.B/current.C;
+    float R_rel = (float)current.R / (float)current.C;
+    float G_rel = (float)current.G / (float)current.C;
+    float B_rel = (float)current.B / (float)current.C;
 
     if ((R_rel>0.54) && (G_rel<0.245) && (B_rel<0.18)) {
 
@@ -24262,12 +24263,14 @@ void read_card_RGB(RGB_val current, DC_motor *mL, DC_motor *mR) {
     } else if ((R_rel>0.49) && (G_rel>0.285) && (B_rel>0.18)) {
 
         reverse(mL, mR);
+        stop(mL, mR);
         turnRight(mL, mR, 90);
         stop(mL, mR);
 
     } else if ((R_rel>0.49) && (G_rel<0.275) && (B_rel>0.195)) {
 
         reverse(mL, mR);
+        stop(mL, mR);
         turnLeft(mL, mR, 90);
         stop(mL, mR);
 
@@ -24285,11 +24288,23 @@ void read_card_RGB(RGB_val current, DC_motor *mL, DC_motor *mR) {
 
         turnRight(mL, mR, 180);
         stop(mL, mR);
+        returnhome_flag = 1;
 
     } else {
 
-        returnhome_flag = 1;
         turnRight(mL, mR, 180);
         stop(mL, mR);
+        returnhome_flag = 1;
     }
+
+    return R_rel;
+}
+
+
+
+void read_card_HSV(RGB_val current, DC_motor *mL, DC_motor *mR) {
+
+    float R_rel = current.R/current.C;
+    float G_rel = current.G/current.C;
+    float B_rel = current.B/current.C;
 }

@@ -87,10 +87,10 @@ void main(void) {
 //        RH3_LED = 0;
 //    }
 //    
-//    while(RF2_BUTTON && RF3_BUTTON);
-//    MAINBEAM_LED = 1;
-//    colorclick_toggleClearLED(1);
-//    __delay_ms(1000);
+    while(RF2_BUTTON && RF3_BUTTON);
+    MAINBEAM_LED = 1;
+    colorclick_toggleClearLED(1);
+    __delay_ms(1000);
 //    forward(&motorL, &motorR);
     
     /*********************
@@ -118,21 +118,22 @@ void main(void) {
         /************************************
          * Testing using serial communication
          ************************************/
-//        current = colorclick_readColour(current); //read current light value
-//        char buf[10];
-//        unsigned int tmpR = current.R;
-//        unsigned int tmpG = current.G;
-//        unsigned int tmpB = current.B;
-//        unsigned int tmpC = current.C;
-//        sprintf(buf,"%i %i %i %i\n\r",tmpR,tmpG,tmpB,tmpC);
-//        sendStringSerial4(buf);
-//        __delay_ms(500);
+        while(RF2_BUTTON && RF3_BUTTON);
+        current = colorclick_readColour(current); //read current light value
+        char buf[100];
+        float R_rel = (float)current.R / (float)current.C;
+        float G_rel = (float)current.G / (float)current.C;
+        float B_rel = (float)current.B / (float)current.C;
+        float C_rel = (float)current.C / (float)current.C;
+        sprintf(buf,"RGBC: %i %i %i %i     RGBC_rel: %.3f %.3f %.3f %.3f\n\r",\
+                current.R, current.G, current.B, current.C, R_rel, G_rel, B_rel, C_rel);
+        sendStringSerial4(buf);
+        __delay_ms(500);
         
         /*****************
          * Maze navigation
          *****************/
-        while(RF2_BUTTON && RF3_BUTTON);
-        current = colorclick_readColour(current); //read current light value
+//        current = colorclick_readColour(current); //read current light value
         read_card_RGB(current, &motorL, &motorR);
         
 //        if (card_flag==1) {
