@@ -6,8 +6,8 @@
 #define _XTAL_FREQ 64000000
 
 // Clicker2 buttons
-#define RF2_BUTTON LATFbits.LATF2
-#define RF3_BUTTON LATFbits.LATF3
+#define RF2_BUTTON PORTFbits.RF2
+#define RF3_BUTTON PORTFbits.RF3
 
 // Clicker2 LEDs
 #define RD7_LED LATDbits.LATD7
@@ -20,6 +20,8 @@
 #define TURNLEFT_LED LATFbits.LATF0 //The turn signals have not hardware based brightness control.
 #define TURNRIGHT_LED LATHbits.LATH0
 
+extern volatile unsigned char returnhome_flag;
+
 typedef struct { //definition of DC_motor structure
     char power;         //motor power, out of 100
     char direction;     //motor direction, forward(1), reverse(0)
@@ -30,7 +32,7 @@ typedef struct { //definition of DC_motor structure
 } DC_motor;
 
 //function prototypes
-void DCmotors_init(int PWMperiod); // function to setup PWM
+void DCmotors_init(unsigned char PWMperiod); // function to setup PWM
 void clicker2buttons_init(void);
 void clicker2LEDs_init(void);
 void buggyLEDs_init(void);
@@ -39,7 +41,7 @@ void setMotorPWM(DC_motor *m);
 void forward(DC_motor *mL, DC_motor *mR);
 void reverse(DC_motor *mL, DC_motor *mR);
 void stop(DC_motor *mL, DC_motor *mR);
-void turnLeft(DC_motor *mL, DC_motor *mR);
-void turnRight(DC_motor *mL, DC_motor *mR);
+void turnLeft(DC_motor *mL, DC_motor *mR, unsigned char deg);
+void turnRight(DC_motor *mL, DC_motor *mR, unsigned char deg);
 
 #endif

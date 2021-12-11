@@ -8,7 +8,7 @@
  * DCmotors_init
  * function to initialise T2 and PWM for DC motor control
  ********************************************************/
-void DCmotors_init(int PWMperiod)
+void DCmotors_init(unsigned char PWMperiod)
 {    
 	// timer 2 config
     T2CONbits.CKPS=0b100; // 1:16 prescaler
@@ -43,8 +43,6 @@ void DCmotors_init(int PWMperiod)
     clicker2buttons_init();
     clicker2LEDs_init();
     buggyLEDs_init();
-    
-    MAINBEAM_LED = 1;
 }
 
 /*******************************************************************
@@ -75,11 +73,11 @@ void setMotorPWM(DC_motor *m)
  **********************/
 void clicker2buttons_init(void)
 {
-    TRISFbits.TRISF2 = 0;
-    TRISFbits.TRISF3 = 0;
-    
-    RF2_BUTTON = 0;
-    RF3_BUTTON = 0;
+    // setup pin for input (connected to button)
+    TRISFbits.TRISF2=1; //set TRIS value for RF2 pin (input)
+    TRISFbits.TRISF3=1; //set TRIS value for RF3 pin (input)
+    ANSELFbits.ANSELF2=0; //turn off analogue input on RF2 pin
+    ANSELFbits.ANSELF3=0; //turn off analogue RF3 input on pin
 }
 
 /*******************
@@ -136,9 +134,9 @@ void forward(DC_motor *mL, DC_motor *mR)
     mR->direction = 1; // right wheels go forward
     
     // make both motors accelerate to 100
-    while(((mL->power)!=100) && ((mR->power)!=100)){    // will be True until both motors have 100 power
-        mL->power+=10;
-        mR->power+=10;
+    while(((mL->power)<100) && ((mR->power)<100)){    // will be True until both motors have 100 power
+        mL->power+=1;
+        mR->power+=1;
         // set PWM output
         setMotorPWM(mL);
         setMotorPWM(mR);
@@ -157,9 +155,9 @@ void reverse(DC_motor *mL, DC_motor *mR)
     mR->direction = 0; // right wheels go forward
     
     // make both motors accelerate to 100
-    while(((mL->power)!=100) && ((mR->power)!=100)){    // will be True until both motors have 100 power
-        mL->power+=10;
-        mR->power+=10;
+    while(((mL->power)<100) && ((mR->power)<100)){    // will be True until both motors have 100 power
+        mL->power+=1;
+        mR->power+=1;
         // set PWM output
         setMotorPWM(mL);
         setMotorPWM(mR);
@@ -193,23 +191,51 @@ void stop(DC_motor *mL, DC_motor *mR)
  * turnLeft
  * function to make the robot turn left 
  **************************************/
-void turnLeft(DC_motor *mL, DC_motor *mR)
+void turnLeft(DC_motor *mL, DC_motor *mR, unsigned char deg)
 {
-    // in order for it to make it turn on the spot: (Assume it was stationary before)
-    mL->direction = 0; // left wheels go backward
-    mR->direction = 1; // right wheels go forward
-    
-    // make both motors accelerate to 50
-    while(((mL->power)!=LOW) || ((mR->power)!=HIGH)){
-        TURNLEFT_LED = !TURNLEFT_LED;
+    if (returnhome_flag==0) {
+        // in order for it to make it turn on the spot: (Assume it was stationary before)
+        mL->direction = 0; // left wheels go backward
+        mR->direction = 1; // right wheels go forward
+
+        // make both motors accelerate
+        while(((mL->power)<LOW) || ((mR->power)<HIGH)){
+            // flash left signal
+            TURNLEFT_LED = !TURNLEFT_LED;
+            
+            // gradually turn left
+            if (mL->power<LOW) {mL->power+=1;}
+            if (mR->power<HIGH) {mR->power+=1;}
+            
+            // set PWM output
+            setMotorPWM(mL);
+            setMotorPWM(mR);
+            __delay_ms(100);
+        }
+        // switch off left signal
+        TURNLEFT_LED = 0;
         
-        if (mL->power<LOW) {mL->power+=5;}
-        if (mR->power<HIGH) {mR->power+=5;}
-        
-        // set PWM output
-        setMotorPWM(mL);
-        setMotorPWM(mR);
-        __delay_ms(100);  
+    } else {
+        // in order for it to make it turn on the spot: (Assume it was stationary before)
+        mL->direction = 1; // left wheels go forward
+        mR->direction = 0; // right wheels go backward
+
+        // make both motors accelerate
+        while(((mL->power)<HIGH) || ((mR->power)<LOW)){
+            // flash right signal
+            TURNRIGHT_LED = !TURNRIGHT_LED;
+            
+            // gradually turn right
+            if (mL->power<HIGH) {mL->power+=1;}
+            if (mR->power<LOW) {mR->power+=1;}
+            
+            // set PWM output
+            setMotorPWM(mL);
+            setMotorPWM(mR);
+            __delay_ms(100);
+        }
+        // switch off right signal
+        TURNRIGHT_LED = 0;
     }
 }
 
@@ -217,22 +243,50 @@ void turnLeft(DC_motor *mL, DC_motor *mR)
  * turnRight
  * function to make the robot turn right 
  ***************************************/
-void turnRight(DC_motor *mL, DC_motor *mR)
+void turnRight(DC_motor *mL, DC_motor *mR, unsigned char deg)
 {
-    // in order for it to make it turn on the spot: (Assume it was stationary before)
-    mL->direction = 1; // left wheels go forward
-    mR->direction = 0; // right wheels go backward
-    
-    // make both motors accelerate to 70
-    while(((mL->power)!=HIGH) || ((mR->power)!=LOW)){
-        TURNRIGHT_LED = !TURNRIGHT_LED;
+    if (returnhome_flag==0) {
+        // in order for it to make it turn on the spot: (Assume it was stationary before)
+        mL->direction = 1; // left wheels go forward
+        mR->direction = 0; // right wheels go backward
+
+        // make both motors accelerate
+        while(((mL->power)<HIGH) || ((mR->power)<LOW)){
+            // flash right signal
+            TURNRIGHT_LED = !TURNRIGHT_LED;
+            
+            // gradually turn right
+            if (mL->power<HIGH) {mL->power+=1;}
+            if (mR->power<LOW) {mR->power+=1;}
+            
+            // set PWM output
+            setMotorPWM(mL);
+            setMotorPWM(mR);
+            __delay_ms(100);
+        }
+        // switch off right signal
+        TURNRIGHT_LED = 0;
         
-        if (mL->power<HIGH) {mL->power+=5;}
-        if (mR->power<LOW) {mR->power+=5;}
-        
-        // set PWM output
-        setMotorPWM(mL);
-        setMotorPWM(mR);
-        __delay_ms(100);
+    } else {
+        // in order for it to make it turn on the spot: (Assume it was stationary before)
+        mL->direction = 0; // left wheels go backward
+        mR->direction = 1; // right wheels go forward
+
+        // make both motors accelerate
+        while(((mL->power)<LOW) || ((mR->power)<HIGH)){
+            // flash left signal
+            TURNLEFT_LED = !TURNLEFT_LED;
+            
+            // gradually turn left
+            if (mL->power<LOW) {mL->power+=1;}
+            if (mR->power<HIGH) {mR->power+=1;}
+            
+            // set PWM output
+            setMotorPWM(mL);
+            setMotorPWM(mR);
+            __delay_ms(100);
+        }
+        // switch off left signal
+        TURNLEFT_LED = 0;
     }
 }
