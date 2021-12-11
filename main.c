@@ -1,94 +1,132 @@
-/**********************************************************
- * A definition calls for a macro substitution
- * See The C programming language, second edition, pp.89-91
- **********************************************************/
-#define _XTAL_FREQ 64000000 // Note intrinsic _delay function is 62.5ns at 64,000,000Hz
-
-/***************************************************
- * CONFIG1L (configuration word 1) - oscillators
- * See PIC18(L)F67K40 Data Sheet 40001841D, pp.28-29
- ***************************************************/
-#pragma config FEXTOSC = HS         // FEXTOSC external oscillator mode selection bits (HS (crystal oscillator) above 8 MHz; PFM (program memory) set to high power)
-#pragma config RSTOSC = EXTOSC_4PLL // Power-up default value for COSC bits (EXTOSC with 4x PLL, with EXTOSC operating per FEXTOSC bits)
-
-/***********************************************************
- * CONFIG3L (configuration word 3) - windowed watchdog timer
- * See PIC18(L)F67K40 Data Sheet 40001841D, pp.32-33
- ***********************************************************/
-#pragma config WDTE = OFF // WDT operating mode bits (WDT enabled regardless of sleep)
-
-/**************************************************************************************
- * File inclusion makes it easy to handle collections of #defines and declarations etc.
- * See The C programming language, second edition, pp.88-89
- **************************************************************************************/
-#include <xc.h> // Include processor files
-#include <stdio.h> // Include standard input output library
-#include "ADC.h"
-#include "color_card.h"
-#include "color_click.h"
-#include "dc_motor.h"
-#include "i2c.h"
-#include "serial.h"
-#include "interrupts.h"
-
-volatile unsigned int clear_lower = 0;
-volatile unsigned int clear_upper = 0;
-volatile unsigned char card_flag;
+#include <xc.h>
+#include "main.h"
 
 /***************
  * Main function
  ***************/
 void main(void) {
-    // Initialisation functions
+    /**************************
+     * Initialisation functions
+     **************************/
+    unsigned char PWMperiod = 99; // 0.0001s*(64MHz/4)/16 -1 = 99
+    card_flag = 0;
+    battery_flag = 0;
+    returnhome_flag = 0;
     ADC_init();
     colorclick_init();
     interrupts_init();
-//    DCmotors_init();
+    DCmotors_init(PWMperiod);
     USART4_init();
-    buggyLEDs_init();
-    
-    TRISHbits.TRISH3 = 0;
-    LATHbits.LATH3 = 0;
 
-    // Colour calibration routine
+    /**************************
+     * Motor structures
+     **************************/
+    DC_motor motorL;                                    //declare DC_motor structure
+    motorL.power=0;                                     //set motor power to 0 at start
+    motorL.direction=1;                                 //set default motor direction forward
+    motorL.dutyHighByte=(unsigned char *)(&PWM6DCH);	//PWM duty high byte address
+    motorL.dir_LAT=(unsigned char *)(&LATE);            //LAT for dir pin address
+    motorL.dir_pin=4;                                   //pin RE4 controls direction on LAT
+    motorL.PWMperiod=PWMperiod;                          //base period of PWM cycle
+
+    // same for motorR but different PWM register, LAT and direction pin
+    DC_motor motorR;                                    //declare DC_motor structure    
+    motorR.power=0;                                     //set motor power to 0 at start
+    motorR.direction=1;                                 //set default motor direction forward
+    motorR.dutyHighByte=(unsigned char *)(&PWM7DCH);	//PWM duty high byte address
+    motorR.dir_LAT=(unsigned char *)(&LATG);            //LAT for dir pin address
+    motorR.dir_pin=6;                                   //pin RG6 controls direction on LAT
+    motorR.PWMperiod=PWMperiod;                          //base period of PWM cycle
     
-    colorclick_toggleClearLED(1);
+    /***************************
+     * Colour calibration routine
+     ***************************/
+    while(RF2_BUTTON && RF3_BUTTON);
+    RD7_LED = 1;
+    RH3_LED = 1;
+    
+    RGB_val initial;
+    initial = colorclick_readColour(initial); //read initial light value
+    __delay_ms(100);
+    
+    RD7_LED = 0;
+    RH3_LED = 0;
+    
+    /***************************
+     * Motor calibration routine
+     ***************************/
+    while(RF2_BUTTON && RF3_BUTTON);
+    turnRight(&motorL, &motorR, 360);
+    motorL.power=0;
+    motorR.power=0;
+    
+    while(RF2_BUTTON && RF3_BUTTON);
+    if (RF2_BUTTON) {
+        RD7_LED = 1;
+        __delay_ms(100);
+        RD7_LED = 0;
+    } else if (RF3_BUTTON) {
+        RH3_LED = 1;
+        __delay_ms(100);
+        RH3_LED = 0;
+    }
+
+    while(RF2_BUTTON && RF3_BUTTON);
+    turnLeft(&motorL, &motorR, 360);
+    motorL.power=0;
+    motorR.power=0;
+    
+    while(RF2_BUTTON && RF3_BUTTON);
+    if (RF2_BUTTON) {
+        RD7_LED = 1;
+        __delay_ms(100);
+        RD7_LED = 0;
+    } else if (RF3_BUTTON) {
+        RH3_LED = 1;
+        __delay_ms(100);
+        RH3_LED = 0;
+    }
+    
+    while(RF2_BUTTON && RF3_BUTTON);
     MAINBEAM_LED = 1;
+    colorclick_toggleClearLED(1);
+    __delay_ms(1000);
+    forward(&motorL, &motorR);
     
-    __delay_ms(500);
-    
-    RGB_val initial; 
+    /**************************
+     * Infinite while loop
+     **************************/
     RGB_val current;
-    initial = colorclick_readColour(initial); //read ambient light value
-    
-    clear_lower = initial.C - 100;
-    clear_upper = initial.C + 300;
-   
-    // Motor calibration routine
-    
-    
     while(1) {
+        /************************************
+         * Testing using serial communication
+         ************************************/
+//        current = colorclick_readColour(current); //read current light value
+//        char buf[10];
+//        unsigned int tmpR = current.R;
+//        unsigned int tmpG = current.G;
+//        unsigned int tmpB = current.B;
+//        unsigned int tmpC = current.C;
+//        sprintf(buf,"%i %i %i %i\n\r",tmpR,tmpG,tmpB,tmpC);
+//        sendStringSerial4(buf);
+//        __delay_ms(500);
         
-        current = colorclick_readColour(current); //read ambient light value
+        /*****************
+         * Maze navigation
+         *****************/
+        current = colorclick_readColour(current); //read current light value
+        read_card(initial, current, &motorL, &motorR);
         
-        // Testing using serial communication
-        char buf[40];
-        unsigned int tmpR = current.R;
-        unsigned int tmpG = current.G;
-        unsigned int tmpB = current.B;
-        unsigned int tmpC = current.C;
-        sprintf(buf,"%i %i %i %i\n",tmpR,tmpG,tmpB,tmpC);
-        sendStringSerial4(buf);
-        __delay_ms(500);
-        sprintf(buf,"%i %i %i %i\n",initial.R,initial.G,initial.B,initial.C);
-        sendStringSerial4(buf);
-        __delay_ms(500);
-        
-        if(card_flag==1){
-            LATHbits.LATH3 = !LATHbits.LATH3;
+        if (card_flag==1) {
+            current = colorclick_readColour(current); //read current light value
+            read_card(initial, current, &motorL, &motorR);
             card_flag = 0;
         }
         
-        
+        if (battery_flag==1) {
+            RD7_LED = 1;
+            RH3_LED = 1;
+            battery_flag = 0;
+        }
     }
 }
