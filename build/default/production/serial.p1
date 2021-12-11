@@ -2149,11 +2149,11 @@ Version 4.0 HI-TECH Software Intermediate Code
 [e :UE 2020 ]
 }
 "37
-[; ;serial.c: 37: void sendCharSerial4(unsigned int charToSend) {
-[v _sendCharSerial4 `(v ~T0 @X0 1 ef1`ui ]
+[; ;serial.c: 37: void sendCharSerial4(unsigned char charToSend) {
+[v _sendCharSerial4 `(v ~T0 @X0 1 ef1`uc ]
 {
 [e :U _sendCharSerial4 ]
-[v _charToSend `ui ~T0 @X0 1 r1 ]
+[v _charToSend `uc ~T0 @X0 1 r1 ]
 [f ]
 "38
 [; ;serial.c: 38:     while (!PIR4bits.TX4IF);
@@ -2164,7 +2164,7 @@ Version 4.0 HI-TECH Software Intermediate Code
 [e :U 2027 ]
 "39
 [; ;serial.c: 39:     TX4REG = charToSend;
-[e = _TX4REG -> _charToSend `uc ]
+[e = _TX4REG _charToSend ]
 "40
 [; ;serial.c: 40: }
 [e :UE 2024 ]
@@ -2183,7 +2183,7 @@ Version 4.0 HI-TECH Software Intermediate Code
 {
 "49
 [; ;serial.c: 49:         sendCharSerial4(*string++);
-[e ( _sendCharSerial4 (1 -> *U ++ _string * -> -> 1 `i `x -> -> # *U _string `i `x `ui ]
+[e ( _sendCharSerial4 (1 -> *U ++ _string * -> -> 1 `i `x -> -> # *U _string `i `x `uc ]
 "50
 [; ;serial.c: 50:     }
 }

@@ -24188,8 +24188,6 @@ unsigned int colorclick_readRed(void);
 unsigned int colorclick_readGreen(void);
 unsigned int colorclick_readBlue(void);
 unsigned int colorclick_readClear(void);
-void colorclick_int_clear(void);
-void colorclick_int_init(void);
 RGB_val colorclick_readColour(RGB_val current);
 # 3 "color_click.c" 2
 # 1 "./i2c.h" 1
@@ -24202,14 +24200,6 @@ void I2C_2_Master_Stop(void);
 void I2C_2_Master_Write(unsigned char data_byte);
 unsigned char I2C_2_Master_Read(unsigned char ack);
 # 4 "color_click.c" 2
-
-
-
-
-
-
-volatile unsigned int clear_lower;
-volatile unsigned int clear_upper;
 
 
 
@@ -24236,7 +24226,7 @@ void colorclick_init(void)
     TRISFbits.TRISF7 = 0;
 
 
-    colorclick_toggleClearLED(1);
+    colorclick_toggleClearLED(0);
 }
 
 
@@ -24377,22 +24367,29 @@ RGB_val colorclick_readColour(RGB_val current)
     return current;
 }
 
+RGB_val colorclick_readColourRGBCLED(RGB_val current)
+{
+    colorclick_toggleClearLED(0);
 
-void colorclick_int_clear(void){
-    I2C_2_Master_Start();
-    I2C_2_Master_Write(0x52 | 0x00);
-    I2C_2_Master_Write(0b11100110);
-    I2C_2_Master_Stop();
-    colorclick_int_init();
-}
+    LATGbits.LATG1 = 1;
+    current.R = colorclick_readRed();
+    _delay((unsigned long)((1000)*(64000000/4000.0)));
+    LATGbits.LATG1 = 0;
+    _delay((unsigned long)((20)*(64000000/4000.0)));
 
-void colorclick_int_init(void){
-    colorclick_writetoaddr(0x00, 0b10011);
-    _delay((unsigned long)((3)*(64000000/4000.0)));
-    colorclick_writetoaddr(0x0C, 0b0100);
-    colorclick_writetoaddr(0x04, (clear_lower&&0b11111111));
-    colorclick_writetoaddr(0x05, (clear_lower>>8));
-    colorclick_writetoaddr(0x06, (clear_upper&&0b11111111));
-    colorclick_writetoaddr(0x07, (clear_upper>>8));
+    LATAbits.LATA4 = 1;
+    current.G = colorclick_readGreen();
+    _delay((unsigned long)((1000)*(64000000/4000.0)));
+    LATAbits.LATA4 = 0;
+    _delay((unsigned long)((20)*(64000000/4000.0)));
 
+    LATFbits.LATF7 = 1;
+    current.B = colorclick_readBlue();
+    _delay((unsigned long)((1000)*(64000000/4000.0)));
+    LATFbits.LATF7 = 0;
+    _delay((unsigned long)((20)*(64000000/4000.0)));
+
+    colorclick_toggleClearLED(1);
+
+    return current;
 }

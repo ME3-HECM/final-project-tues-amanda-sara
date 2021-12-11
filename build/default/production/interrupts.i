@@ -24194,8 +24194,6 @@ unsigned int colorclick_readRed(void);
 unsigned int colorclick_readGreen(void);
 unsigned int colorclick_readBlue(void);
 unsigned int colorclick_readClear(void);
-void colorclick_int_clear(void);
-void colorclick_int_init(void);
 RGB_val colorclick_readColour(RGB_val current);
 # 7 "./interrupts.h" 2
 # 1 "./i2c.h" 1
@@ -24212,17 +24210,53 @@ unsigned char I2C_2_Master_Read(unsigned char ack);
 
 
 
-volatile unsigned char card_flag = 0;
-volatile unsigned char battery_flag = 0;
+volatile unsigned char card_flag;
+volatile unsigned char battery_flag;
 
 
 void interrupts_init(void);
+void interrupts_clear(void);
+void colour_int_init(void);
 void __attribute__((picinterrupt(("high_priority")))) HighISR();
+void __attribute__((picinterrupt(("low_priority")))) LowISR();
 # 3 "interrupts.c" 2
 
 
+# 1 "./dc_motor.h" 1
+# 23 "./dc_motor.h"
+extern volatile unsigned char returnhome_flag;
 
-volatile unsigned char card_flag;
+typedef struct {
+    char power;
+    char direction;
+    unsigned char *dutyHighByte;
+    unsigned char *dir_LAT;
+    char dir_pin;
+    int PWMperiod;
+} DC_motor;
+
+
+void DCmotors_init(unsigned char PWMperiod);
+void clicker2buttons_init(void);
+void clicker2LEDs_init(void);
+void buggyLEDs_init(void);
+unsigned char check_battery_level(void);
+void setMotorPWM(DC_motor *m);
+void forward(DC_motor *mL, DC_motor *mR);
+void reverse(DC_motor *mL, DC_motor *mR);
+void stop(DC_motor *mL, DC_motor *mR);
+void turnLeft(DC_motor *mL, DC_motor *mR, unsigned char deg);
+void turnRight(DC_motor *mL, DC_motor *mR, unsigned char deg);
+# 6 "interrupts.c" 2
+
+
+
+
+
+
+volatile unsigned int clear_lower;
+volatile unsigned int clear_upper;
+
 
 
 
@@ -24240,12 +24274,33 @@ void interrupts_init(void){
     IPR0bits.INT1IP = 1;
 
 
-    colorclick_int_clear();
+    interrupts_clear();
 
     INTCONbits.IPEN = 1;
     INTCONbits.INT1EDG = 0;
     INTCONbits.PEIE = 1;
     INTCONbits.GIE = 1;
+}
+
+
+
+
+void interrupts_clear(void){
+    I2C_2_Master_Start();
+    I2C_2_Master_Write(0x52 | 0x00);
+    I2C_2_Master_Write(0b11100110);
+    I2C_2_Master_Stop();
+    colour_int_init();
+}
+
+void colour_int_init(void){
+    colorclick_writetoaddr(0x00, 0b10011);
+    _delay((unsigned long)((3)*(64000000/4000.0)));
+    colorclick_writetoaddr(0x0C, 0b0100);
+    colorclick_writetoaddr(0x04, (clear_lower&0b11111111));
+    colorclick_writetoaddr(0x05, (clear_lower>>8));
+    colorclick_writetoaddr(0x06, (clear_upper&0b11111111));
+    colorclick_writetoaddr(0x07, (clear_upper>>8));
 }
 
 
@@ -24257,7 +24312,8 @@ void interrupts_init(void){
 void __attribute__((picinterrupt(("high_priority")))) HighISR() {
     if (PIR0bits.INT1IF) {
         card_flag = 1;
-        colorclick_int_clear();
+
+        interrupts_clear();
         PIR0bits.INT1IF = 0;
     }
 }

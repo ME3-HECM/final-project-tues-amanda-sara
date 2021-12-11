@@ -1,5 +1,6 @@
 build/default/production/main.p1:  \
 main.c  \
+main.h  \
 ADC.h  \
 color_card.h  \
 color_click.h  \

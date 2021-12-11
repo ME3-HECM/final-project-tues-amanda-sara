@@ -134,13 +134,13 @@ void forward(DC_motor *mL, DC_motor *mR)
     mR->direction = 1; // right wheels go forward
     
     // make both motors accelerate to 100
-    while(((mL->power)<100) && ((mR->power)<100)){    // will be True until both motors have 100 power
-        mL->power+=1;
-        mR->power+=1;
+    while(((mL->power)<30) && ((mR->power)<30)){    // will be True until both motors have 100 power
+        mL->power+=5;
+        mR->power+=5;
         // set PWM output
         setMotorPWM(mL);
         setMotorPWM(mR);
-        __delay_ms(100);
+        __delay_ms(50);
     }
 }
 
@@ -174,9 +174,9 @@ void stop(DC_motor *mL, DC_motor *mR)
     BRAKE_LED = 1;
     
     // need to slowly bring both motors to a stop
-    while(((mL->power)!=0) && ((mR->power)!=0)){    // will be True until both motors have 0 power
-        mL->power = mL->power - 10;
-        mR->power = mR->power - 10;
+    while(((mL->power)>0) && ((mR->power)>0)){    // will be True until both motors have 0 power
+        mL->power = mL->power - 5;
+        mR->power = mR->power - 5;
         
         // set PWM output
         setMotorPWM(mL);

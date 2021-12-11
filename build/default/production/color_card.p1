@@ -3,95 +3,22 @@ Version 4.0 HI-TECH Software Intermediate Code
 [; ;./color_click.h: 12: typedef struct {
 [s S2019 `ui 1 `ui 1 `ui 1 `ui 1 ]
 [n S2019 . R G B C ]
-"29191 /Applications/microchip/mplabx/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8/pic/include/proc/pic18f67k40.h
-[; ;/Applications/microchip/mplabx/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8/pic/include/proc/pic18f67k40.h: 29191:     struct {
-[s S1361 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
-[n S1361 . LATG0 LATG1 LATG2 LATG3 LATG4 . LATG6 LATG7 ]
-"29201
-[; ;/Applications/microchip/mplabx/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8/pic/include/proc/pic18f67k40.h: 29201:     struct {
-[s S1362 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
-[n S1362 . LG0 LG1 LG2 LG3 LG4 ]
-"29190
-[; ;/Applications/microchip/mplabx/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8/pic/include/proc/pic18f67k40.h: 29190: typedef union {
-[u S1360 `S1361 1 `S1362 1 ]
-[n S1360 . . . ]
-"29209
-[; ;/Applications/microchip/mplabx/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8/pic/include/proc/pic18f67k40.h: 29209: extern volatile LATGbits_t LATGbits __attribute__((address(0xF7F)));
-[v _LATGbits `VS1360 ~T0 @X0 0 e@3967 ]
-"21 ./color_click.h
-[; ;./color_click.h: 21: unsigned int colorclick_readRed(void);
-[v _colorclick_readRed `(ui ~T0 @X0 0 ef ]
-[v F14184 `(v ~T0 @X0 1 tf1`ul ]
-"203 /Applications/microchip/mplabx/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8/pic/include/pic18.h
-[v __delay `JF14184 ~T0 @X0 0 e ]
-[p i __delay ]
-"28519 /Applications/microchip/mplabx/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8/pic/include/proc/pic18f67k40.h
-[; ;/Applications/microchip/mplabx/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8/pic/include/proc/pic18f67k40.h: 28519:     struct {
-[s S1343 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
-[n S1343 . LATA0 LATA1 LATA2 LATA3 LATA4 LATA5 LATA6 LATA7 ]
-"28529
-[; ;/Applications/microchip/mplabx/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8/pic/include/proc/pic18f67k40.h: 28529:     struct {
-[s S1344 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
-[n S1344 . LA0 LA1 LA2 LA3 LA4 LA5 LA6 LA7 ]
-"28518
-[; ;/Applications/microchip/mplabx/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8/pic/include/proc/pic18f67k40.h: 28518: typedef union {
-[u S1342 `S1343 1 `S1344 1 ]
-[n S1342 . . . ]
-"28540
-[; ;/Applications/microchip/mplabx/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8/pic/include/proc/pic18f67k40.h: 28540: extern volatile LATAbits_t LATAbits __attribute__((address(0xF79)));
-[v _LATAbits `VS1342 ~T0 @X0 0 e@3961 ]
-"22 ./color_click.h
-[; ;./color_click.h: 22: unsigned int colorclick_readGreen(void);
-[v _colorclick_readGreen `(ui ~T0 @X0 0 ef ]
-"29079 /Applications/microchip/mplabx/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8/pic/include/proc/pic18f67k40.h
-[; ;/Applications/microchip/mplabx/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8/pic/include/proc/pic18f67k40.h: 29079:     struct {
-[s S1358 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
-[n S1358 . LATF0 LATF1 LATF2 LATF3 LATF4 LATF5 LATF6 LATF7 ]
-"29089
-[; ;/Applications/microchip/mplabx/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8/pic/include/proc/pic18f67k40.h: 29089:     struct {
-[s S1359 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
-[n S1359 . LF0 LF1 LF2 LF3 LF4 LF5 LF6 LF7 ]
-"29078
-[; ;/Applications/microchip/mplabx/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8/pic/include/proc/pic18f67k40.h: 29078: typedef union {
-[u S1357 `S1358 1 `S1359 1 ]
-[n S1357 . . . ]
-"29100
-[; ;/Applications/microchip/mplabx/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8/pic/include/proc/pic18f67k40.h: 29100: extern volatile LATFbits_t LATFbits __attribute__((address(0xF7E)));
-[v _LATFbits `VS1357 ~T0 @X0 0 e@3966 ]
-"23 ./color_click.h
-[; ;./color_click.h: 23: unsigned int colorclick_readBlue(void);
-[v _colorclick_readBlue `(ui ~T0 @X0 0 ef ]
-"29280 /Applications/microchip/mplabx/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8/pic/include/proc/pic18f67k40.h
-[; ;/Applications/microchip/mplabx/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8/pic/include/proc/pic18f67k40.h: 29280:     struct {
-[s S1364 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
-[n S1364 . LATH0 LATH1 LATH2 LATH3 ]
-"29286
-[; ;/Applications/microchip/mplabx/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8/pic/include/proc/pic18f67k40.h: 29286:     struct {
-[s S1365 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
-[n S1365 . LH0 LH1 LH2 LH3 ]
-"29292
-[; ;/Applications/microchip/mplabx/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8/pic/include/proc/pic18f67k40.h: 29292:     struct {
-[s S1366 :4 `uc 1 :1 `uc 1 ]
-[n S1366 . . LH4 ]
-"29296
-[; ;/Applications/microchip/mplabx/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8/pic/include/proc/pic18f67k40.h: 29296:     struct {
-[s S1367 :5 `uc 1 :1 `uc 1 ]
-[n S1367 . . LH5 ]
-"29300
-[; ;/Applications/microchip/mplabx/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8/pic/include/proc/pic18f67k40.h: 29300:     struct {
-[s S1368 :6 `uc 1 :1 `uc 1 ]
-[n S1368 . . LH6 ]
-"29304
-[; ;/Applications/microchip/mplabx/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8/pic/include/proc/pic18f67k40.h: 29304:     struct {
-[s S1369 :7 `uc 1 :1 `uc 1 ]
-[n S1369 . . LH7 ]
-"29279
-[; ;/Applications/microchip/mplabx/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8/pic/include/proc/pic18f67k40.h: 29279: typedef union {
-[u S1363 `S1364 1 `S1365 1 `S1366 1 `S1367 1 `S1368 1 `S1369 1 ]
-[n S1363 . . . . . . . ]
-"29309
-[; ;/Applications/microchip/mplabx/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8/pic/include/proc/pic18f67k40.h: 29309: extern volatile LATHbits_t LATHbits __attribute__((address(0xF80)));
-[v _LATHbits `VS1363 ~T0 @X0 0 e@3968 ]
+"25 ./dc_motor.h
+[; ;./dc_motor.h: 25: typedef struct {
+[s S2020 `uc 1 `uc 1 `*uc 1 `*uc 1 `uc 1 `i 1 ]
+[n S2020 . power direction dutyHighByte dir_LAT dir_pin PWMperiod ]
+"45
+[; ;./dc_motor.h: 45: void turnRight(DC_motor *mL, DC_motor *mR, unsigned char deg);
+[v _turnRight `(v ~T0 @X0 0 ef3`*S2020`*S2020`uc ]
+"43
+[; ;./dc_motor.h: 43: void stop(DC_motor *mL, DC_motor *mR);
+[v _stop `(v ~T0 @X0 0 ef2`*S2020`*S2020 ]
+"44
+[; ;./dc_motor.h: 44: void turnLeft(DC_motor *mL, DC_motor *mR, unsigned char deg);
+[v _turnLeft `(v ~T0 @X0 0 ef3`*S2020`*S2020`uc ]
+"42
+[; ;./dc_motor.h: 42: void reverse(DC_motor *mL, DC_motor *mR);
+[v _reverse `(v ~T0 @X0 0 ef2`*S2020`*S2020 ]
 "54 /Applications/microchip/mplabx/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8/pic/include/proc/pic18f67k40.h
 [; ;/Applications/microchip/mplabx/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8/pic/include/proc/pic18f67k40.h: 54: __asm("PPSLOCK equ 0DEFh");
 [; <" PPSLOCK equ 0DEFh ;# ">
@@ -2066,86 +1993,165 @@ Version 4.0 HI-TECH Software Intermediate Code
 "40981
 [; ;/Applications/microchip/mplabx/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8/pic/include/proc/pic18f67k40.h: 40981: __asm("TOSU equ 0FFFh");
 [; <" TOSU equ 0FFFh ;# ">
-"4 color_card.c
-[; ;color_card.c: 4: RGB_val read_card(RGB_val current) {
-[v _read_card `(S2019 ~T0 @X0 1 ef1`S2019 ]
+"10 ./color_card.h
+[; ;./color_card.h: 10: volatile unsigned char returnhome_flag;
+[v _returnhome_flag `Vuc ~T0 @X0 1 e ]
+"6 color_card.c
+[; ;color_card.c: 6: void read_card(RGB_val initial, RGB_val current, DC_motor *mL, DC_motor *mR) {
+[v _read_card `(v ~T0 @X0 1 ef4`S2019`S2019`*S2020`*S2020 ]
 {
 [e :U _read_card ]
-[v _current `S2019 ~T0 @X0 1 r1 ]
+[v _initial `S2019 ~T0 @X0 1 r1 ]
+[v _current `S2019 ~T0 @X0 1 r2 ]
+[v _mL `*S2020 ~T0 @X0 1 r3 ]
+[v _mR `*S2020 ~T0 @X0 1 r4 ]
 [f ]
-"5
-[; ;color_card.c: 5:     LATGbits.LATG1 = 1;
-[e = . . _LATGbits 0 1 -> -> 1 `i `uc ]
-"6
-[; ;color_card.c: 6:     current.R = colorclick_readRed();
-[e = . _current 0 ( _colorclick_readRed ..  ]
-"7
-[; ;color_card.c: 7:     _delay((unsigned long)((1000)*(64000000/4000.0)));
-[e ( __delay (1 -> * -> -> 1000 `i `d / -> -> 64000000 `l `d .4000.0 `ul ]
 "8
-[; ;color_card.c: 8:     LATGbits.LATG1 = 0;
-[e = . . _LATGbits 0 1 -> -> 0 `i `uc ]
+[; ;color_card.c: 8:     unsigned int R_rel = current.R/current.C;
+[v _R_rel `ui ~T0 @X0 1 a ]
+[e = _R_rel / . _current 0 . _current 3 ]
 "9
-[; ;color_card.c: 9:     _delay((unsigned long)((20)*(64000000/4000.0)));
-[e ( __delay (1 -> * -> -> 20 `i `d / -> -> 64000000 `l `d .4000.0 `ul ]
-"11
-[; ;color_card.c: 11:     LATAbits.LATA4 = 1;
-[e = . . _LATAbits 0 4 -> -> 1 `i `uc ]
+[; ;color_card.c: 9:     unsigned int G_rel = current.G/current.C;
+[v _G_rel `ui ~T0 @X0 1 a ]
+[e = _G_rel / . _current 1 . _current 3 ]
+"10
+[; ;color_card.c: 10:     unsigned int B_rel = current.B/current.C;
+[v _B_rel `ui ~T0 @X0 1 a ]
+[e = _B_rel / . _current 2 . _current 3 ]
 "12
-[; ;color_card.c: 12:     current.G = colorclick_readGreen();
-[e = . _current 1 ( _colorclick_readGreen ..  ]
-"13
-[; ;color_card.c: 13:     _delay((unsigned long)((1000)*(64000000/4000.0)));
-[e ( __delay (1 -> * -> -> 1000 `i `d / -> -> 64000000 `l `d .4000.0 `ul ]
-"14
-[; ;color_card.c: 14:     LATAbits.LATA4 = 0;
-[e = . . _LATAbits 0 4 -> -> 0 `i `uc ]
-"15
-[; ;color_card.c: 15:     _delay((unsigned long)((20)*(64000000/4000.0)));
-[e ( __delay (1 -> * -> -> 20 `i `d / -> -> 64000000 `l `d .4000.0 `ul ]
-"17
-[; ;color_card.c: 17:     LATFbits.LATF7 = 1;
-[e = . . _LATFbits 0 7 -> -> 1 `i `uc ]
-"18
-[; ;color_card.c: 18:     current.B = colorclick_readBlue();
-[e = . _current 2 ( _colorclick_readBlue ..  ]
-"19
-[; ;color_card.c: 19:     _delay((unsigned long)((1000)*(64000000/4000.0)));
-[e ( __delay (1 -> * -> -> 1000 `i `d / -> -> 64000000 `l `d .4000.0 `ul ]
-"20
-[; ;color_card.c: 20:     LATFbits.LATF7 = 0;
-[e = . . _LATFbits 0 7 -> -> 0 `i `uc ]
-"21
-[; ;color_card.c: 21:     _delay((unsigned long)((20)*(64000000/4000.0)));
-[e ( __delay (1 -> * -> -> 20 `i `d / -> -> 64000000 `l `d .4000.0 `ul ]
-"23
-[; ;color_card.c: 23:     return current;
-[e ) _current ]
-[e $UE 2020  ]
-"24
-[; ;color_card.c: 24: }
-[e :UE 2020 ]
-}
-"26
-[; ;color_card.c: 26: void check_red(unsigned int initial, unsigned int current) {
-[v _check_red `(v ~T0 @X0 1 ef2`ui`ui ]
+[; ;color_card.c: 12:     if ((R_rel>0.54) && (G_rel<0.245) && (B_rel<0.18)) {
+[e $ ! && && > -> _R_rel `d .0.54 < -> _G_rel `d .0.245 < -> _B_rel `d .0.18 2022  ]
 {
-[e :U _check_red ]
-[v _initial `ui ~T0 @X0 1 r1 ]
-[v _current `ui ~T0 @X0 1 r2 ]
-[f ]
-"27
-[; ;color_card.c: 27:     unsigned int diff;
-[v _diff `ui ~T0 @X0 1 a ]
-"28
-[; ;color_card.c: 28:     diff = current - initial;
-[e = _diff - _current _initial ]
-"29
-[; ;color_card.c: 29:     if(diff>150) LATHbits.LATH3 = !LATHbits.LATH3;
-[e $ ! > _diff -> -> 150 `i `ui 2022  ]
-[e = . . _LATHbits 0 3 -> -> ! != -> . . _LATHbits 0 3 `i -> 0 `i `i `uc ]
+"14
+[; ;color_card.c: 14:         turnRight(mL, mR, 90);
+[e ( _turnRight (3 , , _mL _mR -> -> 90 `i `uc ]
+"15
+[; ;color_card.c: 15:         stop(mL, mR);
+[e ( _stop (2 , _mL _mR ]
+"17
+[; ;color_card.c: 17:     } else if ((R_rel<0.435) && (G_rel>0.31) && (B_rel>0.195)) {
+}
+[e $U 2023  ]
 [e :U 2022 ]
+[e $ ! && && < -> _R_rel `d .0.435 > -> _G_rel `d .0.31 > -> _B_rel `d .0.195 2024  ]
+{
+"19
+[; ;color_card.c: 19:         turnLeft(mL, mR, 90);
+[e ( _turnLeft (3 , , _mL _mR -> -> 90 `i `uc ]
+"20
+[; ;color_card.c: 20:         stop(mL, mR);
+[e ( _stop (2 , _mL _mR ]
+"22
+[; ;color_card.c: 22:     } else if ((R_rel<0.43) && (G_rel>0.30) && (B_rel>0.21)) {
+}
+[e $U 2025  ]
+[e :U 2024 ]
+[e $ ! && && < -> _R_rel `d .0.43 > -> _G_rel `d .0.30 > -> _B_rel `d .0.21 2026  ]
+{
+"24
+[; ;color_card.c: 24:         turnRight(mL, mR, 180);
+[e ( _turnRight (3 , , _mL _mR -> -> 180 `i `uc ]
+"25
+[; ;color_card.c: 25:         stop(mL, mR);
+[e ( _stop (2 , _mL _mR ]
+"27
+[; ;color_card.c: 27:     } else if ((R_rel>0.49) && (G_rel>0.285) && (B_rel>0.18)) {
+}
+[e $U 2027  ]
+[e :U 2026 ]
+[e $ ! && && > -> _R_rel `d .0.49 > -> _G_rel `d .0.285 > -> _B_rel `d .0.18 2028  ]
+{
+"29
+[; ;color_card.c: 29:         reverse(mL, mR);
+[e ( _reverse (2 , _mL _mR ]
 "30
-[; ;color_card.c: 30: }
+[; ;color_card.c: 30:         turnRight(mL, mR, 90);
+[e ( _turnRight (3 , , _mL _mR -> -> 90 `i `uc ]
+"31
+[; ;color_card.c: 31:         stop(mL, mR);
+[e ( _stop (2 , _mL _mR ]
+"33
+[; ;color_card.c: 33:     } else if ((R_rel>0.49) && (G_rel<0.275) && (B_rel>0.195)) {
+}
+[e $U 2029  ]
+[e :U 2028 ]
+[e $ ! && && > -> _R_rel `d .0.49 < -> _G_rel `d .0.275 > -> _B_rel `d .0.195 2030  ]
+{
+"35
+[; ;color_card.c: 35:         reverse(mL, mR);
+[e ( _reverse (2 , _mL _mR ]
+"36
+[; ;color_card.c: 36:         turnLeft(mL, mR, 90);
+[e ( _turnLeft (3 , , _mL _mR -> -> 90 `i `uc ]
+"37
+[; ;color_card.c: 37:         stop(mL, mR);
+[e ( _stop (2 , _mL _mR ]
+"39
+[; ;color_card.c: 39:     } else if ((R_rel>0.54) && (G_rel<0.24) && (B_rel<0.18)) {
+}
+[e $U 2031  ]
+[e :U 2030 ]
+[e $ ! && && > -> _R_rel `d .0.54 < -> _G_rel `d .0.24 < -> _B_rel `d .0.18 2032  ]
+{
+"41
+[; ;color_card.c: 41:         turnRight(mL, mR, 135);
+[e ( _turnRight (3 , , _mL _mR -> -> 135 `i `uc ]
+"42
+[; ;color_card.c: 42:         stop(mL, mR);
+[e ( _stop (2 , _mL _mR ]
+"44
+[; ;color_card.c: 44:     } else if ((R_rel<0.44) && (G_rel>0.305) && (B_rel>0.21)) {
+}
+[e $U 2033  ]
+[e :U 2032 ]
+[e $ ! && && < -> _R_rel `d .0.44 > -> _G_rel `d .0.305 > -> _B_rel `d .0.21 2034  ]
+{
+"46
+[; ;color_card.c: 46:         turnLeft(mL, mR, 135);
+[e ( _turnLeft (3 , , _mL _mR -> -> 135 `i `uc ]
+"47
+[; ;color_card.c: 47:         stop(mL, mR);
+[e ( _stop (2 , _mL _mR ]
+"49
+[; ;color_card.c: 49:     } else if ((R_rel<0.46) && (G_rel>0.295) && (B_rel>0.21)) {
+}
+[e $U 2035  ]
+[e :U 2034 ]
+[e $ ! && && < -> _R_rel `d .0.46 > -> _G_rel `d .0.295 > -> _B_rel `d .0.21 2036  ]
+{
+"51
+[; ;color_card.c: 51:         turnRight(mL, mR, 180);
+[e ( _turnRight (3 , , _mL _mR -> -> 180 `i `uc ]
+"52
+[; ;color_card.c: 52:         stop(mL, mR);
+[e ( _stop (2 , _mL _mR ]
+"54
+[; ;color_card.c: 54:     } else {
+}
+[e $U 2037  ]
+[e :U 2036 ]
+{
+"56
+[; ;color_card.c: 56:         returnhome_flag = 1;
+[e = _returnhome_flag -> -> 1 `i `uc ]
+"57
+[; ;color_card.c: 57:         turnRight(mL, mR, 180);
+[e ( _turnRight (3 , , _mL _mR -> -> 180 `i `uc ]
+"58
+[; ;color_card.c: 58:         stop(mL, mR);
+[e ( _stop (2 , _mL _mR ]
+"59
+[; ;color_card.c: 59:     }
+}
+[e :U 2037 ]
+[e :U 2035 ]
+[e :U 2033 ]
+[e :U 2031 ]
+[e :U 2029 ]
+[e :U 2027 ]
+[e :U 2025 ]
+[e :U 2023 ]
+"60
+[; ;color_card.c: 60: }
 [e :UE 2021 ]
 }

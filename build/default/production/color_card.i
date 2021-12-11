@@ -24173,6 +24173,11 @@ extern __attribute__((nonreentrant)) void _delaywdt(unsigned long);
 extern __attribute__((nonreentrant)) void _delay3(unsigned char);
 # 33 "/Applications/microchip/mplabx/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8/pic/include/xc.h" 2 3
 # 2 "color_card.c" 2
+# 1 "./color_card.h" 1
+
+
+
+
 # 1 "./color_click.h" 1
 # 12 "./color_click.h"
 typedef struct {
@@ -24188,35 +24193,97 @@ unsigned int colorclick_readRed(void);
 unsigned int colorclick_readGreen(void);
 unsigned int colorclick_readBlue(void);
 unsigned int colorclick_readClear(void);
-void colorclick_int_clear(void);
-void colorclick_int_init(void);
 RGB_val colorclick_readColour(RGB_val current);
+# 6 "./color_card.h" 2
+# 1 "./dc_motor.h" 1
+# 23 "./dc_motor.h"
+extern volatile unsigned char returnhome_flag;
+
+typedef struct {
+    char power;
+    char direction;
+    unsigned char *dutyHighByte;
+    unsigned char *dir_LAT;
+    char dir_pin;
+    int PWMperiod;
+} DC_motor;
+
+
+void DCmotors_init(unsigned char PWMperiod);
+void clicker2buttons_init(void);
+void clicker2LEDs_init(void);
+void buggyLEDs_init(void);
+unsigned char check_battery_level(void);
+void setMotorPWM(DC_motor *m);
+void forward(DC_motor *mL, DC_motor *mR);
+void reverse(DC_motor *mL, DC_motor *mR);
+void stop(DC_motor *mL, DC_motor *mR);
+void turnLeft(DC_motor *mL, DC_motor *mR, unsigned char deg);
+void turnRight(DC_motor *mL, DC_motor *mR, unsigned char deg);
+# 7 "./color_card.h" 2
+
+
+
+volatile unsigned char returnhome_flag;
+
+RGB_val read_colour(RGB_val current);
+void read_card(RGB_val initial, RGB_val current, DC_motor *mL, DC_motor *mR);
 # 3 "color_card.c" 2
 
-RGB_val read_card(RGB_val current) {
-    LATGbits.LATG1 = 1;
-    current.R = colorclick_readRed();
-    _delay((unsigned long)((1000)*(64000000/4000.0)));
-    LATGbits.LATG1 = 0;
-    _delay((unsigned long)((20)*(64000000/4000.0)));
 
-    LATAbits.LATA4 = 1;
-    current.G = colorclick_readGreen();
-    _delay((unsigned long)((1000)*(64000000/4000.0)));
-    LATAbits.LATA4 = 0;
-    _delay((unsigned long)((20)*(64000000/4000.0)));
 
-    LATFbits.LATF7 = 1;
-    current.B = colorclick_readBlue();
-    _delay((unsigned long)((1000)*(64000000/4000.0)));
-    LATFbits.LATF7 = 0;
-    _delay((unsigned long)((20)*(64000000/4000.0)));
+void read_card(RGB_val initial, RGB_val current, DC_motor *mL, DC_motor *mR) {
 
-    return current;
-}
+    unsigned int R_rel = current.R/current.C;
+    unsigned int G_rel = current.G/current.C;
+    unsigned int B_rel = current.B/current.C;
 
-void check_red(unsigned int initial, unsigned int current) {
-    unsigned int diff;
-    diff = current - initial;
-    if(diff>150) LATHbits.LATH3 = !LATHbits.LATH3;
+    if ((R_rel>0.54) && (G_rel<0.245) && (B_rel<0.18)) {
+
+        turnRight(mL, mR, 90);
+        stop(mL, mR);
+
+    } else if ((R_rel<0.435) && (G_rel>0.31) && (B_rel>0.195)) {
+
+        turnLeft(mL, mR, 90);
+        stop(mL, mR);
+
+    } else if ((R_rel<0.43) && (G_rel>0.30) && (B_rel>0.21)) {
+
+        turnRight(mL, mR, 180);
+        stop(mL, mR);
+
+    } else if ((R_rel>0.49) && (G_rel>0.285) && (B_rel>0.18)) {
+
+        reverse(mL, mR);
+        turnRight(mL, mR, 90);
+        stop(mL, mR);
+
+    } else if ((R_rel>0.49) && (G_rel<0.275) && (B_rel>0.195)) {
+
+        reverse(mL, mR);
+        turnLeft(mL, mR, 90);
+        stop(mL, mR);
+
+    } else if ((R_rel>0.54) && (G_rel<0.24) && (B_rel<0.18)) {
+
+        turnRight(mL, mR, 135);
+        stop(mL, mR);
+
+    } else if ((R_rel<0.44) && (G_rel>0.305) && (B_rel>0.21)) {
+
+        turnLeft(mL, mR, 135);
+        stop(mL, mR);
+
+    } else if ((R_rel<0.46) && (G_rel>0.295) && (B_rel>0.21)) {
+
+        turnRight(mL, mR, 180);
+        stop(mL, mR);
+
+    } else {
+
+        returnhome_flag = 1;
+        turnRight(mL, mR, 180);
+        stop(mL, mR);
+    }
 }

@@ -2,14 +2,6 @@
 #include "color_click.h"
 #include "i2c.h"
 
-#define AILTL 0x04
-#define AILTH 0x05
-#define AIHTL 0x06
-#define AIHTH 0x07
-
-volatile unsigned int clear_lower;
-volatile unsigned int clear_upper;
-
 /***************************************************************
  * colorclick_init
  * Function used to initialise the colour click module using I2C

@@ -24187,7 +24187,7 @@ volatile char TxBufReadCnt=0;
 
 void USART4_init(void);
 char getCharSerial4(void);
-void sendCharSerial4(unsigned int charToSend);
+void sendCharSerial4(unsigned char charToSend);
 void sendStringSerial4(char *string);
 
 
@@ -24236,7 +24236,7 @@ char getCharSerial4(void) {
 
 
 
-void sendCharSerial4(unsigned int charToSend) {
+void sendCharSerial4(unsigned char charToSend) {
     while (!PIR4bits.TX4IF);
     TX4REG = charToSend;
 }

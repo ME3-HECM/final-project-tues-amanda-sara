@@ -15,6 +15,7 @@ volatile unsigned char battery_flag;       // Declare global variable to toggle 
 // Function prototypes
 void interrupts_init(void);
 void interrupts_clear(void);
+void colour_int_init(void);
 void __interrupt(high_priority) HighISR();
 void __interrupt(low_priority) LowISR();
 

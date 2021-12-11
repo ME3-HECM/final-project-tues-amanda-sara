@@ -4,10 +4,13 @@
 #include "i2c.h"
 #include "dc_motor.h"
 
-//    colorclick_writetoaddr(AILTL, (clear_lower & 0b11111111));
-//    colorclick_writetoaddr(AILTH, (clear_lower >> 8));
-//    colorclick_writetoaddr(AIHTL, (clear_upper & 0b11111111));
-//    colorclick_writetoaddr(AIHTH, (clear_upper >> 8));
+#define AILTL 0x04
+#define AILTH 0x05
+#define AIHTL 0x06
+#define AIHTH 0x07
+
+volatile unsigned int clear_lower;
+volatile unsigned int clear_upper;
 
 /****************************************************************************************************
  * Interrupts_init
@@ -27,13 +30,6 @@ void interrupts_init(void){
     //IPR?bits.? = 0; //set ? interrupt to low priority
     
     interrupts_clear();
-    colorclick_writetoaddr(0x00, 0b10011);
-    __delay_ms(3);
-    colorclick_writetoaddr(0x0C, 0b0100);
-    colorclick_writetoaddr(0x04, 0x14);
-    colorclick_writetoaddr(0x05, 0x05);
-    colorclick_writetoaddr(0x06, 0x6C);
-    colorclick_writetoaddr(0x07, 0x07);
     
     INTCONbits.IPEN = 1; // Enable priority levels on interrupts
     INTCONbits.INT1EDG = 0; //falling edge
@@ -49,6 +45,17 @@ void interrupts_clear(void){
     I2C_2_Master_Write(0x52 | 0x00);     //7 bit device address + Write mode
     I2C_2_Master_Write(0b11100110);    //command + register address  
     I2C_2_Master_Stop();
+    colour_int_init();
+}
+
+void colour_int_init(void){
+    colorclick_writetoaddr(0x00, 0b10011);
+    __delay_ms(3);
+    colorclick_writetoaddr(0x0C, 0b0100);
+    colorclick_writetoaddr(AILTL, (clear_lower&0b11111111));
+    colorclick_writetoaddr(AILTH, (clear_lower>>8));
+    colorclick_writetoaddr(AIHTL, (clear_upper&0b11111111));
+    colorclick_writetoaddr(AIHTH, (clear_upper>>8));
 }
 
 /****************************************************************
@@ -60,7 +67,7 @@ void interrupts_clear(void){
 void __interrupt(high_priority) HighISR() {
     if (PIR0bits.INT1IF) {                        // Check the interrupt source 
         card_flag = 1;                            // Toggle variable to run read card routine 
-        RD7_LED = !RD7_LED;                       // Testing
+//        RD7_LED = !RD7_LED;                       // Testing
         interrupts_clear();
         PIR0bits.INT1IF = 0;                      // Clear the interrupt flag
     }

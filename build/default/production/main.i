@@ -7,21 +7,6 @@
 # 1 "/Applications/microchip/mplabx/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8/pic/include/language_support.h" 1 3
 # 2 "<built-in>" 2
 # 1 "main.c" 2
-# 11 "main.c"
-#pragma config FEXTOSC = HS
-#pragma config RSTOSC = EXTOSC_4PLL
-
-
-
-
-
-#pragma config WDTE = OFF
-
-
-
-
-
-
 # 1 "/Applications/microchip/mplabx/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8/pic/include/xc.h" 1 3
 # 18 "/Applications/microchip/mplabx/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8/pic/include/xc.h" 3
 extern const char __xc8_OPTIM_SPEED;
@@ -24187,7 +24172,24 @@ extern __attribute__((nonreentrant)) void _delaywdt(unsigned long);
 #pragma intrinsic(_delay3)
 extern __attribute__((nonreentrant)) void _delay3(unsigned char);
 # 33 "/Applications/microchip/mplabx/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8/pic/include/xc.h" 2 3
-# 25 "main.c" 2
+# 2 "main.c" 2
+# 1 "./main.h" 1
+# 16 "./main.h"
+#pragma config FEXTOSC = HS
+#pragma config RSTOSC = EXTOSC_4PLL
+
+
+
+
+
+#pragma config WDTE = OFF
+
+
+
+
+
+
+
 # 1 "/Applications/microchip/xc8/v2.32/pic/include/c99/stdio.h" 1 3
 # 24 "/Applications/microchip/xc8/v2.32/pic/include/c99/stdio.h" 3
 # 1 "/Applications/microchip/xc8/v2.32/pic/include/c99/bits/alltypes.h" 1 3
@@ -24326,12 +24328,12 @@ char *ctermid(char *);
 
 
 char *tempnam(const char *, const char *);
-# 26 "main.c" 2
+# 31 "./main.h" 2
 # 1 "./ADC.h" 1
 # 10 "./ADC.h"
 void ADC_init(void);
 unsigned char ADC_getval(void);
-# 27 "main.c" 2
+# 32 "./main.h" 2
 # 1 "./color_card.h" 1
 
 
@@ -24352,18 +24354,12 @@ unsigned int colorclick_readRed(void);
 unsigned int colorclick_readGreen(void);
 unsigned int colorclick_readBlue(void);
 unsigned int colorclick_readClear(void);
-void colorclick_int_clear(void);
-void colorclick_int_init(void);
 RGB_val colorclick_readColour(RGB_val current);
 # 6 "./color_card.h" 2
-
-
-
-RGB_val read_card(RGB_val current);
-# 28 "main.c" 2
-
 # 1 "./dc_motor.h" 1
 # 23 "./dc_motor.h"
+extern volatile unsigned char returnhome_flag;
+
 typedef struct {
     char power;
     char direction;
@@ -24374,7 +24370,7 @@ typedef struct {
 } DC_motor;
 
 
-void DCmotors_init(int PWMperiod);
+void DCmotors_init(unsigned char PWMperiod);
 void clicker2buttons_init(void);
 void clicker2LEDs_init(void);
 void buggyLEDs_init(void);
@@ -24383,9 +24379,19 @@ void setMotorPWM(DC_motor *m);
 void forward(DC_motor *mL, DC_motor *mR);
 void reverse(DC_motor *mL, DC_motor *mR);
 void stop(DC_motor *mL, DC_motor *mR);
-void turnLeft(DC_motor *mL, DC_motor *mR);
-void turnRight(DC_motor *mL, DC_motor *mR);
-# 30 "main.c" 2
+void turnLeft(DC_motor *mL, DC_motor *mR, unsigned char deg);
+void turnRight(DC_motor *mL, DC_motor *mR, unsigned char deg);
+# 7 "./color_card.h" 2
+
+
+
+volatile unsigned char returnhome_flag;
+
+RGB_val read_colour(RGB_val current);
+void read_card(RGB_val initial, RGB_val current, DC_motor *mL, DC_motor *mR);
+# 33 "./main.h" 2
+
+
 # 1 "./i2c.h" 1
 # 10 "./i2c.h"
 void I2C_2_Master_Init(void);
@@ -24395,7 +24401,7 @@ void I2C_2_Master_RepStart(void);
 void I2C_2_Master_Stop(void);
 void I2C_2_Master_Write(unsigned char data_byte);
 unsigned char I2C_2_Master_Read(unsigned char ack);
-# 31 "main.c" 2
+# 36 "./main.h" 2
 # 1 "./serial.h" 1
 # 13 "./serial.h"
 volatile char EUSART4RXbuf[20];
@@ -24410,7 +24416,7 @@ volatile char TxBufReadCnt=0;
 
 void USART4_init(void);
 char getCharSerial4(void);
-void sendCharSerial4(unsigned int charToSend);
+void sendCharSerial4(unsigned char charToSend);
 void sendStringSerial4(char *string);
 
 
@@ -24424,73 +24430,125 @@ void putCharToTxBuf(char byte);
 char isDataInTxBuf (void);
 void TxBufferedString(char *string);
 void sendTxBuf(void);
-# 32 "main.c" 2
+# 37 "./main.h" 2
 # 1 "./interrupts.h" 1
 # 12 "./interrupts.h"
-volatile unsigned char card_flag = 0;
-volatile unsigned char battery_flag = 0;
+volatile unsigned char card_flag;
+volatile unsigned char battery_flag;
 
 
 void interrupts_init(void);
+void interrupts_clear(void);
+void colour_int_init(void);
 void __attribute__((picinterrupt(("high_priority")))) HighISR();
-# 33 "main.c" 2
+void __attribute__((picinterrupt(("low_priority")))) LowISR();
+# 38 "./main.h" 2
+
+extern volatile unsigned char card_flag;
+extern volatile unsigned char battery_flag;
+extern volatile unsigned char returnhome_flag;
+# 3 "main.c" 2
 
 volatile unsigned int clear_lower = 0;
 volatile unsigned int clear_upper = 0;
-volatile unsigned char card_flag;
+volatile unsigned char card_flag = 0;
 
 
 
 
 void main(void) {
 
+
+
+    unsigned char PWMperiod = 99;
+    card_flag = 0;
+    battery_flag = 0;
+    returnhome_flag = 0;
     ADC_init();
     colorclick_init();
-    interrupts_init();
-
+    DCmotors_init(PWMperiod);
     USART4_init();
-    buggyLEDs_init();
 
-    TRISHbits.TRISH3 = 0;
+
+
+
+    DC_motor motorL;
+    motorL.power=0;
+    motorL.direction=1;
+    motorL.dutyHighByte=(unsigned char *)(&PWM6DCH);
+    motorL.dir_LAT=(unsigned char *)(&LATE);
+    motorL.dir_pin=4;
+    motorL.PWMperiod=PWMperiod;
+
+
+    DC_motor motorR;
+    motorR.power=0;
+    motorR.direction=1;
+    motorR.dutyHighByte=(unsigned char *)(&PWM7DCH);
+    motorR.dir_LAT=(unsigned char *)(&LATG);
+    motorR.dir_pin=6;
+    motorR.PWMperiod=PWMperiod;
+# 52 "main.c"
+    LATDbits.LATD7 = 0;
     LATHbits.LATH3 = 0;
 
-
-
-    colorclick_toggleClearLED(1);
     LATDbits.LATD3 = 1;
+    colorclick_toggleClearLED(1);
 
-    _delay((unsigned long)((500)*(64000000/4000.0)));
+    _delay((unsigned long)((1000)*(64000000/4000.0)));
 
     RGB_val initial;
-    RGB_val current;
     initial = colorclick_readColour(initial);
 
-    clear_lower = initial.C - 100;
-    clear_upper = initial.C + 300;
 
+    clear_lower = initial.C - 10;
+    clear_upper = initial.C + 10;
 
+    if(clear_lower<0) clear_lower = 0;
 
+    _delay((unsigned long)((1000)*(64000000/4000.0)));
+
+    interrupts_init();
+# 122 "main.c"
+    RGB_val current;
+
+    unsigned char start = 0;
+    unsigned char move = 0;
 
     while(1) {
+# 156 "main.c"
+        LATHbits.LATH3 = card_flag;
+        LATDbits.LATD7 = move;
+        LATFbits.LATF0 = start;
 
-        current = colorclick_readColour(current);
 
 
-        char buf[40];
-        unsigned int tmpR = current.R;
-        unsigned int tmpG = current.G;
-        unsigned int tmpB = current.B;
-        unsigned int tmpC = current.C;
-        sprintf(buf,"%i %i %i %i\n",tmpR,tmpG,tmpB,tmpC);
-        sendStringSerial4(buf);
-        _delay((unsigned long)((500)*(64000000/4000.0)));
-        sprintf(buf,"%i %i %i %i\n",initial.R,initial.G,initial.B,initial.C);
-        sendStringSerial4(buf);
-        _delay((unsigned long)((500)*(64000000/4000.0)));
-
-        if(card_flag==1){
-            LATHbits.LATH3 = !LATHbits.LATH3;
+        if(start==0 && card_flag){
             card_flag = 0;
+            start = 1;
+            _delay((unsigned long)((100)*(64000000/4000.0)));
+        }
+
+        if(move<1 && start>0){
+            _delay((unsigned long)((100)*(64000000/4000.0)));
+            forward(&motorL, &motorR);
+            if(card_flag==1){
+                stop(&motorL, &motorR);
+                _delay((unsigned long)((60)*(64000000/4000.0)));
+                move = 1;
+            }
+        }
+
+        if (card_flag==1) {
+            _delay((unsigned long)((100)*(64000000/4000.0)));
+            current = colorclick_readColour(current);
+            read_card(initial, current, &motorL, &motorR);
+            _delay((unsigned long)((500)*(64000000/4000.0)));
+            current = colorclick_readColour(current);
+            clear_lower = current.C - 10;
+            clear_upper = current.C + 10;
+            card_flag = 0;
+            move = 0;
         }
 
 
