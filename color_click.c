@@ -35,7 +35,7 @@ void colorclick_init(void)
     TRISFbits.TRISF7 = 0; //blue LED
     
     //set LAT values
-    colorclick_toggleClearLED(1);
+    colorclick_toggleClearLED(0);
 }
 
 /**************************
@@ -176,22 +176,29 @@ RGB_val colorclick_readColour(RGB_val current)
     return current;
 }
 
-
-void colorclick_int_clear(void){
-    I2C_2_Master_Start();         //Start condition
-    I2C_2_Master_Write(0x52 | 0x00);     //7 bit device address + Write mode
-    I2C_2_Master_Write(0b11100110);    //command + register address  
-    I2C_2_Master_Stop(); 
-    colorclick_int_init();
-}
-
-void colorclick_int_init(void){
-    colorclick_writetoaddr(0x00, 0b10011);
-    __delay_ms(3);
-    colorclick_writetoaddr(0x0C, 0b0100);
-    colorclick_writetoaddr(AILTL, (clear_lower&&0b11111111));
-    colorclick_writetoaddr(AILTH, (clear_lower>>8));
-    colorclick_writetoaddr(AIHTL, (clear_upper&&0b11111111));
-    colorclick_writetoaddr(AIHTH, (clear_upper>>8));
+RGB_val colorclick_readColourRGBCLED(RGB_val current)
+{
+    colorclick_toggleClearLED(0);
     
+    redLED = 1;
+    current.R = colorclick_readRed();
+    __delay_ms(1000);
+    redLED = 0;
+    __delay_ms(20);
+    
+    greenLED = 1;
+    current.G = colorclick_readGreen();
+    __delay_ms(1000);
+    greenLED = 0;
+    __delay_ms(20);
+    
+    blueLED = 1;
+    current.B = colorclick_readBlue();
+    __delay_ms(1000);
+    blueLED = 0;
+    __delay_ms(20);
+    
+    colorclick_toggleClearLED(1);
+    
+    return current;
 }
