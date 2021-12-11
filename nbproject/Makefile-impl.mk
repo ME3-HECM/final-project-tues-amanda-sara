@@ -24,7 +24,7 @@ CLEAN_SUBPROJECTS=${CLEAN_SUBPROJECTS_${SUBPROJECTS}}
 
 
 # Project Name
-PROJECTNAME=final-project-tues-amanda-sara.X
+PROJECTNAME=final-project-tues-amanda-sara-v2.X
 
 # Active Configuration
 DEFAULTCONF=default

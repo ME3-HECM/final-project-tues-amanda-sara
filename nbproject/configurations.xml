@@ -11,6 +11,7 @@
       <itemPath>serial.h</itemPath>
       <itemPath>color_click.h</itemPath>
       <itemPath>color_card.h</itemPath>
+      <itemPath>main.h</itemPath>
     </logicalFolder>
     <logicalFolder name="LinkerScript"
                    displayName="Linker Files"

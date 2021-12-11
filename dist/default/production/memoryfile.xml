@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project>
-  <executable name="dist/default/production/final-project-tues-amanda-sara.X.production.hex">
+  <executable name="dist/default/production\final-project-tues-amanda-sara-v2.X.production.hex">
     <memory name="program">
       <units>bytes</units>
       <length>131072</length>
-      <used>4570</used>
-      <free>126502</free>
+      <used>7216</used>
+      <free>123856</free>
     </memory>
     <memory name="data">
       <units>bytes</units>
       <length>3562</length>
-      <used>312</used>
-      <free>3250</free>
+      <used>190</used>
+      <free>3372</free>
     </memory>
   </executable>
 </project>
