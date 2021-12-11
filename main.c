@@ -41,55 +41,72 @@ void main(void) {
     /***************************
      * Colour calibration routine
      ***************************/
-    while(RF2_BUTTON && RF3_BUTTON);
-    RD7_LED = 1;
-    RH3_LED = 1;
-    
+//    while(RF2_BUTTON && RF3_BUTTON);
+//    RD7_LED = 1;
+//    RH3_LED = 1;
+//    
     RGB_val initial;
     initial = colorclick_readColour(initial); //read initial light value
     __delay_ms(100);
-    
-    RD7_LED = 0;
-    RH3_LED = 0;
+//    
+//    RD7_LED = 0;
+//    RH3_LED = 0;
     
     /***************************
      * Motor calibration routine
      ***************************/
-    while(RF2_BUTTON && RF3_BUTTON);
-    turnRight(&motorL, &motorR, 360);
-    motorL.power=0;
-    motorR.power=0;
+//    while(RF2_BUTTON && RF3_BUTTON);
+//    turnRight(&motorL, &motorR, 360);
+//    motorL.power=0;
+//    motorR.power=0;
+//    
+//    while(RF2_BUTTON && RF3_BUTTON);
+//    if (RF2_BUTTON) {
+//        RD7_LED = 1;
+//        __delay_ms(100);
+//        RD7_LED = 0;
+//    } else if (RF3_BUTTON) {
+//        RH3_LED = 1;
+//        __delay_ms(100);
+//        RH3_LED = 0;
+//    }
+//
+//    while(RF2_BUTTON && RF3_BUTTON);
+//    turnLeft(&motorL, &motorR, 360);
+//    motorL.power=0;
+//    motorR.power=0;
+//    
+//    while(RF2_BUTTON && RF3_BUTTON);
+//    if (RF2_BUTTON) {
+//        RD7_LED = 1;
+//        __delay_ms(100);
+//        RD7_LED = 0;
+//    } else if (RF3_BUTTON) {
+//        RH3_LED = 1;
+//        __delay_ms(100);
+//        RH3_LED = 0;
+//    }
+//    
+//    while(RF2_BUTTON && RF3_BUTTON);
+//    MAINBEAM_LED = 1;
+//    colorclick_toggleClearLED(1);
+//    __delay_ms(1000);
+//    forward(&motorL, &motorR);
     
-    while(RF2_BUTTON && RF3_BUTTON);
-    if (RF2_BUTTON) {
+    /*********************
+     * Check battery level
+     *********************/
+    unsigned char battery = ADC_getval();
+    if (battery<100) {
         RD7_LED = 1;
-        __delay_ms(100);
-        RD7_LED = 0;
-    } else if (RF3_BUTTON) {
         RH3_LED = 1;
-        __delay_ms(100);
+    } else if (battery<200) {
+        RD7_LED = 1;
+        RH3_LED = 0;
+    } else {
+        RD7_LED = 0;
         RH3_LED = 0;
     }
-
-    while(RF2_BUTTON && RF3_BUTTON);
-    turnLeft(&motorL, &motorR, 360);
-    motorL.power=0;
-    motorR.power=0;
-    
-    while(RF2_BUTTON && RF3_BUTTON);
-    if (RF2_BUTTON) {
-        RD7_LED = 1;
-        __delay_ms(100);
-        RD7_LED = 0;
-    } else if (RF3_BUTTON) {
-        RH3_LED = 1;
-        __delay_ms(100);
-        RH3_LED = 0;
-    }
-    
-    while(RF2_BUTTON && RF3_BUTTON);
-    MAINBEAM_LED = 1;
-    colorclick_toggleClearLED(1);
     __delay_ms(1000);
     forward(&motorL, &motorR);
     

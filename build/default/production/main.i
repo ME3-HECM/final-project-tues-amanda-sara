@@ -24497,59 +24497,22 @@ void main(void) {
     motorR.dir_LAT=(unsigned char *)(&LATG);
     motorR.dir_pin=6;
     motorR.PWMperiod=PWMperiod;
-
-
-
-
-    while(PORTFbits.RF2 && PORTFbits.RF3);
-    LATDbits.LATD7 = 1;
-    LATHbits.LATH3 = 1;
-
+# 48 "main.c"
     RGB_val initial;
     initial = colorclick_readColour(initial);
     _delay((unsigned long)((100)*(64000000/4000.0)));
-
-    LATDbits.LATD7 = 0;
-    LATHbits.LATH3 = 0;
-
-
-
-
-    while(PORTFbits.RF2 && PORTFbits.RF3);
-    turnRight(&motorL, &motorR, 360);
-    motorL.power=0;
-    motorR.power=0;
-
-    while(PORTFbits.RF2 && PORTFbits.RF3);
-    if (PORTFbits.RF2) {
+# 99 "main.c"
+    unsigned char battery = ADC_getval();
+    if (battery<100) {
         LATDbits.LATD7 = 1;
-        _delay((unsigned long)((100)*(64000000/4000.0)));
-        LATDbits.LATD7 = 0;
-    } else if (PORTFbits.RF3) {
         LATHbits.LATH3 = 1;
-        _delay((unsigned long)((100)*(64000000/4000.0)));
+    } else if (battery<200) {
+        LATDbits.LATD7 = 1;
+        LATHbits.LATH3 = 0;
+    } else {
+        LATDbits.LATD7 = 0;
         LATHbits.LATH3 = 0;
     }
-
-    while(PORTFbits.RF2 && PORTFbits.RF3);
-    turnLeft(&motorL, &motorR, 360);
-    motorL.power=0;
-    motorR.power=0;
-
-    while(PORTFbits.RF2 && PORTFbits.RF3);
-    if (PORTFbits.RF2) {
-        LATDbits.LATD7 = 1;
-        _delay((unsigned long)((100)*(64000000/4000.0)));
-        LATDbits.LATD7 = 0;
-    } else if (PORTFbits.RF3) {
-        LATHbits.LATH3 = 1;
-        _delay((unsigned long)((100)*(64000000/4000.0)));
-        LATHbits.LATH3 = 0;
-    }
-
-    while(PORTFbits.RF2 && PORTFbits.RF3);
-    LATDbits.LATD3 = 1;
-    colorclick_toggleClearLED(1);
     _delay((unsigned long)((1000)*(64000000/4000.0)));
     forward(&motorL, &motorR);
 
@@ -24558,7 +24521,7 @@ void main(void) {
 
     RGB_val current;
     while(1) {
-# 117 "main.c"
+# 134 "main.c"
         current = colorclick_readColour(current);
         read_card(initial, current, &motorL, &motorR);
 

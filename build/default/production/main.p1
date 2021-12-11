@@ -40,22 +40,21 @@ Version 4.0 HI-TECH Software Intermediate Code
 "29185
 [; ;C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\proc\pic18f67k40.h: 29185: extern volatile unsigned char LATG __attribute__((address(0xF7F)));
 [v _LATG `Vuc ~T0 @X0 0 e@3967 ]
-"30630
-[; ;C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\proc\pic18f67k40.h: 30630:     struct {
-[s S1415 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
-[n S1415 . RF0 RF1 RF2 RF3 RF4 RF5 RF6 RF7 ]
-"30640
-[; ;C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\proc\pic18f67k40.h: 30640:     struct {
-[s S1416 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
-[n S1416 . . C2OUTF C1OUTF ]
-"30629
-[; ;C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\proc\pic18f67k40.h: 30629: typedef union {
-[u S1414 `S1415 1 `S1416 1 ]
-[n S1414 . . . ]
-"30646
-[; ;C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\proc\pic18f67k40.h: 30646: extern volatile PORTFbits_t PORTFbits __attribute__((address(0xF8E)));
-[v _PORTFbits `VS1414 ~T0 @X0 0 e@3982 ]
-"28855
+"12 ./color_click.h
+[; ;./color_click.h: 12: typedef struct {
+[s S2021 `ui 1 `ui 1 `ui 1 `ui 1 ]
+[n S2021 . R G B C ]
+"25
+[; ;./color_click.h: 25: RGB_val colorclick_readColour(RGB_val current);
+[v _colorclick_readColour `(S2021 ~T0 @X0 0 ef1`S2021 ]
+[v F14184 `(v ~T0 @X0 1 tf1`ul ]
+"203 C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\pic18.h
+[v __delay `JF14184 ~T0 @X0 0 e ]
+[p i __delay ]
+"11 ./ADC.h
+[; ;./ADC.h: 11: unsigned char ADC_getval(void);
+[v _ADC_getval `(uc ~T0 @X0 0 ef ]
+"28855 C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\proc\pic18f67k40.h
 [; ;C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\proc\pic18f67k40.h: 28855:     struct {
 [s S1352 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
 [n S1352 . LATD0 LATD1 LATD2 LATD3 LATD4 LATD5 LATD6 LATD7 ]
@@ -101,26 +100,6 @@ Version 4.0 HI-TECH Software Intermediate Code
 "29309
 [; ;C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\proc\pic18f67k40.h: 29309: extern volatile LATHbits_t LATHbits __attribute__((address(0xF80)));
 [v _LATHbits `VS1363 ~T0 @X0 0 e@3968 ]
-"12 ./color_click.h
-[; ;./color_click.h: 12: typedef struct {
-[s S2021 `ui 1 `ui 1 `ui 1 `ui 1 ]
-[n S2021 . R G B C ]
-"25
-[; ;./color_click.h: 25: RGB_val colorclick_readColour(RGB_val current);
-[v _colorclick_readColour `(S2021 ~T0 @X0 0 ef1`S2021 ]
-[v F14184 `(v ~T0 @X0 1 tf1`ul ]
-"203 C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\pic18.h
-[v __delay `JF14184 ~T0 @X0 0 e ]
-[p i __delay ]
-"45 ./dc_motor.h
-[; ;./dc_motor.h: 45: void turnRight(DC_motor *mL, DC_motor *mR, unsigned char deg);
-[v _turnRight `(v ~T0 @X0 0 ef3`*S2022`*S2022`uc ]
-"44
-[; ;./dc_motor.h: 44: void turnLeft(DC_motor *mL, DC_motor *mR, unsigned char deg);
-[v _turnLeft `(v ~T0 @X0 0 ef3`*S2022`*S2022`uc ]
-"19 ./color_click.h
-[; ;./color_click.h: 19: void colorclick_toggleClearLED(unsigned char toggle);
-[v _colorclick_toggleClearLED `(v ~T0 @X0 0 ef1`uc ]
 "41 ./dc_motor.h
 [; ;./dc_motor.h: 41: void forward(DC_motor *mL, DC_motor *mR);
 [v _forward `(v ~T0 @X0 0 ef2`*S2022`*S2022 ]
@@ -2223,19 +2202,6 @@ Version 4.0 HI-TECH Software Intermediate Code
 "39
 [; ;main.c: 39:     motorR.PWMperiod=PWMperiod;
 [e = . _motorR 5 -> _PWMperiod `i ]
-"44
-[; ;main.c: 44:     while(PORTFbits.RF2 && PORTFbits.RF3);
-[e $U 2024  ]
-[e :U 2025 ]
-[e :U 2024 ]
-[e $ && != -> . . _PORTFbits 0 2 `i -> 0 `i != -> . . _PORTFbits 0 3 `i -> 0 `i 2025  ]
-[e :U 2026 ]
-"45
-[; ;main.c: 45:     LATDbits.LATD7 = 1;
-[e = . . _LATDbits 0 7 -> -> 1 `i `uc ]
-"46
-[; ;main.c: 46:     LATHbits.LATH3 = 1;
-[e = . . _LATHbits 0 3 -> -> 1 `i `uc ]
 "48
 [; ;main.c: 48:     RGB_val initial;
 [v _initial `S2021 ~T0 @X0 1 a ]
@@ -2245,199 +2211,110 @@ Version 4.0 HI-TECH Software Intermediate Code
 "50
 [; ;main.c: 50:     _delay((unsigned long)((100)*(64000000/4000.0)));
 [e ( __delay (1 -> * -> -> 100 `i `d / -> -> 64000000 `l `d .4000.0 `ul ]
-"52
-[; ;main.c: 52:     LATDbits.LATD7 = 0;
-[e = . . _LATDbits 0 7 -> -> 0 `i `uc ]
-"53
-[; ;main.c: 53:     LATHbits.LATH3 = 0;
-[e = . . _LATHbits 0 3 -> -> 0 `i `uc ]
-"58
-[; ;main.c: 58:     while(PORTFbits.RF2 && PORTFbits.RF3);
-[e $U 2027  ]
-[e :U 2028 ]
-[e :U 2027 ]
-[e $ && != -> . . _PORTFbits 0 2 `i -> 0 `i != -> . . _PORTFbits 0 3 `i -> 0 `i 2028  ]
-[e :U 2029 ]
-"59
-[; ;main.c: 59:     turnRight(&motorL, &motorR, 360);
-[e ( _turnRight (3 , , &U _motorL &U _motorR -> -> 360 `i `uc ]
-"60
-[; ;main.c: 60:     motorL.power=0;
-[e = . _motorL 0 -> -> 0 `i `uc ]
-"61
-[; ;main.c: 61:     motorR.power=0;
-[e = . _motorR 0 -> -> 0 `i `uc ]
-"63
-[; ;main.c: 63:     while(PORTFbits.RF2 && PORTFbits.RF3);
-[e $U 2030  ]
-[e :U 2031 ]
-[e :U 2030 ]
-[e $ && != -> . . _PORTFbits 0 2 `i -> 0 `i != -> . . _PORTFbits 0 3 `i -> 0 `i 2031  ]
-[e :U 2032 ]
-"64
-[; ;main.c: 64:     if (PORTFbits.RF2) {
-[e $ ! != -> . . _PORTFbits 0 2 `i -> 0 `i 2033  ]
-{
-"65
-[; ;main.c: 65:         LATDbits.LATD7 = 1;
-[e = . . _LATDbits 0 7 -> -> 1 `i `uc ]
-"66
-[; ;main.c: 66:         _delay((unsigned long)((100)*(64000000/4000.0)));
-[e ( __delay (1 -> * -> -> 100 `i `d / -> -> 64000000 `l `d .4000.0 `ul ]
-"67
-[; ;main.c: 67:         LATDbits.LATD7 = 0;
-[e = . . _LATDbits 0 7 -> -> 0 `i `uc ]
-"68
-[; ;main.c: 68:     } else if (PORTFbits.RF3) {
-}
-[e $U 2034  ]
-[e :U 2033 ]
-[e $ ! != -> . . _PORTFbits 0 3 `i -> 0 `i 2035  ]
-{
-"69
-[; ;main.c: 69:         LATHbits.LATH3 = 1;
-[e = . . _LATHbits 0 3 -> -> 1 `i `uc ]
-"70
-[; ;main.c: 70:         _delay((unsigned long)((100)*(64000000/4000.0)));
-[e ( __delay (1 -> * -> -> 100 `i `d / -> -> 64000000 `l `d .4000.0 `ul ]
-"71
-[; ;main.c: 71:         LATHbits.LATH3 = 0;
-[e = . . _LATHbits 0 3 -> -> 0 `i `uc ]
-"72
-[; ;main.c: 72:     }
-}
-[e :U 2035 ]
-[e :U 2034 ]
-"74
-[; ;main.c: 74:     while(PORTFbits.RF2 && PORTFbits.RF3);
-[e $U 2036  ]
-[e :U 2037 ]
-[e :U 2036 ]
-[e $ && != -> . . _PORTFbits 0 2 `i -> 0 `i != -> . . _PORTFbits 0 3 `i -> 0 `i 2037  ]
-[e :U 2038 ]
-"75
-[; ;main.c: 75:     turnLeft(&motorL, &motorR, 360);
-[e ( _turnLeft (3 , , &U _motorL &U _motorR -> -> 360 `i `uc ]
-"76
-[; ;main.c: 76:     motorL.power=0;
-[e = . _motorL 0 -> -> 0 `i `uc ]
-"77
-[; ;main.c: 77:     motorR.power=0;
-[e = . _motorR 0 -> -> 0 `i `uc ]
-"79
-[; ;main.c: 79:     while(PORTFbits.RF2 && PORTFbits.RF3);
-[e $U 2039  ]
-[e :U 2040 ]
-[e :U 2039 ]
-[e $ && != -> . . _PORTFbits 0 2 `i -> 0 `i != -> . . _PORTFbits 0 3 `i -> 0 `i 2040  ]
-[e :U 2041 ]
-"80
-[; ;main.c: 80:     if (PORTFbits.RF2) {
-[e $ ! != -> . . _PORTFbits 0 2 `i -> 0 `i 2042  ]
-{
-"81
-[; ;main.c: 81:         LATDbits.LATD7 = 1;
-[e = . . _LATDbits 0 7 -> -> 1 `i `uc ]
-"82
-[; ;main.c: 82:         _delay((unsigned long)((100)*(64000000/4000.0)));
-[e ( __delay (1 -> * -> -> 100 `i `d / -> -> 64000000 `l `d .4000.0 `ul ]
-"83
-[; ;main.c: 83:         LATDbits.LATD7 = 0;
-[e = . . _LATDbits 0 7 -> -> 0 `i `uc ]
-"84
-[; ;main.c: 84:     } else if (PORTFbits.RF3) {
-}
-[e $U 2043  ]
-[e :U 2042 ]
-[e $ ! != -> . . _PORTFbits 0 3 `i -> 0 `i 2044  ]
-{
-"85
-[; ;main.c: 85:         LATHbits.LATH3 = 1;
-[e = . . _LATHbits 0 3 -> -> 1 `i `uc ]
-"86
-[; ;main.c: 86:         _delay((unsigned long)((100)*(64000000/4000.0)));
-[e ( __delay (1 -> * -> -> 100 `i `d / -> -> 64000000 `l `d .4000.0 `ul ]
-"87
-[; ;main.c: 87:         LATHbits.LATH3 = 0;
-[e = . . _LATHbits 0 3 -> -> 0 `i `uc ]
-"88
-[; ;main.c: 88:     }
-}
-[e :U 2044 ]
-[e :U 2043 ]
-"90
-[; ;main.c: 90:     while(PORTFbits.RF2 && PORTFbits.RF3);
-[e $U 2045  ]
-[e :U 2046 ]
-[e :U 2045 ]
-[e $ && != -> . . _PORTFbits 0 2 `i -> 0 `i != -> . . _PORTFbits 0 3 `i -> 0 `i 2046  ]
-[e :U 2047 ]
-"91
-[; ;main.c: 91:     LATDbits.LATD3 = 1;
-[e = . . _LATDbits 0 3 -> -> 1 `i `uc ]
-"92
-[; ;main.c: 92:     colorclick_toggleClearLED(1);
-[e ( _colorclick_toggleClearLED (1 -> -> 1 `i `uc ]
-"93
-[; ;main.c: 93:     _delay((unsigned long)((1000)*(64000000/4000.0)));
-[e ( __delay (1 -> * -> -> 1000 `i `d / -> -> 64000000 `l `d .4000.0 `ul ]
-"94
-[; ;main.c: 94:     forward(&motorL, &motorR);
-[e ( _forward (2 , &U _motorL &U _motorR ]
 "99
-[; ;main.c: 99:     RGB_val current;
-[v _current `S2021 ~T0 @X0 1 a ]
+[; ;main.c: 99:     unsigned char battery = ADC_getval();
+[v _battery `uc ~T0 @X0 1 a ]
+[e = _battery ( _ADC_getval ..  ]
 "100
-[; ;main.c: 100:     while(1) {
-[e :U 2049 ]
+[; ;main.c: 100:     if (battery<100) {
+[e $ ! < -> _battery `i -> 100 `i 2024  ]
 {
-"117
-[; ;main.c: 117:         current = colorclick_readColour(current);
-[e = _current ( _colorclick_readColour (1 _current ]
-"118
-[; ;main.c: 118:         read_card(initial, current, &motorL, &motorR);
-[e ( _read_card (4 , , , _initial _current &U _motorL &U _motorR ]
-"120
-[; ;main.c: 120:         if (card_flag==1) {
-[e $ ! == -> _card_flag `i -> 1 `i 2051  ]
-{
-"121
-[; ;main.c: 121:             current = colorclick_readColour(current);
-[e = _current ( _colorclick_readColour (1 _current ]
-"122
-[; ;main.c: 122:             read_card(initial, current, &motorL, &motorR);
-[e ( _read_card (4 , , , _initial _current &U _motorL &U _motorR ]
-"123
-[; ;main.c: 123:             card_flag = 0;
-[e = _card_flag -> -> 0 `i `uc ]
-"124
-[; ;main.c: 124:         }
-}
-[e :U 2051 ]
-"126
-[; ;main.c: 126:         if (battery_flag==1) {
-[e $ ! == -> _battery_flag `i -> 1 `i 2052  ]
-{
-"127
-[; ;main.c: 127:             LATDbits.LATD7 = 1;
+"101
+[; ;main.c: 101:         LATDbits.LATD7 = 1;
 [e = . . _LATDbits 0 7 -> -> 1 `i `uc ]
-"128
-[; ;main.c: 128:             LATHbits.LATH3 = 1;
+"102
+[; ;main.c: 102:         LATHbits.LATH3 = 1;
 [e = . . _LATHbits 0 3 -> -> 1 `i `uc ]
-"129
-[; ;main.c: 129:             battery_flag = 0;
+"103
+[; ;main.c: 103:     } else if (battery<200) {
+}
+[e $U 2025  ]
+[e :U 2024 ]
+[e $ ! < -> _battery `i -> 200 `i 2026  ]
+{
+"104
+[; ;main.c: 104:         LATDbits.LATD7 = 1;
+[e = . . _LATDbits 0 7 -> -> 1 `i `uc ]
+"105
+[; ;main.c: 105:         LATHbits.LATH3 = 0;
+[e = . . _LATHbits 0 3 -> -> 0 `i `uc ]
+"106
+[; ;main.c: 106:     } else {
+}
+[e $U 2027  ]
+[e :U 2026 ]
+{
+"107
+[; ;main.c: 107:         LATDbits.LATD7 = 0;
+[e = . . _LATDbits 0 7 -> -> 0 `i `uc ]
+"108
+[; ;main.c: 108:         LATHbits.LATH3 = 0;
+[e = . . _LATHbits 0 3 -> -> 0 `i `uc ]
+"109
+[; ;main.c: 109:     }
+}
+[e :U 2027 ]
+[e :U 2025 ]
+"110
+[; ;main.c: 110:     _delay((unsigned long)((1000)*(64000000/4000.0)));
+[e ( __delay (1 -> * -> -> 1000 `i `d / -> -> 64000000 `l `d .4000.0 `ul ]
+"111
+[; ;main.c: 111:     forward(&motorL, &motorR);
+[e ( _forward (2 , &U _motorL &U _motorR ]
+"116
+[; ;main.c: 116:     RGB_val current;
+[v _current `S2021 ~T0 @X0 1 a ]
+"117
+[; ;main.c: 117:     while(1) {
+[e :U 2029 ]
+{
+"134
+[; ;main.c: 134:         current = colorclick_readColour(current);
+[e = _current ( _colorclick_readColour (1 _current ]
+"135
+[; ;main.c: 135:         read_card(initial, current, &motorL, &motorR);
+[e ( _read_card (4 , , , _initial _current &U _motorL &U _motorR ]
+"137
+[; ;main.c: 137:         if (card_flag==1) {
+[e $ ! == -> _card_flag `i -> 1 `i 2031  ]
+{
+"138
+[; ;main.c: 138:             current = colorclick_readColour(current);
+[e = _current ( _colorclick_readColour (1 _current ]
+"139
+[; ;main.c: 139:             read_card(initial, current, &motorL, &motorR);
+[e ( _read_card (4 , , , _initial _current &U _motorL &U _motorR ]
+"140
+[; ;main.c: 140:             card_flag = 0;
+[e = _card_flag -> -> 0 `i `uc ]
+"141
+[; ;main.c: 141:         }
+}
+[e :U 2031 ]
+"143
+[; ;main.c: 143:         if (battery_flag==1) {
+[e $ ! == -> _battery_flag `i -> 1 `i 2032  ]
+{
+"144
+[; ;main.c: 144:             LATDbits.LATD7 = 1;
+[e = . . _LATDbits 0 7 -> -> 1 `i `uc ]
+"145
+[; ;main.c: 145:             LATHbits.LATH3 = 1;
+[e = . . _LATHbits 0 3 -> -> 1 `i `uc ]
+"146
+[; ;main.c: 146:             battery_flag = 0;
 [e = _battery_flag -> -> 0 `i `uc ]
-"130
-[; ;main.c: 130:         }
+"147
+[; ;main.c: 147:         }
 }
-[e :U 2052 ]
-"131
-[; ;main.c: 131:     }
+[e :U 2032 ]
+"148
+[; ;main.c: 148:     }
 }
-[e :U 2048 ]
-[e $U 2049  ]
-[e :U 2050 ]
-"132
-[; ;main.c: 132: }
+[e :U 2028 ]
+[e $U 2029  ]
+[e :U 2030 ]
+"149
+[; ;main.c: 149: }
 [e :UE 2023 ]
 }
