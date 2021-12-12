@@ -17,12 +17,6 @@ void main(void) {
     unknowncard_flag = 0;
     returnhome_flag = 0;
     
-    ADC_init();
-    colourclick_init();
-    DCmotors_init(PWMperiod);
-    USART4_init();
-    checkbatterylevel();
-    
     DC_motor motorL;                                 // Initialise DC_motor structure for motorL
     motorL.power=0;                                  // Set motor power to 0 at start
     motorL.direction=1;                              // Set default motor direction forward
@@ -39,15 +33,21 @@ void main(void) {
     motorR.dir_pin=6;                                // Pin RG6 controls direction on LAT
     motorR.PWMperiod=PWMperiod;                      // Base period of PWM cycle
     
+    ADC_init();
+    colourclick_init();
+    DCmotors_init(PWMperiod);
+    USART4_init();
+    checkbatterylevel();
+    
     /****************************
      * Colour calibration routine
      ****************************/
-    colourclick_calibration();
+//    colourclick_calibration();
     
     /***************************
      * Motor calibration routine
      ***************************/
-    DCmotors_calibration(&motorL, &motorR);
+//    DCmotors_calibration(&motorL, &motorR);
     
     /******************
      * 
@@ -57,7 +57,7 @@ void main(void) {
     colourclickLEDs_C(1);
     __delay_ms(1000);
 //    interrupts_init();
-    forward(&motorL, &motorR);
+//    forward(&motorL, &motorR);
     
     /*********************
      * Infinite while loop
@@ -67,16 +67,15 @@ void main(void) {
         /*********
          * Testing
          *********/
-        colourcards_testing();
+        colourcards_testing(&current);
         DCmotors_testing(&motorL, &motorR);
         
         /*****************
          * Maze navigation
          *****************/
-        if (colourcard_flag==1) {
-            colourclick_readRGBC(&current);
-            colourcards_readRGBC(&current, &motorL, &motorR);
-            colourcard_flag = 0;
-        }
+//        if (colourcard_flag==1) {
+//            colourcards_readRGBC(&current, &motorL, &motorR);
+//            colourcard_flag = 0;
+//        }
     }
 }

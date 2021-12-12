@@ -24317,6 +24317,16 @@ char *ctermid(char *);
 char *tempnam(const char *, const char *);
 # 2 "colour_cards.c" 2
 
+# 1 "./buttons_n_LEDs.h" 1
+# 39 "./buttons_n_LEDs.h"
+void clicker2buttons_init(void);
+void clicker2LEDs_init(void);
+void buggyLEDs_init(void);
+void colourclickLEDs_init(void);
+void colourclickLEDs_RGB(void);
+void colourclickLEDs_C(unsigned char tog);
+# 3 "colour_cards.c" 2
+
 # 1 "./colour_cards.h" 1
 
 
@@ -24330,15 +24340,6 @@ void ADC_init(void);
 unsigned char ADC_getval(void);
 # 16 "./main.h" 2
 
-# 1 "./buttons_n_LEDs.h" 1
-# 39 "./buttons_n_LEDs.h"
-void clicker2buttons_init(void);
-void clicker2LEDs_init(void);
-void buggyLEDs_init(void);
-void colourclickLEDs_init(void);
-void colourclickLEDs_RGB(void);
-void colourclickLEDs_C(unsigned char tog);
-# 17 "./main.h" 2
 
 # 1 "./colour_cards.h" 1
 # 18 "./main.h" 2
@@ -24501,8 +24502,8 @@ extern volatile unsigned char returnhome_flag;
 
 void colourcards_readRGBC(RGBC_val *tmpval, DC_motor *mL, DC_motor *mR);
 void colourcards_readHSV(RGBC_val *tmpval, DC_motor *mL, DC_motor *mR);
-void colourcards_testing(void);
-# 3 "colour_cards.c" 2
+void colourcards_testing(RGBC_val *tmpval);
+# 4 "colour_cards.c" 2
 
 
 
@@ -24517,6 +24518,7 @@ void colourcards_readRGBC(RGBC_val *tmpval, DC_motor *mL, DC_motor *mR)
     PIE0bits.INT1IE = 0;
 
 
+    colourclick_readRGBC(tmpval);
     float R_rel = (float)tmpval->R / (float)tmpval->C;
     float G_rel = (float)tmpval->G / (float)tmpval->C;
     float B_rel = (float)tmpval->B / (float)tmpval->C;
@@ -24603,18 +24605,60 @@ void colourcards_readHSV(RGBC_val *tmpval, DC_motor *mL, DC_motor *mR)
 
 
 
-void colourcards_testing(void)
+void colourcards_testing(RGBC_val *tmpval)
 {
+    while (PORTFbits.RF2);
     INTCONbits.GIE = 0;
 
-    RGBC_val current;
-    colourclick_readRGBC(&current);
+    colourclick_readRGBC(tmpval);
+    float R = (float)tmpval->R;
+    float G = (float)tmpval->G;
+    float B = (float)tmpval->B;
+    float C = (float)tmpval->C;
+    float R_rel = R/C;
+    float G_rel = G/C;
+    float B_rel = B/C;
+
+    char colour;
+    if ((R_rel>0.54) && (G_rel<0.245) && (B_rel<0.18)) {
+
+        char colour[] = "red";
+
+    } else if ((R_rel<0.435) && (G_rel>0.31) && (B_rel>0.195)) {
+
+        char colour[] = "green";
+
+    } else if ((R_rel<0.43) && (G_rel>0.30) && (B_rel>0.21)) {
+
+        char colour[] = "blue";
+
+    } else if ((R_rel>0.49) && (G_rel>0.285) && (B_rel>0.18)) {
+
+        char colour[] = "yellow";
+
+    } else if ((R_rel>0.49) && (G_rel<0.275) && (B_rel>0.195)) {
+
+        char colour[] = "pink";
+
+    } else if ((R_rel>0.54) && (G_rel<0.24) && (B_rel<0.18)) {
+
+        char colour[] = "orange";
+
+    } else if ((R_rel<0.44) && (G_rel>0.305) && (B_rel>0.21)) {
+
+        char colour[] = "light blue";
+
+    } else if ((R_rel<0.46) && (G_rel>0.295) && (B_rel>0.21)) {
+
+        char colour[] = "white";
+
+    } else {
+
+        char colour[] = "unknown";
+    }
+
     char buf[100];
-    float R_rel = (float)current.R / (float)current.C;
-    float G_rel = (float)current.G / (float)current.C;
-    float B_rel = (float)current.B / (float)current.C;
-    float C_rel = (float)current.C / (float)current.C;
-    sprintf(buf,"RGBC: %i %i %i %i     RGBC_rel: %.3f %.3f %.3f %.3f\n\r", current.R, current.G, current.B, current.C, R_rel, G_rel, B_rel, C_rel);
+    sprintf(buf,"RGBC: %i %i %i %i     RGBC_rel: %.3f %.3f %.3f     Colour: %s\n\r", R, G, B, C, R_rel, G_rel, B_rel, colour);
 
     sendStringSerial4(buf);
     _delay((unsigned long)((500)*(64000000/4000.0)));

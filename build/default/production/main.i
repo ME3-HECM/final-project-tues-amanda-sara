@@ -24422,7 +24422,7 @@ extern volatile unsigned char returnhome_flag;
 
 void colourcards_readRGBC(RGBC_val *tmpval, DC_motor *mL, DC_motor *mR);
 void colourcards_readHSV(RGBC_val *tmpval, DC_motor *mL, DC_motor *mR);
-void colourcards_testing(void);
+void colourcards_testing(RGBC_val *tmpval);
 # 18 "./main.h" 2
 
 
@@ -24529,12 +24529,6 @@ void main(void) {
     unknowncard_flag = 0;
     returnhome_flag = 0;
 
-    ADC_init();
-    colourclick_init();
-    DCmotors_init(PWMperiod);
-    USART4_init();
-    checkbatterylevel();
-
     DC_motor motorL;
     motorL.power=0;
     motorL.direction=1;
@@ -24551,25 +24545,18 @@ void main(void) {
     motorR.dir_pin=6;
     motorR.PWMperiod=PWMperiod;
 
-
-
-
-    colourclick_calibration();
-
-
-
-
-    DCmotors_calibration(&motorL, &motorR);
-
-
-
-
+    ADC_init();
+    colourclick_init();
+    DCmotors_init(PWMperiod);
+    USART4_init();
+    checkbatterylevel();
+# 55 "main.c"
     while(PORTFbits.RF2 && PORTFbits.RF3);
     LATDbits.LATD3 = 1;
     colourclickLEDs_C(1);
     _delay((unsigned long)((1000)*(64000000/4000.0)));
 
-    forward(&motorL, &motorR);
+
 
 
 
@@ -24579,16 +24566,8 @@ void main(void) {
 
 
 
-        colourcards_testing();
+        colourcards_testing(&current);
         DCmotors_testing(&motorL, &motorR);
-
-
-
-
-        if (colourcard_flag==1) {
-            colourclick_readRGBC(&current);
-            colourcards_readRGBC(&current, &motorL, &motorR);
-            colourcard_flag = 0;
-        }
+# 80 "main.c"
     }
 }
