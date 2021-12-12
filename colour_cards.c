@@ -70,7 +70,7 @@ void colourcards_readRGBC(RGBC_val *tmpval, DC_motor *mL, DC_motor *mR)
         // Unknown card - Return back to the starting position if final card cannot be found
         __delay_ms(1000);
         colourclick_readRGBC(tmpval);
-        if ((tmpval->C < interrupts_lower) || (tmpval->C > interrupts_upper)) {
+        if ((tmpval->C < interrupts_lowerbound) || (tmpval->C > interrupts_upperbound)) {
             if (unknowncard_flag<3) {
                 PIR0bits.INT1IF = 1;
                 unknowncard_flag++;
@@ -100,70 +100,83 @@ void colourcards_readHSV(RGBC_val *tmpval, DC_motor *mL, DC_motor *mR)
 }
 
 /*************************
- * 
+ * colourcards_testingRGBC
  ************************/
-void colourcards_testing(RGBC_val *tmpval)
+void colourcards_testingRGBC()
 {
-    while (RF2_BUTTON);
+    while (RF2_BUTTON && RF3_BUTTON);
     INTCONbits.GIE = 0;
+    MAINBEAM_LED = 1;
+    colourclickLEDs_C(1);
+    __delay_ms(1000);
     
-    colourclick_readRGBC(tmpval);
-    int R = tmpval->R;
-    int G = tmpval->G;
-    int B = tmpval->B;
-    int C = tmpval->C;
-    float R_rel = (float)R/(float)C;
-    float G_rel = (float)G/(float)C;
-    float B_rel = (float)B/(float)C;
-    
-    char buf1[100];
-    if ((R_rel>0.54) && (G_rel<0.245) && (B_rel<0.18)) {
-        // Red card - Turn right 90 degrees
-        sprintf(buf1,"RGBC: %i %i %i %i     RGBC_rel: %.3f %.3f %.3f     Colour: %s\n\r",\
-                R, G, B, C, R_rel, G_rel, B_rel, "red");
-        
-    } else if ((R_rel<0.435) && (G_rel>0.31) && (B_rel>0.195)) {
-        // Green card - Turn left 90 degrees
-        sprintf(buf1,"RGBC: %i %i %i %i     RGBC_rel: %.3f %.3f %.3f     Colour: %s\n\r",\
-                R, G, B, C, R_rel, G_rel, B_rel, "green");
-        
-    } else if ((R_rel<0.43) && (G_rel>0.30) && (B_rel>0.21)) {
-        // Blue card - Turn 180 degrees
-        sprintf(buf1,"RGBC: %i %i %i %i     RGBC_rel: %.3f %.3f %.3f     Colour: %s\n\r",\
-                R, G, B, C, R_rel, G_rel, B_rel, "blue");
-        
-    } else if ((R_rel>0.49) && (G_rel>0.285) && (B_rel>0.18)) {
-        // Yellow card - Reverse 1 square and turn right 90 degrees
-        sprintf(buf1,"RGBC: %i %i %i %i     RGBC_rel: %.3f %.3f %.3f     Colour: %s\n\r",\
-                R, G, B, C, R_rel, G_rel, B_rel, "yellow");
-        
-    } else if ((R_rel>0.49) && (G_rel<0.275) && (B_rel>0.195)) {
-        // Pink card - Reverse 1 square and turn left 90 degrees
-        sprintf(buf1,"RGBC: %i %i %i %i     RGBC_rel: %.3f %.3f %.3f     Colour: %s\n\r",\
-                R, G, B, C, R_rel, G_rel, B_rel, "pink");
-        
-    } else if ((R_rel>0.54) && (G_rel<0.24) && (B_rel<0.18)) {
-        // Orange card - Turn right 135 degrees
-        sprintf(buf1,"RGBC: %i %i %i %i     RGBC_rel: %.3f %.3f %.3f     Colour: %s\n\r",\
-                R, G, B, C, R_rel, G_rel, B_rel, "orange");
-        
-    } else if ((R_rel<0.44) && (G_rel>0.305) && (B_rel>0.21)) {
-        // Light blue card - Turn left 135 degrees
-        sprintf(buf1,"RGBC: %i %i %i %i     RGBC_rel: %.3f %.3f %.3f     Colour: %s\n\r",\
-                R, G, B, C, R_rel, G_rel, B_rel, "light blue");
-        
-    } else if ((R_rel<0.46) && (G_rel>0.295) && (B_rel>0.21)) {
-        // White card - Finish (return home)
-        sprintf(buf1,"RGBC: %i %i %i %i     RGBC_rel: %.3f %.3f %.3f     Colour: %s\n\r",\
-                R, G, B, C, R_rel, G_rel, B_rel, "white");
-        
-    } else {
-        // Unknown card - Return back to the starting position if final card cannot be found
-        sprintf(buf1,"RGBC: %i %i %i %i     RGBC_rel: %.3f %.3f %.3f     Colour: %s\n\r",\
-                R, G, B, C, R_rel, G_rel, B_rel, "unknown");
+    RGBC_val tmpval;
+    while (1) {
+        while (RF2_BUTTON && RF3_BUTTON);
+        colourclick_readRGBC(&tmpval);
+        unsigned int R = tmpval.R;
+        unsigned int G = tmpval.G;
+        unsigned int B = tmpval.B;
+        unsigned int C = tmpval.C;
+        float R_rel = (float)R/(float)C;
+        float G_rel = (float)G/(float)C;
+        float B_rel = (float)B/(float)C;
+
+        char buf[20];
+        if ((R_rel>0.54) && (G_rel<0.245) && (B_rel<0.18)) {
+            // Red card - Turn right 90 degrees
+            sprintf(buf,"RGBC: %i %i %i %i     RGBC_rel: %.3f %.3f %.3f     Colour: %s\n\r",\
+                    R, G, B, C, R_rel, G_rel, B_rel, "red");
+
+        } else if ((R_rel<0.435) && (G_rel>0.31) && (B_rel>0.195)) {
+            // Green card - Turn left 90 degrees
+            sprintf(buf,"RGBC: %i %i %i %i     RGBC_rel: %.3f %.3f %.3f     Colour: %s\n\r",\
+                    R, G, B, C, R_rel, G_rel, B_rel, "green");
+
+        } else if ((R_rel<0.43) && (G_rel>0.30) && (B_rel>0.21)) {
+            // Blue card - Turn 180 degrees
+            sprintf(buf,"RGBC: %i %i %i %i     RGBC_rel: %.3f %.3f %.3f     Colour: %s\n\r",\
+                    R, G, B, C, R_rel, G_rel, B_rel, "blue");
+
+        } else if ((R_rel>0.49) && (G_rel>0.285) && (B_rel>0.18)) {
+            // Yellow card - Reverse 1 square and turn right 90 degrees
+            sprintf(buf,"RGBC: %i %i %i %i     RGBC_rel: %.3f %.3f %.3f     Colour: %s\n\r",\
+                    R, G, B, C, R_rel, G_rel, B_rel, "yellow");
+
+        } else if ((R_rel>0.49) && (G_rel<0.275) && (B_rel>0.195)) {
+            // Pink card - Reverse 1 square and turn left 90 degrees
+            sprintf(buf,"RGBC: %i %i %i %i     RGBC_rel: %.3f %.3f %.3f     Colour: %s\n\r",\
+                    R, G, B, C, R_rel, G_rel, B_rel, "pink");
+
+        } else if ((R_rel>0.54) && (G_rel<0.24) && (B_rel<0.18)) {
+            // Orange card - Turn right 135 degrees
+            sprintf(buf,"RGBC: %i %i %i %i     RGBC_rel: %.3f %.3f %.3f     Colour: %s\n\r",\
+                    R, G, B, C, R_rel, G_rel, B_rel, "orange");
+
+        } else if ((R_rel<0.44) && (G_rel>0.305) && (B_rel>0.21)) {
+            // Light blue card - Turn left 135 degrees
+            sprintf(buf,"RGBC: %i %i %i %i     RGBC_rel: %.3f %.3f %.3f     Colour: %s\n\r",\
+                    R, G, B, C, R_rel, G_rel, B_rel, "light blue");
+
+        } else if ((R_rel<0.46) && (G_rel>0.295) && (B_rel>0.21)) {
+            // White card - Finish (return home)
+            sprintf(buf,"RGBC: %i %i %i %i     RGBC_rel: %.3f %.3f %.3f     Colour: %s\n\r",\
+                    R, G, B, C, R_rel, G_rel, B_rel, "white");
+
+        } else {
+            // Unknown card - Return back to the starting position if final card cannot be found
+            sprintf(buf,"RGBC: %i %i %i %i     RGBC_rel: %.3f %.3f %.3f     Colour: %s\n\r",\
+                    R, G, B, C, R_rel, G_rel, B_rel, "unknown");
+        }
+        sendStringSerial4(buf);
+        __delay_ms(500);
     }
-    sendStringSerial4(buf1);
-    __delay_ms(500);
+}
+
+/************************
+ * colourcards_testingHSV
+ ************************/
+void colourcards_testingHSV(RGBC_val *tmpval)
+{
     
-    INTCONbits.GIE = 1;
 }

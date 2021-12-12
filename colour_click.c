@@ -1,12 +1,9 @@
 #include <xc.h>
+#include <stdio.h>
 #include "colour_click.h"
 #include "buttons_n_LEDs.h"
 #include "I2C.h"
-
-#define AILTL 0x04
-#define AILTH 0x05
-#define AIHTL 0x06
-#define AIHTH 0x07
+#include "serial_comm.h"
 
 volatile unsigned int clear_lower;
 volatile unsigned int clear_upper;
@@ -165,15 +162,19 @@ void colourclick_readRGBC2(RGBC_val *tmpval)
     colourclickLEDs_C(1);
 }
 
-/******************
- * 
- ********************/
+/*************************
+ * colourclick_calibration
+ * function used to
+ *************************/
 void colourclick_calibration(void) {
     RGBC_val initial;
     while(RF2_BUTTON);
+    MAINBEAM_LED = 1;
+    colourclickLEDs_C(1);
     RD7_LED = 1;
+    __delay_ms(1000);
     colourclick_readRGBC(&initial); //read initial light value
-    __delay_ms(100);
+    __delay_ms(1000);
     RD7_LED = 0;
     
     unsigned char i;
@@ -182,12 +183,30 @@ void colourclick_calibration(void) {
         while(RF2_BUTTON);
         RD7_LED = 1;
         colourclick_readRGBC(&current);
-        if ((current.C<initial.C) && (current.C>interrupts_lower)) {
-            interrupts_lower = current.C;
-        } else if ((current.C>initial.C) && (current.C<interrupts_upper)) {
-            interrupts_upper = current.C;
+        if ((current.C<initial.C) && (current.C>interrupts_lowerbound)) {
+            interrupts_lowerbound = current.C;
+        } else if ((current.C>initial.C) && (current.C<interrupts_upperbound)) {
+            interrupts_upperbound = current.C;
         }
+        colourclick_testing(&initial, &current);
         __delay_ms(100);
         RD7_LED = 0;
     }
+    MAINBEAM_LED = 0;
+    colourclickLEDs_C(0);
+}
+
+void colourclick_testing(RGBC_val *initial, RGBC_val *current)
+{
+    unsigned int ambient = initial->C;
+    unsigned int R = current->R;
+    unsigned int G = current->G;
+    unsigned int B = current->B;
+    unsigned int C = current->C;
+    
+    char buf[40];
+    sprintf(buf,"RGBC: %i %i %i %i     Threshold: %i %i %i\n\r",\
+            R, G, B, C, interrupts_lowerbound, ambient, interrupts_upperbound);
+    sendStringSerial4(buf);
+    __delay_ms(500);
 }

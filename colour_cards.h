@@ -11,6 +11,7 @@
 /******************
  * Global variables
  ******************/
+
 extern volatile unsigned char colourcard_flag;  // Toggled when any colour card is encountered
 extern volatile unsigned char unknowncard_flag; // Incremented when card cannot be identified
 extern volatile unsigned char returnhome_flag;  // Toggled when the final card has been found (i.e. encountered the white card)
@@ -21,6 +22,7 @@ extern volatile unsigned char returnhome_flag;  // Toggled when the final card h
  *********************/
 void colourcards_readRGBC(RGBC_val *tmpval, DC_motor *mL, DC_motor *mR);
 void colourcards_readHSV(RGBC_val *tmpval, DC_motor *mL, DC_motor *mR);
-void colourcards_testing(RGBC_val *tmpval);
+void colourcards_testingRGBC();
+void colourcards_testingHSV();
 
 #endif // End of _COLOUR_CARDS_H

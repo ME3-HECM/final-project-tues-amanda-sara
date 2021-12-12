@@ -9,10 +9,9 @@ void main(void) {
      * Initialisation functions
      **************************/
     unsigned char PWMperiod = 99; // 0.0001s*(64MHz/4)/16 -1 = 99
-    interrupts_lower = 0;
-    interrupts_upper = 65535;
-    DCmotors_lower = 50;
-    DCmotors_upper = 50;
+    DCmotors_turntime = 100;
+    interrupts_lowerbound = 0;
+    interrupts_upperbound = 32767;
     colourcard_flag = 0;
     unknowncard_flag = 0;
     returnhome_flag = 0;
@@ -42,40 +41,34 @@ void main(void) {
     /****************************
      * Colour calibration routine
      ****************************/
-//    colourclick_calibration();
+    colourclick_calibration();
+    colourcards_testingRGBC();
     
     /***************************
      * Motor calibration routine
      ***************************/
+    checkbatterylevel();
 //    DCmotors_calibration(&motorL, &motorR);
+//    DCmotors_testing(&motorL, &motorR);
     
-    /******************
-     * 
-     *****************/
+    /***************
+     * Getting ready
+     ***************/
     while(RF2_BUTTON && RF3_BUTTON);
     MAINBEAM_LED = 1;
     colourclickLEDs_C(1);
     __delay_ms(1000);
 //    interrupts_init();
-//    forward(&motorL, &motorR);
+    forward(&motorL, &motorR);
     
-    /*********************
-     * Infinite while loop
-     *********************/
+    /*****************
+     * Maze navigation
+     *****************/
     RGBC_val current;
     while(1) {
-        /*********
-         * Testing
-         *********/
-        colourcards_testing(&current);
-//        DCmotors_testing(&motorL, &motorR);
-        
-        /*****************
-         * Maze navigation
-         *****************/
-//        if (colourcard_flag==1) {
-//            colourcards_readRGBC(&current, &motorL, &motorR);
-//            colourcard_flag = 0;
-//        }
+        if (colourcard_flag==1) {
+            colourcards_readRGBC(&current, &motorL, &motorR);
+            colourcard_flag = 0;
+        }
     }
 }

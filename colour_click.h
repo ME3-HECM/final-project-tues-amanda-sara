@@ -15,8 +15,8 @@ typedef struct {             // Define a structure
 /******************
  * Global variables
  ******************/
-extern volatile unsigned int interrupts_lower; // Lower threshold value to trigger interrupts
-extern volatile unsigned int interrupts_upper; // Upper threshold value to trigger interrupts
+extern volatile unsigned int interrupts_lowerbound; // Lower threshold value to trigger interrupts
+extern volatile unsigned int interrupts_upperbound; // Upper threshold value to trigger interrupts
 
 /*********************
  * Function prototypes
@@ -30,5 +30,6 @@ unsigned int colourclick_readC(void);
 void colourclick_readRGBC(RGBC_val *tmpval);
 void colourclick_readRGBC2(RGBC_val *tmpval);
 void colourclick_calibration(void);
+void colourclick_testing(RGBC_val *initval, RGBC_val *tmpval);
 
 #endif // End of _COLOUR_CLICK_H

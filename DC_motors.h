@@ -5,6 +5,9 @@
 
 #define _XTAL_FREQ 64000000 // Note intrinsic _delay function is 62.5ns at 64,000,000Hz
 
+#define HIGH 50
+#define LOW 50
+
 /*************
  * RGBC values
  *************/
@@ -20,8 +23,7 @@ typedef struct {                 // Define a structure
 /******************
  * Global variables
  ******************/
-extern volatile unsigned char DCmotors_lower;
-extern volatile unsigned char DCmotors_upper;
+extern volatile unsigned int DCmotors_turntime;
 extern volatile unsigned char returnhome_flag; // Toggled when the final card has been found (i.e. encountered the white card)
                                                // or in exceptional scenarios (i.e. cannot identify a card or stuck in the maze for too long)
 

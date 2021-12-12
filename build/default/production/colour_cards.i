@@ -24353,8 +24353,8 @@ typedef struct {
 
 
 
-extern volatile unsigned int interrupts_lower;
-extern volatile unsigned int interrupts_upper;
+extern volatile unsigned int interrupts_lowerbound;
+extern volatile unsigned int interrupts_upperbound;
 
 
 
@@ -24368,10 +24368,11 @@ unsigned int colourclick_readC(void);
 void colourclick_readRGBC(RGBC_val *tmpval);
 void colourclick_readRGBC2(RGBC_val *tmpval);
 void colourclick_calibration(void);
+void colourclick_testing(RGBC_val *initval, RGBC_val *tmpval);
 # 19 "./main.h" 2
 
 # 1 "./DC_motors.h" 1
-# 11 "./DC_motors.h"
+# 14 "./DC_motors.h"
 typedef struct {
     char power;
     char direction;
@@ -24384,8 +24385,7 @@ typedef struct {
 
 
 
-extern volatile unsigned char DCmotors_lower;
-extern volatile unsigned char DCmotors_upper;
+extern volatile unsigned int DCmotors_turntime;
 extern volatile unsigned char returnhome_flag;
 
 
@@ -24419,9 +24419,9 @@ unsigned char I2C_2_Master_Read(unsigned char ack);
 # 21 "./main.h" 2
 
 # 1 "./interrupts.h" 1
-# 11 "./interrupts.h"
-extern volatile unsigned int interrupts_lower;
-extern volatile unsigned int interrupts_upper;
+# 16 "./interrupts.h"
+extern volatile unsigned int interrupts_lowerbound;
+extern volatile unsigned int interrupts_upperbound;
 extern volatile unsigned char colourcard_flag;
 extern volatile unsigned char battery_flag;
 
@@ -24483,15 +24483,14 @@ void sendTxBuf(void);
 
 
 
-volatile unsigned int interrupts_lower;
-volatile unsigned int interrupts_upper;
-volatile unsigned char DCmotors_lower;
-volatile unsigned char DCmotors_upper;
+volatile unsigned int DCmotors_turntime;
+volatile unsigned int interrupts_lowerbound;
+volatile unsigned int interrupts_upperbound;
 volatile unsigned char colourcard_flag;
 volatile unsigned char unknowncard_flag;
 volatile unsigned char returnhome_flag;
 # 5 "./colour_cards.h" 2
-# 14 "./colour_cards.h"
+# 15 "./colour_cards.h"
 extern volatile unsigned char colourcard_flag;
 extern volatile unsigned char unknowncard_flag;
 extern volatile unsigned char returnhome_flag;
@@ -24502,7 +24501,8 @@ extern volatile unsigned char returnhome_flag;
 
 void colourcards_readRGBC(RGBC_val *tmpval, DC_motor *mL, DC_motor *mR);
 void colourcards_readHSV(RGBC_val *tmpval, DC_motor *mL, DC_motor *mR);
-void colourcards_testing(RGBC_val *tmpval);
+void colourcards_testingRGBC();
+void colourcards_testingHSV();
 # 4 "colour_cards.c" 2
 
 
@@ -24573,7 +24573,7 @@ void colourcards_readRGBC(RGBC_val *tmpval, DC_motor *mL, DC_motor *mR)
 
         _delay((unsigned long)((1000)*(64000000/4000.0)));
         colourclick_readRGBC(tmpval);
-        if ((tmpval->C < interrupts_lower) || (tmpval->C > interrupts_upper)) {
+        if ((tmpval->C < interrupts_lowerbound) || (tmpval->C > interrupts_upperbound)) {
             if (unknowncard_flag<3) {
                 PIR0bits.INT1IF = 1;
                 unknowncard_flag++;
@@ -24605,68 +24605,81 @@ void colourcards_readHSV(RGBC_val *tmpval, DC_motor *mL, DC_motor *mR)
 
 
 
-void colourcards_testing(RGBC_val *tmpval)
+void colourcards_testingRGBC()
 {
-    while (PORTFbits.RF2);
+    while (PORTFbits.RF2 && PORTFbits.RF3);
     INTCONbits.GIE = 0;
+    LATDbits.LATD3 = 1;
+    colourclickLEDs_C(1);
+    _delay((unsigned long)((1000)*(64000000/4000.0)));
 
-    colourclick_readRGBC(tmpval);
-    int R = tmpval->R;
-    int G = tmpval->G;
-    int B = tmpval->B;
-    int C = tmpval->C;
-    float R_rel = (float)R/(float)C;
-    float G_rel = (float)G/(float)C;
-    float B_rel = (float)B/(float)C;
+    RGBC_val tmpval;
+    while (1) {
+        while (PORTFbits.RF2 && PORTFbits.RF3);
+        colourclick_readRGBC(&tmpval);
+        unsigned int R = tmpval.R;
+        unsigned int G = tmpval.G;
+        unsigned int B = tmpval.B;
+        unsigned int C = tmpval.C;
+        float R_rel = (float)R/(float)C;
+        float G_rel = (float)G/(float)C;
+        float B_rel = (float)B/(float)C;
 
-    char buf1[100];
-    if ((R_rel>0.54) && (G_rel<0.245) && (B_rel<0.18)) {
+        char buf[20];
+        if ((R_rel>0.54) && (G_rel<0.245) && (B_rel<0.18)) {
 
-        sprintf(buf1,"RGBC: %i %i %i %i     RGBC_rel: %.3f %.3f %.3f     Colour: %s\n\r", R, G, B, C, R_rel, G_rel, B_rel, "red");
-
-
-    } else if ((R_rel<0.435) && (G_rel>0.31) && (B_rel>0.195)) {
-
-        sprintf(buf1,"RGBC: %i %i %i %i     RGBC_rel: %.3f %.3f %.3f     Colour: %s\n\r", R, G, B, C, R_rel, G_rel, B_rel, "green");
-
-
-    } else if ((R_rel<0.43) && (G_rel>0.30) && (B_rel>0.21)) {
-
-        sprintf(buf1,"RGBC: %i %i %i %i     RGBC_rel: %.3f %.3f %.3f     Colour: %s\n\r", R, G, B, C, R_rel, G_rel, B_rel, "blue");
+            sprintf(buf,"RGBC: %i %i %i %i     RGBC_rel: %.3f %.3f %.3f     Colour: %s\n\r", R, G, B, C, R_rel, G_rel, B_rel, "red");
 
 
-    } else if ((R_rel>0.49) && (G_rel>0.285) && (B_rel>0.18)) {
+        } else if ((R_rel<0.435) && (G_rel>0.31) && (B_rel>0.195)) {
 
-        sprintf(buf1,"RGBC: %i %i %i %i     RGBC_rel: %.3f %.3f %.3f     Colour: %s\n\r", R, G, B, C, R_rel, G_rel, B_rel, "yellow");
-
-
-    } else if ((R_rel>0.49) && (G_rel<0.275) && (B_rel>0.195)) {
-
-        sprintf(buf1,"RGBC: %i %i %i %i     RGBC_rel: %.3f %.3f %.3f     Colour: %s\n\r", R, G, B, C, R_rel, G_rel, B_rel, "pink");
+            sprintf(buf,"RGBC: %i %i %i %i     RGBC_rel: %.3f %.3f %.3f     Colour: %s\n\r", R, G, B, C, R_rel, G_rel, B_rel, "green");
 
 
-    } else if ((R_rel>0.54) && (G_rel<0.24) && (B_rel<0.18)) {
+        } else if ((R_rel<0.43) && (G_rel>0.30) && (B_rel>0.21)) {
 
-        sprintf(buf1,"RGBC: %i %i %i %i     RGBC_rel: %.3f %.3f %.3f     Colour: %s\n\r", R, G, B, C, R_rel, G_rel, B_rel, "orange");
-
-
-    } else if ((R_rel<0.44) && (G_rel>0.305) && (B_rel>0.21)) {
-
-        sprintf(buf1,"RGBC: %i %i %i %i     RGBC_rel: %.3f %.3f %.3f     Colour: %s\n\r", R, G, B, C, R_rel, G_rel, B_rel, "light blue");
+            sprintf(buf,"RGBC: %i %i %i %i     RGBC_rel: %.3f %.3f %.3f     Colour: %s\n\r", R, G, B, C, R_rel, G_rel, B_rel, "blue");
 
 
-    } else if ((R_rel<0.46) && (G_rel>0.295) && (B_rel>0.21)) {
+        } else if ((R_rel>0.49) && (G_rel>0.285) && (B_rel>0.18)) {
 
-        sprintf(buf1,"RGBC: %i %i %i %i     RGBC_rel: %.3f %.3f %.3f     Colour: %s\n\r", R, G, B, C, R_rel, G_rel, B_rel, "white");
+            sprintf(buf,"RGBC: %i %i %i %i     RGBC_rel: %.3f %.3f %.3f     Colour: %s\n\r", R, G, B, C, R_rel, G_rel, B_rel, "yellow");
 
 
-    } else {
+        } else if ((R_rel>0.49) && (G_rel<0.275) && (B_rel>0.195)) {
 
-        sprintf(buf1,"RGBC: %i %i %i %i     RGBC_rel: %.3f %.3f %.3f     Colour: %s\n\r", R, G, B, C, R_rel, G_rel, B_rel, "unknown");
+            sprintf(buf,"RGBC: %i %i %i %i     RGBC_rel: %.3f %.3f %.3f     Colour: %s\n\r", R, G, B, C, R_rel, G_rel, B_rel, "pink");
 
+
+        } else if ((R_rel>0.54) && (G_rel<0.24) && (B_rel<0.18)) {
+
+            sprintf(buf,"RGBC: %i %i %i %i     RGBC_rel: %.3f %.3f %.3f     Colour: %s\n\r", R, G, B, C, R_rel, G_rel, B_rel, "orange");
+
+
+        } else if ((R_rel<0.44) && (G_rel>0.305) && (B_rel>0.21)) {
+
+            sprintf(buf,"RGBC: %i %i %i %i     RGBC_rel: %.3f %.3f %.3f     Colour: %s\n\r", R, G, B, C, R_rel, G_rel, B_rel, "light blue");
+
+
+        } else if ((R_rel<0.46) && (G_rel>0.295) && (B_rel>0.21)) {
+
+            sprintf(buf,"RGBC: %i %i %i %i     RGBC_rel: %.3f %.3f %.3f     Colour: %s\n\r", R, G, B, C, R_rel, G_rel, B_rel, "white");
+
+
+        } else {
+
+            sprintf(buf,"RGBC: %i %i %i %i     RGBC_rel: %.3f %.3f %.3f     Colour: %s\n\r", R, G, B, C, R_rel, G_rel, B_rel, "unknown");
+
+        }
+        sendStringSerial4(buf);
+        _delay((unsigned long)((500)*(64000000/4000.0)));
     }
-    sendStringSerial4(buf1);
-    _delay((unsigned long)((500)*(64000000/4000.0)));
+}
 
-    INTCONbits.GIE = 1;
+
+
+
+void colourcards_testingHSV(RGBC_val *tmpval)
+{
+
 }

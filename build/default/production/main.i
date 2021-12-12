@@ -24352,8 +24352,8 @@ typedef struct {
 
 
 
-extern volatile unsigned int interrupts_lower;
-extern volatile unsigned int interrupts_upper;
+extern volatile unsigned int interrupts_lowerbound;
+extern volatile unsigned int interrupts_upperbound;
 
 
 
@@ -24367,10 +24367,11 @@ unsigned int colourclick_readC(void);
 void colourclick_readRGBC(RGBC_val *tmpval);
 void colourclick_readRGBC2(RGBC_val *tmpval);
 void colourclick_calibration(void);
+void colourclick_testing(RGBC_val *initval, RGBC_val *tmpval);
 # 6 "./colour_cards.h" 2
 
 # 1 "./DC_motors.h" 1
-# 11 "./DC_motors.h"
+# 14 "./DC_motors.h"
 typedef struct {
     char power;
     char direction;
@@ -24383,8 +24384,7 @@ typedef struct {
 
 
 
-extern volatile unsigned char DCmotors_lower;
-extern volatile unsigned char DCmotors_upper;
+extern volatile unsigned int DCmotors_turntime;
 extern volatile unsigned char returnhome_flag;
 
 
@@ -24412,6 +24412,7 @@ void DCmotors_testing(DC_motor *mL, DC_motor *mR);
 
 
 
+
 extern volatile unsigned char colourcard_flag;
 extern volatile unsigned char unknowncard_flag;
 extern volatile unsigned char returnhome_flag;
@@ -24422,7 +24423,8 @@ extern volatile unsigned char returnhome_flag;
 
 void colourcards_readRGBC(RGBC_val *tmpval, DC_motor *mL, DC_motor *mR);
 void colourcards_readHSV(RGBC_val *tmpval, DC_motor *mL, DC_motor *mR);
-void colourcards_testing(RGBC_val *tmpval);
+void colourcards_testingRGBC();
+void colourcards_testingHSV();
 # 18 "./main.h" 2
 
 
@@ -24439,9 +24441,9 @@ unsigned char I2C_2_Master_Read(unsigned char ack);
 # 21 "./main.h" 2
 
 # 1 "./interrupts.h" 1
-# 11 "./interrupts.h"
-extern volatile unsigned int interrupts_lower;
-extern volatile unsigned int interrupts_upper;
+# 16 "./interrupts.h"
+extern volatile unsigned int interrupts_lowerbound;
+extern volatile unsigned int interrupts_upperbound;
 extern volatile unsigned char colourcard_flag;
 extern volatile unsigned char battery_flag;
 
@@ -24503,10 +24505,9 @@ void sendTxBuf(void);
 
 
 
-volatile unsigned int interrupts_lower;
-volatile unsigned int interrupts_upper;
-volatile unsigned char DCmotors_lower;
-volatile unsigned char DCmotors_upper;
+volatile unsigned int DCmotors_turntime;
+volatile unsigned int interrupts_lowerbound;
+volatile unsigned int interrupts_upperbound;
 volatile unsigned char colourcard_flag;
 volatile unsigned char unknowncard_flag;
 volatile unsigned char returnhome_flag;
@@ -24521,10 +24522,9 @@ void main(void) {
 
 
     unsigned char PWMperiod = 99;
-    interrupts_lower = 0;
-    interrupts_upper = 65535;
-    DCmotors_lower = 50;
-    DCmotors_upper = 50;
+    DCmotors_turntime = 100;
+    interrupts_lowerbound = 0;
+    interrupts_upperbound = 32767;
     colourcard_flag = 0;
     unknowncard_flag = 0;
     returnhome_flag = 0;
@@ -24550,23 +24550,38 @@ void main(void) {
     DCmotors_init(PWMperiod);
     USART4_init();
     checkbatterylevel();
-# 55 "main.c"
+
+
+
+
+    colourclick_calibration();
+    colourcards_testingRGBC();
+
+
+
+
+    checkbatterylevel();
+
+
+
+
+
+
     while(PORTFbits.RF2 && PORTFbits.RF3);
     LATDbits.LATD3 = 1;
     colourclickLEDs_C(1);
     _delay((unsigned long)((1000)*(64000000/4000.0)));
 
-
+    forward(&motorL, &motorR);
 
 
 
 
     RGBC_val current;
     while(1) {
-
-
-
-        colourcards_testing(&current);
-# 80 "main.c"
+        if (colourcard_flag==1) {
+            colourcards_readRGBC(&current, &motorL, &motorR);
+            colourcard_flag = 0;
+        }
     }
 }
