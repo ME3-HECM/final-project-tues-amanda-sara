@@ -24550,19 +24550,8 @@ void main(void) {
     DCmotors_init(PWMperiod);
     USART4_init();
     checkbatterylevel();
-
-
-
-
-    colourclick_calibration();
-    colourcards_testingRGBC();
-
-
-
-
-    checkbatterylevel();
-
-
+# 51 "main.c"
+    DCmotors_testing(&motorL, &motorR);
 
 
 

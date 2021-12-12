@@ -41,15 +41,14 @@ void main(void) {
     /****************************
      * Colour calibration routine
      ****************************/
-    colourclick_calibration();
-    colourcards_testingRGBC();
+//    colourclick_calibration();
+//    colourcards_testingRGBC();
     
     /***************************
      * Motor calibration routine
      ***************************/
-    checkbatterylevel();
 //    DCmotors_calibration(&motorL, &motorR);
-//    DCmotors_testing(&motorL, &motorR);
+    DCmotors_testing(&motorL, &motorR);
     
     /***************
      * Getting ready

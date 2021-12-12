@@ -74,7 +74,7 @@ void checkbatterylevel(void)
 {
     unsigned char batterylevel;
     batterylevel = ADC_getval();
-    if (batterylevel<150) {
+    if (batterylevel<200) {
         RD7_LED = 1;
     } else {
         RD7_LED = 0;
@@ -90,14 +90,14 @@ void forward(DC_motor *mL, DC_motor *mR)
     mL->direction = 1; // left wheels go forward
     mR->direction = 1; // right wheels go forward
     
-    // make both motors accelerate to 100
-    while((mL->power < 100) && (mR->power < 100)){    // will be True until both motors have 100 power
-        mL->power += 1;
-        mR->power += 1;
+    // make both motors accelerate to 40
+    while((mL->power < 20) && (mR->power < 20)){    // will be True until both motors have 100 power
+        mL->power += 10;
+        mR->power += 10;
         // set PWM output
         DCmotors_setPWM(mL);
         DCmotors_setPWM(mR);
-        __delay_ms(100);
+        __delay_us(50);
     }
 }
 
@@ -111,14 +111,14 @@ void reverse(DC_motor *mL, DC_motor *mR)
     mL->direction = 0; // left wheels go forward
     mR->direction = 0; // right wheels go forward
     
-    // make both motors accelerate to 100
-    while((mL->power < 100) && (mR->power < 100)){    // will be True until both motors have 100 power
-        mL->power += 1;
-        mR->power += 1;
+    // make both motors accelerate to 50
+    while((mL->power < 40) && (mR->power < 40)){    // will be True until both motors have 100 power
+        mL->power += 10;
+        mR->power += 10;
         // set PWM output
         DCmotors_setPWM(mL);
         DCmotors_setPWM(mR);
-        __delay_ms(100);
+        __delay_us(50);
     }
 }
 
@@ -132,13 +132,13 @@ void stop(DC_motor *mL, DC_motor *mR)
     
     // need to slowly bring both motors to a stop
     while((mL->power > 0) && (mR->power > 0)){    // will be True until both motors have 0 power
-        mL->power -= 1;
-        mR->power -= 1;
+        mL->power -= 10;
+        mR->power -= 10;
         
         // set PWM output
         DCmotors_setPWM(mL);
         DCmotors_setPWM(mR);
-        __delay_ms(100);    // set a delay so that motor decelerates non-instantaneously
+        __delay_us(50);    // set a delay so that motor decelerates non-instantaneously
     }
     
     BRAKE_LED = 0;
@@ -149,6 +149,9 @@ void stop(DC_motor *mL, DC_motor *mR)
  *******************/
 void left(DC_motor *mL, DC_motor *mR, unsigned int deg)
 {
+    // Calculations
+    double delay = (deg*12.5) - 135;
+    
     // in order for it to make it turn on the spot: (Assume it was stationary before)
     mL->direction = 0; // left wheels go backward
     mR->direction = 1; // right wheels go forward
@@ -159,14 +162,17 @@ void left(DC_motor *mL, DC_motor *mR, unsigned int deg)
         TURNLEFT_LED = !TURNLEFT_LED;
 
         // gradually turn left
-        if (mL->power < LOW) {mL->power += 1;}
-        if (mR->power < HIGH) {mR->power += 1;}
+        if (mL->power < LOW) {mL->power += 10;}
+        if (mR->power < HIGH) {mR->power += 10;}
 
         // set PWM output
         DCmotors_setPWM(mL);
         DCmotors_setPWM(mR);
-        __delay_ms(100);
+        __delay_us(50);
     }
+    
+    unsigned int i;
+    for (i=0; i<delay; i++) {__delay_ms(1);}
     // switch off left signal
     TURNLEFT_LED = 0;
 }
@@ -176,6 +182,9 @@ void left(DC_motor *mL, DC_motor *mR, unsigned int deg)
  ***********/
 void right(DC_motor *mL, DC_motor *mR, unsigned int deg)
 {
+    // Calculations
+    unsigned int delay = (8*deg) + 180;
+    
     // in order for it to make it turn on the spot: (Assume it was stationary before)
     mL->direction = 1; // left wheels go forward
     mR->direction = 0; // right wheels go backward
@@ -186,14 +195,18 @@ void right(DC_motor *mL, DC_motor *mR, unsigned int deg)
         TURNRIGHT_LED = !TURNRIGHT_LED;
 
         // gradually turn right
-        if (mL->power < HIGH) {mL->power += 1;}
-        if (mR->power < LOW) {mR->power += 1;}
+        if (mL->power < HIGH) {mL->power += 10;}
+        if (mR->power < LOW) {mR->power += 10;}
 
         // set PWM output
         DCmotors_setPWM(mL);
         DCmotors_setPWM(mR);
-        __delay_ms(100);
+        __delay_us(50);
     }
+    
+    unsigned int i;
+    for (i=0; i<delay; i++) {__delay_ms(1);}
+    __delay_ms(1);
     // switch off right signal
     TURNRIGHT_LED = 0;
 }
@@ -232,6 +245,7 @@ void DCmotors_calibration(DC_motor *mL, DC_motor *mR)
     while(RF2_BUTTON && RF3_BUTTON);
     MAINBEAM_LED = 1;
     turnleft(mL, mR, 360);
+    __delay_ms(1000);
     stop(mL, mR);
     
     while(RF2_BUTTON && RF3_BUTTON);
@@ -242,6 +256,7 @@ void DCmotors_calibration(DC_motor *mL, DC_motor *mR)
     while(RF2_BUTTON && RF3_BUTTON);
     MAINBEAM_LED = 1;
     turnright(mL, mR, 360);
+    __delay_ms(1000);
     stop(mL, mR);
     
     while(RF2_BUTTON && RF3_BUTTON);
@@ -282,41 +297,49 @@ void DCmotors_testing(DC_motor *mL, DC_motor *mR)
     
     while (RF2_BUTTON && RF3_BUTTON);
     forward(mL, mR);
+    __delay_ms(1000);
     stop(mL, mR);
-    __delay_ms(100);
+    __delay_ms(1000);
     
     while (RF2_BUTTON && RF3_BUTTON);
     reverse(mL, mR);
+    __delay_ms(2020);
     stop(mL, mR);
-    __delay_ms(100);
+    __delay_ms(1000);
     
     while (RF2_BUTTON && RF3_BUTTON);
     turnright(mL, mR, 90);
+//    __delay_ms(920);
     stop(mL, mR);
     __delay_ms(100);
     
     while (RF2_BUTTON && RF3_BUTTON);
     turnleft(mL, mR, 90);
+//    __delay_ms(995);
     stop(mL, mR);
     __delay_ms(100);
     
     while (RF2_BUTTON && RF3_BUTTON);
     turnright(mL, mR, 180);
+//    __delay_ms(1660);
     stop(mL, mR);
     __delay_ms(100);
     
     while (RF2_BUTTON && RF3_BUTTON);
     turnleft(mL, mR, 180);
+//    __delay_ms(2115);
     stop(mL, mR);
     __delay_ms(100);
     
     while (RF2_BUTTON && RF3_BUTTON);
     turnright(mL, mR, 135);
+//    __delay_ms(1240);
     stop(mL, mR);
     __delay_ms(100);
     
     while (RF2_BUTTON && RF3_BUTTON);
     turnleft(mL, mR, 135);
+//    __delay_ms(1555);
     stop(mL, mR);
     __delay_ms(100);
     

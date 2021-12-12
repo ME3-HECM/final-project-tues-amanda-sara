@@ -24527,16 +24527,19 @@ void colourcards_readRGBC(RGBC_val *tmpval, DC_motor *mL, DC_motor *mR)
     if ((R_rel>0.54) && (G_rel<0.245) && (B_rel<0.18)) {
 
         turnright(mL, mR, 90);
+        stop(mL, mR);
         unknowncard_flag = 0;
 
     } else if ((R_rel<0.435) && (G_rel>0.31) && (B_rel>0.195)) {
 
         turnleft(mL, mR, 90);
+        stop(mL, mR);
         unknowncard_flag = 0;
 
     } else if ((R_rel<0.43) && (G_rel>0.30) && (B_rel>0.21)) {
 
         turnright(mL, mR, 180);
+        stop(mL, mR);
         unknowncard_flag = 0;
 
     } else if ((R_rel>0.49) && (G_rel>0.285) && (B_rel>0.18)) {
@@ -24544,6 +24547,7 @@ void colourcards_readRGBC(RGBC_val *tmpval, DC_motor *mL, DC_motor *mR)
         reverse(mL, mR);
         stop(mL, mR);
         turnright(mL, mR, 90);
+        stop(mL, mR);
         unknowncard_flag = 0;
 
     } else if ((R_rel>0.49) && (G_rel<0.275) && (B_rel>0.195)) {
@@ -24551,21 +24555,25 @@ void colourcards_readRGBC(RGBC_val *tmpval, DC_motor *mL, DC_motor *mR)
         reverse(mL, mR);
         stop(mL, mR);
         turnleft(mL, mR, 90);
+        stop(mL, mR);
         unknowncard_flag = 0;
 
     } else if ((R_rel>0.54) && (G_rel<0.24) && (B_rel<0.18)) {
 
         turnright(mL, mR, 135);
+        stop(mL, mR);
         unknowncard_flag = 0;
 
     } else if ((R_rel<0.44) && (G_rel>0.305) && (B_rel>0.21)) {
 
         turnleft(mL, mR, 135);
+        stop(mL, mR);
         unknowncard_flag = 0;
 
     } else if ((R_rel<0.46) && (G_rel>0.295) && (B_rel>0.21)) {
 
         turnright(mL, mR, 180);
+        stop(mL, mR);
         unknowncard_flag = 0;
         returnhome_flag = 1;
 
@@ -24580,6 +24588,7 @@ void colourcards_readRGBC(RGBC_val *tmpval, DC_motor *mL, DC_motor *mR)
             } else {
                 LATHbits.LATH3 = 1;
                 turnright(mL, mR, 180);
+                stop(mL, mR);
                 returnhome_flag = !returnhome_flag;
                 unknowncard_flag = 0;
             }

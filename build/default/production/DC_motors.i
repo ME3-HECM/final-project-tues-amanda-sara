@@ -24301,7 +24301,7 @@ void checkbatterylevel(void)
 {
     unsigned char batterylevel;
     batterylevel = ADC_getval();
-    if (batterylevel<150) {
+    if (batterylevel<200) {
         LATDbits.LATD7 = 1;
     } else {
         LATDbits.LATD7 = 0;
@@ -24318,13 +24318,13 @@ void forward(DC_motor *mL, DC_motor *mR)
     mR->direction = 1;
 
 
-    while((mL->power < 100) && (mR->power < 100)){
-        mL->power += 1;
-        mR->power += 1;
+    while((mL->power < 20) && (mR->power < 20)){
+        mL->power += 10;
+        mR->power += 10;
 
         DCmotors_setPWM(mL);
         DCmotors_setPWM(mR);
-        _delay((unsigned long)((100)*(64000000/4000.0)));
+        _delay((unsigned long)((50)*(64000000/4000000.0)));
     }
 }
 
@@ -24339,13 +24339,13 @@ void reverse(DC_motor *mL, DC_motor *mR)
     mR->direction = 0;
 
 
-    while((mL->power < 100) && (mR->power < 100)){
-        mL->power += 1;
-        mR->power += 1;
+    while((mL->power < 40) && (mR->power < 40)){
+        mL->power += 10;
+        mR->power += 10;
 
         DCmotors_setPWM(mL);
         DCmotors_setPWM(mR);
-        _delay((unsigned long)((100)*(64000000/4000.0)));
+        _delay((unsigned long)((50)*(64000000/4000000.0)));
     }
 }
 
@@ -24358,14 +24358,14 @@ void stop(DC_motor *mL, DC_motor *mR)
     LATDbits.LATD4 = 1;
 
 
-    while(((mL->power)>0) && ((mR->power)>0)){
-        mL->power-=1;
-        mR->power-=1;
+    while((mL->power > 0) && (mR->power > 0)){
+        mL->power -= 10;
+        mR->power -= 10;
 
 
         DCmotors_setPWM(mL);
         DCmotors_setPWM(mR);
-        _delay((unsigned long)((100)*(64000000/4000.0)));
+        _delay((unsigned long)((50)*(64000000/4000000.0)));
     }
 
     LATDbits.LATD4 = 0;
@@ -24377,23 +24377,29 @@ void stop(DC_motor *mL, DC_motor *mR)
 void left(DC_motor *mL, DC_motor *mR, unsigned int deg)
 {
 
+    double delay = (deg*12.5) - 135;
+
+
     mL->direction = 0;
     mR->direction = 1;
 
 
-    while((mL->power < 50) || (mR->power < 50)){
+    while((mL->power < 40) || (mR->power < 40)){
 
         LATFbits.LATF0 = !LATFbits.LATF0;
 
 
-        if (mL->power < 50) {mL->power += 1;}
-        if (mR->power < 50) {mR->power += 1;}
+        if (mL->power < 40) {mL->power += 10;}
+        if (mR->power < 40) {mR->power += 10;}
 
 
         DCmotors_setPWM(mL);
         DCmotors_setPWM(mR);
-        _delay((unsigned long)((100)*(64000000/4000.0)));
+        _delay((unsigned long)((50)*(64000000/4000000.0)));
     }
+
+    unsigned int i;
+    for (i=0; i<delay; i++) {_delay((unsigned long)((1)*(64000000/4000.0)));}
 
     LATFbits.LATF0 = 0;
 }
@@ -24404,23 +24410,30 @@ void left(DC_motor *mL, DC_motor *mR, unsigned int deg)
 void right(DC_motor *mL, DC_motor *mR, unsigned int deg)
 {
 
+    unsigned int delay = (8*deg) + 180;
+
+
     mL->direction = 1;
     mR->direction = 0;
 
 
-    while((mL->power < 50) || (mR->power < 50)){
+    while((mL->power < 40) || (mR->power < 40)){
 
         LATHbits.LATH0 = !LATHbits.LATH0;
 
 
-        if (mL->power < 50) {mL->power += 1;}
-        if (mR->power < 50) {mR->power += 1;}
+        if (mL->power < 40) {mL->power += 10;}
+        if (mR->power < 40) {mR->power += 10;}
 
 
         DCmotors_setPWM(mL);
         DCmotors_setPWM(mR);
-        _delay((unsigned long)((100)*(64000000/4000.0)));
+        _delay((unsigned long)((50)*(64000000/4000000.0)));
     }
+
+    unsigned int i;
+    for (i=0; i<delay; i++) {_delay((unsigned long)((1)*(64000000/4000.0)));}
+    _delay((unsigned long)((1)*(64000000/4000.0)));
 
     LATHbits.LATH0 = 0;
 }
@@ -24459,6 +24472,7 @@ void DCmotors_calibration(DC_motor *mL, DC_motor *mR)
     while(PORTFbits.RF2 && PORTFbits.RF3);
     LATDbits.LATD3 = 1;
     turnleft(mL, mR, 360);
+    _delay((unsigned long)((1000)*(64000000/4000.0)));
     stop(mL, mR);
 
     while(PORTFbits.RF2 && PORTFbits.RF3);
@@ -24469,6 +24483,7 @@ void DCmotors_calibration(DC_motor *mL, DC_motor *mR)
     while(PORTFbits.RF2 && PORTFbits.RF3);
     LATDbits.LATD3 = 1;
     turnright(mL, mR, 360);
+    _delay((unsigned long)((1000)*(64000000/4000.0)));
     stop(mL, mR);
 
     while(PORTFbits.RF2 && PORTFbits.RF3);
@@ -24509,41 +24524,49 @@ void DCmotors_testing(DC_motor *mL, DC_motor *mR)
 
     while (PORTFbits.RF2 && PORTFbits.RF3);
     forward(mL, mR);
+    _delay((unsigned long)((1000)*(64000000/4000.0)));
     stop(mL, mR);
-    _delay((unsigned long)((100)*(64000000/4000.0)));
+    _delay((unsigned long)((1000)*(64000000/4000.0)));
 
     while (PORTFbits.RF2 && PORTFbits.RF3);
     reverse(mL, mR);
+    _delay((unsigned long)((2020)*(64000000/4000.0)));
     stop(mL, mR);
-    _delay((unsigned long)((100)*(64000000/4000.0)));
+    _delay((unsigned long)((1000)*(64000000/4000.0)));
 
     while (PORTFbits.RF2 && PORTFbits.RF3);
     turnright(mL, mR, 90);
+
     stop(mL, mR);
     _delay((unsigned long)((100)*(64000000/4000.0)));
 
     while (PORTFbits.RF2 && PORTFbits.RF3);
     turnleft(mL, mR, 90);
+
     stop(mL, mR);
     _delay((unsigned long)((100)*(64000000/4000.0)));
 
     while (PORTFbits.RF2 && PORTFbits.RF3);
     turnright(mL, mR, 180);
+
     stop(mL, mR);
     _delay((unsigned long)((100)*(64000000/4000.0)));
 
     while (PORTFbits.RF2 && PORTFbits.RF3);
     turnleft(mL, mR, 180);
+
     stop(mL, mR);
     _delay((unsigned long)((100)*(64000000/4000.0)));
 
     while (PORTFbits.RF2 && PORTFbits.RF3);
     turnright(mL, mR, 135);
+
     stop(mL, mR);
     _delay((unsigned long)((100)*(64000000/4000.0)));
 
     while (PORTFbits.RF2 && PORTFbits.RF3);
     turnleft(mL, mR, 135);
+
     stop(mL, mR);
     _delay((unsigned long)((100)*(64000000/4000.0)));
 
