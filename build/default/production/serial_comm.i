@@ -1,4 +1,4 @@
-# 1 "color_card.c"
+# 1 "serial_comm.c"
 # 1 "<built-in>" 1
 # 1 "<built-in>" 3
 # 288 "<built-in>" 3
@@ -6,7 +6,7 @@
 # 1 "<built-in>" 2
 # 1 "C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\\pic\\include\\language_support.h" 1 3
 # 2 "<built-in>" 2
-# 1 "color_card.c" 2
+# 1 "serial_comm.c" 2
 # 1 "C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\\pic\\include\\xc.h" 1 3
 # 18 "C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\\pic\\include\\xc.h" 3
 extern const char __xc8_OPTIM_SPEED;
@@ -24175,122 +24175,162 @@ extern __attribute__((nonreentrant)) void _delaywdt(unsigned long);
 #pragma intrinsic(_delay3)
 extern __attribute__((nonreentrant)) void _delay3(unsigned char);
 # 33 "C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\\pic\\include\\xc.h" 2 3
-# 1 "color_card.c" 2
+# 1 "serial_comm.c" 2
 
-# 1 "./color_card.h" 1
+# 1 "./serial_comm.h" 1
+# 12 "./serial_comm.h"
+volatile char EUSART4RXbuf[20];
+volatile char RxBufWriteCnt=0;
+volatile char RxBufReadCnt=0;
 
-
-
-
-# 1 "./color_click.h" 1
-# 12 "./color_click.h"
-typedef struct {
-    unsigned int R, G, B, C;
-} RGB_val;
-
-
-void colorclick_init(void);
-void colorclick_cyclingRGBLED(void);
-void colorclick_toggleClearLED(unsigned char toggle);
-void colorclick_writetoaddr(char address, char value);
-unsigned int colorclick_readRed(void);
-unsigned int colorclick_readGreen(void);
-unsigned int colorclick_readBlue(void);
-unsigned int colorclick_readClear(void);
-RGB_val colorclick_readColour(RGB_val current);
-# 5 "./color_card.h" 2
-
-# 1 "./dc_motor.h" 1
-# 23 "./dc_motor.h"
-extern volatile unsigned char returnhome_flag;
-
-typedef struct {
-    char power;
-    char direction;
-    unsigned char *dutyHighByte;
-    unsigned char *dir_LAT;
-    char dir_pin;
-    int PWMperiod;
-} DC_motor;
-
-
-void DCmotors_init(unsigned char PWMperiod);
-void clicker2buttons_init(void);
-void clicker2LEDs_init(void);
-void buggyLEDs_init(void);
-unsigned char check_battery_level(void);
-void setMotorPWM(DC_motor *m);
-void forward(DC_motor *mL, DC_motor *mR);
-void reverse(DC_motor *mL, DC_motor *mR);
-void stop(DC_motor *mL, DC_motor *mR);
-void turnLeft(DC_motor *mL, DC_motor *mR, unsigned char deg);
-void turnRight(DC_motor *mL, DC_motor *mR, unsigned char deg);
-# 6 "./color_card.h" 2
+volatile char EUSART4TXbuf[60];
+volatile char TxBufWriteCnt=0;
+volatile char TxBufReadCnt=0;
 
 
 
 
-volatile unsigned char returnhome_flag;
 
-RGB_val read_colour(RGB_val current);
-void read_card(RGB_val initial, RGB_val current, DC_motor *mL, DC_motor *mR);
-# 2 "color_card.c" 2
-
-
+void USART4_init(void);
+char getCharSerial4(void);
+void sendCharSerial4(unsigned char charToSend);
+void sendStringSerial4(char *string);
 
 
-void read_card(RGB_val initial, RGB_val current, DC_motor *mL, DC_motor *mR) {
+char getCharFromRxBuf(void);
+void putCharToRxBuf(char byte);
+char isDataInRxBuf (void);
 
-    unsigned int R_rel = current.R/current.C;
-    unsigned int G_rel = current.G/current.C;
-    unsigned int B_rel = current.B/current.C;
 
-    if ((R_rel>0.54) && (G_rel<0.245) && (B_rel<0.18)) {
+char getCharFromTxBuf(void);
+void putCharToTxBuf(char byte);
+char isDataInTxBuf (void);
+void TxBufferedString(char *string);
+void sendTxBuf(void);
+# 2 "serial_comm.c" 2
 
-        turnRight(mL, mR, 90);
-        stop(mL, mR);
 
-    } else if ((R_rel<0.435) && (G_rel>0.31) && (B_rel>0.195)) {
 
-        turnLeft(mL, mR, 90);
-        stop(mL, mR);
 
-    } else if ((R_rel<0.43) && (G_rel>0.30) && (B_rel>0.21)) {
 
-        turnRight(mL, mR, 180);
-        stop(mL, mR);
+void USART4_init(void) {
 
-    } else if ((R_rel>0.49) && (G_rel>0.285) && (B_rel>0.18)) {
 
-        reverse(mL, mR);
-        turnRight(mL, mR, 90);
-        stop(mL, mR);
+    RC0PPS = 0x12;
+    RX4PPS = 0x11;
+    TRISCbits.TRISC1 = 1;
 
-    } else if ((R_rel>0.49) && (G_rel<0.275) && (B_rel>0.195)) {
+    BAUD4CONbits.BRG16 = 0;
+    TX4STAbits.BRGH = 0;
+    SP4BRGL = 51;
+    SP4BRGH = 0;
 
-        reverse(mL, mR);
-        turnLeft(mL, mR, 90);
-        stop(mL, mR);
+    RC4STAbits.CREN = 1;
+    TX4STAbits.TXEN = 1;
+    RC4STAbits.SPEN = 1;
+}
 
-    } else if ((R_rel>0.54) && (G_rel<0.24) && (B_rel<0.18)) {
 
-        turnRight(mL, mR, 135);
-        stop(mL, mR);
 
-    } else if ((R_rel<0.44) && (G_rel>0.305) && (B_rel>0.21)) {
 
-        turnLeft(mL, mR, 135);
-        stop(mL, mR);
 
-    } else if ((R_rel<0.46) && (G_rel>0.295) && (B_rel>0.21)) {
+char getCharSerial4(void) {
+    while (!PIR4bits.RC4IF);
+    return RC4REG;
+}
 
-        turnRight(mL, mR, 180);
-        stop(mL, mR);
 
-    } else {
 
-        returnhome_flag = 1;
-        turnRight(mL, mR, 180);
-        stop(mL, mR);
+
+
+void sendCharSerial4(unsigned char charToSend) {
+    while (!PIR4bits.TX4IF);
+    TX4REG = charToSend;
+}
+
+
+
+
+
+void sendStringSerial4(char *string){
+
+    while (*string != 0) {
+        sendCharSerial4(*string++);
     }
+}
+
+
+
+
+
+
+char getCharFromRxBuf(void){
+    if (RxBufReadCnt>=20) {RxBufReadCnt=0;}
+    return EUSART4RXbuf[RxBufReadCnt++];
+}
+
+
+
+
+
+void putCharToRxBuf(char byte){
+    if (RxBufWriteCnt>=20) {RxBufWriteCnt=0;}
+    EUSART4RXbuf[RxBufWriteCnt++]=byte;
+}
+
+
+
+
+
+
+
+char isDataInRxBuf (void){
+    return (RxBufWriteCnt!=RxBufReadCnt);
+}
+
+
+
+
+
+
+char getCharFromTxBuf(void){
+    if (TxBufReadCnt>=60) {TxBufReadCnt=0;}
+    return EUSART4TXbuf[TxBufReadCnt++];
+}
+
+
+
+
+
+void putCharToTxBuf(char byte){
+    if (TxBufWriteCnt>=60) {TxBufWriteCnt=0;}
+    EUSART4TXbuf[TxBufWriteCnt++]=byte;
+}
+
+
+
+
+
+
+
+char isDataInTxBuf (void){
+    return (TxBufWriteCnt!=TxBufReadCnt);
+}
+
+
+
+
+
+
+void TxBufferedString(char *string){
+
+}
+
+
+
+
+
+
+void sendTxBuf(void){
+    if (isDataInTxBuf()) {PIE4bits.TX4IE=1;}
 }

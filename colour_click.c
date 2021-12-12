@@ -1,11 +1,9 @@
 #include <xc.h>
-#include "color_click.h"
-#include "i2c.h"
-
-#define AILTL 0x04
-#define AILTH 0x05
-#define AIHTL 0x06
-#define AIHTH 0x07
+#include <stdio.h>
+#include "colour_click.h"
+#include "buttons_n_LEDs.h"
+#include "I2C.h"
+#include "serial_comm.h"
 
 volatile unsigned int clear_lower;
 volatile unsigned int clear_upper;
@@ -14,61 +12,22 @@ volatile unsigned int clear_upper;
  * colorclick_init
  * Function used to initialise the colour click module using I2C
  ***************************************************************/
-void colorclick_init(void)
+void colourclick_init(void)
 {   
     //setup colour sensor via i2c interface
     I2C_2_Master_Init();      //Initialise i2c Master
 
      //set device PON
-	 colorclick_writetoaddr(0x00, 0x01); // write 1 to the PON bit in the device enable register
+	 colourclick_writetoaddr(0x00, 0x01); // write 1 to the PON bit in the device enable register
     __delay_ms(3); //need to wait 3ms for everthing to start up
     
     //turn on device ADC
-	colorclick_writetoaddr(0x00, 0x03);
+	colourclick_writetoaddr(0x00, 0x03);
 
     //set integration time
-	colorclick_writetoaddr(0x01, 0xD5);
+	colourclick_writetoaddr(0x01, 0xD5);
     
-    //set TRIS values
-    TRISGbits.TRISG1 = 0; //red LED
-    TRISAbits.TRISA4 = 0; //green LED
-    TRISFbits.TRISF7 = 0; //blue LED
-    
-    //set LAT values
-    colorclick_toggleClearLED(0);
-}
-
-/**************************
- * colorclick_cyclingRGBLED
- * Function used to
- **************************/
-void colorclick_cyclingRGBLED(void)
-{
-    redLED = 1;
-    __delay_ms(50);
-    redLED = 0;
-    __delay_ms(20);
-    
-    greenLED = 1;
-    __delay_ms(50);
-    greenLED = 0;
-    __delay_ms(20);
-    
-    blueLED = 1;
-    __delay_ms(50);
-    blueLED = 0;
-    __delay_ms(20);
-}
-
-/***************************
- * colorclick_toggleClearLED
- * Function used to
- ***************************/
-void colorclick_toggleClearLED(unsigned char toggle)
-{
-    redLED = toggle;
-    blueLED = toggle;
-    greenLED = toggle;
+    colourclickLEDs_init();
 }
 
 /*************************************************************
@@ -77,7 +36,7 @@ void colorclick_toggleClearLED(unsigned char toggle)
  * Address is the register within the colour click to write to
  * Value is the value that will be written to that address
  *************************************************************/
-void colorclick_writetoaddr(char address, char value)
+void colourclick_writetoaddr(char address, char value)
 {
     I2C_2_Master_Start();         //Start condition
     I2C_2_Master_Write(0x52 | 0x00);     //7 bit device address + Write mode
@@ -91,7 +50,7 @@ void colorclick_writetoaddr(char address, char value)
  * Function used to read the red channel
  * Returns a 16 bit ADC value representing colour intensity
  **********************************************************/
-unsigned int colorclick_readRed(void)
+unsigned int colourclick_readR(void)
 {
 	unsigned int tmp;
 	I2C_2_Master_Start();         //Start condition
@@ -110,7 +69,7 @@ unsigned int colorclick_readRed(void)
  * Function to read the green channel
  * Returns a 16 bit ADC value representing color intensity
  *********************************************************/
-unsigned int colorclick_readGreen(void)
+unsigned int colourclick_readG(void)
 {
 	unsigned int tmp;
 	I2C_2_Master_Start();         //Start condition
@@ -129,7 +88,7 @@ unsigned int colorclick_readGreen(void)
  * Function to read the blue channel
  * Returns a 16 bit ADC value representing color intensity
  *********************************************************/
-unsigned int colorclick_readBlue(void)
+unsigned int colourclick_readB(void)
 {
 	unsigned int tmp;
 	I2C_2_Master_Start();         //Start condition
@@ -148,7 +107,7 @@ unsigned int colorclick_readBlue(void)
  * Function to read the clear channel
  * Returns a 16 bit ADC value representing color intensity
  *********************************************************/
-unsigned int colorclick_readClear(void)
+unsigned int colourclick_readC(void)
 {
 	unsigned int tmp;
 	I2C_2_Master_Start();         //Start condition
@@ -166,39 +125,88 @@ unsigned int colorclick_readClear(void)
  * colorclick_readColor
  * Function used to
  **********************/
-RGB_val colorclick_readColour(RGB_val current)
+void colourclick_readRGBC(RGBC_val *tmpval)
 {
-    current.R = colorclick_readRed();
-    current.G = colorclick_readGreen();
-    current.B = colorclick_readBlue();
-    current.C = colorclick_readClear();
-
-    return current;
+    tmpval->R = colourclick_readR();
+    tmpval->G = colourclick_readG();
+    tmpval->B = colourclick_readB();
+    tmpval->C = colourclick_readC();
 }
 
-RGB_val colorclick_readColourRGBCLED(RGB_val current)
+/**********************
+ * colorclick_readColor
+ * Function used to
+ **********************/
+void colourclick_readRGBC2(RGBC_val *tmpval)
 {
-    colorclick_toggleClearLED(0);
+    colourclickLEDs_C(0);
     
-    redLED = 1;
-    current.R = colorclick_readRed();
+    RED_LED = 1;
+    tmpval->R = colourclick_readR();
     __delay_ms(1000);
-    redLED = 0;
+    RED_LED = 0;
     __delay_ms(20);
     
-    greenLED = 1;
-    current.G = colorclick_readGreen();
+    GREEN_LED = 1;
+    tmpval->G = colourclick_readG();
     __delay_ms(1000);
-    greenLED = 0;
+    GREEN_LED = 0;
     __delay_ms(20);
     
-    blueLED = 1;
-    current.B = colorclick_readBlue();
+    BLUE_LED = 1;
+    tmpval->B = colourclick_readB();
     __delay_ms(1000);
-    blueLED = 0;
+    BLUE_LED = 0;
     __delay_ms(20);
     
-    colorclick_toggleClearLED(1);
+    colourclickLEDs_C(1);
+}
+
+/*************************
+ * colourclick_calibration
+ * function used to
+ *************************/
+void colourclick_calibration(void) {
+    RGBC_val initial;
+    while(RF2_BUTTON);
+    MAINBEAM_LED = 1;
+    colourclickLEDs_C(1);
+    RD7_LED = 1;
+    __delay_ms(1000);
+    colourclick_readRGBC(&initial); //read initial light value
+    __delay_ms(1000);
+    RD7_LED = 0;
     
-    return current;
+    unsigned char i;
+    RGBC_val current;
+    for (i=0; i<8; i++) {
+        while(RF2_BUTTON);
+        RD7_LED = 1;
+        colourclick_readRGBC(&current);
+        if ((current.C<initial.C) && (current.C>interrupts_lowerbound)) {
+            interrupts_lowerbound = current.C;
+        } else if ((current.C>initial.C) && (current.C<interrupts_upperbound)) {
+            interrupts_upperbound = current.C;
+        }
+        colourclick_testing(&initial, &current);
+        __delay_ms(100);
+        RD7_LED = 0;
+    }
+    MAINBEAM_LED = 0;
+    colourclickLEDs_C(0);
+}
+
+void colourclick_testing(RGBC_val *initial, RGBC_val *current)
+{
+    unsigned int ambient = initial->C;
+    unsigned int R = current->R;
+    unsigned int G = current->G;
+    unsigned int B = current->B;
+    unsigned int C = current->C;
+    
+    char buf[40];
+    sprintf(buf,"RGBC: %i %i %i %i     Threshold: %i %i %i\n\r",\
+            R, G, B, C, interrupts_lowerbound, ambient, interrupts_upperbound);
+    sendStringSerial4(buf);
+    __delay_ms(500);
 }

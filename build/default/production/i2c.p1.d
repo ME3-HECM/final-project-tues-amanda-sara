@@ -1,3 +1,3 @@
-build/default/production/i2c.p1:  \
-i2c.c  \
-i2c.h 
+build/default/production/I2C.p1:  \
+I2C.c  \
+I2C.h 

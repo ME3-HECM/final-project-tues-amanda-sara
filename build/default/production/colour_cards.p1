@@ -1,42 +1,96 @@
 Version 4.0 HI-TECH Software Intermediate Code
-[p mainexit ]
+"11 ./colour_click.h
+[; ;./colour_click.h: 11: typedef struct {
+[s S2021 `ui 1 `ui 1 `ui 1 `ui 1 ]
+[n S2021 . R G B C ]
 "14 ./DC_motors.h
 [; ;./DC_motors.h: 14: typedef struct {
 [s S2022 `uc 1 `uc 1 `*uc 1 `*uc 1 `uc 1 `i 1 ]
 [n S2022 . power direction dutyHighByte dir_LAT dir_pin PWMperiod ]
-"33981 C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\proc\pic18f67k40.h
-[; ;C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\proc\pic18f67k40.h: 33981: extern volatile unsigned char PWM6DCH __attribute__((address(0xFA3)));
-[v _PWM6DCH `Vuc ~T0 @X0 0 e@4003 ]
-"28961
-[; ;C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\proc\pic18f67k40.h: 28961: extern volatile unsigned char LATE __attribute__((address(0xF7D)));
-[v _LATE `Vuc ~T0 @X0 0 e@3965 ]
-"33672
-[; ;C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\proc\pic18f67k40.h: 33672: extern volatile unsigned char PWM7DCH __attribute__((address(0xFA0)));
-[v _PWM7DCH `Vuc ~T0 @X0 0 e@4000 ]
-"29185
-[; ;C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\proc\pic18f67k40.h: 29185: extern volatile unsigned char LATG __attribute__((address(0xF7F)));
-[v _LATG `Vuc ~T0 @X0 0 e@3967 ]
-"11 ./ADC.h
-[; ;./ADC.h: 11: void ADC_init(void);
-[v _ADC_init `(v ~T0 @X0 0 ef ]
-"24 ./colour_click.h
-[; ;./colour_click.h: 24: void colourclick_init(void);
-[v _colourclick_init `(v ~T0 @X0 0 ef ]
-"33 ./DC_motors.h
-[; ;./DC_motors.h: 33: void DCmotors_init(unsigned char PWMperiod);
-[v _DCmotors_init `(v ~T0 @X0 0 ef1`uc ]
-"24 ./serial_comm.h
-[; ;./serial_comm.h: 24: void USART4_init(void);
-[v _USART4_init `(v ~T0 @X0 0 ef ]
-"35 ./DC_motors.h
-[; ;./DC_motors.h: 35: void checkbatterylevel(void);
-[v _checkbatterylevel `(v ~T0 @X0 0 ef ]
-"32 ./colour_click.h
-[; ;./colour_click.h: 32: void colourclick_calibration(void);
-[v _colourclick_calibration `(v ~T0 @X0 0 ef ]
-"25 ./colour_cards.h
-[; ;./colour_cards.h: 25: void colourcards_testingRGBC();
-[v _colourcards_testingRGBC `(v ~T0 @X0 0 e? ]
+"4548 C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\proc\pic18f67k40.h
+[; ;C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\proc\pic18f67k40.h: 4548:     struct {
+[s S262 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S262 . INT0IE INT1IE INT2IE INT3IE IOCIE TMR0IE ]
+"4547
+[; ;C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\proc\pic18f67k40.h: 4547: typedef union {
+[u S261 `S262 1 ]
+[n S261 . . ]
+"4557
+[; ;C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\proc\pic18f67k40.h: 4557: extern volatile PIE0bits_t PIE0bits __attribute__((address(0xE29)));
+[v _PIE0bits `VS261 ~T0 @X0 0 e@3625 ]
+"30 ./colour_click.h
+[; ;./colour_click.h: 30: void colourclick_readRGBC(RGBC_val *tmpval);
+[v _colourclick_readRGBC `(v ~T0 @X0 0 ef1`*S2021 ]
+"42 ./DC_motors.h
+[; ;./DC_motors.h: 42: void turnright(DC_motor *mL, DC_motor *mR, unsigned int deg);
+[v _turnright `(v ~T0 @X0 0 ef3`*S2022`*S2022`ui ]
+"16 ./colour_cards.h
+[; ;./colour_cards.h: 16: extern volatile unsigned char unknowncard_flag;
+[v _unknowncard_flag `Vuc ~T0 @X0 0 e ]
+"41 ./DC_motors.h
+[; ;./DC_motors.h: 41: void turnleft(DC_motor *mL, DC_motor *mR, unsigned int deg);
+[v _turnleft `(v ~T0 @X0 0 ef3`*S2022`*S2022`ui ]
+"37
+[; ;./DC_motors.h: 37: void reverse(DC_motor *mL, DC_motor *mR);
+[v _reverse `(v ~T0 @X0 0 ef2`*S2022`*S2022 ]
+"38
+[; ;./DC_motors.h: 38: void stop(DC_motor *mL, DC_motor *mR);
+[v _stop `(v ~T0 @X0 0 ef2`*S2022`*S2022 ]
+"17 ./colour_cards.h
+[; ;./colour_cards.h: 17: extern volatile unsigned char returnhome_flag;
+[v _returnhome_flag `Vuc ~T0 @X0 0 e ]
+[v F14184 `(v ~T0 @X0 1 tf1`ul ]
+"203 C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\pic18.h
+[v __delay `JF14184 ~T0 @X0 0 e ]
+[p i __delay ]
+"5093 C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\proc\pic18f67k40.h
+[; ;C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\proc\pic18f67k40.h: 5093:     struct {
+[s S286 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S286 . INT0IF INT1IF INT2IF INT3IF IOCIF TMR0IF ]
+"5092
+[; ;C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\proc\pic18f67k40.h: 5092: typedef union {
+[u S285 `S286 1 ]
+[n S285 . . ]
+"5102
+[; ;C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\proc\pic18f67k40.h: 5102: extern volatile PIR0bits_t PIR0bits __attribute__((address(0xE33)));
+[v _PIR0bits `VS285 ~T0 @X0 0 e@3635 ]
+"29280
+[; ;C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\proc\pic18f67k40.h: 29280:     struct {
+[s S1364 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S1364 . LATH0 LATH1 LATH2 LATH3 ]
+"29286
+[; ;C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\proc\pic18f67k40.h: 29286:     struct {
+[s S1365 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S1365 . LH0 LH1 LH2 LH3 ]
+"29292
+[; ;C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\proc\pic18f67k40.h: 29292:     struct {
+[s S1366 :4 `uc 1 :1 `uc 1 ]
+[n S1366 . . LH4 ]
+"29296
+[; ;C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\proc\pic18f67k40.h: 29296:     struct {
+[s S1367 :5 `uc 1 :1 `uc 1 ]
+[n S1367 . . LH5 ]
+"29300
+[; ;C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\proc\pic18f67k40.h: 29300:     struct {
+[s S1368 :6 `uc 1 :1 `uc 1 ]
+[n S1368 . . LH6 ]
+"29304
+[; ;C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\proc\pic18f67k40.h: 29304:     struct {
+[s S1369 :7 `uc 1 :1 `uc 1 ]
+[n S1369 . . LH7 ]
+"29279
+[; ;C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\proc\pic18f67k40.h: 29279: typedef union {
+[u S1363 `S1364 1 `S1365 1 `S1366 1 `S1367 1 `S1368 1 `S1369 1 ]
+[n S1363 . . . . . . . ]
+"29309
+[; ;C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\proc\pic18f67k40.h: 29309: extern volatile LATHbits_t LATHbits __attribute__((address(0xF80)));
+[v _LATHbits `VS1363 ~T0 @X0 0 e@3968 ]
+"36 ./DC_motors.h
+[; ;./DC_motors.h: 36: void forward(DC_motor *mL, DC_motor *mR);
+[v _forward `(v ~T0 @X0 0 ef2`*S2022`*S2022 ]
+"15 ./colour_cards.h
+[; ;./colour_cards.h: 15: extern volatile unsigned char colourcard_flag;
+[v _colourcard_flag `Vuc ~T0 @X0 0 e ]
 "30630 C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\proc\pic18f67k40.h
 [; ;C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\proc\pic18f67k40.h: 30630:     struct {
 [s S1415 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
@@ -52,6 +106,25 @@ Version 4.0 HI-TECH Software Intermediate Code
 "30646
 [; ;C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\proc\pic18f67k40.h: 30646: extern volatile PORTFbits_t PORTFbits __attribute__((address(0xF8E)));
 [v _PORTFbits `VS1414 ~T0 @X0 0 e@3982 ]
+"40532
+[; ;C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\proc\pic18f67k40.h: 40532:     struct {
+[s S1989 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S1989 . INT0EDG INT1EDG INT2EDG INT3EDG . IPEN PEIE_GIEL GIE_GIEH ]
+"40542
+[; ;C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\proc\pic18f67k40.h: 40542:     struct {
+[s S1990 :6 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S1990 . . PEIE GIE ]
+"40547
+[; ;C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\proc\pic18f67k40.h: 40547:     struct {
+[s S1991 :6 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S1991 . . GIEL GIEH ]
+"40531
+[; ;C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\proc\pic18f67k40.h: 40531: typedef union {
+[u S1988 `S1989 1 `S1990 1 `S1991 1 ]
+[n S1988 . . . . ]
+"40553
+[; ;C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\proc\pic18f67k40.h: 40553: extern volatile INTCONbits_t INTCONbits __attribute__((address(0xFF2)));
+[v _INTCONbits `VS1988 ~T0 @X0 0 e@4082 ]
 "28855
 [; ;C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\proc\pic18f67k40.h: 28855:     struct {
 [s S1352 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
@@ -70,20 +143,11 @@ Version 4.0 HI-TECH Software Intermediate Code
 "44 ./buttons_n_LEDs.h
 [; ;./buttons_n_LEDs.h: 44: void colourclickLEDs_C(unsigned char tog);
 [v _colourclickLEDs_C `(v ~T0 @X0 0 ef1`uc ]
-[v F14184 `(v ~T0 @X0 1 tf1`ul ]
-"203 C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\pic18.h
-[v __delay `JF14184 ~T0 @X0 0 e ]
-[p i __delay ]
-"36 ./DC_motors.h
-[; ;./DC_motors.h: 36: void forward(DC_motor *mL, DC_motor *mR);
-[v _forward `(v ~T0 @X0 0 ef2`*S2022`*S2022 ]
-"11 ./colour_click.h
-[; ;./colour_click.h: 11: typedef struct {
-[s S2021 `ui 1 `ui 1 `ui 1 `ui 1 ]
-[n S2021 . R G B C ]
-"23 ./colour_cards.h
-[; ;./colour_cards.h: 23: void colourcards_readRGBC(RGBC_val *tmpval, DC_motor *mL, DC_motor *mR);
-[v _colourcards_readRGBC `(v ~T0 @X0 0 ef3`*S2021`*S2022`*S2022 ]
+"113 C:\Program Files\Microchip\xc8\v2.32\pic\include\c99\stdio.h
+[v _sprintf `(i ~T0 @X0 0 e1v`*uc`*Cuc ]
+"27 ./serial_comm.h
+[; ;./serial_comm.h: 27: void sendStringSerial4(char *string);
+[v _sendStringSerial4 `(v ~T0 @X0 0 ef1`*uc ]
 "54 C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\proc\pic18f67k40.h
 [; ;C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\proc\pic18f67k40.h: 54: __asm("PPSLOCK equ 0DEFh");
 [; <" PPSLOCK equ 0DEFh ;# ">
@@ -2106,148 +2170,480 @@ Version 4.0 HI-TECH Software Intermediate Code
 [v _unknowncard_flag `Vuc ~T0 @X0 1 e ]
 "46
 [v _returnhome_flag `Vuc ~T0 @X0 1 e ]
-[v $root$_main `(v ~T0 @X0 0 e ]
-"7 main.c
-[; ;main.c: 7: void main(void) {
-[v _main `(v ~T0 @X0 1 ef ]
-{
-[e :U _main ]
-[f ]
-"11
-[; ;main.c: 11:     unsigned char PWMperiod = 99;
-[v _PWMperiod `uc ~T0 @X0 1 a ]
-[e = _PWMperiod -> -> 99 `i `uc ]
-"12
-[; ;main.c: 12:     DCmotors_turntime = 100;
-[e = _DCmotors_turntime -> -> 100 `i `ui ]
+"12 colour_cards.c
+[; ;colour_cards.c: 12: void colourcards_readRGBC(RGBC_val *tmpval, DC_motor *mL, DC_motor *mR)
+[v _colourcards_readRGBC `(v ~T0 @X0 1 ef3`*S2021`*S2022`*S2022 ]
 "13
-[; ;main.c: 13:     interrupts_lowerbound = 0;
-[e = _interrupts_lowerbound -> -> 0 `i `ui ]
-"14
-[; ;main.c: 14:     interrupts_upperbound = 32767;
-[e = _interrupts_upperbound -> -> 32767 `i `ui ]
+[; ;colour_cards.c: 13: {
+{
+[e :U _colourcards_readRGBC ]
+"12
+[; ;colour_cards.c: 12: void colourcards_readRGBC(RGBC_val *tmpval, DC_motor *mL, DC_motor *mR)
+[v _tmpval `*S2021 ~T0 @X0 1 r1 ]
+[v _mL `*S2022 ~T0 @X0 1 r2 ]
+[v _mR `*S2022 ~T0 @X0 1 r3 ]
+"13
+[; ;colour_cards.c: 13: {
+[f ]
 "15
-[; ;main.c: 15:     colourcard_flag = 0;
-[e = _colourcard_flag -> -> 0 `i `uc ]
-"16
-[; ;main.c: 16:     unknowncard_flag = 0;
-[e = _unknowncard_flag -> -> 0 `i `uc ]
-"17
-[; ;main.c: 17:     returnhome_flag = 0;
-[e = _returnhome_flag -> -> 0 `i `uc ]
+[; ;colour_cards.c: 15:     PIE0bits.INT1IE = 0;
+[e = . . _PIE0bits 0 1 -> -> 0 `i `uc ]
+"18
+[; ;colour_cards.c: 18:     colourclick_readRGBC(tmpval);
+[e ( _colourclick_readRGBC (1 _tmpval ]
 "19
-[; ;main.c: 19:     DC_motor motorL;
-[v _motorL `S2022 ~T0 @X0 1 a ]
+[; ;colour_cards.c: 19:     float R_rel = (float)tmpval->R / (float)tmpval->C;
+[v _R_rel `f ~T0 @X0 1 a ]
+[e = _R_rel / -> . *U _tmpval 0 `f -> . *U _tmpval 3 `f ]
 "20
-[; ;main.c: 20:     motorL.power=0;
-[e = . _motorL 0 -> -> 0 `i `uc ]
+[; ;colour_cards.c: 20:     float G_rel = (float)tmpval->G / (float)tmpval->C;
+[v _G_rel `f ~T0 @X0 1 a ]
+[e = _G_rel / -> . *U _tmpval 1 `f -> . *U _tmpval 3 `f ]
 "21
-[; ;main.c: 21:     motorL.direction=1;
-[e = . _motorL 1 -> -> 1 `i `uc ]
-"22
-[; ;main.c: 22:     motorL.dutyHighByte=(unsigned char *)(&PWM6DCH);
-[e = . _motorL 2 -> &U _PWM6DCH `*uc ]
-"23
-[; ;main.c: 23:     motorL.dir_LAT=(unsigned char *)(&LATE);
-[e = . _motorL 3 -> &U _LATE `*uc ]
+[; ;colour_cards.c: 21:     float B_rel = (float)tmpval->B / (float)tmpval->C;
+[v _B_rel `f ~T0 @X0 1 a ]
+[e = _B_rel / -> . *U _tmpval 2 `f -> . *U _tmpval 3 `f ]
 "24
-[; ;main.c: 24:     motorL.dir_pin=4;
-[e = . _motorL 4 -> -> 4 `i `uc ]
-"25
-[; ;main.c: 25:     motorL.PWMperiod=PWMperiod;
-[e = . _motorL 5 -> _PWMperiod `i ]
+[; ;colour_cards.c: 24:     if ((R_rel>0.54) && (G_rel<0.245) && (B_rel<0.18)) {
+[e $ ! && && > -> _R_rel `d .0.54 < -> _G_rel `d .0.245 < -> _B_rel `d .0.18 2024  ]
+{
+"26
+[; ;colour_cards.c: 26:         turnright(mL, mR, 90);
+[e ( _turnright (3 , , _mL _mR -> -> 90 `i `ui ]
 "27
-[; ;main.c: 27:     DC_motor motorR;
-[v _motorR `S2022 ~T0 @X0 1 a ]
-"28
-[; ;main.c: 28:     motorR.power=0;
-[e = . _motorR 0 -> -> 0 `i `uc ]
+[; ;colour_cards.c: 27:         unknowncard_flag = 0;
+[e = _unknowncard_flag -> -> 0 `i `uc ]
 "29
-[; ;main.c: 29:     motorR.direction=1;
-[e = . _motorR 1 -> -> 1 `i `uc ]
-"30
-[; ;main.c: 30:     motorR.dutyHighByte=(unsigned char *)(&PWM7DCH);
-[e = . _motorR 2 -> &U _PWM7DCH `*uc ]
-"31
-[; ;main.c: 31:     motorR.dir_LAT=(unsigned char *)(&LATG);
-[e = . _motorR 3 -> &U _LATG `*uc ]
-"32
-[; ;main.c: 32:     motorR.dir_pin=6;
-[e = . _motorR 4 -> -> 6 `i `uc ]
-"33
-[; ;main.c: 33:     motorR.PWMperiod=PWMperiod;
-[e = . _motorR 5 -> _PWMperiod `i ]
-"35
-[; ;main.c: 35:     ADC_init();
-[e ( _ADC_init ..  ]
-"36
-[; ;main.c: 36:     colourclick_init();
-[e ( _colourclick_init ..  ]
-"37
-[; ;main.c: 37:     DCmotors_init(PWMperiod);
-[e ( _DCmotors_init (1 _PWMperiod ]
-"38
-[; ;main.c: 38:     USART4_init();
-[e ( _USART4_init ..  ]
-"39
-[; ;main.c: 39:     checkbatterylevel();
-[e ( _checkbatterylevel ..  ]
-"44
-[; ;main.c: 44:     colourclick_calibration();
-[e ( _colourclick_calibration ..  ]
-"45
-[; ;main.c: 45:     colourcards_testingRGBC();
-[e ( _colourcards_testingRGBC ..  ]
-"50
-[; ;main.c: 50:     checkbatterylevel();
-[e ( _checkbatterylevel ..  ]
-"57
-[; ;main.c: 57:     while(PORTFbits.RF2 && PORTFbits.RF3);
-[e $U 2024  ]
-[e :U 2025 ]
+[; ;colour_cards.c: 29:     } else if ((R_rel<0.435) && (G_rel>0.31) && (B_rel>0.195)) {
+}
+[e $U 2025  ]
 [e :U 2024 ]
-[e $ && != -> . . _PORTFbits 0 2 `i -> 0 `i != -> . . _PORTFbits 0 3 `i -> 0 `i 2025  ]
+[e $ ! && && < -> _R_rel `d .0.435 > -> _G_rel `d .0.31 > -> _B_rel `d .0.195 2026  ]
+{
+"31
+[; ;colour_cards.c: 31:         turnleft(mL, mR, 90);
+[e ( _turnleft (3 , , _mL _mR -> -> 90 `i `ui ]
+"32
+[; ;colour_cards.c: 32:         unknowncard_flag = 0;
+[e = _unknowncard_flag -> -> 0 `i `uc ]
+"34
+[; ;colour_cards.c: 34:     } else if ((R_rel<0.43) && (G_rel>0.30) && (B_rel>0.21)) {
+}
+[e $U 2027  ]
 [e :U 2026 ]
-"58
-[; ;main.c: 58:     LATDbits.LATD3 = 1;
-[e = . . _LATDbits 0 3 -> -> 1 `i `uc ]
-"59
-[; ;main.c: 59:     colourclickLEDs_C(1);
-[e ( _colourclickLEDs_C (1 -> -> 1 `i `uc ]
-"60
-[; ;main.c: 60:     _delay((unsigned long)((1000)*(64000000/4000.0)));
-[e ( __delay (1 -> * -> -> 1000 `i `d / -> -> 64000000 `l `d .4000.0 `ul ]
-"62
-[; ;main.c: 62:     forward(&motorL, &motorR);
-[e ( _forward (2 , &U _motorL &U _motorR ]
-"67
-[; ;main.c: 67:     RGBC_val current;
-[v _current `S2021 ~T0 @X0 1 a ]
-"68
-[; ;main.c: 68:     while(1) {
+[e $ ! && && < -> _R_rel `d .0.43 > -> _G_rel `d .0.30 > -> _B_rel `d .0.21 2028  ]
+{
+"36
+[; ;colour_cards.c: 36:         turnright(mL, mR, 180);
+[e ( _turnright (3 , , _mL _mR -> -> 180 `i `ui ]
+"37
+[; ;colour_cards.c: 37:         unknowncard_flag = 0;
+[e = _unknowncard_flag -> -> 0 `i `uc ]
+"39
+[; ;colour_cards.c: 39:     } else if ((R_rel>0.49) && (G_rel>0.285) && (B_rel>0.18)) {
+}
+[e $U 2029  ]
 [e :U 2028 ]
+[e $ ! && && > -> _R_rel `d .0.49 > -> _G_rel `d .0.285 > -> _B_rel `d .0.18 2030  ]
 {
-"69
-[; ;main.c: 69:         if (colourcard_flag==1) {
-[e $ ! == -> _colourcard_flag `i -> 1 `i 2030  ]
-{
-"70
-[; ;main.c: 70:             colourcards_readRGBC(&current, &motorL, &motorR);
-[e ( _colourcards_readRGBC (3 , , &U _current &U _motorL &U _motorR ]
-"71
-[; ;main.c: 71:             colourcard_flag = 0;
-[e = _colourcard_flag -> -> 0 `i `uc ]
-"72
-[; ;main.c: 72:         }
+"41
+[; ;colour_cards.c: 41:         reverse(mL, mR);
+[e ( _reverse (2 , _mL _mR ]
+"42
+[; ;colour_cards.c: 42:         stop(mL, mR);
+[e ( _stop (2 , _mL _mR ]
+"43
+[; ;colour_cards.c: 43:         turnright(mL, mR, 90);
+[e ( _turnright (3 , , _mL _mR -> -> 90 `i `ui ]
+"44
+[; ;colour_cards.c: 44:         unknowncard_flag = 0;
+[e = _unknowncard_flag -> -> 0 `i `uc ]
+"46
+[; ;colour_cards.c: 46:     } else if ((R_rel>0.49) && (G_rel<0.275) && (B_rel>0.195)) {
 }
+[e $U 2031  ]
 [e :U 2030 ]
-"73
-[; ;main.c: 73:     }
+[e $ ! && && > -> _R_rel `d .0.49 < -> _G_rel `d .0.275 > -> _B_rel `d .0.195 2032  ]
+{
+"48
+[; ;colour_cards.c: 48:         reverse(mL, mR);
+[e ( _reverse (2 , _mL _mR ]
+"49
+[; ;colour_cards.c: 49:         stop(mL, mR);
+[e ( _stop (2 , _mL _mR ]
+"50
+[; ;colour_cards.c: 50:         turnleft(mL, mR, 90);
+[e ( _turnleft (3 , , _mL _mR -> -> 90 `i `ui ]
+"51
+[; ;colour_cards.c: 51:         unknowncard_flag = 0;
+[e = _unknowncard_flag -> -> 0 `i `uc ]
+"53
+[; ;colour_cards.c: 53:     } else if ((R_rel>0.54) && (G_rel<0.24) && (B_rel<0.18)) {
 }
-[e :U 2027 ]
-[e $U 2028  ]
-[e :U 2029 ]
+[e $U 2033  ]
+[e :U 2032 ]
+[e $ ! && && > -> _R_rel `d .0.54 < -> _G_rel `d .0.24 < -> _B_rel `d .0.18 2034  ]
+{
+"55
+[; ;colour_cards.c: 55:         turnright(mL, mR, 135);
+[e ( _turnright (3 , , _mL _mR -> -> 135 `i `ui ]
+"56
+[; ;colour_cards.c: 56:         unknowncard_flag = 0;
+[e = _unknowncard_flag -> -> 0 `i `uc ]
+"58
+[; ;colour_cards.c: 58:     } else if ((R_rel<0.44) && (G_rel>0.305) && (B_rel>0.21)) {
+}
+[e $U 2035  ]
+[e :U 2034 ]
+[e $ ! && && < -> _R_rel `d .0.44 > -> _G_rel `d .0.305 > -> _B_rel `d .0.21 2036  ]
+{
+"60
+[; ;colour_cards.c: 60:         turnleft(mL, mR, 135);
+[e ( _turnleft (3 , , _mL _mR -> -> 135 `i `ui ]
+"61
+[; ;colour_cards.c: 61:         unknowncard_flag = 0;
+[e = _unknowncard_flag -> -> 0 `i `uc ]
+"63
+[; ;colour_cards.c: 63:     } else if ((R_rel<0.46) && (G_rel>0.295) && (B_rel>0.21)) {
+}
+[e $U 2037  ]
+[e :U 2036 ]
+[e $ ! && && < -> _R_rel `d .0.46 > -> _G_rel `d .0.295 > -> _B_rel `d .0.21 2038  ]
+{
+"65
+[; ;colour_cards.c: 65:         turnright(mL, mR, 180);
+[e ( _turnright (3 , , _mL _mR -> -> 180 `i `ui ]
+"66
+[; ;colour_cards.c: 66:         unknowncard_flag = 0;
+[e = _unknowncard_flag -> -> 0 `i `uc ]
+"67
+[; ;colour_cards.c: 67:         returnhome_flag = 1;
+[e = _returnhome_flag -> -> 1 `i `uc ]
+"69
+[; ;colour_cards.c: 69:     } else {
+}
+[e $U 2039  ]
+[e :U 2038 ]
+{
+"71
+[; ;colour_cards.c: 71:         _delay((unsigned long)((1000)*(64000000/4000.0)));
+[e ( __delay (1 -> * -> -> 1000 `i `d / -> -> 64000000 `l `d .4000.0 `ul ]
+"72
+[; ;colour_cards.c: 72:         colourclick_readRGBC(tmpval);
+[e ( _colourclick_readRGBC (1 _tmpval ]
+"73
+[; ;colour_cards.c: 73:         if ((tmpval->C < interrupts_lowerbound) || (tmpval->C > interrupts_upperbound)) {
+[e $ ! || < . *U _tmpval 3 _interrupts_lowerbound > . *U _tmpval 3 _interrupts_upperbound 2040  ]
+{
 "74
-[; ;main.c: 74: }
+[; ;colour_cards.c: 74:             if (unknowncard_flag<3) {
+[e $ ! < -> _unknowncard_flag `i -> 3 `i 2041  ]
+{
+"75
+[; ;colour_cards.c: 75:                 PIR0bits.INT1IF = 1;
+[e = . . _PIR0bits 0 1 -> -> 1 `i `uc ]
+"76
+[; ;colour_cards.c: 76:                 unknowncard_flag++;
+[e ++ _unknowncard_flag -> -> 1 `i `Vuc ]
+"77
+[; ;colour_cards.c: 77:             } else {
+}
+[e $U 2042  ]
+[e :U 2041 ]
+{
+"78
+[; ;colour_cards.c: 78:                 LATHbits.LATH3 = 1;
+[e = . . _LATHbits 0 3 -> -> 1 `i `uc ]
+"79
+[; ;colour_cards.c: 79:                 turnright(mL, mR, 180);
+[e ( _turnright (3 , , _mL _mR -> -> 180 `i `ui ]
+"80
+[; ;colour_cards.c: 80:                 returnhome_flag = !returnhome_flag;
+[e = _returnhome_flag -> -> ! != -> _returnhome_flag `i -> 0 `i `i `uc ]
+"81
+[; ;colour_cards.c: 81:                 unknowncard_flag = 0;
+[e = _unknowncard_flag -> -> 0 `i `uc ]
+"82
+[; ;colour_cards.c: 82:             }
+}
+[e :U 2042 ]
+"83
+[; ;colour_cards.c: 83:         } else {
+}
+[e $U 2043  ]
+[e :U 2040 ]
+{
+"84
+[; ;colour_cards.c: 84:             forward(mL, mR);
+[e ( _forward (2 , _mL _mR ]
+"85
+[; ;colour_cards.c: 85:             unknowncard_flag = 0;
+[e = _unknowncard_flag -> -> 0 `i `uc ]
+"86
+[; ;colour_cards.c: 86:         }
+}
+[e :U 2043 ]
+"87
+[; ;colour_cards.c: 87:     }
+}
+[e :U 2039 ]
+[e :U 2037 ]
+[e :U 2035 ]
+[e :U 2033 ]
+[e :U 2031 ]
+[e :U 2029 ]
+[e :U 2027 ]
+[e :U 2025 ]
+"90
+[; ;colour_cards.c: 90:     colourcard_flag = 0;
+[e = _colourcard_flag -> -> 0 `i `uc ]
+"91
+[; ;colour_cards.c: 91:     PIE0bits.INT1IE = 1;
+[e = . . _PIE0bits 0 1 -> -> 1 `i `uc ]
+"92
+[; ;colour_cards.c: 92: }
 [e :UE 2023 ]
 }
+"97
+[; ;colour_cards.c: 97: void colourcards_readHSV(RGBC_val *tmpval, DC_motor *mL, DC_motor *mR)
+[v _colourcards_readHSV `(v ~T0 @X0 1 ef3`*S2021`*S2022`*S2022 ]
+"98
+[; ;colour_cards.c: 98: {
+{
+[e :U _colourcards_readHSV ]
+"97
+[; ;colour_cards.c: 97: void colourcards_readHSV(RGBC_val *tmpval, DC_motor *mL, DC_motor *mR)
+[v _tmpval `*S2021 ~T0 @X0 1 r1 ]
+[v _mL `*S2022 ~T0 @X0 1 r2 ]
+[v _mR `*S2022 ~T0 @X0 1 r3 ]
+"98
+[; ;colour_cards.c: 98: {
+[f ]
+"100
+[; ;colour_cards.c: 100: }
+[e :UE 2044 ]
+}
+"105
+[; ;colour_cards.c: 105: void colourcards_testingRGBC()
+[v _colourcards_testingRGBC `(v ~T0 @X0 1 ef ]
+"106
+[; ;colour_cards.c: 106: {
+{
+[e :U _colourcards_testingRGBC ]
+[f ]
+"107
+[; ;colour_cards.c: 107:     while (PORTFbits.RF2 && PORTFbits.RF3);
+[e $U 2046  ]
+[e :U 2047 ]
+[e :U 2046 ]
+[e $ && != -> . . _PORTFbits 0 2 `i -> 0 `i != -> . . _PORTFbits 0 3 `i -> 0 `i 2047  ]
+[e :U 2048 ]
+"108
+[; ;colour_cards.c: 108:     INTCONbits.GIE = 0;
+[e = . . _INTCONbits 1 2 -> -> 0 `i `uc ]
+"109
+[; ;colour_cards.c: 109:     LATDbits.LATD3 = 1;
+[e = . . _LATDbits 0 3 -> -> 1 `i `uc ]
+"110
+[; ;colour_cards.c: 110:     colourclickLEDs_C(1);
+[e ( _colourclickLEDs_C (1 -> -> 1 `i `uc ]
+"111
+[; ;colour_cards.c: 111:     _delay((unsigned long)((1000)*(64000000/4000.0)));
+[e ( __delay (1 -> * -> -> 1000 `i `d / -> -> 64000000 `l `d .4000.0 `ul ]
+"113
+[; ;colour_cards.c: 113:     RGBC_val tmpval;
+[v _tmpval `S2021 ~T0 @X0 1 a ]
+"114
+[; ;colour_cards.c: 114:     while (1) {
+[e :U 2050 ]
+{
+"115
+[; ;colour_cards.c: 115:         while (PORTFbits.RF2 && PORTFbits.RF3);
+[e $U 2052  ]
+[e :U 2053 ]
+[e :U 2052 ]
+[e $ && != -> . . _PORTFbits 0 2 `i -> 0 `i != -> . . _PORTFbits 0 3 `i -> 0 `i 2053  ]
+[e :U 2054 ]
+"116
+[; ;colour_cards.c: 116:         colourclick_readRGBC(&tmpval);
+[e ( _colourclick_readRGBC (1 &U _tmpval ]
+"117
+[; ;colour_cards.c: 117:         unsigned int R = tmpval.R;
+[v _R `ui ~T0 @X0 1 a ]
+[e = _R . _tmpval 0 ]
+"118
+[; ;colour_cards.c: 118:         unsigned int G = tmpval.G;
+[v _G `ui ~T0 @X0 1 a ]
+[e = _G . _tmpval 1 ]
+"119
+[; ;colour_cards.c: 119:         unsigned int B = tmpval.B;
+[v _B `ui ~T0 @X0 1 a ]
+[e = _B . _tmpval 2 ]
+"120
+[; ;colour_cards.c: 120:         unsigned int C = tmpval.C;
+[v _C `ui ~T0 @X0 1 a ]
+[e = _C . _tmpval 3 ]
+"121
+[; ;colour_cards.c: 121:         float R_rel = (float)R/(float)C;
+[v _R_rel `f ~T0 @X0 1 a ]
+[e = _R_rel / -> _R `f -> _C `f ]
+"122
+[; ;colour_cards.c: 122:         float G_rel = (float)G/(float)C;
+[v _G_rel `f ~T0 @X0 1 a ]
+[e = _G_rel / -> _G `f -> _C `f ]
+"123
+[; ;colour_cards.c: 123:         float B_rel = (float)B/(float)C;
+[v _B_rel `f ~T0 @X0 1 a ]
+[e = _B_rel / -> _B `f -> _C `f ]
+"125
+[; ;colour_cards.c: 125:         char buf[20];
+[v _buf `uc ~T0 @X0 -> 20 `i a ]
+"126
+[; ;colour_cards.c: 126:         if ((R_rel>0.54) && (G_rel<0.245) && (B_rel<0.18)) {
+[e $ ! && && > -> _R_rel `d .0.54 < -> _G_rel `d .0.245 < -> _B_rel `d .0.18 2055  ]
+{
+"128
+[; ;colour_cards.c: 128:             sprintf(buf,"RGBC: %i %i %i %i     RGBC_rel: %.3f %.3f %.3f     Colour: %s\n\r", R, G, B, C, R_rel, G_rel, B_rel, "red");
+[e ( _sprintf (1 , , , , , , , , (. , &U _buf :s 1C _R _G _B _C -> _R_rel `d -> _G_rel `d -> _B_rel `d :s 2C ]
+"131
+[; ;colour_cards.c: 131:         } else if ((R_rel<0.435) && (G_rel>0.31) && (B_rel>0.195)) {
+}
+[e $U 2056  ]
+[e :U 2055 ]
+[e $ ! && && < -> _R_rel `d .0.435 > -> _G_rel `d .0.31 > -> _B_rel `d .0.195 2057  ]
+{
+"133
+[; ;colour_cards.c: 133:             sprintf(buf,"RGBC: %i %i %i %i     RGBC_rel: %.3f %.3f %.3f     Colour: %s\n\r", R, G, B, C, R_rel, G_rel, B_rel, "green");
+[e ( _sprintf (1 , , , , , , , , (. , &U _buf :s 3C _R _G _B _C -> _R_rel `d -> _G_rel `d -> _B_rel `d :s 4C ]
+"136
+[; ;colour_cards.c: 136:         } else if ((R_rel<0.43) && (G_rel>0.30) && (B_rel>0.21)) {
+}
+[e $U 2058  ]
+[e :U 2057 ]
+[e $ ! && && < -> _R_rel `d .0.43 > -> _G_rel `d .0.30 > -> _B_rel `d .0.21 2059  ]
+{
+"138
+[; ;colour_cards.c: 138:             sprintf(buf,"RGBC: %i %i %i %i     RGBC_rel: %.3f %.3f %.3f     Colour: %s\n\r", R, G, B, C, R_rel, G_rel, B_rel, "blue");
+[e ( _sprintf (1 , , , , , , , , (. , &U _buf :s 5C _R _G _B _C -> _R_rel `d -> _G_rel `d -> _B_rel `d :s 6C ]
+"141
+[; ;colour_cards.c: 141:         } else if ((R_rel>0.49) && (G_rel>0.285) && (B_rel>0.18)) {
+}
+[e $U 2060  ]
+[e :U 2059 ]
+[e $ ! && && > -> _R_rel `d .0.49 > -> _G_rel `d .0.285 > -> _B_rel `d .0.18 2061  ]
+{
+"143
+[; ;colour_cards.c: 143:             sprintf(buf,"RGBC: %i %i %i %i     RGBC_rel: %.3f %.3f %.3f     Colour: %s\n\r", R, G, B, C, R_rel, G_rel, B_rel, "yellow");
+[e ( _sprintf (1 , , , , , , , , (. , &U _buf :s 7C _R _G _B _C -> _R_rel `d -> _G_rel `d -> _B_rel `d :s 8C ]
+"146
+[; ;colour_cards.c: 146:         } else if ((R_rel>0.49) && (G_rel<0.275) && (B_rel>0.195)) {
+}
+[e $U 2062  ]
+[e :U 2061 ]
+[e $ ! && && > -> _R_rel `d .0.49 < -> _G_rel `d .0.275 > -> _B_rel `d .0.195 2063  ]
+{
+"148
+[; ;colour_cards.c: 148:             sprintf(buf,"RGBC: %i %i %i %i     RGBC_rel: %.3f %.3f %.3f     Colour: %s\n\r", R, G, B, C, R_rel, G_rel, B_rel, "pink");
+[e ( _sprintf (1 , , , , , , , , (. , &U _buf :s 9C _R _G _B _C -> _R_rel `d -> _G_rel `d -> _B_rel `d :s 10C ]
+"151
+[; ;colour_cards.c: 151:         } else if ((R_rel>0.54) && (G_rel<0.24) && (B_rel<0.18)) {
+}
+[e $U 2064  ]
+[e :U 2063 ]
+[e $ ! && && > -> _R_rel `d .0.54 < -> _G_rel `d .0.24 < -> _B_rel `d .0.18 2065  ]
+{
+"153
+[; ;colour_cards.c: 153:             sprintf(buf,"RGBC: %i %i %i %i     RGBC_rel: %.3f %.3f %.3f     Colour: %s\n\r", R, G, B, C, R_rel, G_rel, B_rel, "orange");
+[e ( _sprintf (1 , , , , , , , , (. , &U _buf :s 11C _R _G _B _C -> _R_rel `d -> _G_rel `d -> _B_rel `d :s 12C ]
+"156
+[; ;colour_cards.c: 156:         } else if ((R_rel<0.44) && (G_rel>0.305) && (B_rel>0.21)) {
+}
+[e $U 2066  ]
+[e :U 2065 ]
+[e $ ! && && < -> _R_rel `d .0.44 > -> _G_rel `d .0.305 > -> _B_rel `d .0.21 2067  ]
+{
+"158
+[; ;colour_cards.c: 158:             sprintf(buf,"RGBC: %i %i %i %i     RGBC_rel: %.3f %.3f %.3f     Colour: %s\n\r", R, G, B, C, R_rel, G_rel, B_rel, "light blue");
+[e ( _sprintf (1 , , , , , , , , (. , &U _buf :s 13C _R _G _B _C -> _R_rel `d -> _G_rel `d -> _B_rel `d :s 14C ]
+"161
+[; ;colour_cards.c: 161:         } else if ((R_rel<0.46) && (G_rel>0.295) && (B_rel>0.21)) {
+}
+[e $U 2068  ]
+[e :U 2067 ]
+[e $ ! && && < -> _R_rel `d .0.46 > -> _G_rel `d .0.295 > -> _B_rel `d .0.21 2069  ]
+{
+"163
+[; ;colour_cards.c: 163:             sprintf(buf,"RGBC: %i %i %i %i     RGBC_rel: %.3f %.3f %.3f     Colour: %s\n\r", R, G, B, C, R_rel, G_rel, B_rel, "white");
+[e ( _sprintf (1 , , , , , , , , (. , &U _buf :s 15C _R _G _B _C -> _R_rel `d -> _G_rel `d -> _B_rel `d :s 16C ]
+"166
+[; ;colour_cards.c: 166:         } else {
+}
+[e $U 2070  ]
+[e :U 2069 ]
+{
+"168
+[; ;colour_cards.c: 168:             sprintf(buf,"RGBC: %i %i %i %i     RGBC_rel: %.3f %.3f %.3f     Colour: %s\n\r", R, G, B, C, R_rel, G_rel, B_rel, "unknown");
+[e ( _sprintf (1 , , , , , , , , (. , &U _buf :s 17C _R _G _B _C -> _R_rel `d -> _G_rel `d -> _B_rel `d :s 18C ]
+"170
+[; ;colour_cards.c: 170:         }
+}
+[e :U 2070 ]
+[e :U 2068 ]
+[e :U 2066 ]
+[e :U 2064 ]
+[e :U 2062 ]
+[e :U 2060 ]
+[e :U 2058 ]
+[e :U 2056 ]
+"171
+[; ;colour_cards.c: 171:         sendStringSerial4(buf);
+[e ( _sendStringSerial4 (1 &U _buf ]
+"172
+[; ;colour_cards.c: 172:         _delay((unsigned long)((500)*(64000000/4000.0)));
+[e ( __delay (1 -> * -> -> 500 `i `d / -> -> 64000000 `l `d .4000.0 `ul ]
+"173
+[; ;colour_cards.c: 173:     }
+}
+[e :U 2049 ]
+[e $U 2050  ]
+[e :U 2051 ]
+"174
+[; ;colour_cards.c: 174: }
+[e :UE 2045 ]
+}
+"179
+[; ;colour_cards.c: 179: void colourcards_testingHSV(RGBC_val *tmpval)
+[v _colourcards_testingHSV `(v ~T0 @X0 1 ef1`*S2021 ]
+"180
+[; ;colour_cards.c: 180: {
+{
+[e :U _colourcards_testingHSV ]
+"179
+[; ;colour_cards.c: 179: void colourcards_testingHSV(RGBC_val *tmpval)
+[v _tmpval `*S2021 ~T0 @X0 1 r1 ]
+"180
+[; ;colour_cards.c: 180: {
+[f ]
+"182
+[; ;colour_cards.c: 182: }
+[e :UE 2071 ]
+}
+[p f _sprintf 8724608 ]
+[a 8C 121 101 108 108 111 119 0 ]
+[a 18C 117 110 107 110 111 119 110 0 ]
+[a 4C 103 114 101 101 110 0 ]
+[a 10C 112 105 110 107 0 ]
+[a 14C 108 105 103 104 116 32 98 108 117 101 0 ]
+[a 6C 98 108 117 101 0 ]
+[a 16C 119 104 105 116 101 0 ]
+[a 12C 111 114 97 110 103 101 0 ]
+[a 2C 114 101 100 0 ]
+[a 1C 82 71 66 67 58 32 37 105 32 37 105 32 37 105 32 37 105 32 32 32 32 32 82 71 66 67 95 114 101 108 58 32 37 46 51 102 32 37 46 51 102 32 37 46 51 102 32 32 32 32 32 67 111 108 111 117 114 58 32 37 115 10 13 0 ]
+[a 3C 82 71 66 67 58 32 37 105 32 37 105 32 37 105 32 37 105 32 32 32 32 32 82 71 66 67 95 114 101 108 58 32 37 46 51 102 32 37 46 51 102 32 37 46 51 102 32 32 32 32 32 67 111 108 111 117 114 58 32 37 115 10 13 0 ]
+[a 5C 82 71 66 67 58 32 37 105 32 37 105 32 37 105 32 37 105 32 32 32 32 32 82 71 66 67 95 114 101 108 58 32 37 46 51 102 32 37 46 51 102 32 37 46 51 102 32 32 32 32 32 67 111 108 111 117 114 58 32 37 115 10 13 0 ]
+[a 7C 82 71 66 67 58 32 37 105 32 37 105 32 37 105 32 37 105 32 32 32 32 32 82 71 66 67 95 114 101 108 58 32 37 46 51 102 32 37 46 51 102 32 37 46 51 102 32 32 32 32 32 67 111 108 111 117 114 58 32 37 115 10 13 0 ]
+[a 9C 82 71 66 67 58 32 37 105 32 37 105 32 37 105 32 37 105 32 32 32 32 32 82 71 66 67 95 114 101 108 58 32 37 46 51 102 32 37 46 51 102 32 37 46 51 102 32 32 32 32 32 67 111 108 111 117 114 58 32 37 115 10 13 0 ]
+[a 11C 82 71 66 67 58 32 37 105 32 37 105 32 37 105 32 37 105 32 32 32 32 32 82 71 66 67 95 114 101 108 58 32 37 46 51 102 32 37 46 51 102 32 37 46 51 102 32 32 32 32 32 67 111 108 111 117 114 58 32 37 115 10 13 0 ]
+[a 13C 82 71 66 67 58 32 37 105 32 37 105 32 37 105 32 37 105 32 32 32 32 32 82 71 66 67 95 114 101 108 58 32 37 46 51 102 32 37 46 51 102 32 37 46 51 102 32 32 32 32 32 67 111 108 111 117 114 58 32 37 115 10 13 0 ]
+[a 15C 82 71 66 67 58 32 37 105 32 37 105 32 37 105 32 37 105 32 32 32 32 32 82 71 66 67 95 114 101 108 58 32 37 46 51 102 32 37 46 51 102 32 37 46 51 102 32 32 32 32 32 67 111 108 111 117 114 58 32 37 115 10 13 0 ]
+[a 17C 82 71 66 67 58 32 37 105 32 37 105 32 37 105 32 37 105 32 32 32 32 32 82 71 66 67 95 114 101 108 58 32 37 46 51 102 32 37 46 51 102 32 37 46 51 102 32 32 32 32 32 67 111 108 111 117 114 58 32 37 115 10 13 0 ]

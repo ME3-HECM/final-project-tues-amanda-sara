@@ -1,4 +1,4 @@
-# 1 "color_click.c"
+# 1 "colour_cards.c"
 # 1 "<built-in>" 1
 # 1 "<built-in>" 3
 # 288 "<built-in>" 3
@@ -6,7 +6,7 @@
 # 1 "<built-in>" 2
 # 1 "C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\\pic\\include\\language_support.h" 1 3
 # 2 "<built-in>" 2
-# 1 "color_click.c" 2
+# 1 "colour_cards.c" 2
 # 1 "C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\\pic\\include\\xc.h" 1 3
 # 18 "C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\\pic\\include\\xc.h" 3
 extern const char __xc8_OPTIM_SPEED;
@@ -24175,28 +24175,240 @@ extern __attribute__((nonreentrant)) void _delaywdt(unsigned long);
 #pragma intrinsic(_delay3)
 extern __attribute__((nonreentrant)) void _delay3(unsigned char);
 # 33 "C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\\pic\\include\\xc.h" 2 3
-# 1 "color_click.c" 2
+# 1 "colour_cards.c" 2
 
-# 1 "./color_click.h" 1
-# 12 "./color_click.h"
+# 1 "C:\\Program Files\\Microchip\\xc8\\v2.32\\pic\\include\\c99\\stdio.h" 1 3
+# 24 "C:\\Program Files\\Microchip\\xc8\\v2.32\\pic\\include\\c99\\stdio.h" 3
+# 1 "C:\\Program Files\\Microchip\\xc8\\v2.32\\pic\\include\\c99\\bits/alltypes.h" 1 3
+
+
+
+
+
+typedef void * va_list[1];
+
+
+
+
+typedef void * __isoc_va_list[1];
+# 137 "C:\\Program Files\\Microchip\\xc8\\v2.32\\pic\\include\\c99\\bits/alltypes.h" 3
+typedef long ssize_t;
+# 246 "C:\\Program Files\\Microchip\\xc8\\v2.32\\pic\\include\\c99\\bits/alltypes.h" 3
+typedef long long off_t;
+# 399 "C:\\Program Files\\Microchip\\xc8\\v2.32\\pic\\include\\c99\\bits/alltypes.h" 3
+typedef struct _IO_FILE FILE;
+# 24 "C:\\Program Files\\Microchip\\xc8\\v2.32\\pic\\include\\c99\\stdio.h" 2 3
+# 52 "C:\\Program Files\\Microchip\\xc8\\v2.32\\pic\\include\\c99\\stdio.h" 3
+typedef union _G_fpos64_t {
+ char __opaque[16];
+ double __align;
+} fpos_t;
+
+extern FILE *const stdin;
+extern FILE *const stdout;
+extern FILE *const stderr;
+
+
+
+
+
+FILE *fopen(const char *restrict, const char *restrict);
+FILE *freopen(const char *restrict, const char *restrict, FILE *restrict);
+int fclose(FILE *);
+
+int remove(const char *);
+int rename(const char *, const char *);
+
+int feof(FILE *);
+int ferror(FILE *);
+int fflush(FILE *);
+void clearerr(FILE *);
+
+int fseek(FILE *, long, int);
+long ftell(FILE *);
+void rewind(FILE *);
+
+int fgetpos(FILE *restrict, fpos_t *restrict);
+int fsetpos(FILE *, const fpos_t *);
+
+size_t fread(void *restrict, size_t, size_t, FILE *restrict);
+size_t fwrite(const void *restrict, size_t, size_t, FILE *restrict);
+
+int fgetc(FILE *);
+int getc(FILE *);
+int getchar(void);
+int ungetc(int, FILE *);
+
+int fputc(int, FILE *);
+int putc(int, FILE *);
+int putchar(int);
+
+char *fgets(char *restrict, int, FILE *restrict);
+
+char *gets(char *);
+
+
+int fputs(const char *restrict, FILE *restrict);
+int puts(const char *);
+
+#pragma printf_check(printf) const
+#pragma printf_check(vprintf) const
+#pragma printf_check(sprintf) const
+#pragma printf_check(snprintf) const
+#pragma printf_check(vsprintf) const
+#pragma printf_check(vsnprintf) const
+
+int printf(const char *restrict, ...);
+int fprintf(FILE *restrict, const char *restrict, ...);
+int sprintf(char *restrict, const char *restrict, ...);
+int snprintf(char *restrict, size_t, const char *restrict, ...);
+
+int vprintf(const char *restrict, __isoc_va_list);
+int vfprintf(FILE *restrict, const char *restrict, __isoc_va_list);
+int vsprintf(char *restrict, const char *restrict, __isoc_va_list);
+int vsnprintf(char *restrict, size_t, const char *restrict, __isoc_va_list);
+
+int scanf(const char *restrict, ...);
+int fscanf(FILE *restrict, const char *restrict, ...);
+int sscanf(const char *restrict, const char *restrict, ...);
+int vscanf(const char *restrict, __isoc_va_list);
+int vfscanf(FILE *restrict, const char *restrict, __isoc_va_list);
+int vsscanf(const char *restrict, const char *restrict, __isoc_va_list);
+
+void perror(const char *);
+
+int setvbuf(FILE *restrict, char *restrict, int, size_t);
+void setbuf(FILE *restrict, char *restrict);
+
+char *tmpnam(char *);
+FILE *tmpfile(void);
+
+
+
+
+FILE *fmemopen(void *restrict, size_t, const char *restrict);
+FILE *open_memstream(char **, size_t *);
+FILE *fdopen(int, const char *);
+FILE *popen(const char *, const char *);
+int pclose(FILE *);
+int fileno(FILE *);
+int fseeko(FILE *, off_t, int);
+off_t ftello(FILE *);
+int dprintf(int, const char *restrict, ...);
+int vdprintf(int, const char *restrict, __isoc_va_list);
+void flockfile(FILE *);
+int ftrylockfile(FILE *);
+void funlockfile(FILE *);
+int getc_unlocked(FILE *);
+int getchar_unlocked(void);
+int putc_unlocked(int, FILE *);
+int putchar_unlocked(int);
+ssize_t getdelim(char **restrict, size_t *restrict, int, FILE *restrict);
+ssize_t getline(char **restrict, size_t *restrict, FILE *restrict);
+int renameat(int, const char *, int, const char *);
+char *ctermid(char *);
+
+
+
+
+
+
+
+char *tempnam(const char *, const char *);
+# 2 "colour_cards.c" 2
+
+# 1 "./buttons_n_LEDs.h" 1
+# 39 "./buttons_n_LEDs.h"
+void clicker2buttons_init(void);
+void clicker2LEDs_init(void);
+void buggyLEDs_init(void);
+void colourclickLEDs_init(void);
+void colourclickLEDs_RGB(void);
+void colourclickLEDs_C(unsigned char tog);
+# 3 "colour_cards.c" 2
+
+# 1 "./colour_cards.h" 1
+
+
+
+
+# 1 "./main.h" 1
+# 16 "./main.h"
+# 1 "./ADC.h" 1
+# 11 "./ADC.h"
+void ADC_init(void);
+unsigned char ADC_getval(void);
+# 16 "./main.h" 2
+
+
+# 1 "./colour_cards.h" 1
+# 18 "./main.h" 2
+
+# 1 "./colour_click.h" 1
+# 11 "./colour_click.h"
 typedef struct {
     unsigned int R, G, B, C;
-} RGB_val;
+} RGBC_val;
 
 
-void colorclick_init(void);
-void colorclick_cyclingRGBLED(void);
-void colorclick_toggleClearLED(unsigned char toggle);
-void colorclick_writetoaddr(char address, char value);
-unsigned int colorclick_readRed(void);
-unsigned int colorclick_readGreen(void);
-unsigned int colorclick_readBlue(void);
-unsigned int colorclick_readClear(void);
-RGB_val colorclick_readColour(RGB_val current);
-# 2 "color_click.c" 2
 
-# 1 "./i2c.h" 1
-# 10 "./i2c.h"
+
+extern volatile unsigned int interrupts_lowerbound;
+extern volatile unsigned int interrupts_upperbound;
+
+
+
+
+void colourclick_init(void);
+void colourclick_writetoaddr(char address, char value);
+unsigned int colourclick_readR(void);
+unsigned int colourclick_readG(void);
+unsigned int colourclick_readB(void);
+unsigned int colourclick_readC(void);
+void colourclick_readRGBC(RGBC_val *tmpval);
+void colourclick_readRGBC2(RGBC_val *tmpval);
+void colourclick_calibration(void);
+void colourclick_testing(RGBC_val *initval, RGBC_val *tmpval);
+# 19 "./main.h" 2
+
+# 1 "./DC_motors.h" 1
+# 14 "./DC_motors.h"
+typedef struct {
+    char power;
+    char direction;
+    unsigned char *dutyHighByte;
+    unsigned char *dir_LAT;
+    char dir_pin;
+    int PWMperiod;
+} DC_motor;
+
+
+
+
+extern volatile unsigned int DCmotors_turntime;
+extern volatile unsigned char returnhome_flag;
+
+
+
+
+
+void DCmotors_init(unsigned char PWMperiod);
+void DCmotors_setPWM(DC_motor *m);
+void checkbatterylevel(void);
+void forward(DC_motor *mL, DC_motor *mR);
+void reverse(DC_motor *mL, DC_motor *mR);
+void stop(DC_motor *mL, DC_motor *mR);
+void left(DC_motor *mL, DC_motor *mR, unsigned int deg);
+void right(DC_motor *mL, DC_motor *mR, unsigned int deg);
+void turnleft(DC_motor *mL, DC_motor *mR, unsigned int deg);
+void turnright(DC_motor *mL, DC_motor *mR, unsigned int deg);
+void DCmotors_calibration(DC_motor *mL, DC_motor *mR);
+void DCmotors_adjustval(void);
+void DCmotors_testing(DC_motor *mL, DC_motor *mR);
+# 20 "./main.h" 2
+
+# 1 "./I2C.h" 1
+# 12 "./I2C.h"
 void I2C_2_Master_Init(void);
 void I2C_2_Master_Idle(void);
 void I2C_2_Master_Start(void);
@@ -24204,7 +24416,94 @@ void I2C_2_Master_RepStart(void);
 void I2C_2_Master_Stop(void);
 void I2C_2_Master_Write(unsigned char data_byte);
 unsigned char I2C_2_Master_Read(unsigned char ack);
-# 3 "color_click.c" 2
+# 21 "./main.h" 2
+
+# 1 "./interrupts.h" 1
+# 16 "./interrupts.h"
+extern volatile unsigned int interrupts_lowerbound;
+extern volatile unsigned int interrupts_upperbound;
+extern volatile unsigned char colourcard_flag;
+extern volatile unsigned char battery_flag;
+
+
+
+
+void interrupts_init(void);
+void interrupts_clear(void);
+void __attribute__((picinterrupt(("high_priority")))) HighISR();
+void __attribute__((picinterrupt(("low_priority")))) LowISR();
+# 22 "./main.h" 2
+
+# 1 "./serial_comm.h" 1
+# 12 "./serial_comm.h"
+volatile char EUSART4RXbuf[20];
+volatile char RxBufWriteCnt=0;
+volatile char RxBufReadCnt=0;
+
+volatile char EUSART4TXbuf[60];
+volatile char TxBufWriteCnt=0;
+volatile char TxBufReadCnt=0;
+
+
+
+
+
+void USART4_init(void);
+char getCharSerial4(void);
+void sendCharSerial4(unsigned char charToSend);
+void sendStringSerial4(char *string);
+
+
+char getCharFromRxBuf(void);
+void putCharToRxBuf(char byte);
+char isDataInRxBuf (void);
+
+
+char getCharFromTxBuf(void);
+void putCharToTxBuf(char byte);
+char isDataInTxBuf (void);
+void TxBufferedString(char *string);
+void sendTxBuf(void);
+# 23 "./main.h" 2
+
+
+
+
+
+
+#pragma config FEXTOSC = HS
+#pragma config RSTOSC = EXTOSC_4PLL
+
+
+
+
+
+#pragma config WDTE = OFF
+
+
+
+
+volatile unsigned int DCmotors_turntime;
+volatile unsigned int interrupts_lowerbound;
+volatile unsigned int interrupts_upperbound;
+volatile unsigned char colourcard_flag;
+volatile unsigned char unknowncard_flag;
+volatile unsigned char returnhome_flag;
+# 5 "./colour_cards.h" 2
+# 15 "./colour_cards.h"
+extern volatile unsigned char colourcard_flag;
+extern volatile unsigned char unknowncard_flag;
+extern volatile unsigned char returnhome_flag;
+
+
+
+
+
+void colourcards_readRGBC(RGBC_val *tmpval, DC_motor *mL, DC_motor *mR);
+void colourcards_readHSV(RGBC_val *tmpval, DC_motor *mL, DC_motor *mR);
+void colourcards_testingRGBC();
+void colourcards_testingHSV();
+# 4 "colour_cards.c" 2
 
 
 
@@ -24212,198 +24511,175 @@ unsigned char I2C_2_Master_Read(unsigned char ack);
 
 
 
-volatile unsigned int clear_lower;
-volatile unsigned int clear_upper;
 
-
-
-
-
-void colorclick_init(void)
+void colourcards_readRGBC(RGBC_val *tmpval, DC_motor *mL, DC_motor *mR)
 {
 
-    I2C_2_Master_Init();
+    PIE0bits.INT1IE = 0;
 
 
-  colorclick_writetoaddr(0x00, 0x01);
-    _delay((unsigned long)((3)*(64000000/4000.0)));
+    colourclick_readRGBC(tmpval);
+    float R_rel = (float)tmpval->R / (float)tmpval->C;
+    float G_rel = (float)tmpval->G / (float)tmpval->C;
+    float B_rel = (float)tmpval->B / (float)tmpval->C;
 
 
- colorclick_writetoaddr(0x00, 0x03);
+    if ((R_rel>0.54) && (G_rel<0.245) && (B_rel<0.18)) {
+
+        turnright(mL, mR, 90);
+        unknowncard_flag = 0;
+
+    } else if ((R_rel<0.435) && (G_rel>0.31) && (B_rel>0.195)) {
+
+        turnleft(mL, mR, 90);
+        unknowncard_flag = 0;
+
+    } else if ((R_rel<0.43) && (G_rel>0.30) && (B_rel>0.21)) {
+
+        turnright(mL, mR, 180);
+        unknowncard_flag = 0;
+
+    } else if ((R_rel>0.49) && (G_rel>0.285) && (B_rel>0.18)) {
+
+        reverse(mL, mR);
+        stop(mL, mR);
+        turnright(mL, mR, 90);
+        unknowncard_flag = 0;
+
+    } else if ((R_rel>0.49) && (G_rel<0.275) && (B_rel>0.195)) {
+
+        reverse(mL, mR);
+        stop(mL, mR);
+        turnleft(mL, mR, 90);
+        unknowncard_flag = 0;
+
+    } else if ((R_rel>0.54) && (G_rel<0.24) && (B_rel<0.18)) {
+
+        turnright(mL, mR, 135);
+        unknowncard_flag = 0;
+
+    } else if ((R_rel<0.44) && (G_rel>0.305) && (B_rel>0.21)) {
+
+        turnleft(mL, mR, 135);
+        unknowncard_flag = 0;
+
+    } else if ((R_rel<0.46) && (G_rel>0.295) && (B_rel>0.21)) {
+
+        turnright(mL, mR, 180);
+        unknowncard_flag = 0;
+        returnhome_flag = 1;
+
+    } else {
+
+        _delay((unsigned long)((1000)*(64000000/4000.0)));
+        colourclick_readRGBC(tmpval);
+        if ((tmpval->C < interrupts_lowerbound) || (tmpval->C > interrupts_upperbound)) {
+            if (unknowncard_flag<3) {
+                PIR0bits.INT1IF = 1;
+                unknowncard_flag++;
+            } else {
+                LATHbits.LATH3 = 1;
+                turnright(mL, mR, 180);
+                returnhome_flag = !returnhome_flag;
+                unknowncard_flag = 0;
+            }
+        } else {
+            forward(mL, mR);
+            unknowncard_flag = 0;
+        }
+    }
 
 
- colorclick_writetoaddr(0x01, 0xD5);
-
-
-    TRISGbits.TRISG1 = 0;
-    TRISAbits.TRISA4 = 0;
-    TRISFbits.TRISF7 = 0;
-
-
-    colorclick_toggleClearLED(0);
+    colourcard_flag = 0;
+    PIE0bits.INT1IE = 1;
 }
 
 
 
 
-
-void colorclick_cyclingRGBLED(void)
+void colourcards_readHSV(RGBC_val *tmpval, DC_motor *mL, DC_motor *mR)
 {
-    LATGbits.LATG1 = 1;
-    _delay((unsigned long)((50)*(64000000/4000.0)));
-    LATGbits.LATG1 = 0;
-    _delay((unsigned long)((20)*(64000000/4000.0)));
 
-    LATAbits.LATA4 = 1;
-    _delay((unsigned long)((50)*(64000000/4000.0)));
-    LATAbits.LATA4 = 0;
-    _delay((unsigned long)((20)*(64000000/4000.0)));
-
-    LATFbits.LATF7 = 1;
-    _delay((unsigned long)((50)*(64000000/4000.0)));
-    LATFbits.LATF7 = 0;
-    _delay((unsigned long)((20)*(64000000/4000.0)));
 }
 
 
 
 
-
-void colorclick_toggleClearLED(unsigned char toggle)
+void colourcards_testingRGBC()
 {
-    LATGbits.LATG1 = toggle;
-    LATFbits.LATF7 = toggle;
-    LATAbits.LATA4 = toggle;
-}
-
-
-
-
-
-
-
-void colorclick_writetoaddr(char address, char value)
-{
-    I2C_2_Master_Start();
-    I2C_2_Master_Write(0x52 | 0x00);
-    I2C_2_Master_Write(0x80 | address);
-    I2C_2_Master_Write(value);
-    I2C_2_Master_Stop();
-}
-
-
-
-
-
-
-unsigned int colorclick_readRed(void)
-{
- unsigned int tmp;
- I2C_2_Master_Start();
- I2C_2_Master_Write(0x52 | 0x00);
- I2C_2_Master_Write(0xA0 | 0x16);
- I2C_2_Master_RepStart();
- I2C_2_Master_Write(0x52 | 0x01);
- tmp=I2C_2_Master_Read(1);
- tmp=tmp | (I2C_2_Master_Read(0)<<8);
- I2C_2_Master_Stop();
- return tmp;
-}
-
-
-
-
-
-
-unsigned int colorclick_readGreen(void)
-{
- unsigned int tmp;
- I2C_2_Master_Start();
- I2C_2_Master_Write(0x52 | 0x00);
- I2C_2_Master_Write(0xA0 | 0x18);
- I2C_2_Master_RepStart();
- I2C_2_Master_Write(0x52 | 0x01);
- tmp=I2C_2_Master_Read(1);
- tmp=tmp | (I2C_2_Master_Read(0)<<8);
- I2C_2_Master_Stop();
- return tmp;
-}
-
-
-
-
-
-
-unsigned int colorclick_readBlue(void)
-{
- unsigned int tmp;
- I2C_2_Master_Start();
- I2C_2_Master_Write(0x52 | 0x00);
- I2C_2_Master_Write(0xA0 | 0x1A);
- I2C_2_Master_RepStart();
- I2C_2_Master_Write(0x52 | 0x01);
- tmp=I2C_2_Master_Read(1);
- tmp=tmp | (I2C_2_Master_Read(0)<<8);
- I2C_2_Master_Stop();
- return tmp;
-}
-
-
-
-
-
-
-unsigned int colorclick_readClear(void)
-{
- unsigned int tmp;
- I2C_2_Master_Start();
- I2C_2_Master_Write(0x52 | 0x00);
- I2C_2_Master_Write(0xA0 | 0x14);
- I2C_2_Master_RepStart();
- I2C_2_Master_Write(0x52 | 0x01);
- tmp=I2C_2_Master_Read(1);
- tmp=tmp | (I2C_2_Master_Read(0)<<8);
- I2C_2_Master_Stop();
- return tmp;
-}
-
-
-
-
-
-RGB_val colorclick_readColour(RGB_val current)
-{
-    current.R = colorclick_readRed();
-    current.G = colorclick_readGreen();
-    current.B = colorclick_readBlue();
-    current.C = colorclick_readClear();
-
-    return current;
-}
-
-RGB_val colorclick_readColourRGBCLED(RGB_val current)
-{
-    colorclick_toggleClearLED(0);
-
-    LATGbits.LATG1 = 1;
-    current.R = colorclick_readRed();
+    while (PORTFbits.RF2 && PORTFbits.RF3);
+    INTCONbits.GIE = 0;
+    LATDbits.LATD3 = 1;
+    colourclickLEDs_C(1);
     _delay((unsigned long)((1000)*(64000000/4000.0)));
-    LATGbits.LATG1 = 0;
-    _delay((unsigned long)((20)*(64000000/4000.0)));
 
-    LATAbits.LATA4 = 1;
-    current.G = colorclick_readGreen();
-    _delay((unsigned long)((1000)*(64000000/4000.0)));
-    LATAbits.LATA4 = 0;
-    _delay((unsigned long)((20)*(64000000/4000.0)));
+    RGBC_val tmpval;
+    while (1) {
+        while (PORTFbits.RF2 && PORTFbits.RF3);
+        colourclick_readRGBC(&tmpval);
+        unsigned int R = tmpval.R;
+        unsigned int G = tmpval.G;
+        unsigned int B = tmpval.B;
+        unsigned int C = tmpval.C;
+        float R_rel = (float)R/(float)C;
+        float G_rel = (float)G/(float)C;
+        float B_rel = (float)B/(float)C;
 
-    LATFbits.LATF7 = 1;
-    current.B = colorclick_readBlue();
-    _delay((unsigned long)((1000)*(64000000/4000.0)));
-    LATFbits.LATF7 = 0;
-    _delay((unsigned long)((20)*(64000000/4000.0)));
+        char buf[20];
+        if ((R_rel>0.54) && (G_rel<0.245) && (B_rel<0.18)) {
 
-    colorclick_toggleClearLED(1);
+            sprintf(buf,"RGBC: %i %i %i %i     RGBC_rel: %.3f %.3f %.3f     Colour: %s\n\r", R, G, B, C, R_rel, G_rel, B_rel, "red");
 
-    return current;
+
+        } else if ((R_rel<0.435) && (G_rel>0.31) && (B_rel>0.195)) {
+
+            sprintf(buf,"RGBC: %i %i %i %i     RGBC_rel: %.3f %.3f %.3f     Colour: %s\n\r", R, G, B, C, R_rel, G_rel, B_rel, "green");
+
+
+        } else if ((R_rel<0.43) && (G_rel>0.30) && (B_rel>0.21)) {
+
+            sprintf(buf,"RGBC: %i %i %i %i     RGBC_rel: %.3f %.3f %.3f     Colour: %s\n\r", R, G, B, C, R_rel, G_rel, B_rel, "blue");
+
+
+        } else if ((R_rel>0.49) && (G_rel>0.285) && (B_rel>0.18)) {
+
+            sprintf(buf,"RGBC: %i %i %i %i     RGBC_rel: %.3f %.3f %.3f     Colour: %s\n\r", R, G, B, C, R_rel, G_rel, B_rel, "yellow");
+
+
+        } else if ((R_rel>0.49) && (G_rel<0.275) && (B_rel>0.195)) {
+
+            sprintf(buf,"RGBC: %i %i %i %i     RGBC_rel: %.3f %.3f %.3f     Colour: %s\n\r", R, G, B, C, R_rel, G_rel, B_rel, "pink");
+
+
+        } else if ((R_rel>0.54) && (G_rel<0.24) && (B_rel<0.18)) {
+
+            sprintf(buf,"RGBC: %i %i %i %i     RGBC_rel: %.3f %.3f %.3f     Colour: %s\n\r", R, G, B, C, R_rel, G_rel, B_rel, "orange");
+
+
+        } else if ((R_rel<0.44) && (G_rel>0.305) && (B_rel>0.21)) {
+
+            sprintf(buf,"RGBC: %i %i %i %i     RGBC_rel: %.3f %.3f %.3f     Colour: %s\n\r", R, G, B, C, R_rel, G_rel, B_rel, "light blue");
+
+
+        } else if ((R_rel<0.46) && (G_rel>0.295) && (B_rel>0.21)) {
+
+            sprintf(buf,"RGBC: %i %i %i %i     RGBC_rel: %.3f %.3f %.3f     Colour: %s\n\r", R, G, B, C, R_rel, G_rel, B_rel, "white");
+
+
+        } else {
+
+            sprintf(buf,"RGBC: %i %i %i %i     RGBC_rel: %.3f %.3f %.3f     Colour: %s\n\r", R, G, B, C, R_rel, G_rel, B_rel, "unknown");
+
+        }
+        sendStringSerial4(buf);
+        _delay((unsigned long)((500)*(64000000/4000.0)));
+    }
+}
+
+
+
+
+void colourcards_testingHSV(RGBC_val *tmpval)
+{
+
 }

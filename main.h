@@ -1,13 +1,26 @@
-// This is a guard condition so that contents of this file are not included
-// more than once.  
-#ifndef _MAIN_H
-#define	_MAIN_H
+#ifndef _MAIN_H // This is a guard condition so that contents of this file are not included more than once
+#define	_MAIN_H // Beginning of _MAIN_H
 
 /**********************************************************
- * A definition calls for a macro substitution
+ * Definitions
  * See The C programming language, second edition, pp.89-91
  **********************************************************/
 #define _XTAL_FREQ 64000000 // Note intrinsic _delay function is 62.5ns at 64,000,000Hz
+
+/***********************************************************
+ * File inclusions
+ * See The C programming language, second edition, pp.88-89
+ ***********************************************************/
+#include <xc.h>    // Include processor file
+#include <stdio.h> // Include standard input output library
+#include "ADC.h"
+#include "buttons_n_LEDs.h"
+#include "colour_cards.h"
+#include "colour_click.h"
+#include "DC_motors.h"
+#include "I2C.h"
+#include "interrupts.h"
+#include "serial_comm.h"
 
 /***************************************************
  * CONFIG1L (configuration word 1) - oscillators
@@ -22,26 +35,14 @@
  ***********************************************************/
 #pragma config WDTE = OFF // WDT operating mode bits (WDT enabled regardless of sleep)
 
-/**************************************************************************************
- * File inclusion makes it easy to handle collections of #defines and declarations etc.
- * See The C programming language, second edition, pp.88-89
- **************************************************************************************/
-#include <xc.h> // include processor files - each processor file is guarded.
-#include <stdio.h> // Include standard input output library
-#include "ADC.h"
-#include "color_card.h"
-#include "color_click.h"
-#include "dc_motor.h"
-#include "i2c.h"
-#include "serial.h"
-#include "interrupts.h"
+/******************
+ * Global variables
+ ******************/
+volatile unsigned int DCmotors_turntime;
+volatile unsigned int interrupts_lowerbound; // Lower threshold value to trigger interrupts
+volatile unsigned int interrupts_upperbound; // Upper threshold value to trigger interrupts
+volatile unsigned char colourcard_flag;
+volatile unsigned char unknowncard_flag;
+volatile unsigned char returnhome_flag;
 
-extern volatile unsigned char card_flag;
-extern volatile unsigned char battery_flag;
-extern volatile unsigned char returnhome_flag;
-
-//volatile unsigned int clear_lower = 0;
-//volatile unsigned int clear_upper = 0;
-
-#endif	/* _MAIN_H */
-
+#endif // End of _MAIN_H

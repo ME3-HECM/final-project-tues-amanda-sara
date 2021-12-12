@@ -24178,22 +24178,7 @@ extern __attribute__((nonreentrant)) void _delay3(unsigned char);
 # 1 "main.c" 2
 
 # 1 "./main.h" 1
-# 16 "./main.h"
-#pragma config FEXTOSC = HS
-#pragma config RSTOSC = EXTOSC_4PLL
-
-
-
-
-
-#pragma config WDTE = OFF
-
-
-
-
-
-
-
+# 15 "./main.h"
 # 1 "C:\\Program Files\\Microchip\\xc8\\v2.32\\pic\\include\\c99\\stdio.h" 1 3
 # 24 "C:\\Program Files\\Microchip\\xc8\\v2.32\\pic\\include\\c99\\stdio.h" 3
 # 1 "C:\\Program Files\\Microchip\\xc8\\v2.32\\pic\\include\\c99\\bits/alltypes.h" 1 3
@@ -24332,41 +24317,61 @@ char *ctermid(char *);
 
 
 char *tempnam(const char *, const char *);
-# 30 "./main.h" 2
+# 15 "./main.h" 2
 
 # 1 "./ADC.h" 1
-# 10 "./ADC.h"
+# 11 "./ADC.h"
 void ADC_init(void);
 unsigned char ADC_getval(void);
-# 31 "./main.h" 2
+# 16 "./main.h" 2
 
-# 1 "./color_card.h" 1
+# 1 "./buttons_n_LEDs.h" 1
+# 39 "./buttons_n_LEDs.h"
+void clicker2buttons_init(void);
+void clicker2LEDs_init(void);
+void buggyLEDs_init(void);
+void colourclickLEDs_init(void);
+void colourclickLEDs_RGB(void);
+void colourclickLEDs_C(unsigned char tog);
+# 17 "./main.h" 2
+
+# 1 "./colour_cards.h" 1
 
 
 
 
-# 1 "./color_click.h" 1
-# 12 "./color_click.h"
+# 1 "./main.h" 1
+# 5 "./colour_cards.h" 2
+
+# 1 "./colour_click.h" 1
+# 11 "./colour_click.h"
 typedef struct {
     unsigned int R, G, B, C;
-} RGB_val;
+} RGBC_val;
 
 
-void colorclick_init(void);
-void colorclick_cyclingRGBLED(void);
-void colorclick_toggleClearLED(unsigned char toggle);
-void colorclick_writetoaddr(char address, char value);
-unsigned int colorclick_readRed(void);
-unsigned int colorclick_readGreen(void);
-unsigned int colorclick_readBlue(void);
-unsigned int colorclick_readClear(void);
-RGB_val colorclick_readColour(RGB_val current);
-# 5 "./color_card.h" 2
 
-# 1 "./dc_motor.h" 1
-# 23 "./dc_motor.h"
-extern volatile unsigned char returnhome_flag;
 
+extern volatile unsigned int interrupts_lowerbound;
+extern volatile unsigned int interrupts_upperbound;
+
+
+
+
+void colourclick_init(void);
+void colourclick_writetoaddr(char address, char value);
+unsigned int colourclick_readR(void);
+unsigned int colourclick_readG(void);
+unsigned int colourclick_readB(void);
+unsigned int colourclick_readC(void);
+void colourclick_readRGBC(RGBC_val *tmpval);
+void colourclick_readRGBC2(RGBC_val *tmpval);
+void colourclick_calibration(void);
+void colourclick_testing(RGBC_val *initval, RGBC_val *tmpval);
+# 6 "./colour_cards.h" 2
+
+# 1 "./DC_motors.h" 1
+# 14 "./DC_motors.h"
 typedef struct {
     char power;
     char direction;
@@ -24377,32 +24382,55 @@ typedef struct {
 } DC_motor;
 
 
+
+
+extern volatile unsigned int DCmotors_turntime;
+extern volatile unsigned char returnhome_flag;
+
+
+
+
+
 void DCmotors_init(unsigned char PWMperiod);
-void clicker2buttons_init(void);
-void clicker2LEDs_init(void);
-void buggyLEDs_init(void);
-unsigned char check_battery_level(void);
-void setMotorPWM(DC_motor *m);
+void DCmotors_setPWM(DC_motor *m);
+void checkbatterylevel(void);
 void forward(DC_motor *mL, DC_motor *mR);
 void reverse(DC_motor *mL, DC_motor *mR);
 void stop(DC_motor *mL, DC_motor *mR);
-void turnLeft(DC_motor *mL, DC_motor *mR, unsigned char deg);
-void turnRight(DC_motor *mL, DC_motor *mR, unsigned char deg);
-# 6 "./color_card.h" 2
+void left(DC_motor *mL, DC_motor *mR, unsigned int deg);
+void right(DC_motor *mL, DC_motor *mR, unsigned int deg);
+void turnleft(DC_motor *mL, DC_motor *mR, unsigned int deg);
+void turnright(DC_motor *mL, DC_motor *mR, unsigned int deg);
+void DCmotors_calibration(DC_motor *mL, DC_motor *mR);
+void DCmotors_adjustval(void);
+void DCmotors_testing(DC_motor *mL, DC_motor *mR);
+# 7 "./colour_cards.h" 2
 
 
 
 
-volatile unsigned char returnhome_flag;
-
-RGB_val read_colour(RGB_val current);
-void read_card(RGB_val initial, RGB_val current, DC_motor *mL, DC_motor *mR);
-# 32 "./main.h" 2
 
 
 
-# 1 "./i2c.h" 1
-# 10 "./i2c.h"
+
+extern volatile unsigned char colourcard_flag;
+extern volatile unsigned char unknowncard_flag;
+extern volatile unsigned char returnhome_flag;
+
+
+
+
+
+void colourcards_readRGBC(RGBC_val *tmpval, DC_motor *mL, DC_motor *mR);
+void colourcards_readHSV(RGBC_val *tmpval, DC_motor *mL, DC_motor *mR);
+void colourcards_testingRGBC();
+void colourcards_testingHSV();
+# 18 "./main.h" 2
+
+
+
+# 1 "./I2C.h" 1
+# 12 "./I2C.h"
 void I2C_2_Master_Init(void);
 void I2C_2_Master_Idle(void);
 void I2C_2_Master_Start(void);
@@ -24410,10 +24438,26 @@ void I2C_2_Master_RepStart(void);
 void I2C_2_Master_Stop(void);
 void I2C_2_Master_Write(unsigned char data_byte);
 unsigned char I2C_2_Master_Read(unsigned char ack);
-# 35 "./main.h" 2
+# 21 "./main.h" 2
 
-# 1 "./serial.h" 1
-# 13 "./serial.h"
+# 1 "./interrupts.h" 1
+# 16 "./interrupts.h"
+extern volatile unsigned int interrupts_lowerbound;
+extern volatile unsigned int interrupts_upperbound;
+extern volatile unsigned char colourcard_flag;
+extern volatile unsigned char battery_flag;
+
+
+
+
+void interrupts_init(void);
+void interrupts_clear(void);
+void __attribute__((picinterrupt(("high_priority")))) HighISR();
+void __attribute__((picinterrupt(("low_priority")))) LowISR();
+# 22 "./main.h" 2
+
+# 1 "./serial_comm.h" 1
+# 12 "./serial_comm.h"
 volatile char EUSART4RXbuf[20];
 volatile char RxBufWriteCnt=0;
 volatile char RxBufReadCnt=0;
@@ -24421,6 +24465,8 @@ volatile char RxBufReadCnt=0;
 volatile char EUSART4TXbuf[60];
 volatile char TxBufWriteCnt=0;
 volatile char TxBufReadCnt=0;
+
+
 
 
 
@@ -24440,24 +24486,31 @@ void putCharToTxBuf(char byte);
 char isDataInTxBuf (void);
 void TxBufferedString(char *string);
 void sendTxBuf(void);
-# 36 "./main.h" 2
-
-# 1 "./interrupts.h" 1
-# 12 "./interrupts.h"
-volatile unsigned char card_flag;
-volatile unsigned char battery_flag;
+# 23 "./main.h" 2
 
 
-void interrupts_init(void);
-void interrupts_clear(void);
-void __attribute__((picinterrupt(("high_priority")))) HighISR();
-void __attribute__((picinterrupt(("low_priority")))) LowISR();
-# 37 "./main.h" 2
 
 
-extern volatile unsigned char card_flag;
-extern volatile unsigned char battery_flag;
-extern volatile unsigned char returnhome_flag;
+
+
+#pragma config FEXTOSC = HS
+#pragma config RSTOSC = EXTOSC_4PLL
+
+
+
+
+
+#pragma config WDTE = OFF
+
+
+
+
+volatile unsigned int DCmotors_turntime;
+volatile unsigned int interrupts_lowerbound;
+volatile unsigned int interrupts_upperbound;
+volatile unsigned char colourcard_flag;
+volatile unsigned char unknowncard_flag;
+volatile unsigned char returnhome_flag;
 # 2 "main.c" 2
 
 
@@ -24469,17 +24522,12 @@ void main(void) {
 
 
     unsigned char PWMperiod = 99;
-    card_flag = 0;
-    battery_flag = 0;
+    DCmotors_turntime = 100;
+    interrupts_lowerbound = 0;
+    interrupts_upperbound = 32767;
+    colourcard_flag = 0;
+    unknowncard_flag = 0;
     returnhome_flag = 0;
-    ADC_init();
-    colorclick_init();
-    interrupts_init();
-    DCmotors_init(PWMperiod);
-    USART4_init();
-
-
-
 
     DC_motor motorL;
     motorL.power=0;
@@ -24489,7 +24537,6 @@ void main(void) {
     motorL.dir_pin=4;
     motorL.PWMperiod=PWMperiod;
 
-
     DC_motor motorR;
     motorR.power=0;
     motorR.direction=1;
@@ -24497,44 +24544,44 @@ void main(void) {
     motorR.dir_LAT=(unsigned char *)(&LATG);
     motorR.dir_pin=6;
     motorR.PWMperiod=PWMperiod;
-# 48 "main.c"
-    RGB_val initial;
-    initial = colorclick_readColour(initial);
-    _delay((unsigned long)((100)*(64000000/4000.0)));
-# 99 "main.c"
-    unsigned char battery = ADC_getval();
-    if (battery<100) {
-        LATDbits.LATD7 = 1;
-        LATHbits.LATH3 = 1;
-    } else if (battery<200) {
-        LATDbits.LATD7 = 1;
-        LATHbits.LATH3 = 0;
-    } else {
-        LATDbits.LATD7 = 0;
-        LATHbits.LATH3 = 0;
-    }
+
+    ADC_init();
+    colourclick_init();
+    DCmotors_init(PWMperiod);
+    USART4_init();
+    checkbatterylevel();
+
+
+
+
+    colourclick_calibration();
+    colourcards_testingRGBC();
+
+
+
+
+    checkbatterylevel();
+
+
+
+
+
+
+    while(PORTFbits.RF2 && PORTFbits.RF3);
+    LATDbits.LATD3 = 1;
+    colourclickLEDs_C(1);
     _delay((unsigned long)((1000)*(64000000/4000.0)));
+
     forward(&motorL, &motorR);
 
 
 
 
-    RGB_val current;
+    RGBC_val current;
     while(1) {
-# 134 "main.c"
-        current = colorclick_readColour(current);
-        read_card(initial, current, &motorL, &motorR);
-
-        if (card_flag==1) {
-            current = colorclick_readColour(current);
-            read_card(initial, current, &motorL, &motorR);
-            card_flag = 0;
-        }
-
-        if (battery_flag==1) {
-            LATDbits.LATD7 = 1;
-            LATHbits.LATH3 = 1;
-            battery_flag = 0;
+        if (colourcard_flag==1) {
+            colourcards_readRGBC(&current, &motorL, &motorR);
+            colourcard_flag = 0;
         }
     }
 }
