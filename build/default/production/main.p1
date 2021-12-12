@@ -75,9 +75,6 @@ Version 4.0 HI-TECH Software Intermediate Code
 "24 ./colour_cards.h
 [; ;./colour_cards.h: 24: void colourcards_testing(RGBC_val *tmpval);
 [v _colourcards_testing `(v ~T0 @X0 0 ef1`*S2021 ]
-"43 ./DC_motors.h
-[; ;./DC_motors.h: 43: void DCmotors_testing(DC_motor *mL, DC_motor *mR);
-[v _DCmotors_testing `(v ~T0 @X0 0 ef2`*S2022`*S2022 ]
 "54 C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\proc\pic18f67k40.h
 [; ;C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\proc\pic18f67k40.h: 54: __asm("PPSLOCK equ 0DEFh");
 [; <" PPSLOCK equ 0DEFh ;# ">
@@ -2217,9 +2214,6 @@ Version 4.0 HI-TECH Software Intermediate Code
 "70
 [; ;main.c: 70:         colourcards_testing(&current);
 [e ( _colourcards_testing (1 &U _current ]
-"71
-[; ;main.c: 71:         DCmotors_testing(&motorL, &motorR);
-[e ( _DCmotors_testing (2 , &U _motorL &U _motorR ]
 "80
 [; ;main.c: 80:     }
 }

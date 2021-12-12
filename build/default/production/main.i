@@ -24567,7 +24567,6 @@ void main(void) {
 
 
         colourcards_testing(&current);
-        DCmotors_testing(&motorL, &motorR);
 # 80 "main.c"
     }
 }

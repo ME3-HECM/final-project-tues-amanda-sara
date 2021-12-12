@@ -24611,56 +24611,61 @@ void colourcards_testing(RGBC_val *tmpval)
     INTCONbits.GIE = 0;
 
     colourclick_readRGBC(tmpval);
-    float R = (float)tmpval->R;
-    float G = (float)tmpval->G;
-    float B = (float)tmpval->B;
-    float C = (float)tmpval->C;
-    float R_rel = R/C;
-    float G_rel = G/C;
-    float B_rel = B/C;
+    int R = tmpval->R;
+    int G = tmpval->G;
+    int B = tmpval->B;
+    int C = tmpval->C;
+    float R_rel = (float)R/(float)C;
+    float G_rel = (float)G/(float)C;
+    float B_rel = (float)B/(float)C;
 
-    char colour;
+    char buf1[100];
     if ((R_rel>0.54) && (G_rel<0.245) && (B_rel<0.18)) {
 
-        char colour[] = "red";
+        sprintf(buf1,"RGBC: %i %i %i %i     RGBC_rel: %.3f %.3f %.3f     Colour: %s\n\r", R, G, B, C, R_rel, G_rel, B_rel, "red");
+
 
     } else if ((R_rel<0.435) && (G_rel>0.31) && (B_rel>0.195)) {
 
-        char colour[] = "green";
+        sprintf(buf1,"RGBC: %i %i %i %i     RGBC_rel: %.3f %.3f %.3f     Colour: %s\n\r", R, G, B, C, R_rel, G_rel, B_rel, "green");
+
 
     } else if ((R_rel<0.43) && (G_rel>0.30) && (B_rel>0.21)) {
 
-        char colour[] = "blue";
+        sprintf(buf1,"RGBC: %i %i %i %i     RGBC_rel: %.3f %.3f %.3f     Colour: %s\n\r", R, G, B, C, R_rel, G_rel, B_rel, "blue");
+
 
     } else if ((R_rel>0.49) && (G_rel>0.285) && (B_rel>0.18)) {
 
-        char colour[] = "yellow";
+        sprintf(buf1,"RGBC: %i %i %i %i     RGBC_rel: %.3f %.3f %.3f     Colour: %s\n\r", R, G, B, C, R_rel, G_rel, B_rel, "yellow");
+
 
     } else if ((R_rel>0.49) && (G_rel<0.275) && (B_rel>0.195)) {
 
-        char colour[] = "pink";
+        sprintf(buf1,"RGBC: %i %i %i %i     RGBC_rel: %.3f %.3f %.3f     Colour: %s\n\r", R, G, B, C, R_rel, G_rel, B_rel, "pink");
+
 
     } else if ((R_rel>0.54) && (G_rel<0.24) && (B_rel<0.18)) {
 
-        char colour[] = "orange";
+        sprintf(buf1,"RGBC: %i %i %i %i     RGBC_rel: %.3f %.3f %.3f     Colour: %s\n\r", R, G, B, C, R_rel, G_rel, B_rel, "orange");
+
 
     } else if ((R_rel<0.44) && (G_rel>0.305) && (B_rel>0.21)) {
 
-        char colour[] = "light blue";
+        sprintf(buf1,"RGBC: %i %i %i %i     RGBC_rel: %.3f %.3f %.3f     Colour: %s\n\r", R, G, B, C, R_rel, G_rel, B_rel, "light blue");
+
 
     } else if ((R_rel<0.46) && (G_rel>0.295) && (B_rel>0.21)) {
 
-        char colour[] = "white";
+        sprintf(buf1,"RGBC: %i %i %i %i     RGBC_rel: %.3f %.3f %.3f     Colour: %s\n\r", R, G, B, C, R_rel, G_rel, B_rel, "white");
+
 
     } else {
 
-        char colour[] = "unknown";
+        sprintf(buf1,"RGBC: %i %i %i %i     RGBC_rel: %.3f %.3f %.3f     Colour: %s\n\r", R, G, B, C, R_rel, G_rel, B_rel, "unknown");
+
     }
-
-    char buf[100];
-    sprintf(buf,"RGBC: %i %i %i %i     RGBC_rel: %.3f %.3f %.3f     Colour: %s\n\r", R, G, B, C, R_rel, G_rel, B_rel, colour);
-
-    sendStringSerial4(buf);
+    sendStringSerial4(buf1);
     _delay((unsigned long)((500)*(64000000/4000.0)));
 
     INTCONbits.GIE = 1;

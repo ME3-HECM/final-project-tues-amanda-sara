@@ -2434,237 +2434,124 @@ Version 4.0 HI-TECH Software Intermediate Code
 [; ;colour_cards.c: 110:     colourclick_readRGBC(tmpval);
 [e ( _colourclick_readRGBC (1 _tmpval ]
 "111
-[; ;colour_cards.c: 111:     float R = (float)tmpval->R;
-[v _R `f ~T0 @X0 1 a ]
-[e = _R -> . *U _tmpval 0 `f ]
+[; ;colour_cards.c: 111:     int R = tmpval->R;
+[v _R `i ~T0 @X0 1 a ]
+[e = _R -> . *U _tmpval 0 `i ]
 "112
-[; ;colour_cards.c: 112:     float G = (float)tmpval->G;
-[v _G `f ~T0 @X0 1 a ]
-[e = _G -> . *U _tmpval 1 `f ]
+[; ;colour_cards.c: 112:     int G = tmpval->G;
+[v _G `i ~T0 @X0 1 a ]
+[e = _G -> . *U _tmpval 1 `i ]
 "113
-[; ;colour_cards.c: 113:     float B = (float)tmpval->B;
-[v _B `f ~T0 @X0 1 a ]
-[e = _B -> . *U _tmpval 2 `f ]
+[; ;colour_cards.c: 113:     int B = tmpval->B;
+[v _B `i ~T0 @X0 1 a ]
+[e = _B -> . *U _tmpval 2 `i ]
 "114
-[; ;colour_cards.c: 114:     float C = (float)tmpval->C;
-[v _C `f ~T0 @X0 1 a ]
-[e = _C -> . *U _tmpval 3 `f ]
+[; ;colour_cards.c: 114:     int C = tmpval->C;
+[v _C `i ~T0 @X0 1 a ]
+[e = _C -> . *U _tmpval 3 `i ]
 "115
-[; ;colour_cards.c: 115:     float R_rel = R/C;
+[; ;colour_cards.c: 115:     float R_rel = (float)R/(float)C;
 [v _R_rel `f ~T0 @X0 1 a ]
-[e = _R_rel / _R _C ]
+[e = _R_rel / -> _R `f -> _C `f ]
 "116
-[; ;colour_cards.c: 116:     float G_rel = G/C;
+[; ;colour_cards.c: 116:     float G_rel = (float)G/(float)C;
 [v _G_rel `f ~T0 @X0 1 a ]
-[e = _G_rel / _G _C ]
+[e = _G_rel / -> _G `f -> _C `f ]
 "117
-[; ;colour_cards.c: 117:     float B_rel = B/C;
+[; ;colour_cards.c: 117:     float B_rel = (float)B/(float)C;
 [v _B_rel `f ~T0 @X0 1 a ]
-[e = _B_rel / _B _C ]
+[e = _B_rel / -> _B `f -> _C `f ]
 "119
-[; ;colour_cards.c: 119:     char colour;
-[v _colour `uc ~T0 @X0 1 a ]
+[; ;colour_cards.c: 119:     char buf1[100];
+[v _buf1 `uc ~T0 @X0 -> 100 `i a ]
 "120
 [; ;colour_cards.c: 120:     if ((R_rel>0.54) && (G_rel<0.245) && (B_rel<0.18)) {
 [e $ ! && && > -> _R_rel `d .0.54 < -> _G_rel `d .0.245 < -> _B_rel `d .0.18 2049  ]
 {
-[v F14669 `uc ~T0 @X0 -> 4 `i s ]
-[i F14669
-:U ..
 "122
-[; ;colour_cards.c: 122:         char colour[] = "red";
--> 114 `c
--> 101 `c
--> 100 `c
--> 0 `c
-..
-]
-[v _colour `uc ~T0 @X0 -> 4 `i a ]
-[e = _colour F14669 ]
-"124
-[; ;colour_cards.c: 124:     } else if ((R_rel<0.435) && (G_rel>0.31) && (B_rel>0.195)) {
+[; ;colour_cards.c: 122:         sprintf(buf1,"RGBC: %i %i %i %i     RGBC_rel: %.3f %.3f %.3f     Colour: %s\n\r", R, G, B, C, R_rel, G_rel, B_rel, "red");
+[e ( _sprintf (1 , , , , , , , , (. , &U _buf1 :s 1C _R _G _B _C -> _R_rel `d -> _G_rel `d -> _B_rel `d :s 2C ]
+"125
+[; ;colour_cards.c: 125:     } else if ((R_rel<0.435) && (G_rel>0.31) && (B_rel>0.195)) {
 }
 [e $U 2050  ]
 [e :U 2049 ]
 [e $ ! && && < -> _R_rel `d .0.435 > -> _G_rel `d .0.31 > -> _B_rel `d .0.195 2051  ]
 {
-[v F14671 `uc ~T0 @X0 -> 6 `i s ]
-[i F14671
-:U ..
-"126
-[; ;colour_cards.c: 126:         char colour[] = "green";
--> 103 `c
--> 114 `c
--> 101 `c
--> 101 `c
--> 110 `c
--> 0 `c
-..
-]
-[v _colour `uc ~T0 @X0 -> 6 `i a ]
-[e = _colour F14671 ]
-"128
-[; ;colour_cards.c: 128:     } else if ((R_rel<0.43) && (G_rel>0.30) && (B_rel>0.21)) {
+"127
+[; ;colour_cards.c: 127:         sprintf(buf1,"RGBC: %i %i %i %i     RGBC_rel: %.3f %.3f %.3f     Colour: %s\n\r", R, G, B, C, R_rel, G_rel, B_rel, "green");
+[e ( _sprintf (1 , , , , , , , , (. , &U _buf1 :s 3C _R _G _B _C -> _R_rel `d -> _G_rel `d -> _B_rel `d :s 4C ]
+"130
+[; ;colour_cards.c: 130:     } else if ((R_rel<0.43) && (G_rel>0.30) && (B_rel>0.21)) {
 }
 [e $U 2052  ]
 [e :U 2051 ]
 [e $ ! && && < -> _R_rel `d .0.43 > -> _G_rel `d .0.30 > -> _B_rel `d .0.21 2053  ]
 {
-[v F14673 `uc ~T0 @X0 -> 5 `i s ]
-[i F14673
-:U ..
-"130
-[; ;colour_cards.c: 130:         char colour[] = "blue";
--> 98 `c
--> 108 `c
--> 117 `c
--> 101 `c
--> 0 `c
-..
-]
-[v _colour `uc ~T0 @X0 -> 5 `i a ]
-[e = _colour F14673 ]
 "132
-[; ;colour_cards.c: 132:     } else if ((R_rel>0.49) && (G_rel>0.285) && (B_rel>0.18)) {
+[; ;colour_cards.c: 132:         sprintf(buf1,"RGBC: %i %i %i %i     RGBC_rel: %.3f %.3f %.3f     Colour: %s\n\r", R, G, B, C, R_rel, G_rel, B_rel, "blue");
+[e ( _sprintf (1 , , , , , , , , (. , &U _buf1 :s 5C _R _G _B _C -> _R_rel `d -> _G_rel `d -> _B_rel `d :s 6C ]
+"135
+[; ;colour_cards.c: 135:     } else if ((R_rel>0.49) && (G_rel>0.285) && (B_rel>0.18)) {
 }
 [e $U 2054  ]
 [e :U 2053 ]
 [e $ ! && && > -> _R_rel `d .0.49 > -> _G_rel `d .0.285 > -> _B_rel `d .0.18 2055  ]
 {
-[v F14675 `uc ~T0 @X0 -> 7 `i s ]
-[i F14675
-:U ..
-"134
-[; ;colour_cards.c: 134:         char colour[] = "yellow";
--> 121 `c
--> 101 `c
--> 108 `c
--> 108 `c
--> 111 `c
--> 119 `c
--> 0 `c
-..
-]
-[v _colour `uc ~T0 @X0 -> 7 `i a ]
-[e = _colour F14675 ]
-"136
-[; ;colour_cards.c: 136:     } else if ((R_rel>0.49) && (G_rel<0.275) && (B_rel>0.195)) {
+"137
+[; ;colour_cards.c: 137:         sprintf(buf1,"RGBC: %i %i %i %i     RGBC_rel: %.3f %.3f %.3f     Colour: %s\n\r", R, G, B, C, R_rel, G_rel, B_rel, "yellow");
+[e ( _sprintf (1 , , , , , , , , (. , &U _buf1 :s 7C _R _G _B _C -> _R_rel `d -> _G_rel `d -> _B_rel `d :s 8C ]
+"140
+[; ;colour_cards.c: 140:     } else if ((R_rel>0.49) && (G_rel<0.275) && (B_rel>0.195)) {
 }
 [e $U 2056  ]
 [e :U 2055 ]
 [e $ ! && && > -> _R_rel `d .0.49 < -> _G_rel `d .0.275 > -> _B_rel `d .0.195 2057  ]
 {
-[v F14677 `uc ~T0 @X0 -> 5 `i s ]
-[i F14677
-:U ..
-"138
-[; ;colour_cards.c: 138:         char colour[] = "pink";
--> 112 `c
--> 105 `c
--> 110 `c
--> 107 `c
--> 0 `c
-..
-]
-[v _colour `uc ~T0 @X0 -> 5 `i a ]
-[e = _colour F14677 ]
-"140
-[; ;colour_cards.c: 140:     } else if ((R_rel>0.54) && (G_rel<0.24) && (B_rel<0.18)) {
+"142
+[; ;colour_cards.c: 142:         sprintf(buf1,"RGBC: %i %i %i %i     RGBC_rel: %.3f %.3f %.3f     Colour: %s\n\r", R, G, B, C, R_rel, G_rel, B_rel, "pink");
+[e ( _sprintf (1 , , , , , , , , (. , &U _buf1 :s 9C _R _G _B _C -> _R_rel `d -> _G_rel `d -> _B_rel `d :s 10C ]
+"145
+[; ;colour_cards.c: 145:     } else if ((R_rel>0.54) && (G_rel<0.24) && (B_rel<0.18)) {
 }
 [e $U 2058  ]
 [e :U 2057 ]
 [e $ ! && && > -> _R_rel `d .0.54 < -> _G_rel `d .0.24 < -> _B_rel `d .0.18 2059  ]
 {
-[v F14679 `uc ~T0 @X0 -> 7 `i s ]
-[i F14679
-:U ..
-"142
-[; ;colour_cards.c: 142:         char colour[] = "orange";
--> 111 `c
--> 114 `c
--> 97 `c
--> 110 `c
--> 103 `c
--> 101 `c
--> 0 `c
-..
-]
-[v _colour `uc ~T0 @X0 -> 7 `i a ]
-[e = _colour F14679 ]
-"144
-[; ;colour_cards.c: 144:     } else if ((R_rel<0.44) && (G_rel>0.305) && (B_rel>0.21)) {
+"147
+[; ;colour_cards.c: 147:         sprintf(buf1,"RGBC: %i %i %i %i     RGBC_rel: %.3f %.3f %.3f     Colour: %s\n\r", R, G, B, C, R_rel, G_rel, B_rel, "orange");
+[e ( _sprintf (1 , , , , , , , , (. , &U _buf1 :s 11C _R _G _B _C -> _R_rel `d -> _G_rel `d -> _B_rel `d :s 12C ]
+"150
+[; ;colour_cards.c: 150:     } else if ((R_rel<0.44) && (G_rel>0.305) && (B_rel>0.21)) {
 }
 [e $U 2060  ]
 [e :U 2059 ]
 [e $ ! && && < -> _R_rel `d .0.44 > -> _G_rel `d .0.305 > -> _B_rel `d .0.21 2061  ]
 {
-[v F14681 `uc ~T0 @X0 -> 11 `i s ]
-[i F14681
-:U ..
-"146
-[; ;colour_cards.c: 146:         char colour[] = "light blue";
--> 108 `c
--> 105 `c
--> 103 `c
--> 104 `c
--> 116 `c
--> 32 `c
--> 98 `c
--> 108 `c
--> 117 `c
--> 101 `c
--> 0 `c
-..
-]
-[v _colour `uc ~T0 @X0 -> 11 `i a ]
-[e = _colour F14681 ]
-"148
-[; ;colour_cards.c: 148:     } else if ((R_rel<0.46) && (G_rel>0.295) && (B_rel>0.21)) {
+"152
+[; ;colour_cards.c: 152:         sprintf(buf1,"RGBC: %i %i %i %i     RGBC_rel: %.3f %.3f %.3f     Colour: %s\n\r", R, G, B, C, R_rel, G_rel, B_rel, "light blue");
+[e ( _sprintf (1 , , , , , , , , (. , &U _buf1 :s 13C _R _G _B _C -> _R_rel `d -> _G_rel `d -> _B_rel `d :s 14C ]
+"155
+[; ;colour_cards.c: 155:     } else if ((R_rel<0.46) && (G_rel>0.295) && (B_rel>0.21)) {
 }
 [e $U 2062  ]
 [e :U 2061 ]
 [e $ ! && && < -> _R_rel `d .0.46 > -> _G_rel `d .0.295 > -> _B_rel `d .0.21 2063  ]
 {
-[v F14683 `uc ~T0 @X0 -> 6 `i s ]
-[i F14683
-:U ..
-"150
-[; ;colour_cards.c: 150:         char colour[] = "white";
--> 119 `c
--> 104 `c
--> 105 `c
--> 116 `c
--> 101 `c
--> 0 `c
-..
-]
-[v _colour `uc ~T0 @X0 -> 6 `i a ]
-[e = _colour F14683 ]
-"152
-[; ;colour_cards.c: 152:     } else {
+"157
+[; ;colour_cards.c: 157:         sprintf(buf1,"RGBC: %i %i %i %i     RGBC_rel: %.3f %.3f %.3f     Colour: %s\n\r", R, G, B, C, R_rel, G_rel, B_rel, "white");
+[e ( _sprintf (1 , , , , , , , , (. , &U _buf1 :s 15C _R _G _B _C -> _R_rel `d -> _G_rel `d -> _B_rel `d :s 16C ]
+"160
+[; ;colour_cards.c: 160:     } else {
 }
 [e $U 2064  ]
 [e :U 2063 ]
 {
-[v F14685 `uc ~T0 @X0 -> 8 `i s ]
-[i F14685
-:U ..
-"154
-[; ;colour_cards.c: 154:         char colour[] = "unknown";
--> 117 `c
--> 110 `c
--> 107 `c
--> 110 `c
--> 111 `c
--> 119 `c
--> 110 `c
--> 0 `c
-..
-]
-[v _colour `uc ~T0 @X0 -> 8 `i a ]
-[e = _colour F14685 ]
-"155
-[; ;colour_cards.c: 155:     }
+"162
+[; ;colour_cards.c: 162:         sprintf(buf1,"RGBC: %i %i %i %i     RGBC_rel: %.3f %.3f %.3f     Colour: %s\n\r", R, G, B, C, R_rel, G_rel, B_rel, "unknown");
+[e ( _sprintf (1 , , , , , , , , (. , &U _buf1 :s 17C _R _G _B _C -> _R_rel `d -> _G_rel `d -> _B_rel `d :s 18C ]
+"164
+[; ;colour_cards.c: 164:     }
 }
 [e :U 2064 ]
 [e :U 2062 ]
@@ -2674,24 +2561,35 @@ Version 4.0 HI-TECH Software Intermediate Code
 [e :U 2054 ]
 [e :U 2052 ]
 [e :U 2050 ]
-"157
-[; ;colour_cards.c: 157:     char buf[100];
-[v _buf `uc ~T0 @X0 -> 100 `i a ]
-"158
-[; ;colour_cards.c: 158:     sprintf(buf,"RGBC: %i %i %i %i     RGBC_rel: %.3f %.3f %.3f     Colour: %s\n\r", R, G, B, C, R_rel, G_rel, B_rel, colour);
-[e ( _sprintf (1 , , , , , , , , (. , &U _buf :s 1C -> _R `d -> _G `d -> _B `d -> _C `d -> _R_rel `d -> _G_rel `d -> _B_rel `d -> _colour `i ]
-"160
-[; ;colour_cards.c: 160:     sendStringSerial4(buf);
-[e ( _sendStringSerial4 (1 &U _buf ]
-"161
-[; ;colour_cards.c: 161:     _delay((unsigned long)((500)*(64000000/4000.0)));
+"165
+[; ;colour_cards.c: 165:     sendStringSerial4(buf1);
+[e ( _sendStringSerial4 (1 &U _buf1 ]
+"166
+[; ;colour_cards.c: 166:     _delay((unsigned long)((500)*(64000000/4000.0)));
 [e ( __delay (1 -> * -> -> 500 `i `d / -> -> 64000000 `l `d .4000.0 `ul ]
-"163
-[; ;colour_cards.c: 163:     INTCONbits.GIE = 1;
+"168
+[; ;colour_cards.c: 168:     INTCONbits.GIE = 1;
 [e = . . _INTCONbits 1 2 -> -> 1 `i `uc ]
-"164
-[; ;colour_cards.c: 164: }
+"169
+[; ;colour_cards.c: 169: }
 [e :UE 2045 ]
 }
 [p f _sprintf 8724608 ]
+[a 8C 121 101 108 108 111 119 0 ]
+[a 18C 117 110 107 110 111 119 110 0 ]
+[a 4C 103 114 101 101 110 0 ]
+[a 10C 112 105 110 107 0 ]
+[a 14C 108 105 103 104 116 32 98 108 117 101 0 ]
+[a 6C 98 108 117 101 0 ]
+[a 16C 119 104 105 116 101 0 ]
+[a 12C 111 114 97 110 103 101 0 ]
+[a 2C 114 101 100 0 ]
 [a 1C 82 71 66 67 58 32 37 105 32 37 105 32 37 105 32 37 105 32 32 32 32 32 82 71 66 67 95 114 101 108 58 32 37 46 51 102 32 37 46 51 102 32 37 46 51 102 32 32 32 32 32 67 111 108 111 117 114 58 32 37 115 10 13 0 ]
+[a 3C 82 71 66 67 58 32 37 105 32 37 105 32 37 105 32 37 105 32 32 32 32 32 82 71 66 67 95 114 101 108 58 32 37 46 51 102 32 37 46 51 102 32 37 46 51 102 32 32 32 32 32 67 111 108 111 117 114 58 32 37 115 10 13 0 ]
+[a 5C 82 71 66 67 58 32 37 105 32 37 105 32 37 105 32 37 105 32 32 32 32 32 82 71 66 67 95 114 101 108 58 32 37 46 51 102 32 37 46 51 102 32 37 46 51 102 32 32 32 32 32 67 111 108 111 117 114 58 32 37 115 10 13 0 ]
+[a 7C 82 71 66 67 58 32 37 105 32 37 105 32 37 105 32 37 105 32 32 32 32 32 82 71 66 67 95 114 101 108 58 32 37 46 51 102 32 37 46 51 102 32 37 46 51 102 32 32 32 32 32 67 111 108 111 117 114 58 32 37 115 10 13 0 ]
+[a 9C 82 71 66 67 58 32 37 105 32 37 105 32 37 105 32 37 105 32 32 32 32 32 82 71 66 67 95 114 101 108 58 32 37 46 51 102 32 37 46 51 102 32 37 46 51 102 32 32 32 32 32 67 111 108 111 117 114 58 32 37 115 10 13 0 ]
+[a 11C 82 71 66 67 58 32 37 105 32 37 105 32 37 105 32 37 105 32 32 32 32 32 82 71 66 67 95 114 101 108 58 32 37 46 51 102 32 37 46 51 102 32 37 46 51 102 32 32 32 32 32 67 111 108 111 117 114 58 32 37 115 10 13 0 ]
+[a 13C 82 71 66 67 58 32 37 105 32 37 105 32 37 105 32 37 105 32 32 32 32 32 82 71 66 67 95 114 101 108 58 32 37 46 51 102 32 37 46 51 102 32 37 46 51 102 32 32 32 32 32 67 111 108 111 117 114 58 32 37 115 10 13 0 ]
+[a 15C 82 71 66 67 58 32 37 105 32 37 105 32 37 105 32 37 105 32 32 32 32 32 82 71 66 67 95 114 101 108 58 32 37 46 51 102 32 37 46 51 102 32 37 46 51 102 32 32 32 32 32 67 111 108 111 117 114 58 32 37 115 10 13 0 ]
+[a 17C 82 71 66 67 58 32 37 105 32 37 105 32 37 105 32 37 105 32 32 32 32 32 82 71 66 67 95 114 101 108 58 32 37 46 51 102 32 37 46 51 102 32 37 46 51 102 32 32 32 32 32 67 111 108 111 117 114 58 32 37 115 10 13 0 ]

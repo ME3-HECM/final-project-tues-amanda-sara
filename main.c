@@ -68,7 +68,7 @@ void main(void) {
          * Testing
          *********/
         colourcards_testing(&current);
-        DCmotors_testing(&motorL, &motorR);
+//        DCmotors_testing(&motorL, &motorR);
         
         /*****************
          * Maze navigation

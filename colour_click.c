@@ -178,7 +178,7 @@ void colourclick_calibration(void) {
     
     unsigned char i;
     RGBC_val current;
-    for (i=0; i<10; i++) {
+    for (i=0; i<8; i++) {
         while(RF2_BUTTON);
         RD7_LED = 1;
         colourclick_readRGBC(&current);

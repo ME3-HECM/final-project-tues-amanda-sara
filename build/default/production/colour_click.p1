@@ -2462,10 +2462,10 @@ Version 4.0 HI-TECH Software Intermediate Code
 [; ;colour_click.c: 180:     RGBC_val current;
 [v _current `S2019 ~T0 @X0 1 a ]
 "181
-[; ;colour_click.c: 181:     for (i=0; i<10; i++) {
+[; ;colour_click.c: 181:     for (i=0; i<8; i++) {
 {
 [e = _i -> -> 0 `i `uc ]
-[e $ < -> _i `i -> 10 `i 2032  ]
+[e $ < -> _i `i -> 8 `i 2032  ]
 [e $U 2033  ]
 [e :U 2032 ]
 {
@@ -2514,7 +2514,7 @@ Version 4.0 HI-TECH Software Intermediate Code
 [; ;colour_click.c: 192:     }
 }
 [e ++ _i -> -> 1 `i `uc ]
-[e $ < -> _i `i -> 10 `i 2032  ]
+[e $ < -> _i `i -> 8 `i 2032  ]
 [e :U 2033 ]
 }
 "193
