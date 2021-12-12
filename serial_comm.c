@@ -1,7 +1,7 @@
 #include <xc.h>
-#include "serial.h"
+#include "serial_comm.h"
 
-/*********
+/*************
  * USART4_init
  ****************/
 void USART4_init(void) {
@@ -111,6 +111,7 @@ char isDataInTxBuf (void){
 /**************
  * TxBufferedString
  * function to add a string to the buffer
+ * Send buffered string with interrupts
  ******************/
 void TxBufferedString(char *string){
 	//Hint: look at how you did this for the LCD lab 

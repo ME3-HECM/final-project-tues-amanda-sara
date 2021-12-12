@@ -1,4 +1,4 @@
-# 1 "color_card.c"
+# 1 "colour_click.c"
 # 1 "<built-in>" 1
 # 1 "<built-in>" 3
 # 288 "<built-in>" 3
@@ -6,7 +6,7 @@
 # 1 "<built-in>" 2
 # 1 "C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\\pic\\include\\language_support.h" 1 3
 # 2 "<built-in>" 2
-# 1 "color_card.c" 2
+# 1 "colour_click.c" 2
 # 1 "C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\\pic\\include\\xc.h" 1 3
 # 18 "C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\\pic\\include\\xc.h" 3
 extern const char __xc8_OPTIM_SPEED;
@@ -24175,136 +24175,241 @@ extern __attribute__((nonreentrant)) void _delaywdt(unsigned long);
 #pragma intrinsic(_delay3)
 extern __attribute__((nonreentrant)) void _delay3(unsigned char);
 # 33 "C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\\pic\\include\\xc.h" 2 3
-# 1 "color_card.c" 2
+# 1 "colour_click.c" 2
 
-# 1 "./color_card.h" 1
-
-
-
-
-# 1 "./color_click.h" 1
-# 12 "./color_click.h"
+# 1 "./colour_click.h" 1
+# 11 "./colour_click.h"
 typedef struct {
     unsigned int R, G, B, C;
-} RGB_val;
+} RGBC_val;
 
 
-void colorclick_init(void);
-void colorclick_cyclingRGBLED(void);
-void colorclick_toggleClearLED(unsigned char toggle);
-void colorclick_writetoaddr(char address, char value);
-unsigned int colorclick_readRed(void);
-unsigned int colorclick_readGreen(void);
-unsigned int colorclick_readBlue(void);
-unsigned int colorclick_readClear(void);
-RGB_val colorclick_readColour(RGB_val current);
-# 5 "./color_card.h" 2
-
-# 1 "./dc_motor.h" 1
-# 23 "./dc_motor.h"
-extern volatile unsigned char returnhome_flag;
-
-typedef struct {
-    char power;
-    char direction;
-    unsigned char *dutyHighByte;
-    unsigned char *dir_LAT;
-    char dir_pin;
-    int PWMperiod;
-} DC_motor;
 
 
-void DCmotors_init(unsigned char PWMperiod);
+extern volatile unsigned int interrupts_lower;
+extern volatile unsigned int interrupts_upper;
+
+
+
+
+void colourclick_init(void);
+void colourclick_writetoaddr(char address, char value);
+unsigned int colourclick_readR(void);
+unsigned int colourclick_readG(void);
+unsigned int colourclick_readB(void);
+unsigned int colourclick_readC(void);
+void colourclick_readRGBC(RGBC_val *tmpval);
+void colourclick_readRGBC2(RGBC_val *tmpval);
+void colourclick_calibration(void);
+# 2 "colour_click.c" 2
+
+# 1 "./buttons_n_LEDs.h" 1
+# 39 "./buttons_n_LEDs.h"
 void clicker2buttons_init(void);
 void clicker2LEDs_init(void);
 void buggyLEDs_init(void);
-unsigned char check_battery_level(void);
-void setMotorPWM(DC_motor *m);
-void forward(DC_motor *mL, DC_motor *mR);
-void reverse(DC_motor *mL, DC_motor *mR);
-void stop(DC_motor *mL, DC_motor *mR);
-void turnLeft(DC_motor *mL, DC_motor *mR, unsigned char deg);
-void turnRight(DC_motor *mL, DC_motor *mR, unsigned char deg);
-# 6 "./color_card.h" 2
+void colourclickLEDs_init(void);
+void colourclickLEDs_RGB(void);
+void colourclickLEDs_C(unsigned char tog);
+# 3 "colour_click.c" 2
+
+# 1 "./I2C.h" 1
+# 12 "./I2C.h"
+void I2C_2_Master_Init(void);
+void I2C_2_Master_Idle(void);
+void I2C_2_Master_Start(void);
+void I2C_2_Master_RepStart(void);
+void I2C_2_Master_Stop(void);
+void I2C_2_Master_Write(unsigned char data_byte);
+unsigned char I2C_2_Master_Read(unsigned char ack);
+# 4 "colour_click.c" 2
 
 
 
 
-volatile unsigned char returnhome_flag;
-
-float read_card_RGB(RGB_val current, DC_motor *mL, DC_motor *mR);
-void read_card_HSV(RGB_val current, DC_motor *mL, DC_motor *mR);
-# 2 "color_card.c" 2
 
 
 
+volatile unsigned int clear_lower;
+volatile unsigned int clear_upper;
 
-float read_card_RGB(RGB_val current, DC_motor *mL, DC_motor *mR) {
 
-    float R_rel = (float)current.R / (float)current.C;
-    float G_rel = (float)current.G / (float)current.C;
-    float B_rel = (float)current.B / (float)current.C;
 
-    if ((R_rel>0.54) && (G_rel<0.245) && (B_rel<0.18)) {
 
-        turnRight(mL, mR, 90);
-        stop(mL, mR);
 
-    } else if ((R_rel<0.435) && (G_rel>0.31) && (B_rel>0.195)) {
+void colourclick_init(void)
+{
 
-        turnLeft(mL, mR, 90);
-        stop(mL, mR);
+    I2C_2_Master_Init();
 
-    } else if ((R_rel<0.43) && (G_rel>0.30) && (B_rel>0.21)) {
 
-        turnRight(mL, mR, 180);
-        stop(mL, mR);
+  colourclick_writetoaddr(0x00, 0x01);
+    _delay((unsigned long)((3)*(64000000/4000.0)));
 
-    } else if ((R_rel>0.49) && (G_rel>0.285) && (B_rel>0.18)) {
 
-        reverse(mL, mR);
-        stop(mL, mR);
-        turnRight(mL, mR, 90);
-        stop(mL, mR);
+ colourclick_writetoaddr(0x00, 0x03);
 
-    } else if ((R_rel>0.49) && (G_rel<0.275) && (B_rel>0.195)) {
 
-        reverse(mL, mR);
-        stop(mL, mR);
-        turnLeft(mL, mR, 90);
-        stop(mL, mR);
+ colourclick_writetoaddr(0x01, 0xD5);
 
-    } else if ((R_rel>0.54) && (G_rel<0.24) && (B_rel<0.18)) {
-
-        turnRight(mL, mR, 135);
-        stop(mL, mR);
-
-    } else if ((R_rel<0.44) && (G_rel>0.305) && (B_rel>0.21)) {
-
-        turnLeft(mL, mR, 135);
-        stop(mL, mR);
-
-    } else if ((R_rel<0.46) && (G_rel>0.295) && (B_rel>0.21)) {
-
-        turnRight(mL, mR, 180);
-        stop(mL, mR);
-        returnhome_flag = 1;
-
-    } else {
-
-        turnRight(mL, mR, 180);
-        stop(mL, mR);
-        returnhome_flag = 1;
-    }
-
-    return R_rel;
+    colourclickLEDs_init();
 }
 
 
 
-void read_card_HSV(RGB_val current, DC_motor *mL, DC_motor *mR) {
 
-    float R_rel = current.R/current.C;
-    float G_rel = current.G/current.C;
-    float B_rel = current.B/current.C;
+
+
+
+void colourclick_writetoaddr(char address, char value)
+{
+    I2C_2_Master_Start();
+    I2C_2_Master_Write(0x52 | 0x00);
+    I2C_2_Master_Write(0x80 | address);
+    I2C_2_Master_Write(value);
+    I2C_2_Master_Stop();
+}
+
+
+
+
+
+
+unsigned int colourclick_readR(void)
+{
+ unsigned int tmp;
+ I2C_2_Master_Start();
+ I2C_2_Master_Write(0x52 | 0x00);
+ I2C_2_Master_Write(0xA0 | 0x16);
+ I2C_2_Master_RepStart();
+ I2C_2_Master_Write(0x52 | 0x01);
+ tmp=I2C_2_Master_Read(1);
+ tmp=tmp | (I2C_2_Master_Read(0)<<8);
+ I2C_2_Master_Stop();
+ return tmp;
+}
+
+
+
+
+
+
+unsigned int colourclick_readG(void)
+{
+ unsigned int tmp;
+ I2C_2_Master_Start();
+ I2C_2_Master_Write(0x52 | 0x00);
+ I2C_2_Master_Write(0xA0 | 0x18);
+ I2C_2_Master_RepStart();
+ I2C_2_Master_Write(0x52 | 0x01);
+ tmp=I2C_2_Master_Read(1);
+ tmp=tmp | (I2C_2_Master_Read(0)<<8);
+ I2C_2_Master_Stop();
+ return tmp;
+}
+
+
+
+
+
+
+unsigned int colourclick_readB(void)
+{
+ unsigned int tmp;
+ I2C_2_Master_Start();
+ I2C_2_Master_Write(0x52 | 0x00);
+ I2C_2_Master_Write(0xA0 | 0x1A);
+ I2C_2_Master_RepStart();
+ I2C_2_Master_Write(0x52 | 0x01);
+ tmp=I2C_2_Master_Read(1);
+ tmp=tmp | (I2C_2_Master_Read(0)<<8);
+ I2C_2_Master_Stop();
+ return tmp;
+}
+
+
+
+
+
+
+unsigned int colourclick_readC(void)
+{
+ unsigned int tmp;
+ I2C_2_Master_Start();
+ I2C_2_Master_Write(0x52 | 0x00);
+ I2C_2_Master_Write(0xA0 | 0x14);
+ I2C_2_Master_RepStart();
+ I2C_2_Master_Write(0x52 | 0x01);
+ tmp=I2C_2_Master_Read(1);
+ tmp=tmp | (I2C_2_Master_Read(0)<<8);
+ I2C_2_Master_Stop();
+ return tmp;
+}
+
+
+
+
+
+void colourclick_readRGBC(RGBC_val *tmpval)
+{
+    tmpval->R = colourclick_readR();
+    tmpval->G = colourclick_readG();
+    tmpval->B = colourclick_readB();
+    tmpval->C = colourclick_readC();
+}
+
+
+
+
+
+void colourclick_readRGBC2(RGBC_val *tmpval)
+{
+    colourclickLEDs_C(0);
+
+    LATGbits.LATG1 = 1;
+    tmpval->R = colourclick_readR();
+    _delay((unsigned long)((1000)*(64000000/4000.0)));
+    LATGbits.LATG1 = 0;
+    _delay((unsigned long)((20)*(64000000/4000.0)));
+
+    LATAbits.LATA4 = 1;
+    tmpval->G = colourclick_readG();
+    _delay((unsigned long)((1000)*(64000000/4000.0)));
+    LATAbits.LATA4 = 0;
+    _delay((unsigned long)((20)*(64000000/4000.0)));
+
+    LATFbits.LATF7 = 1;
+    tmpval->B = colourclick_readB();
+    _delay((unsigned long)((1000)*(64000000/4000.0)));
+    LATFbits.LATF7 = 0;
+    _delay((unsigned long)((20)*(64000000/4000.0)));
+
+    colourclickLEDs_C(1);
+}
+
+
+
+
+void colourclick_calibration(void) {
+    RGBC_val initial;
+    while(PORTFbits.RF2);
+    LATDbits.LATD7 = 1;
+    colourclick_readRGBC(&initial);
+    _delay((unsigned long)((100)*(64000000/4000.0)));
+    LATDbits.LATD7 = 0;
+
+    unsigned char i;
+    RGBC_val current;
+    for (i=0; i<10; i++) {
+        while(PORTFbits.RF2);
+        LATDbits.LATD7 = 1;
+        colourclick_readRGBC(&current);
+        if ((current.C<initial.C) && (current.C>interrupts_lower)) {
+            interrupts_lower = current.C;
+        } else if ((current.C>initial.C) && (current.C<interrupts_upper)) {
+            interrupts_upper = current.C;
+        }
+        _delay((unsigned long)((100)*(64000000/4000.0)));
+        LATDbits.LATD7 = 0;
+    }
 }

@@ -1,4 +1,4 @@
-# 1 "i2c.c"
+# 1 "I2C.c"
 # 1 "<built-in>" 1
 # 1 "<built-in>" 3
 # 288 "<built-in>" 3
@@ -6,7 +6,7 @@
 # 1 "<built-in>" 2
 # 1 "C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\\pic\\include\\language_support.h" 1 3
 # 2 "<built-in>" 2
-# 1 "i2c.c" 2
+# 1 "I2C.c" 2
 # 1 "C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\\pic\\include\\xc.h" 1 3
 # 18 "C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\\pic\\include\\xc.h" 3
 extern const char __xc8_OPTIM_SPEED;
@@ -24175,10 +24175,10 @@ extern __attribute__((nonreentrant)) void _delaywdt(unsigned long);
 #pragma intrinsic(_delay3)
 extern __attribute__((nonreentrant)) void _delay3(unsigned char);
 # 33 "C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\\pic\\include\\xc.h" 2 3
-# 1 "i2c.c" 2
+# 1 "I2C.c" 2
 
-# 1 "./i2c.h" 1
-# 10 "./i2c.h"
+# 1 "./I2C.h" 1
+# 12 "./I2C.h"
 void I2C_2_Master_Init(void);
 void I2C_2_Master_Idle(void);
 void I2C_2_Master_Start(void);
@@ -24186,7 +24186,7 @@ void I2C_2_Master_RepStart(void);
 void I2C_2_Master_Stop(void);
 void I2C_2_Master_Write(unsigned char data_byte);
 unsigned char I2C_2_Master_Read(unsigned char ack);
-# 2 "i2c.c" 2
+# 2 "I2C.c" 2
 
 
 

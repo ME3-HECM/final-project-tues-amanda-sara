@@ -1,4 +1,4 @@
-# 1 "serial.c"
+# 1 "colour_cards.c"
 # 1 "<built-in>" 1
 # 1 "<built-in>" 3
 # 288 "<built-in>" 3
@@ -6,7 +6,7 @@
 # 1 "<built-in>" 2
 # 1 "C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\\pic\\include\\language_support.h" 1 3
 # 2 "<built-in>" 2
-# 1 "serial.c" 2
+# 1 "colour_cards.c" 2
 # 1 "C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\\pic\\include\\xc.h" 1 3
 # 18 "C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\\pic\\include\\xc.h" 3
 extern const char __xc8_OPTIM_SPEED;
@@ -24175,10 +24175,266 @@ extern __attribute__((nonreentrant)) void _delaywdt(unsigned long);
 #pragma intrinsic(_delay3)
 extern __attribute__((nonreentrant)) void _delay3(unsigned char);
 # 33 "C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\\pic\\include\\xc.h" 2 3
-# 1 "serial.c" 2
+# 1 "colour_cards.c" 2
 
-# 1 "./serial.h" 1
-# 13 "./serial.h"
+# 1 "C:\\Program Files\\Microchip\\xc8\\v2.32\\pic\\include\\c99\\stdio.h" 1 3
+# 24 "C:\\Program Files\\Microchip\\xc8\\v2.32\\pic\\include\\c99\\stdio.h" 3
+# 1 "C:\\Program Files\\Microchip\\xc8\\v2.32\\pic\\include\\c99\\bits/alltypes.h" 1 3
+
+
+
+
+
+typedef void * va_list[1];
+
+
+
+
+typedef void * __isoc_va_list[1];
+# 137 "C:\\Program Files\\Microchip\\xc8\\v2.32\\pic\\include\\c99\\bits/alltypes.h" 3
+typedef long ssize_t;
+# 246 "C:\\Program Files\\Microchip\\xc8\\v2.32\\pic\\include\\c99\\bits/alltypes.h" 3
+typedef long long off_t;
+# 399 "C:\\Program Files\\Microchip\\xc8\\v2.32\\pic\\include\\c99\\bits/alltypes.h" 3
+typedef struct _IO_FILE FILE;
+# 24 "C:\\Program Files\\Microchip\\xc8\\v2.32\\pic\\include\\c99\\stdio.h" 2 3
+# 52 "C:\\Program Files\\Microchip\\xc8\\v2.32\\pic\\include\\c99\\stdio.h" 3
+typedef union _G_fpos64_t {
+ char __opaque[16];
+ double __align;
+} fpos_t;
+
+extern FILE *const stdin;
+extern FILE *const stdout;
+extern FILE *const stderr;
+
+
+
+
+
+FILE *fopen(const char *restrict, const char *restrict);
+FILE *freopen(const char *restrict, const char *restrict, FILE *restrict);
+int fclose(FILE *);
+
+int remove(const char *);
+int rename(const char *, const char *);
+
+int feof(FILE *);
+int ferror(FILE *);
+int fflush(FILE *);
+void clearerr(FILE *);
+
+int fseek(FILE *, long, int);
+long ftell(FILE *);
+void rewind(FILE *);
+
+int fgetpos(FILE *restrict, fpos_t *restrict);
+int fsetpos(FILE *, const fpos_t *);
+
+size_t fread(void *restrict, size_t, size_t, FILE *restrict);
+size_t fwrite(const void *restrict, size_t, size_t, FILE *restrict);
+
+int fgetc(FILE *);
+int getc(FILE *);
+int getchar(void);
+int ungetc(int, FILE *);
+
+int fputc(int, FILE *);
+int putc(int, FILE *);
+int putchar(int);
+
+char *fgets(char *restrict, int, FILE *restrict);
+
+char *gets(char *);
+
+
+int fputs(const char *restrict, FILE *restrict);
+int puts(const char *);
+
+#pragma printf_check(printf) const
+#pragma printf_check(vprintf) const
+#pragma printf_check(sprintf) const
+#pragma printf_check(snprintf) const
+#pragma printf_check(vsprintf) const
+#pragma printf_check(vsnprintf) const
+
+int printf(const char *restrict, ...);
+int fprintf(FILE *restrict, const char *restrict, ...);
+int sprintf(char *restrict, const char *restrict, ...);
+int snprintf(char *restrict, size_t, const char *restrict, ...);
+
+int vprintf(const char *restrict, __isoc_va_list);
+int vfprintf(FILE *restrict, const char *restrict, __isoc_va_list);
+int vsprintf(char *restrict, const char *restrict, __isoc_va_list);
+int vsnprintf(char *restrict, size_t, const char *restrict, __isoc_va_list);
+
+int scanf(const char *restrict, ...);
+int fscanf(FILE *restrict, const char *restrict, ...);
+int sscanf(const char *restrict, const char *restrict, ...);
+int vscanf(const char *restrict, __isoc_va_list);
+int vfscanf(FILE *restrict, const char *restrict, __isoc_va_list);
+int vsscanf(const char *restrict, const char *restrict, __isoc_va_list);
+
+void perror(const char *);
+
+int setvbuf(FILE *restrict, char *restrict, int, size_t);
+void setbuf(FILE *restrict, char *restrict);
+
+char *tmpnam(char *);
+FILE *tmpfile(void);
+
+
+
+
+FILE *fmemopen(void *restrict, size_t, const char *restrict);
+FILE *open_memstream(char **, size_t *);
+FILE *fdopen(int, const char *);
+FILE *popen(const char *, const char *);
+int pclose(FILE *);
+int fileno(FILE *);
+int fseeko(FILE *, off_t, int);
+off_t ftello(FILE *);
+int dprintf(int, const char *restrict, ...);
+int vdprintf(int, const char *restrict, __isoc_va_list);
+void flockfile(FILE *);
+int ftrylockfile(FILE *);
+void funlockfile(FILE *);
+int getc_unlocked(FILE *);
+int getchar_unlocked(void);
+int putc_unlocked(int, FILE *);
+int putchar_unlocked(int);
+ssize_t getdelim(char **restrict, size_t *restrict, int, FILE *restrict);
+ssize_t getline(char **restrict, size_t *restrict, FILE *restrict);
+int renameat(int, const char *, int, const char *);
+char *ctermid(char *);
+
+
+
+
+
+
+
+char *tempnam(const char *, const char *);
+# 2 "colour_cards.c" 2
+
+# 1 "./colour_cards.h" 1
+
+
+
+
+# 1 "./main.h" 1
+# 16 "./main.h"
+# 1 "./ADC.h" 1
+# 11 "./ADC.h"
+void ADC_init(void);
+unsigned char ADC_getval(void);
+# 16 "./main.h" 2
+
+# 1 "./buttons_n_LEDs.h" 1
+# 39 "./buttons_n_LEDs.h"
+void clicker2buttons_init(void);
+void clicker2LEDs_init(void);
+void buggyLEDs_init(void);
+void colourclickLEDs_init(void);
+void colourclickLEDs_RGB(void);
+void colourclickLEDs_C(unsigned char tog);
+# 17 "./main.h" 2
+
+# 1 "./colour_cards.h" 1
+# 18 "./main.h" 2
+
+# 1 "./colour_click.h" 1
+# 11 "./colour_click.h"
+typedef struct {
+    unsigned int R, G, B, C;
+} RGBC_val;
+
+
+
+
+extern volatile unsigned int interrupts_lower;
+extern volatile unsigned int interrupts_upper;
+
+
+
+
+void colourclick_init(void);
+void colourclick_writetoaddr(char address, char value);
+unsigned int colourclick_readR(void);
+unsigned int colourclick_readG(void);
+unsigned int colourclick_readB(void);
+unsigned int colourclick_readC(void);
+void colourclick_readRGBC(RGBC_val *tmpval);
+void colourclick_readRGBC2(RGBC_val *tmpval);
+void colourclick_calibration(void);
+# 19 "./main.h" 2
+
+# 1 "./DC_motors.h" 1
+# 11 "./DC_motors.h"
+typedef struct {
+    char power;
+    char direction;
+    unsigned char *dutyHighByte;
+    unsigned char *dir_LAT;
+    char dir_pin;
+    int PWMperiod;
+} DC_motor;
+
+
+
+
+extern volatile unsigned char DCmotors_lower;
+extern volatile unsigned char DCmotors_upper;
+extern volatile unsigned char returnhome_flag;
+
+
+
+
+
+void DCmotors_init(unsigned char PWMperiod);
+void DCmotors_setPWM(DC_motor *m);
+void checkbatterylevel(void);
+void forward(DC_motor *mL, DC_motor *mR);
+void reverse(DC_motor *mL, DC_motor *mR);
+void stop(DC_motor *mL, DC_motor *mR);
+void left(DC_motor *mL, DC_motor *mR, unsigned int deg);
+void right(DC_motor *mL, DC_motor *mR, unsigned int deg);
+void turnleft(DC_motor *mL, DC_motor *mR, unsigned int deg);
+void turnright(DC_motor *mL, DC_motor *mR, unsigned int deg);
+void DCmotors_calibration(DC_motor *mL, DC_motor *mR);
+void DCmotors_adjustval(void);
+void DCmotors_testing(DC_motor *mL, DC_motor *mR);
+# 20 "./main.h" 2
+
+# 1 "./I2C.h" 1
+# 12 "./I2C.h"
+void I2C_2_Master_Init(void);
+void I2C_2_Master_Idle(void);
+void I2C_2_Master_Start(void);
+void I2C_2_Master_RepStart(void);
+void I2C_2_Master_Stop(void);
+void I2C_2_Master_Write(unsigned char data_byte);
+unsigned char I2C_2_Master_Read(unsigned char ack);
+# 21 "./main.h" 2
+
+# 1 "./interrupts.h" 1
+# 11 "./interrupts.h"
+extern volatile unsigned int interrupts_lower;
+extern volatile unsigned int interrupts_upper;
+extern volatile unsigned char card_flag;
+extern volatile unsigned char battery_flag;
+
+
+
+
+void interrupts_init(void);
+void interrupts_clear(void);
+void __attribute__((picinterrupt(("high_priority")))) HighISR();
+void __attribute__((picinterrupt(("low_priority")))) LowISR();
+# 22 "./main.h" 2
+
+# 1 "./serial_comm.h" 1
+# 12 "./serial_comm.h"
 volatile char EUSART4RXbuf[20];
 volatile char RxBufWriteCnt=0;
 volatile char RxBufReadCnt=0;
@@ -24186,6 +24442,8 @@ volatile char RxBufReadCnt=0;
 volatile char EUSART4TXbuf[60];
 volatile char TxBufWriteCnt=0;
 volatile char TxBufReadCnt=0;
+
+
 
 
 
@@ -24205,129 +24463,161 @@ void putCharToTxBuf(char byte);
 char isDataInTxBuf (void);
 void TxBufferedString(char *string);
 void sendTxBuf(void);
-# 2 "serial.c" 2
+# 23 "./main.h" 2
 
 
 
 
 
-void USART4_init(void) {
 
-
-    RC0PPS = 0x12;
-    RX4PPS = 0x11;
-    TRISCbits.TRISC1 = 1;
-
-    BAUD4CONbits.BRG16 = 0;
-    TX4STAbits.BRGH = 0;
-    SP4BRGL = 51;
-    SP4BRGH = 0;
-
-    RC4STAbits.CREN = 1;
-    TX4STAbits.TXEN = 1;
-    RC4STAbits.SPEN = 1;
-}
+#pragma config FEXTOSC = HS
+#pragma config RSTOSC = EXTOSC_4PLL
 
 
 
 
 
-char getCharSerial4(void) {
-    while (!PIR4bits.RC4IF);
-    return RC4REG;
-}
+#pragma config WDTE = OFF
+
+
+
+
+volatile unsigned int interrupts_lower;
+volatile unsigned int interrupts_upper;
+volatile unsigned char DCmotors_lower;
+volatile unsigned char DCmotors_upper;
+volatile unsigned char colourcard_flag;
+volatile unsigned char unknowncard_flag;
+volatile unsigned char returnhome_flag;
+# 5 "./colour_cards.h" 2
+# 14 "./colour_cards.h"
+extern volatile unsigned char colourcard_flag;
+extern volatile unsigned char unknowncard_flag;
+extern volatile unsigned char returnhome_flag;
 
 
 
 
 
-void sendCharSerial4(unsigned char charToSend) {
-    while (!PIR4bits.TX4IF);
-    TX4REG = charToSend;
-}
+void colourcards_readRGBC(RGBC_val *tmpval, DC_motor *mL, DC_motor *mR);
+void colourcards_readHSV(RGBC_val *tmpval, DC_motor *mL, DC_motor *mR);
+void colourcards_testing(void);
+# 3 "colour_cards.c" 2
 
 
 
 
 
-void sendStringSerial4(char *string){
 
-    while (*string != 0) {
-        sendCharSerial4(*string++);
+
+
+void colourcards_readRGBC(RGBC_val *tmpval, DC_motor *mL, DC_motor *mR)
+{
+
+    PIE0bits.INT1IE = 0;
+
+
+    float R_rel = (float)tmpval->R / (float)tmpval->C;
+    float G_rel = (float)tmpval->G / (float)tmpval->C;
+    float B_rel = (float)tmpval->B / (float)tmpval->C;
+
+
+    if ((R_rel>0.54) && (G_rel<0.245) && (B_rel<0.18)) {
+
+        turnright(mL, mR, 90);
+        unknowncard_flag = 0;
+
+    } else if ((R_rel<0.435) && (G_rel>0.31) && (B_rel>0.195)) {
+
+        turnleft(mL, mR, 90);
+        unknowncard_flag = 0;
+
+    } else if ((R_rel<0.43) && (G_rel>0.30) && (B_rel>0.21)) {
+
+        turnright(mL, mR, 180);
+        unknowncard_flag = 0;
+
+    } else if ((R_rel>0.49) && (G_rel>0.285) && (B_rel>0.18)) {
+
+        reverse(mL, mR);
+        stop(mL, mR);
+        turnright(mL, mR, 90);
+        unknowncard_flag = 0;
+
+    } else if ((R_rel>0.49) && (G_rel<0.275) && (B_rel>0.195)) {
+
+        reverse(mL, mR);
+        stop(mL, mR);
+        turnleft(mL, mR, 90);
+        unknowncard_flag = 0;
+
+    } else if ((R_rel>0.54) && (G_rel<0.24) && (B_rel<0.18)) {
+
+        turnright(mL, mR, 135);
+        unknowncard_flag = 0;
+
+    } else if ((R_rel<0.44) && (G_rel>0.305) && (B_rel>0.21)) {
+
+        turnleft(mL, mR, 135);
+        unknowncard_flag = 0;
+
+    } else if ((R_rel<0.46) && (G_rel>0.295) && (B_rel>0.21)) {
+
+        turnright(mL, mR, 180);
+        unknowncard_flag = 0;
+        returnhome_flag = 1;
+
+    } else {
+
+        _delay((unsigned long)((1000)*(64000000/4000.0)));
+        colourclick_readRGBC(tmpval);
+        if ((tmpval->C < interrupts_lower) || (tmpval->C > interrupts_upper)) {
+            if (unknowncard_flag<3) {
+                PIR0bits.INT1IF = 1;
+                unknowncard_flag++;
+            } else {
+                LATHbits.LATH3 = 1;
+                turnright(mL, mR, 180);
+                returnhome_flag = !returnhome_flag;
+                unknowncard_flag = 0;
+            }
+        } else {
+            forward(mL, mR);
+            unknowncard_flag = 0;
+        }
     }
+
+
+    colourcard_flag = 0;
+    PIE0bits.INT1IE = 1;
 }
 
 
 
 
-
-
-char getCharFromRxBuf(void){
-    if (RxBufReadCnt>=20) {RxBufReadCnt=0;}
-    return EUSART4RXbuf[RxBufReadCnt++];
-}
-
-
-
-
-
-void putCharToRxBuf(char byte){
-    if (RxBufWriteCnt>=20) {RxBufWriteCnt=0;}
-    EUSART4RXbuf[RxBufWriteCnt++]=byte;
-}
-
-
-
-
-
-
-
-char isDataInRxBuf (void){
-    return (RxBufWriteCnt!=RxBufReadCnt);
-}
-
-
-
-
-
-
-char getCharFromTxBuf(void){
-    if (TxBufReadCnt>=60) {TxBufReadCnt=0;}
-    return EUSART4TXbuf[TxBufReadCnt++];
-}
-
-
-
-
-
-void putCharToTxBuf(char byte){
-    if (TxBufWriteCnt>=60) {TxBufWriteCnt=0;}
-    EUSART4TXbuf[TxBufWriteCnt++]=byte;
-}
-
-
-
-
-
-
-
-char isDataInTxBuf (void){
-    return (TxBufWriteCnt!=TxBufReadCnt);
-}
-
-
-
-
-
-void TxBufferedString(char *string){
+void colourcards_readHSV(RGBC_val *tmpval, DC_motor *mL, DC_motor *mR)
+{
 
 }
 
 
 
 
+void colourcards_testing(void)
+{
+    INTCONbits.GIE = 0;
 
+    RGBC_val current;
+    colourclick_readRGBC(&current);
+    char buf[100];
+    float R_rel = (float)current.R / (float)current.C;
+    float G_rel = (float)current.G / (float)current.C;
+    float B_rel = (float)current.B / (float)current.C;
+    float C_rel = (float)current.C / (float)current.C;
+    sprintf(buf,"RGBC: %i %i %i %i     RGBC_rel: %.3f %.3f %.3f %.3f\n\r", current.R, current.G, current.B, current.C, R_rel, G_rel, B_rel, C_rel);
 
-void sendTxBuf(void){
-    if (isDataInTxBuf()) {PIE4bits.TX4IE=1;}
+    sendStringSerial4(buf);
+    _delay((unsigned long)((500)*(64000000/4000.0)));
+
+    INTCONbits.GIE = 1;
 }

@@ -1,4 +1,4 @@
-# 1 "ADC.c"
+# 1 "buttons_n_LEDs.c"
 # 1 "<built-in>" 1
 # 1 "<built-in>" 3
 # 288 "<built-in>" 3
@@ -6,7 +6,7 @@
 # 1 "<built-in>" 2
 # 1 "C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\\pic\\include\\language_support.h" 1 3
 # 2 "<built-in>" 2
-# 1 "ADC.c" 2
+# 1 "buttons_n_LEDs.c" 2
 # 1 "C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\\pic\\include\\xc.h" 1 3
 # 18 "C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\\pic\\include\\xc.h" 3
 extern const char __xc8_OPTIM_SPEED;
@@ -24175,44 +24175,102 @@ extern __attribute__((nonreentrant)) void _delaywdt(unsigned long);
 #pragma intrinsic(_delay3)
 extern __attribute__((nonreentrant)) void _delay3(unsigned char);
 # 33 "C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\\pic\\include\\xc.h" 2 3
-# 1 "ADC.c" 2
+# 1 "buttons_n_LEDs.c" 2
 
-# 1 "./ADC.h" 1
-# 11 "./ADC.h"
-void ADC_init(void);
-unsigned char ADC_getval(void);
-# 2 "ADC.c" 2
-
-
-
-
-
-
-void ADC_init(void) {
-
-    TRISFbits.TRISF6=1;
-    ANSELFbits.ANSELF6=1;
+# 1 "./buttons_n_LEDs.h" 1
+# 39 "./buttons_n_LEDs.h"
+void clicker2buttons_init(void);
+void clicker2LEDs_init(void);
+void buggyLEDs_init(void);
+void colourclickLEDs_init(void);
+void colourclickLEDs_RGB(void);
+void colourclickLEDs_C(unsigned char tog);
+# 2 "buttons_n_LEDs.c" 2
 
 
-    ADREFbits.ADNREF = 0;
-    ADREFbits.ADPREF = 0b00;
-    ADPCH=0b101110;
-    ADCON0bits.ADFM = 0;
-    ADCON0bits.ADCS = 1;
-    ADCON0bits.ADON = 1;
+
+
+
+void clicker2buttons_init(void)
+{
+
+    TRISFbits.TRISF2=1;
+    TRISFbits.TRISF3=1;
+    ANSELFbits.ANSELF2=0;
+    ANSELFbits.ANSELF3=0;
 }
 
 
 
 
+void clicker2LEDs_init(void)
+{
+    TRISDbits.TRISD7 = 0;
+    TRISHbits.TRISH3 = 0;
 
-unsigned char ADC_getval(void) {
-    unsigned char tmpval;
-
-    ADCON0bits.GO = 1;
-    while (ADCON0bits.GO);
-    tmpval = ADRESH;
+    LATDbits.LATD7 = 0;
+    LATHbits.LATH3 = 0;
+}
 
 
-    return tmpval;
+
+
+void buggyLEDs_init(void)
+{
+    TRISHbits.TRISH1 = 0;
+    TRISDbits.TRISD3 = 0;
+    TRISDbits.TRISD4 = 0;
+    TRISFbits.TRISF0 = 0;
+    TRISHbits.TRISH0 = 0;
+
+    LATHbits.LATH1 = 0;
+    LATDbits.LATD3 = 0;
+    LATDbits.LATD4 = 0;
+    LATFbits.LATF0 = 0;
+    LATHbits.LATH0 = 0;
+}
+
+
+
+
+void colourclickLEDs_init(void)
+{
+
+    TRISGbits.TRISG1 = 0;
+    TRISAbits.TRISA4 = 0;
+    TRISFbits.TRISF7 = 0;
+
+
+    colourclickLEDs_C(0);
+}
+
+
+
+
+void colourclickLEDs_RGB(void)
+{
+    LATGbits.LATG1 = 1;
+    _delay((unsigned long)((50)*(64000000/4000.0)));
+    LATGbits.LATG1 = 0;
+    _delay((unsigned long)((20)*(64000000/4000.0)));
+
+    LATAbits.LATA4 = 1;
+    _delay((unsigned long)((50)*(64000000/4000.0)));
+    LATAbits.LATA4 = 0;
+    _delay((unsigned long)((20)*(64000000/4000.0)));
+
+    LATFbits.LATF7 = 1;
+    _delay((unsigned long)((50)*(64000000/4000.0)));
+    LATFbits.LATF7 = 0;
+    _delay((unsigned long)((20)*(64000000/4000.0)));
+}
+
+
+
+
+void colourclickLEDs_C(unsigned char tog)
+{
+    LATGbits.LATG1 = tog;
+    LATAbits.LATA4 = tog;
+    LATFbits.LATF7 = tog;
 }

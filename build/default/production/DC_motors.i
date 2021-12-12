@@ -1,4 +1,4 @@
-# 1 "ADC.c"
+# 1 "DC_motors.c"
 # 1 "<built-in>" 1
 # 1 "<built-in>" 3
 # 288 "<built-in>" 3
@@ -6,7 +6,7 @@
 # 1 "<built-in>" 2
 # 1 "C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\\pic\\include\\language_support.h" 1 3
 # 2 "<built-in>" 2
-# 1 "ADC.c" 2
+# 1 "DC_motors.c" 2
 # 1 "C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\\pic\\include\\xc.h" 1 3
 # 18 "C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\\pic\\include\\xc.h" 3
 extern const char __xc8_OPTIM_SPEED;
@@ -24175,44 +24175,372 @@ extern __attribute__((nonreentrant)) void _delaywdt(unsigned long);
 #pragma intrinsic(_delay3)
 extern __attribute__((nonreentrant)) void _delay3(unsigned char);
 # 33 "C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\\pic\\include\\xc.h" 2 3
-# 1 "ADC.c" 2
+# 1 "DC_motors.c" 2
+
+# 1 "./DC_motors.h" 1
+# 11 "./DC_motors.h"
+typedef struct {
+    char power;
+    char direction;
+    unsigned char *dutyHighByte;
+    unsigned char *dir_LAT;
+    char dir_pin;
+    int PWMperiod;
+} DC_motor;
+
+
+
+
+extern volatile unsigned char DCmotors_lower;
+extern volatile unsigned char DCmotors_upper;
+extern volatile unsigned char returnhome_flag;
+
+
+
+
+
+void DCmotors_init(unsigned char PWMperiod);
+void DCmotors_setPWM(DC_motor *m);
+void checkbatterylevel(void);
+void forward(DC_motor *mL, DC_motor *mR);
+void reverse(DC_motor *mL, DC_motor *mR);
+void stop(DC_motor *mL, DC_motor *mR);
+void left(DC_motor *mL, DC_motor *mR, unsigned int deg);
+void right(DC_motor *mL, DC_motor *mR, unsigned int deg);
+void turnleft(DC_motor *mL, DC_motor *mR, unsigned int deg);
+void turnright(DC_motor *mL, DC_motor *mR, unsigned int deg);
+void DCmotors_calibration(DC_motor *mL, DC_motor *mR);
+void DCmotors_adjustval(void);
+void DCmotors_testing(DC_motor *mL, DC_motor *mR);
+# 2 "DC_motors.c" 2
 
 # 1 "./ADC.h" 1
 # 11 "./ADC.h"
 void ADC_init(void);
 unsigned char ADC_getval(void);
-# 2 "ADC.c" 2
+# 3 "DC_motors.c" 2
+
+# 1 "./buttons_n_LEDs.h" 1
+# 39 "./buttons_n_LEDs.h"
+void clicker2buttons_init(void);
+void clicker2LEDs_init(void);
+void buggyLEDs_init(void);
+void colourclickLEDs_init(void);
+void colourclickLEDs_RGB(void);
+void colourclickLEDs_C(unsigned char tog);
+# 4 "DC_motors.c" 2
 
 
 
 
 
 
-void ADC_init(void) {
+void DCmotors_init(unsigned char PWMperiod)
+{
 
-    TRISFbits.TRISF6=1;
-    ANSELFbits.ANSELF6=1;
+    T2CONbits.CKPS=0b100;
+    T2HLTbits.MODE=0b00000;
+    T2CLKCONbits.CS=0b0001;
 
 
-    ADREFbits.ADNREF = 0;
-    ADREFbits.ADPREF = 0b00;
-    ADPCH=0b101110;
-    ADCON0bits.ADFM = 0;
-    ADCON0bits.ADCS = 1;
-    ADCON0bits.ADON = 1;
+    T2PR=PWMperiod;
+    T2CONbits.ON=1;
+
+
+    TRISEbits.TRISE2=0;
+    TRISEbits.TRISE4=0;
+    TRISCbits.TRISC7=0;
+    TRISGbits.TRISG6=0;
+
+    LATEbits.LATE2=0;
+    LATEbits.LATE4=0;
+    LATCbits.LATC7=0;
+    LATGbits.LATG6=0;
+
+    PWM6DCH=0;
+    PWM7DCH=0;
+
+    PWM6CONbits.EN = 1;
+    PWM7CONbits.EN = 1;
+
+    RE2PPS=0x0A;
+    RC7PPS=0x0B;
+
+
+    clicker2buttons_init();
+    clicker2LEDs_init();
+    buggyLEDs_init();
 }
 
 
 
 
 
-unsigned char ADC_getval(void) {
-    unsigned char tmpval;
+void DCmotors_setPWM(DC_motor *m)
+{
+ int PWMduty;
 
-    ADCON0bits.GO = 1;
-    while (ADCON0bits.GO);
-    tmpval = ADRESH;
+ if (m->direction){
+  PWMduty = (m->PWMperiod) - ((int)(m->power)*(m->PWMperiod))/100;
+ } else {
+  PWMduty=((int)(m->power)*(m->PWMperiod))/100;
+ }
+
+ *(m->dutyHighByte) = (unsigned char)(PWMduty);
+
+ if (m->direction){
+  *(m->dir_LAT) = (unsigned char)(*(m->dir_LAT) | (1<<(m->dir_pin)));
+ } else {
+  *(m->dir_LAT) = (unsigned char)(*(m->dir_LAT) & (~(1<<(m->dir_pin))));
+ }
+}
 
 
-    return tmpval;
+
+
+void checkbatterylevel(void)
+{
+    unsigned char batterylevel;
+    batterylevel = ADC_getval();
+    if (batterylevel<200) {
+        LATDbits.LATD7 = 1;
+    } else {
+        LATDbits.LATD7 = 0;
+    }
+}
+
+
+
+
+
+void forward(DC_motor *mL, DC_motor *mR)
+{
+    mL->direction = 1;
+    mR->direction = 1;
+
+
+    while((mL->power < 100) && (mR->power < 100)){
+        mL->power += 1;
+        mR->power += 1;
+
+        DCmotors_setPWM(mL);
+        DCmotors_setPWM(mR);
+        _delay((unsigned long)((100)*(64000000/4000.0)));
+    }
+}
+
+
+
+
+
+void reverse(DC_motor *mL, DC_motor *mR)
+{
+
+    mL->direction = 0;
+    mR->direction = 0;
+
+
+    while((mL->power < 100) && (mR->power < 100)){
+        mL->power += 1;
+        mR->power += 1;
+
+        DCmotors_setPWM(mL);
+        DCmotors_setPWM(mR);
+        _delay((unsigned long)((100)*(64000000/4000.0)));
+    }
+}
+
+
+
+
+
+void stop(DC_motor *mL, DC_motor *mR)
+{
+    LATDbits.LATD4 = 1;
+
+
+    while(((mL->power)>0) && ((mR->power)>0)){
+        mL->power-=1;
+        mR->power-=1;
+
+
+        DCmotors_setPWM(mL);
+        DCmotors_setPWM(mR);
+        _delay((unsigned long)((100)*(64000000/4000.0)));
+    }
+
+    LATDbits.LATD4 = 0;
+}
+
+
+
+
+void left(DC_motor *mL, DC_motor *mR, unsigned int deg)
+{
+
+    mL->direction = 0;
+    mR->direction = 1;
+
+
+    while((mL->power < DCmotors_lower) || (mR->power < DCmotors_upper)){
+
+        LATFbits.LATF0 = !LATFbits.LATF0;
+
+
+        if (mL->power < DCmotors_lower) {mL->power += 1;}
+        if (mR->power < DCmotors_upper) {mR->power += 1;}
+
+
+        DCmotors_setPWM(mL);
+        DCmotors_setPWM(mR);
+        _delay((unsigned long)((100)*(64000000/4000.0)));
+    }
+
+    LATFbits.LATF0 = 0;
+}
+
+
+
+
+void right(DC_motor *mL, DC_motor *mR, unsigned int deg)
+{
+
+    mL->direction = 1;
+    mR->direction = 0;
+
+
+    while((mL->power < DCmotors_upper) || (mR->power < DCmotors_lower)){
+
+        LATHbits.LATH0 = !LATHbits.LATH0;
+
+
+        if (mL->power < DCmotors_upper) {mL->power += 1;}
+        if (mR->power < DCmotors_lower) {mR->power += 1;}
+
+
+        DCmotors_setPWM(mL);
+        DCmotors_setPWM(mR);
+        _delay((unsigned long)((100)*(64000000/4000.0)));
+    }
+
+    LATHbits.LATH0 = 0;
+}
+
+
+
+
+
+void turnleft(DC_motor *mL, DC_motor *mR, unsigned int deg)
+{
+    if (returnhome_flag==0) {
+        left(mL, mR, deg);
+    } else {
+        right(mL, mR, deg);
+    }
+}
+
+
+
+
+
+void turnright(DC_motor *mL, DC_motor *mR, unsigned int deg)
+{
+    if (returnhome_flag==0) {
+        right(mL, mR, deg);
+    } else {
+        left(mL, mR, deg);
+    }
+}
+
+
+
+
+void DCmotors_calibration(DC_motor *mL, DC_motor *mR)
+{
+    while(PORTFbits.RF2 && PORTFbits.RF3);
+    LATDbits.LATD3 = 1;
+    turnleft(mL, mR, 360);
+    stop(mL, mR);
+
+    while(PORTFbits.RF2 && PORTFbits.RF3);
+    _delay((unsigned long)((1000)*(64000000/4000.0)));
+    DCmotors_adjustval();
+    LATDbits.LATD3 = 0;
+
+    while(PORTFbits.RF2 && PORTFbits.RF3);
+    LATDbits.LATD3 = 1;
+    turnright(mL, mR, 360);
+    stop(mL, mR);
+
+    while(PORTFbits.RF2 && PORTFbits.RF3);
+    _delay((unsigned long)((1000)*(64000000/4000.0)));
+    DCmotors_adjustval();
+    LATDbits.LATD3 = 0;
+}
+
+
+
+
+void DCmotors_adjustval(void)
+{
+    unsigned char i;
+    for (i=0; i<10; i++) {
+        if (PORTFbits.RF2) {
+            LATDbits.LATD7 = 1;
+            DCmotors_upper+=5;
+            DCmotors_lower-=5;
+            _delay((unsigned long)((100)*(64000000/4000.0)));
+            LATDbits.LATD7 = 0;
+            _delay((unsigned long)((1000)*(64000000/4000.0)));
+        } else if (PORTFbits.RF3) {
+            LATHbits.LATH3 = 1;
+            DCmotors_upper-=5;
+            DCmotors_lower+=5;
+            _delay((unsigned long)((100)*(64000000/4000.0)));
+            LATHbits.LATH3 = 0;
+            _delay((unsigned long)((1000)*(64000000/4000.0)));
+        }
+    }
+}
+
+
+
+
+void DCmotors_testing(DC_motor *mL, DC_motor *mR)
+{
+    INTCONbits.GIE = 0;
+
+    forward(mL, mR);
+    stop(mL, mR);
+    _delay((unsigned long)((1000)*(64000000/4000.0)));
+
+    reverse(mL, mR);
+    stop(mL, mR);
+    _delay((unsigned long)((1000)*(64000000/4000.0)));
+
+    turnright(mL, mR, 90);
+    stop(mL, mR);
+    _delay((unsigned long)((1000)*(64000000/4000.0)));
+
+    turnleft(mL, mR, 90);
+    stop(mL, mR);
+    _delay((unsigned long)((1000)*(64000000/4000.0)));
+
+    turnright(mL, mR, 180);
+    stop(mL, mR);
+    _delay((unsigned long)((1000)*(64000000/4000.0)));
+
+    turnleft(mL, mR, 180);
+    stop(mL, mR);
+    _delay((unsigned long)((1000)*(64000000/4000.0)));
+
+    turnright(mL, mR, 135);
+    stop(mL, mR);
+    _delay((unsigned long)((1000)*(64000000/4000.0)));
+
+    turnleft(mL, mR, 135);
+    stop(mL, mR);
+    _delay((unsigned long)((1000)*(64000000/4000.0)));
+
+    INTCONbits.GIE = 1;
 }

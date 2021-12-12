@@ -1,21 +1,24 @@
-// This is a guard condition so that contents of this file are not included more than once
-#ifndef _interrupts_H
-#define	_interrupts_H
+#ifndef _INTERRUPTS_H // This is a guard condition so that contents of this file are not included more than once
+#define	_INTERRUPTS_H // Beginning of _INTERRUPTS_H
 
-#include <xc.h>
-#include "color_click.h"
-#include "i2c.h"
+#include <xc.h> // Include processor file
 
-#define _XTAL_FREQ 64000000
+#define _XTAL_FREQ 64000000 // Note intrinsic _delay function is 62.5ns at 64,000,000Hz
 
-// This allows use of global variables in other source files
-volatile unsigned char card_flag;          // Declare global variable to toggle when ?
-volatile unsigned char battery_flag;       // Declare global variable to toggle when ?
+/******************
+ * Global variables
+ ******************/
+extern volatile unsigned int interrupts_lower; // Lower threshold value to trigger interrupts
+extern volatile unsigned int interrupts_upper; // Upper threshold value to trigger interrupts
+extern volatile unsigned char card_flag;
+extern volatile unsigned char battery_flag;
 
-// Function prototypes
+/*********************
+ * Function prototypes
+ *********************/
 void interrupts_init(void);
 void interrupts_clear(void);
 void __interrupt(high_priority) HighISR();
 void __interrupt(low_priority) LowISR();
 
-#endif	/* _interrupts_H */
+#endif // End of _INTERRUPTS_H

@@ -1,13 +1,12 @@
-#ifndef _SERIAL_H
-#define _SERIAL_H
+#ifndef _SERIAL_COMM_H // This is a guard condition so that contents of this file are not included more than once
+#define _SERIAL_COMM_H // Beginning of _SERIAL_COMM_H
 
-#include <xc.h>
+#include <xc.h> // Include processor file
 
-#define _XTAL_FREQ 64000000 //note intrinsic _delay function is 62.5ns at 64,000,000Hz  
+#define _XTAL_FREQ 64000000 // Note intrinsic _delay function is 62.5ns at 64,000,000Hz
 
 #define RX_BUF_SIZE 20
 #define TX_BUF_SIZE 60
-
 
 //variables for a software RX/TX buffer
 volatile char EUSART4RXbuf[RX_BUF_SIZE];
@@ -18,23 +17,25 @@ volatile char EUSART4TXbuf[TX_BUF_SIZE];
 volatile char TxBufWriteCnt=0;
 volatile char TxBufReadCnt=0;
 
-
+/*********************
+ * Function prototypes
+ *********************/
 //basic EUSART funcitons
 void USART4_init(void);
 char getCharSerial4(void);
 void sendCharSerial4(unsigned char charToSend);
 void sendStringSerial4(char *string);
 
-// circular Rx buffer functions (Ex3+)
+// circular Rx buffer functions
 char getCharFromRxBuf(void);
 void putCharToRxBuf(char byte);
 char isDataInRxBuf (void);
 
-// circular Tx buffer functions (Ex3+)
+// circular Tx buffer functions
 char getCharFromTxBuf(void);
 void putCharToTxBuf(char byte);
 char isDataInTxBuf (void);
-void TxBufferedString(char *string); //Send buffered string with interrupts
+void TxBufferedString(char *string);
 void sendTxBuf(void);
 
-#endif
+#endif // End of _SERIAL_COMM_H

@@ -1,4 +1,4 @@
-# 1 "dc_motor.c"
+# 1 "serial_comm.c"
 # 1 "<built-in>" 1
 # 1 "<built-in>" 3
 # 288 "<built-in>" 3
@@ -6,7 +6,7 @@
 # 1 "<built-in>" 2
 # 1 "C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\\pic\\include\\language_support.h" 1 3
 # 2 "<built-in>" 2
-# 1 "dc_motor.c" 2
+# 1 "serial_comm.c" 2
 # 1 "C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\\pic\\include\\xc.h" 1 3
 # 18 "C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\\pic\\include\\xc.h" 3
 extern const char __xc8_OPTIM_SPEED;
@@ -24175,168 +24175,87 @@ extern __attribute__((nonreentrant)) void _delaywdt(unsigned long);
 #pragma intrinsic(_delay3)
 extern __attribute__((nonreentrant)) void _delay3(unsigned char);
 # 33 "C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\\pic\\include\\xc.h" 2 3
-# 1 "dc_motor.c" 2
+# 1 "serial_comm.c" 2
 
-# 1 "./dc_motor.h" 1
-# 23 "./dc_motor.h"
-extern volatile unsigned char returnhome_flag;
+# 1 "./serial_comm.h" 1
+# 12 "./serial_comm.h"
+volatile char EUSART4RXbuf[20];
+volatile char RxBufWriteCnt=0;
+volatile char RxBufReadCnt=0;
 
-typedef struct {
-    char power;
-    char direction;
-    unsigned char *dutyHighByte;
-    unsigned char *dir_LAT;
-    char dir_pin;
-    int PWMperiod;
-} DC_motor;
+volatile char EUSART4TXbuf[60];
+volatile char TxBufWriteCnt=0;
+volatile char TxBufReadCnt=0;
 
 
-void DCmotors_init(unsigned char PWMperiod);
-void clicker2buttons_init(void);
-void clicker2LEDs_init(void);
-void buggyLEDs_init(void);
-unsigned char check_battery_level(void);
-void setMotorPWM(DC_motor *m);
-void forward(DC_motor *mL, DC_motor *mR);
-void reverse(DC_motor *mL, DC_motor *mR);
-void stop(DC_motor *mL, DC_motor *mR);
-void turnLeft(DC_motor *mL, DC_motor *mR, unsigned char deg);
-void turnRight(DC_motor *mL, DC_motor *mR, unsigned char deg);
-# 2 "dc_motor.c" 2
-# 11 "dc_motor.c"
-void DCmotors_init(unsigned char PWMperiod)
-{
-
-    T2CONbits.CKPS=0b100;
-    T2HLTbits.MODE=0b00000;
-    T2CLKCONbits.CS=0b0001;
 
 
-    T2PR=PWMperiod;
-    T2CONbits.ON=1;
+
+void USART4_init(void);
+char getCharSerial4(void);
+void sendCharSerial4(unsigned char charToSend);
+void sendStringSerial4(char *string);
 
 
-    TRISEbits.TRISE2=0;
-    TRISEbits.TRISE4=0;
-    TRISCbits.TRISC7=0;
-    TRISGbits.TRISG6=0;
-
-    LATEbits.LATE2=0;
-    LATEbits.LATE4=0;
-    LATCbits.LATC7=0;
-    LATGbits.LATG6=0;
-
-    PWM6DCH=0;
-    PWM7DCH=0;
-
-    PWM6CONbits.EN = 1;
-    PWM7CONbits.EN = 1;
-
-    RE2PPS=0x0A;
-    RC7PPS=0x0B;
+char getCharFromRxBuf(void);
+void putCharToRxBuf(char byte);
+char isDataInRxBuf (void);
 
 
-    clicker2buttons_init();
-    clicker2LEDs_init();
-    buggyLEDs_init();
+char getCharFromTxBuf(void);
+void putCharToTxBuf(char byte);
+char isDataInTxBuf (void);
+void TxBufferedString(char *string);
+void sendTxBuf(void);
+# 2 "serial_comm.c" 2
+
+
+
+
+
+void USART4_init(void) {
+
+
+    RC0PPS = 0x12;
+    RX4PPS = 0x11;
+    TRISCbits.TRISC1 = 1;
+
+    BAUD4CONbits.BRG16 = 0;
+    TX4STAbits.BRGH = 0;
+    SP4BRGL = 51;
+    SP4BRGH = 0;
+
+    RC4STAbits.CREN = 1;
+    TX4STAbits.TXEN = 1;
+    RC4STAbits.SPEN = 1;
 }
 
 
 
 
 
-void setMotorPWM(DC_motor *m)
-{
- int PWMduty;
-
- if (m->direction){
-  PWMduty=m->PWMperiod - ((int)(m->power)*(m->PWMperiod))/100;
- } else {
-  PWMduty=((int)(m->power)*(m->PWMperiod))/100;
- }
-
- *(m->dutyHighByte) = (unsigned char)(PWMduty);
-
- if (m->direction){
-  *(m->dir_LAT) = (unsigned char)(*(m->dir_LAT) | (1<<(m->dir_pin)));
- } else {
-  *(m->dir_LAT) = (unsigned char)(*(m->dir_LAT) & (~(1<<(m->dir_pin))));
- }
-}
-
-
-
-
-void clicker2buttons_init(void)
-{
-
-    TRISFbits.TRISF2=1;
-    TRISFbits.TRISF3=1;
-    ANSELFbits.ANSELF2=0;
-    ANSELFbits.ANSELF3=0;
-}
-
-
-
-
-void clicker2LEDs_init(void)
-{
-    TRISDbits.TRISD7 = 0;
-    TRISHbits.TRISH3 = 0;
-
-    LATDbits.LATD7 = 0;
-    LATHbits.LATH3 = 0;
-}
-
-
-
-
-void buggyLEDs_init(void)
-{
-    TRISHbits.TRISH1 = 0;
-    TRISDbits.TRISD3 = 0;
-    TRISDbits.TRISD4 = 0;
-    TRISFbits.TRISF0 = 0;
-    TRISHbits.TRISH0 = 0;
-
-    LATHbits.LATH1 = 0;
-    LATDbits.LATD3 = 0;
-    LATDbits.LATD4 = 0;
-    LATFbits.LATF0 = 0;
-    LATHbits.LATH0 = 0;
+char getCharSerial4(void) {
+    while (!PIR4bits.RC4IF);
+    return RC4REG;
 }
 
 
 
 
 
-
-
-unsigned char check_battery_level(void)
-{
-    unsigned char tmp;
-
-    return tmp;
+void sendCharSerial4(unsigned char charToSend) {
+    while (!PIR4bits.TX4IF);
+    TX4REG = charToSend;
 }
 
 
 
 
 
-void forward(DC_motor *mL, DC_motor *mR)
-{
+void sendStringSerial4(char *string){
 
-    mL->direction = 1;
-    mR->direction = 1;
-
-
-    while(((mL->power)<100) && ((mR->power)<100)){
-        mL->power+=1;
-        mR->power+=1;
-
-        setMotorPWM(mL);
-        setMotorPWM(mR);
-        _delay((unsigned long)((100)*(64000000/4000.0)));
+    while (*string != 0) {
+        sendCharSerial4(*string++);
     }
 }
 
@@ -24344,145 +24263,74 @@ void forward(DC_motor *mL, DC_motor *mR)
 
 
 
-void reverse(DC_motor *mL, DC_motor *mR)
-{
 
-    mL->direction = 0;
-    mR->direction = 0;
-
-
-    while(((mL->power)<100) && ((mR->power)<100)){
-        mL->power+=1;
-        mR->power+=1;
-
-        setMotorPWM(mL);
-        setMotorPWM(mR);
-        _delay((unsigned long)((100)*(64000000/4000.0)));
-    }
+char getCharFromRxBuf(void){
+    if (RxBufReadCnt>=20) {RxBufReadCnt=0;}
+    return EUSART4RXbuf[RxBufReadCnt++];
 }
 
 
 
 
 
-void stop(DC_motor *mL, DC_motor *mR)
-{
-    LATDbits.LATD4 = 1;
-
-
-    while(((mL->power)>0) && ((mR->power)>0)){
-        mL->power = mL->power - 1;
-        mR->power = mR->power - 1;
-
-
-        setMotorPWM(mL);
-        setMotorPWM(mR);
-        _delay((unsigned long)((100)*(64000000/4000.0)));
-    }
-
-    LATDbits.LATD4 = 0;
+void putCharToRxBuf(char byte){
+    if (RxBufWriteCnt>=20) {RxBufWriteCnt=0;}
+    EUSART4RXbuf[RxBufWriteCnt++]=byte;
 }
 
 
 
 
 
-void turnLeft(DC_motor *mL, DC_motor *mR, unsigned char deg)
-{
-    if (returnhome_flag==0) {
-
-        mL->direction = 0;
-        mR->direction = 1;
 
 
-        while(((mL->power)<50) || ((mR->power)<50)){
-
-            LATFbits.LATF0 = !LATFbits.LATF0;
-
-
-            if (mL->power<50) {mL->power+=1;}
-            if (mR->power<50) {mR->power+=1;}
-
-
-            setMotorPWM(mL);
-            setMotorPWM(mR);
-            _delay((unsigned long)((100)*(64000000/4000.0)));
-        }
-
-        LATFbits.LATF0 = 0;
-
-    } else {
-
-        mL->direction = 1;
-        mR->direction = 0;
-
-
-        while(((mL->power)<50) || ((mR->power)<50)){
-
-            LATHbits.LATH0 = !LATHbits.LATH0;
-
-
-            if (mL->power<50) {mL->power+=1;}
-            if (mR->power<50) {mR->power+=1;}
-
-
-            setMotorPWM(mL);
-            setMotorPWM(mR);
-            _delay((unsigned long)((100)*(64000000/4000.0)));
-        }
-
-        LATHbits.LATH0 = 0;
-    }
+char isDataInRxBuf (void){
+    return (RxBufWriteCnt!=RxBufReadCnt);
 }
 
 
 
 
 
-void turnRight(DC_motor *mL, DC_motor *mR, unsigned char deg)
-{
-    if (returnhome_flag==0) {
 
-        mL->direction = 1;
-        mR->direction = 0;
-
-
-        while(((mL->power)<50) || ((mR->power)<50)){
-
-            LATHbits.LATH0 = !LATHbits.LATH0;
+char getCharFromTxBuf(void){
+    if (TxBufReadCnt>=60) {TxBufReadCnt=0;}
+    return EUSART4TXbuf[TxBufReadCnt++];
+}
 
 
-            if (mL->power<50) {mL->power+=1;}
-            if (mR->power<50) {mR->power+=1;}
 
 
-            setMotorPWM(mL);
-            setMotorPWM(mR);
-            _delay((unsigned long)((100)*(64000000/4000.0)));
-        }
 
-        LATHbits.LATH0 = 0;
-
-    } else {
-
-        mL->direction = 0;
-        mR->direction = 1;
+void putCharToTxBuf(char byte){
+    if (TxBufWriteCnt>=60) {TxBufWriteCnt=0;}
+    EUSART4TXbuf[TxBufWriteCnt++]=byte;
+}
 
 
-        while(((mL->power)<50) || ((mR->power)<50)){
-
-            LATFbits.LATF0 = !LATFbits.LATF0;
 
 
-            if (mL->power<50) {mL->power+=1;}
-            if (mR->power<50) {mR->power+=1;}
 
 
-            setMotorPWM(mL);
-            setMotorPWM(mR);
-            _delay((unsigned long)((100)*(64000000/4000.0)));
-        }
 
-        LATFbits.LATF0 = 0;
-    }
+char isDataInTxBuf (void){
+    return (TxBufWriteCnt!=TxBufReadCnt);
+}
+
+
+
+
+
+
+void TxBufferedString(char *string){
+
+}
+
+
+
+
+
+
+void sendTxBuf(void){
+    if (isDataInTxBuf()) {PIE4bits.TX4IE=1;}
 }

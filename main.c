@@ -9,143 +9,74 @@ void main(void) {
      * Initialisation functions
      **************************/
     unsigned char PWMperiod = 99; // 0.0001s*(64MHz/4)/16 -1 = 99
-    card_flag = 0;
-    battery_flag = 0;
+    interrupts_lower = 0;
+    interrupts_upper = 65535;
+    DCmotors_lower = 50;
+    DCmotors_upper = 50;
+    colourcard_flag = 0;
+    unknowncard_flag = 0;
     returnhome_flag = 0;
+    
     ADC_init();
-    colorclick_init();
-//    interrupts_init();
+    colourclick_init();
     DCmotors_init(PWMperiod);
     USART4_init();
-
-    /**************************
-     * Motor structures
-     **************************/
-    DC_motor motorL;                                    //declare DC_motor structure
-    motorL.power=0;                                     //set motor power to 0 at start
-    motorL.direction=1;                                 //set default motor direction forward
-    motorL.dutyHighByte=(unsigned char *)(&PWM6DCH);	//PWM duty high byte address
-    motorL.dir_LAT=(unsigned char *)(&LATE);            //LAT for dir pin address
-    motorL.dir_pin=4;                                   //pin RE4 controls direction on LAT
-    motorL.PWMperiod=PWMperiod;                          //base period of PWM cycle
-
-    // same for motorR but different PWM register, LAT and direction pin
-    DC_motor motorR;                                    //declare DC_motor structure    
-    motorR.power=0;                                     //set motor power to 0 at start
-    motorR.direction=1;                                 //set default motor direction forward
-    motorR.dutyHighByte=(unsigned char *)(&PWM7DCH);	//PWM duty high byte address
-    motorR.dir_LAT=(unsigned char *)(&LATG);            //LAT for dir pin address
-    motorR.dir_pin=6;                                   //pin RG6 controls direction on LAT
-    motorR.PWMperiod=PWMperiod;                          //base period of PWM cycle
+    checkbatterylevel();
     
-    /***************************
+    DC_motor motorL;                                 // Initialise DC_motor structure for motorL
+    motorL.power=0;                                  // Set motor power to 0 at start
+    motorL.direction=1;                              // Set default motor direction forward
+    motorL.dutyHighByte=(unsigned char *)(&PWM6DCH); // PWM duty high byte address
+    motorL.dir_LAT=(unsigned char *)(&LATE);         // LAT for direction pin address
+    motorL.dir_pin=4;                                // Pin RE4 controls direction on LAT
+    motorL.PWMperiod=PWMperiod;                      // Base period of PWM cycle
+    
+    DC_motor motorR;                                 // Initialise DC_motor structure for motorR 
+    motorR.power=0;                                  // Set motor power to 0 at start
+    motorR.direction=1;                              // Set default motor direction forward
+    motorR.dutyHighByte=(unsigned char *)(&PWM7DCH); // PWM duty high byte address
+    motorR.dir_LAT=(unsigned char *)(&LATG);         // LAT for direction pin address
+    motorR.dir_pin=6;                                // Pin RG6 controls direction on LAT
+    motorR.PWMperiod=PWMperiod;                      // Base period of PWM cycle
+    
+    /****************************
      * Colour calibration routine
-     ***************************/
-//    while(RF2_BUTTON && RF3_BUTTON);
-//    RD7_LED = 1;
-//    RH3_LED = 1;
-//    
-//    RGB_val initial;
-//    initial = colorclick_readColour(initial); //read initial light value
-//    __delay_ms(100);
-//    
-//    RD7_LED = 0;
-//    RH3_LED = 0;
+     ****************************/
+    colourclick_calibration();
     
     /***************************
      * Motor calibration routine
      ***************************/
-//    while(RF2_BUTTON && RF3_BUTTON);
-//    turnRight(&motorL, &motorR, 360);
-//    motorL.power=0;
-//    motorR.power=0;
-//    
-//    while(RF2_BUTTON && RF3_BUTTON);
-//    if (RF2_BUTTON) {
-//        RD7_LED = 1;
-//        __delay_ms(100);
-//        RD7_LED = 0;
-//    } else if (RF3_BUTTON) {
-//        RH3_LED = 1;
-//        __delay_ms(100);
-//        RH3_LED = 0;
-//    }
-//
-//    while(RF2_BUTTON && RF3_BUTTON);
-//    turnLeft(&motorL, &motorR, 360);
-//    motorL.power=0;
-//    motorR.power=0;
-//    
-//    while(RF2_BUTTON && RF3_BUTTON);
-//    if (RF2_BUTTON) {
-//        RD7_LED = 1;
-//        __delay_ms(100);
-//        RD7_LED = 0;
-//    } else if (RF3_BUTTON) {
-//        RH3_LED = 1;
-//        __delay_ms(100);
-//        RH3_LED = 0;
-//    }
-//    
+    DCmotors_calibration(&motorL, &motorR);
+    
+    /******************
+     * 
+     *****************/
     while(RF2_BUTTON && RF3_BUTTON);
     MAINBEAM_LED = 1;
-    colorclick_toggleClearLED(1);
+    colourclickLEDs_C(1);
     __delay_ms(1000);
-//    forward(&motorL, &motorR);
+    interrupts_init();
+    forward(&motorL, &motorR);
     
     /*********************
-     * Check battery level
-     *********************/
-//    unsigned char battery = ADC_getval();
-//    if (battery<100) {
-//        RD7_LED = 1;
-//        RH3_LED = 1;
-//    } else if (battery<200) {
-//        RD7_LED = 1;
-//        RH3_LED = 0;
-//    } else {
-//        RD7_LED = 0;
-//        RH3_LED = 0;
-//    }
-//    __delay_ms(1000);
-//    forward(&motorL, &motorR);
-    
-    /**************************
      * Infinite while loop
-     **************************/
-    RGB_val current;
+     *********************/
+    RGBC_val current;
     while(1) {
-        /************************************
-         * Testing using serial communication
-         ************************************/
-        while(RF2_BUTTON && RF3_BUTTON);
-        current = colorclick_readColour(current); //read current light value
-        char buf[100];
-        float R_rel = (float)current.R / (float)current.C;
-        float G_rel = (float)current.G / (float)current.C;
-        float B_rel = (float)current.B / (float)current.C;
-        float C_rel = (float)current.C / (float)current.C;
-        sprintf(buf,"RGBC: %i %i %i %i     RGBC_rel: %.3f %.3f %.3f %.3f\n\r",\
-                current.R, current.G, current.B, current.C, R_rel, G_rel, B_rel, C_rel);
-        sendStringSerial4(buf);
-        __delay_ms(500);
+        /*********
+         * Testing
+         *********/
+        colourcards_testing();
+        DCmotors_testing(&motorL, &motorR);
         
         /*****************
          * Maze navigation
          *****************/
-//        current = colorclick_readColour(current); //read current light value
-        read_card_RGB(current, &motorL, &motorR);
-        
-//        if (card_flag==1) {
-//            current = colorclick_readColour(current); //read current light value
-//            read_card_RGB(initial, current, &motorL, &motorR);
-//            card_flag = 0;
-//        }
-//        
-//        if (battery_flag==1) {
-//            RD7_LED = 1;
-//            RH3_LED = 1;
-//            battery_flag = 0;
-//        }
+        if (colourcard_flag==1) {
+            colourclick_readRGBC(&current);
+            colourcards_readRGBC(&current, &motorL, &motorR);
+            card_flag = 0;
+        }
     }
 }

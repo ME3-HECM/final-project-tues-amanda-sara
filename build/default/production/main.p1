@@ -1,28 +1,22 @@
 Version 4.0 HI-TECH Software Intermediate Code
 [p mainexit ]
-"39 ./main.h
-[; ;./main.h: 39: extern volatile unsigned char card_flag;
-[v _card_flag `Vuc ~T0 @X0 0 e ]
-"40
-[; ;./main.h: 40: extern volatile unsigned char battery_flag;
-[v _battery_flag `Vuc ~T0 @X0 0 e ]
-"41
-[; ;./main.h: 41: extern volatile unsigned char returnhome_flag;
-[v _returnhome_flag `Vuc ~T0 @X0 0 e ]
-"10 ./ADC.h
-[; ;./ADC.h: 10: void ADC_init(void);
+"11 ./ADC.h
+[; ;./ADC.h: 11: void ADC_init(void);
 [v _ADC_init `(v ~T0 @X0 0 ef ]
-"17 ./color_click.h
-[; ;./color_click.h: 17: void colorclick_init(void);
-[v _colorclick_init `(v ~T0 @X0 0 ef ]
-"35 ./dc_motor.h
-[; ;./dc_motor.h: 35: void DCmotors_init(unsigned char PWMperiod);
+"24 ./colour_click.h
+[; ;./colour_click.h: 24: void colourclick_init(void);
+[v _colourclick_init `(v ~T0 @X0 0 ef ]
+"31 ./DC_motors.h
+[; ;./DC_motors.h: 31: void DCmotors_init(unsigned char PWMperiod);
 [v _DCmotors_init `(v ~T0 @X0 0 ef1`uc ]
-"23 ./serial.h
-[; ;./serial.h: 23: void USART4_init(void);
+"24 ./serial_comm.h
+[; ;./serial_comm.h: 24: void USART4_init(void);
 [v _USART4_init `(v ~T0 @X0 0 ef ]
-"25 ./dc_motor.h
-[; ;./dc_motor.h: 25: typedef struct {
+"33 ./DC_motors.h
+[; ;./DC_motors.h: 33: void checkbatterylevel(void);
+[v _checkbatterylevel `(v ~T0 @X0 0 ef ]
+"11
+[; ;./DC_motors.h: 11: typedef struct {
 [s S2022 `uc 1 `uc 1 `*uc 1 `*uc 1 `uc 1 `i 1 ]
 [n S2022 . power direction dutyHighByte dir_LAT dir_pin PWMperiod ]
 "33981 C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\proc\pic18f67k40.h
@@ -37,7 +31,13 @@ Version 4.0 HI-TECH Software Intermediate Code
 "29185
 [; ;C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\proc\pic18f67k40.h: 29185: extern volatile unsigned char LATG __attribute__((address(0xF7F)));
 [v _LATG `Vuc ~T0 @X0 0 e@3967 ]
-"30630
+"32 ./colour_click.h
+[; ;./colour_click.h: 32: void colourclick_calibration(void);
+[v _colourclick_calibration `(v ~T0 @X0 0 ef ]
+"41 ./DC_motors.h
+[; ;./DC_motors.h: 41: void DCmotors_calibration(DC_motor *mL, DC_motor *mR);
+[v _DCmotors_calibration `(v ~T0 @X0 0 ef2`*S2022`*S2022 ]
+"30630 C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\proc\pic18f67k40.h
 [; ;C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\proc\pic18f67k40.h: 30630:     struct {
 [s S1415 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
 [n S1415 . RF0 RF1 RF2 RF3 RF4 RF5 RF6 RF7 ]
@@ -67,28 +67,38 @@ Version 4.0 HI-TECH Software Intermediate Code
 "28876
 [; ;C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\proc\pic18f67k40.h: 28876: extern volatile LATDbits_t LATDbits __attribute__((address(0xF7C)));
 [v _LATDbits `VS1351 ~T0 @X0 0 e@3964 ]
-"19 ./color_click.h
-[; ;./color_click.h: 19: void colorclick_toggleClearLED(unsigned char toggle);
-[v _colorclick_toggleClearLED `(v ~T0 @X0 0 ef1`uc ]
+"44 ./buttons_n_LEDs.h
+[; ;./buttons_n_LEDs.h: 44: void colourclickLEDs_C(unsigned char tog);
+[v _colourclickLEDs_C `(v ~T0 @X0 0 ef1`uc ]
 [v F14184 `(v ~T0 @X0 1 tf1`ul ]
 "203 C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\pic18.h
 [v __delay `JF14184 ~T0 @X0 0 e ]
 [p i __delay ]
-"12 ./color_click.h
-[; ;./color_click.h: 12: typedef struct {
+"19 ./interrupts.h
+[; ;./interrupts.h: 19: void interrupts_init(void);
+[v _interrupts_init `(v ~T0 @X0 0 ef ]
+"34 ./DC_motors.h
+[; ;./DC_motors.h: 34: void forward(DC_motor *mL, DC_motor *mR);
+[v _forward `(v ~T0 @X0 0 ef2`*S2022`*S2022 ]
+"11 ./colour_click.h
+[; ;./colour_click.h: 11: typedef struct {
 [s S2021 `ui 1 `ui 1 `ui 1 `ui 1 ]
 [n S2021 . R G B C ]
-"25
-[; ;./color_click.h: 25: RGB_val colorclick_readColour(RGB_val current);
-[v _colorclick_readColour `(S2021 ~T0 @X0 0 ef1`S2021 ]
-"113 C:\Program Files\Microchip\xc8\v2.32\pic\include\c99\stdio.h
-[v _sprintf `(i ~T0 @X0 0 e1v`*uc`*Cuc ]
-"26 ./serial.h
-[; ;./serial.h: 26: void sendStringSerial4(char *string);
-[v _sendStringSerial4 `(v ~T0 @X0 0 ef1`*uc ]
-"12 ./color_card.h
-[; ;./color_card.h: 12: float read_card_RGB(RGB_val current, DC_motor *mL, DC_motor *mR);
-[v _read_card_RGB `(f ~T0 @X0 0 ef3`S2021`*S2022`*S2022 ]
+"24 ./colour_cards.h
+[; ;./colour_cards.h: 24: void colourcards_testing(void);
+[v _colourcards_testing `(v ~T0 @X0 0 ef ]
+"43 ./DC_motors.h
+[; ;./DC_motors.h: 43: void DCmotors_testing(DC_motor *mL, DC_motor *mR);
+[v _DCmotors_testing `(v ~T0 @X0 0 ef2`*S2022`*S2022 ]
+"30 ./colour_click.h
+[; ;./colour_click.h: 30: void colourclick_readRGBC(RGBC_val *tmpval);
+[v _colourclick_readRGBC `(v ~T0 @X0 0 ef1`*S2021 ]
+"22 ./colour_cards.h
+[; ;./colour_cards.h: 22: void colourcards_readRGBC(RGBC_val *tmpval, DC_motor *mL, DC_motor *mR);
+[v _colourcards_readRGBC `(v ~T0 @X0 0 ef3`*S2021`*S2022`*S2022 ]
+"13 ./interrupts.h
+[; ;./interrupts.h: 13: extern volatile unsigned char card_flag;
+[v _card_flag `Vuc ~T0 @X0 0 e ]
 "54 C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\proc\pic18f67k40.h
 [; ;C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\proc\pic18f67k40.h: 54: __asm("PPSLOCK equ 0DEFh");
 [; <" PPSLOCK equ 0DEFh ;# ">
@@ -2063,45 +2073,56 @@ Version 4.0 HI-TECH Software Intermediate Code
 "40981
 [; ;C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\proc\pic18f67k40.h: 40981: __asm("TOSU equ 0FFFh");
 [; <" TOSU equ 0FFFh ;# ">
-"16 ./main.h
-[p x FEXTOSC  =  HS          ]
-"17
-[p x RSTOSC  =  EXTOSC_4PLL  ]
-"23
-[p x WDTE  =  OFF  ]
-"10 ./color_card.h
-[; ;./color_card.h: 10: volatile unsigned char returnhome_flag;
-[v _returnhome_flag `Vuc ~T0 @X0 1 e ]
-"13 ./serial.h
-[; ;./serial.h: 13: volatile char EUSART4RXbuf[20];
+"12 ./serial_comm.h
+[; ;./serial_comm.h: 12: volatile char EUSART4RXbuf[20];
 [v _EUSART4RXbuf `Vuc ~T0 @X0 -> 20 `i e ]
-"14
-[; ;./serial.h: 14: volatile char RxBufWriteCnt=0;
+"13
+[; ;./serial_comm.h: 13: volatile char RxBufWriteCnt=0;
 [v _RxBufWriteCnt `Vuc ~T0 @X0 1 e ]
 [i _RxBufWriteCnt
 -> -> 0 `i `uc
 ]
-"15
-[; ;./serial.h: 15: volatile char RxBufReadCnt=0;
+"14
+[; ;./serial_comm.h: 14: volatile char RxBufReadCnt=0;
 [v _RxBufReadCnt `Vuc ~T0 @X0 1 e ]
 [i _RxBufReadCnt
 -> -> 0 `i `uc
 ]
-"17
-[; ;./serial.h: 17: volatile char EUSART4TXbuf[60];
+"16
+[; ;./serial_comm.h: 16: volatile char EUSART4TXbuf[60];
 [v _EUSART4TXbuf `Vuc ~T0 @X0 -> 60 `i e ]
-"18
-[; ;./serial.h: 18: volatile char TxBufWriteCnt=0;
+"17
+[; ;./serial_comm.h: 17: volatile char TxBufWriteCnt=0;
 [v _TxBufWriteCnt `Vuc ~T0 @X0 1 e ]
 [i _TxBufWriteCnt
 -> -> 0 `i `uc
 ]
-"19
-[; ;./serial.h: 19: volatile char TxBufReadCnt=0;
+"18
+[; ;./serial_comm.h: 18: volatile char TxBufReadCnt=0;
 [v _TxBufReadCnt `Vuc ~T0 @X0 1 e ]
 [i _TxBufReadCnt
 -> -> 0 `i `uc
 ]
+"29 ./main.h
+[p x FEXTOSC  =  HS          ]
+"30
+[p x RSTOSC  =  EXTOSC_4PLL  ]
+"36
+[p x WDTE  =  OFF  ]
+"41
+[v _interrupts_lower `Vui ~T0 @X0 1 e ]
+"42
+[v _interrupts_upper `Vui ~T0 @X0 1 e ]
+"43
+[v _DCmotors_lower `Vuc ~T0 @X0 1 e ]
+"44
+[v _DCmotors_upper `Vuc ~T0 @X0 1 e ]
+"45
+[v _colourcard_flag `Vuc ~T0 @X0 1 e ]
+"46
+[v _unknowncard_flag `Vuc ~T0 @X0 1 e ]
+"47
+[v _returnhome_flag `Vuc ~T0 @X0 1 e ]
 [v $root$_main `(v ~T0 @X0 0 e ]
 "7 main.c
 [; ;main.c: 7: void main(void) {
@@ -2114,141 +2135,148 @@ Version 4.0 HI-TECH Software Intermediate Code
 [v _PWMperiod `uc ~T0 @X0 1 a ]
 [e = _PWMperiod -> -> 99 `i `uc ]
 "12
-[; ;main.c: 12:     card_flag = 0;
-[e = _card_flag -> -> 0 `i `uc ]
+[; ;main.c: 12:     interrupts_lower = 0;
+[e = _interrupts_lower -> -> 0 `i `ui ]
 "13
-[; ;main.c: 13:     battery_flag = 0;
-[e = _battery_flag -> -> 0 `i `uc ]
+[; ;main.c: 13:     interrupts_upper = 65535;
+[e = _interrupts_upper -> -> 65535 `l `ui ]
 "14
-[; ;main.c: 14:     returnhome_flag = 0;
-[e = _returnhome_flag -> -> 0 `i `uc ]
+[; ;main.c: 14:     DCmotors_lower = 50;
+[e = _DCmotors_lower -> -> 50 `i `uc ]
 "15
-[; ;main.c: 15:     ADC_init();
-[e ( _ADC_init ..  ]
+[; ;main.c: 15:     DCmotors_upper = 50;
+[e = _DCmotors_upper -> -> 50 `i `uc ]
 "16
-[; ;main.c: 16:     colorclick_init();
-[e ( _colorclick_init ..  ]
+[; ;main.c: 16:     colourcard_flag = 0;
+[e = _colourcard_flag -> -> 0 `i `uc ]
+"17
+[; ;main.c: 17:     unknowncard_flag = 0;
+[e = _unknowncard_flag -> -> 0 `i `uc ]
 "18
-[; ;main.c: 18:     DCmotors_init(PWMperiod);
+[; ;main.c: 18:     returnhome_flag = 0;
+[e = _returnhome_flag -> -> 0 `i `uc ]
+"20
+[; ;main.c: 20:     ADC_init();
+[e ( _ADC_init ..  ]
+"21
+[; ;main.c: 21:     colourclick_init();
+[e ( _colourclick_init ..  ]
+"22
+[; ;main.c: 22:     DCmotors_init(PWMperiod);
 [e ( _DCmotors_init (1 _PWMperiod ]
-"19
-[; ;main.c: 19:     USART4_init();
+"23
+[; ;main.c: 23:     USART4_init();
 [e ( _USART4_init ..  ]
 "24
-[; ;main.c: 24:     DC_motor motorL;
-[v _motorL `S2022 ~T0 @X0 1 a ]
-"25
-[; ;main.c: 25:     motorL.power=0;
-[e = . _motorL 0 -> -> 0 `i `uc ]
+[; ;main.c: 24:     checkbatterylevel();
+[e ( _checkbatterylevel ..  ]
 "26
-[; ;main.c: 26:     motorL.direction=1;
-[e = . _motorL 1 -> -> 1 `i `uc ]
+[; ;main.c: 26:     DC_motor motorL;
+[v _motorL `S2022 ~T0 @X0 1 a ]
 "27
-[; ;main.c: 27:     motorL.dutyHighByte=(unsigned char *)(&PWM6DCH);
-[e = . _motorL 2 -> &U _PWM6DCH `*uc ]
+[; ;main.c: 27:     motorL.power=0;
+[e = . _motorL 0 -> -> 0 `i `uc ]
 "28
-[; ;main.c: 28:     motorL.dir_LAT=(unsigned char *)(&LATE);
-[e = . _motorL 3 -> &U _LATE `*uc ]
+[; ;main.c: 28:     motorL.direction=1;
+[e = . _motorL 1 -> -> 1 `i `uc ]
 "29
-[; ;main.c: 29:     motorL.dir_pin=4;
-[e = . _motorL 4 -> -> 4 `i `uc ]
+[; ;main.c: 29:     motorL.dutyHighByte=(unsigned char *)(&PWM6DCH);
+[e = . _motorL 2 -> &U _PWM6DCH `*uc ]
 "30
-[; ;main.c: 30:     motorL.PWMperiod=PWMperiod;
+[; ;main.c: 30:     motorL.dir_LAT=(unsigned char *)(&LATE);
+[e = . _motorL 3 -> &U _LATE `*uc ]
+"31
+[; ;main.c: 31:     motorL.dir_pin=4;
+[e = . _motorL 4 -> -> 4 `i `uc ]
+"32
+[; ;main.c: 32:     motorL.PWMperiod=PWMperiod;
 [e = . _motorL 5 -> _PWMperiod `i ]
-"33
-[; ;main.c: 33:     DC_motor motorR;
-[v _motorR `S2022 ~T0 @X0 1 a ]
 "34
-[; ;main.c: 34:     motorR.power=0;
-[e = . _motorR 0 -> -> 0 `i `uc ]
+[; ;main.c: 34:     DC_motor motorR;
+[v _motorR `S2022 ~T0 @X0 1 a ]
 "35
-[; ;main.c: 35:     motorR.direction=1;
-[e = . _motorR 1 -> -> 1 `i `uc ]
+[; ;main.c: 35:     motorR.power=0;
+[e = . _motorR 0 -> -> 0 `i `uc ]
 "36
-[; ;main.c: 36:     motorR.dutyHighByte=(unsigned char *)(&PWM7DCH);
-[e = . _motorR 2 -> &U _PWM7DCH `*uc ]
+[; ;main.c: 36:     motorR.direction=1;
+[e = . _motorR 1 -> -> 1 `i `uc ]
 "37
-[; ;main.c: 37:     motorR.dir_LAT=(unsigned char *)(&LATG);
-[e = . _motorR 3 -> &U _LATG `*uc ]
+[; ;main.c: 37:     motorR.dutyHighByte=(unsigned char *)(&PWM7DCH);
+[e = . _motorR 2 -> &U _PWM7DCH `*uc ]
 "38
-[; ;main.c: 38:     motorR.dir_pin=6;
-[e = . _motorR 4 -> -> 6 `i `uc ]
+[; ;main.c: 38:     motorR.dir_LAT=(unsigned char *)(&LATG);
+[e = . _motorR 3 -> &U _LATG `*uc ]
 "39
-[; ;main.c: 39:     motorR.PWMperiod=PWMperiod;
+[; ;main.c: 39:     motorR.dir_pin=6;
+[e = . _motorR 4 -> -> 6 `i `uc ]
+"40
+[; ;main.c: 40:     motorR.PWMperiod=PWMperiod;
 [e = . _motorR 5 -> _PWMperiod `i ]
-"90
-[; ;main.c: 90:     while(PORTFbits.RF2 && PORTFbits.RF3);
+"45
+[; ;main.c: 45:     colourclick_calibration();
+[e ( _colourclick_calibration ..  ]
+"50
+[; ;main.c: 50:     DCmotors_calibration(&motorL, &motorR);
+[e ( _DCmotors_calibration (2 , &U _motorL &U _motorR ]
+"55
+[; ;main.c: 55:     while(PORTFbits.RF2 && PORTFbits.RF3);
 [e $U 2024  ]
 [e :U 2025 ]
 [e :U 2024 ]
 [e $ && != -> . . _PORTFbits 0 2 `i -> 0 `i != -> . . _PORTFbits 0 3 `i -> 0 `i 2025  ]
 [e :U 2026 ]
-"91
-[; ;main.c: 91:     LATDbits.LATD3 = 1;
+"56
+[; ;main.c: 56:     LATDbits.LATD3 = 1;
 [e = . . _LATDbits 0 3 -> -> 1 `i `uc ]
-"92
-[; ;main.c: 92:     colorclick_toggleClearLED(1);
-[e ( _colorclick_toggleClearLED (1 -> -> 1 `i `uc ]
-"93
-[; ;main.c: 93:     _delay((unsigned long)((1000)*(64000000/4000.0)));
+"57
+[; ;main.c: 57:     colourclickLEDs_C(1);
+[e ( _colourclickLEDs_C (1 -> -> 1 `i `uc ]
+"58
+[; ;main.c: 58:     _delay((unsigned long)((1000)*(64000000/4000.0)));
 [e ( __delay (1 -> * -> -> 1000 `i `d / -> -> 64000000 `l `d .4000.0 `ul ]
-"116
-[; ;main.c: 116:     RGB_val current;
+"59
+[; ;main.c: 59:     interrupts_init();
+[e ( _interrupts_init ..  ]
+"60
+[; ;main.c: 60:     forward(&motorL, &motorR);
+[e ( _forward (2 , &U _motorL &U _motorR ]
+"65
+[; ;main.c: 65:     RGBC_val current;
 [v _current `S2021 ~T0 @X0 1 a ]
-"117
-[; ;main.c: 117:     while(1) {
+"66
+[; ;main.c: 66:     while(1) {
 [e :U 2028 ]
 {
-"121
-[; ;main.c: 121:         while(PORTFbits.RF2 && PORTFbits.RF3);
-[e $U 2030  ]
-[e :U 2031 ]
+"70
+[; ;main.c: 70:         colourcards_testing();
+[e ( _colourcards_testing ..  ]
+"71
+[; ;main.c: 71:         DCmotors_testing(&motorL, &motorR);
+[e ( _DCmotors_testing (2 , &U _motorL &U _motorR ]
+"76
+[; ;main.c: 76:         if (colourcard_flag==1) {
+[e $ ! == -> _colourcard_flag `i -> 1 `i 2030  ]
+{
+"77
+[; ;main.c: 77:             colourclick_readRGBC(&current);
+[e ( _colourclick_readRGBC (1 &U _current ]
+"78
+[; ;main.c: 78:             colourcards_readRGBC(&current, &motorL, &motorR);
+[e ( _colourcards_readRGBC (3 , , &U _current &U _motorL &U _motorR ]
+"79
+[; ;main.c: 79:             card_flag = 0;
+[e = _card_flag -> -> 0 `i `uc ]
+"80
+[; ;main.c: 80:         }
+}
 [e :U 2030 ]
-[e $ && != -> . . _PORTFbits 0 2 `i -> 0 `i != -> . . _PORTFbits 0 3 `i -> 0 `i 2031  ]
-[e :U 2032 ]
-"122
-[; ;main.c: 122:         current = colorclick_readColour(current);
-[e = _current ( _colorclick_readColour (1 _current ]
-"123
-[; ;main.c: 123:         char buf[100];
-[v _buf `uc ~T0 @X0 -> 100 `i a ]
-"124
-[; ;main.c: 124:         float R_rel = (float)current.R / (float)current.C;
-[v _R_rel `f ~T0 @X0 1 a ]
-[e = _R_rel / -> . _current 0 `f -> . _current 3 `f ]
-"125
-[; ;main.c: 125:         float G_rel = (float)current.G / (float)current.C;
-[v _G_rel `f ~T0 @X0 1 a ]
-[e = _G_rel / -> . _current 1 `f -> . _current 3 `f ]
-"126
-[; ;main.c: 126:         float B_rel = (float)current.B / (float)current.C;
-[v _B_rel `f ~T0 @X0 1 a ]
-[e = _B_rel / -> . _current 2 `f -> . _current 3 `f ]
-"127
-[; ;main.c: 127:         float C_rel = (float)current.C / (float)current.C;
-[v _C_rel `f ~T0 @X0 1 a ]
-[e = _C_rel / -> . _current 3 `f -> . _current 3 `f ]
-"128
-[; ;main.c: 128:         sprintf(buf,"RGBC: %i %i %i %i     RGBC_rel: %.3f %.3f %.3f %.3f\n\r", current.R, current.G, current.B, current.C, R_rel, G_rel, B_rel, C_rel);
-[e ( _sprintf (1 , , , , , , , , (. , &U _buf :s 1C . _current 0 . _current 1 . _current 2 . _current 3 -> _R_rel `d -> _G_rel `d -> _B_rel `d -> _C_rel `d ]
-"130
-[; ;main.c: 130:         sendStringSerial4(buf);
-[e ( _sendStringSerial4 (1 &U _buf ]
-"131
-[; ;main.c: 131:         _delay((unsigned long)((500)*(64000000/4000.0)));
-[e ( __delay (1 -> * -> -> 500 `i `d / -> -> 64000000 `l `d .4000.0 `ul ]
-"137
-[; ;main.c: 137:         read_card_RGB(current, &motorL, &motorR);
-[e ( _read_card_RGB (3 , , _current &U _motorL &U _motorR ]
-"150
-[; ;main.c: 150:     }
+"81
+[; ;main.c: 81:     }
 }
 [e :U 2027 ]
 [e $U 2028  ]
 [e :U 2029 ]
-"151
-[; ;main.c: 151: }
+"82
+[; ;main.c: 82: }
 [e :UE 2023 ]
 }
-[p f _sprintf 8462464 ]
-[a 1C 82 71 66 67 58 32 37 105 32 37 105 32 37 105 32 37 105 32 32 32 32 32 82 71 66 67 95 114 101 108 58 32 37 46 51 102 32 37 46 51 102 32 37 46 51 102 32 37 46 51 102 10 13 0 ]
