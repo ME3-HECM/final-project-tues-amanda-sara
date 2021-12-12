@@ -24442,7 +24442,7 @@ unsigned char I2C_2_Master_Read(unsigned char ack);
 # 11 "./interrupts.h"
 extern volatile unsigned int interrupts_lower;
 extern volatile unsigned int interrupts_upper;
-extern volatile unsigned char card_flag;
+extern volatile unsigned char colourcard_flag;
 extern volatile unsigned char battery_flag;
 
 
@@ -24568,7 +24568,7 @@ void main(void) {
     LATDbits.LATD3 = 1;
     colourclickLEDs_C(1);
     _delay((unsigned long)((1000)*(64000000/4000.0)));
-    interrupts_init();
+
     forward(&motorL, &motorR);
 
 
@@ -24588,7 +24588,7 @@ void main(void) {
         if (colourcard_flag==1) {
             colourclick_readRGBC(&current);
             colourcards_readRGBC(&current, &motorL, &motorR);
-            card_flag = 0;
+            colourcard_flag = 0;
         }
     }
 }

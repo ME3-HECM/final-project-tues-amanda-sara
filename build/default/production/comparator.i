@@ -1,4 +1,4 @@
-# 1 "I2C.c"
+# 1 "comparator.c"
 # 1 "<built-in>" 1
 # 1 "<built-in>" 3
 # 288 "<built-in>" 3
@@ -6,7 +6,7 @@
 # 1 "<built-in>" 2
 # 1 "C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\\pic\\include\\language_support.h" 1 3
 # 2 "<built-in>" 2
-# 1 "I2C.c" 2
+# 1 "comparator.c" 2
 # 1 "C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\\pic\\include\\xc.h" 1 3
 # 18 "C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\\pic\\include\\xc.h" 3
 extern const char __xc8_OPTIM_SPEED;
@@ -24175,104 +24175,42 @@ extern __attribute__((nonreentrant)) void _delaywdt(unsigned long);
 #pragma intrinsic(_delay3)
 extern __attribute__((nonreentrant)) void _delay3(unsigned char);
 # 33 "C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\\pic\\include\\xc.h" 2 3
-# 1 "I2C.c" 2
+# 1 "comparator.c" 2
 
-# 1 "./I2C.h" 1
-# 12 "./I2C.h"
-void I2C_2_Master_Init(void);
-void I2C_2_Master_Idle(void);
-void I2C_2_Master_Start(void);
-void I2C_2_Master_RepStart(void);
-void I2C_2_Master_Stop(void);
-void I2C_2_Master_Write(unsigned char data_byte);
-unsigned char I2C_2_Master_Read(unsigned char ack);
-# 2 "I2C.c" 2
+# 1 "./comparator.h" 1
+# 11 "./comparator.h"
+void DAC_init(void);
+void Comp1_init(void);
+# 2 "comparator.c" 2
 
 
 
 
 
-
-void I2C_2_Master_Init(void)
+void DAC_init(void)
 {
-
-  SSP2CON1bits.SSPM= 0b1000;
-  SSP2CON1bits.SSPEN = 1;
-  SSP2ADD = (64000000/(4*100000))-1;
+    DAC1CON0bits.PSS=0b00;
+    DAC1CON0bits.NSS=0b0;
 
 
-  TRISDbits.TRISD5 = 1;
-  TRISDbits.TRISD6 = 1;
-  ANSELDbits.ANSELD5=0;
-  ANSELDbits.ANSELD6=0;
-  SSP2DATPPS=0x1D;
-  SSP2CLKPPS=0x1E;
-  RD5PPS=0x1C;
-  RD6PPS=0x1B;
+
+
+    DAC1CON1bits.DAC1R=0b11011;
+    DAC1CON0bits.DAC1EN=1;
 }
 
 
 
 
 
-void I2C_2_Master_Idle(void)
+void Comp1_init(void)
 {
-  while ((SSP2STAT & 0x04) || (SSP2CON2 & 0x1F));
-}
-
-
-
-
-
-void I2C_2_Master_Start(void)
-{
-  I2C_2_Master_Idle();
-  SSP2CON2bits.SEN = 1;
-}
-
-
-
-
-
-void I2C_2_Master_RepStart(void)
-{
-  I2C_2_Master_Idle();
-  SSP2CON2bits.RSEN = 1;
-}
-
-
-
-
-
-void I2C_2_Master_Stop()
-{
-  I2C_2_Master_Idle();
-  SSP2CON2bits.PEN = 1;
-}
-
-
-
-
-
-void I2C_2_Master_Write(unsigned char data_byte)
-{
-  I2C_2_Master_Idle();
-  SSP2BUF = data_byte;
-}
-
-
-
-
-
-unsigned char I2C_2_Master_Read(unsigned char ack)
-{
-  unsigned char tmp;
-  I2C_2_Master_Idle();
-  SSP2CON2bits.RCEN = 1;
-  I2C_2_Master_Idle();
-  tmp = SSP2BUF;
-  I2C_2_Master_Idle();
-  SSP2CON2bits.ACKDT = !ack;
-  SSP2CON2bits.ACKEN = 1;
-  return tmp;
+    TRISFbits.TRISF7=1;
+    CM1NCHbits.NCH=0b011;
+    CM1PCHbits.PCH=0b101;
+    CM1CON0bits.HYS=1;
+    CM1CON0bits.POL=1;
+    CM1CON1bits.INTP=1;
+    DAC_init();
+    CM1CON0bits.EN=1;
 }

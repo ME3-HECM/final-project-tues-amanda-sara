@@ -74,9 +74,6 @@ Version 4.0 HI-TECH Software Intermediate Code
 "203 C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\pic18.h
 [v __delay `JF14184 ~T0 @X0 0 e ]
 [p i __delay ]
-"19 ./interrupts.h
-[; ;./interrupts.h: 19: void interrupts_init(void);
-[v _interrupts_init `(v ~T0 @X0 0 ef ]
 "34 ./DC_motors.h
 [; ;./DC_motors.h: 34: void forward(DC_motor *mL, DC_motor *mR);
 [v _forward `(v ~T0 @X0 0 ef2`*S2022`*S2022 ]
@@ -96,9 +93,6 @@ Version 4.0 HI-TECH Software Intermediate Code
 "22 ./colour_cards.h
 [; ;./colour_cards.h: 22: void colourcards_readRGBC(RGBC_val *tmpval, DC_motor *mL, DC_motor *mR);
 [v _colourcards_readRGBC `(v ~T0 @X0 0 ef3`*S2021`*S2022`*S2022 ]
-"13 ./interrupts.h
-[; ;./interrupts.h: 13: extern volatile unsigned char card_flag;
-[v _card_flag `Vuc ~T0 @X0 0 e ]
 "54 C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\proc\pic18f67k40.h
 [; ;C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\proc\pic18f67k40.h: 54: __asm("PPSLOCK equ 0DEFh");
 [; <" PPSLOCK equ 0DEFh ;# ">
@@ -2234,9 +2228,6 @@ Version 4.0 HI-TECH Software Intermediate Code
 "58
 [; ;main.c: 58:     _delay((unsigned long)((1000)*(64000000/4000.0)));
 [e ( __delay (1 -> * -> -> 1000 `i `d / -> -> 64000000 `l `d .4000.0 `ul ]
-"59
-[; ;main.c: 59:     interrupts_init();
-[e ( _interrupts_init ..  ]
 "60
 [; ;main.c: 60:     forward(&motorL, &motorR);
 [e ( _forward (2 , &U _motorL &U _motorR ]
@@ -2264,8 +2255,8 @@ Version 4.0 HI-TECH Software Intermediate Code
 [; ;main.c: 78:             colourcards_readRGBC(&current, &motorL, &motorR);
 [e ( _colourcards_readRGBC (3 , , &U _current &U _motorL &U _motorR ]
 "79
-[; ;main.c: 79:             card_flag = 0;
-[e = _card_flag -> -> 0 `i `uc ]
+[; ;main.c: 79:             colourcard_flag = 0;
+[e = _colourcard_flag -> -> 0 `i `uc ]
 "80
 [; ;main.c: 80:         }
 }

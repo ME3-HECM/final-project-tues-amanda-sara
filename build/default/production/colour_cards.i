@@ -24421,7 +24421,7 @@ unsigned char I2C_2_Master_Read(unsigned char ack);
 # 11 "./interrupts.h"
 extern volatile unsigned int interrupts_lower;
 extern volatile unsigned int interrupts_upper;
-extern volatile unsigned char card_flag;
+extern volatile unsigned char colourcard_flag;
 extern volatile unsigned char battery_flag;
 
 

@@ -56,7 +56,7 @@ void main(void) {
     MAINBEAM_LED = 1;
     colourclickLEDs_C(1);
     __delay_ms(1000);
-    interrupts_init();
+//    interrupts_init();
     forward(&motorL, &motorR);
     
     /*********************
@@ -76,7 +76,7 @@ void main(void) {
         if (colourcard_flag==1) {
             colourclick_readRGBC(&current);
             colourcards_readRGBC(&current, &motorL, &motorR);
-            card_flag = 0;
+            colourcard_flag = 0;
         }
     }
 }
