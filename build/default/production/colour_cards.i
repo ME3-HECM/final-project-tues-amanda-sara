@@ -24389,7 +24389,8 @@ typedef struct {
 
 
 
-extern volatile unsigned int DCmotors_turntime;
+extern volatile unsigned int turnleft_delay;
+extern volatile unsigned int turnright_delay;
 extern volatile unsigned char returnhome_flag;
 
 
@@ -24406,8 +24407,8 @@ void left(DC_motor *mL, DC_motor *mR, unsigned int deg);
 void right(DC_motor *mL, DC_motor *mR, unsigned int deg);
 void turnleft(DC_motor *mL, DC_motor *mR, unsigned int deg);
 void turnright(DC_motor *mL, DC_motor *mR, unsigned int deg);
+void adjdelay(unsigned char mode);
 void DCmotors_calibration(DC_motor *mL, DC_motor *mR);
-void DCmotors_adjustval(void);
 void DCmotors_testing(DC_motor *mL, DC_motor *mR);
 # 20 "./main.h" 2
 
@@ -24426,8 +24427,8 @@ unsigned char I2C_2_Master_Read(unsigned char ack);
 # 16 "./interrupts.h"
 extern volatile unsigned int interrupts_lowerbound;
 extern volatile unsigned int interrupts_upperbound;
+extern volatile unsigned char overtime_flag;
 extern volatile unsigned char colourcard_flag;
-extern volatile unsigned char battery_flag;
 
 
 
@@ -24488,9 +24489,11 @@ void sendTxBuf(void);
 
 
 
-volatile unsigned int DCmotors_turntime;
 volatile unsigned int interrupts_lowerbound;
 volatile unsigned int interrupts_upperbound;
+volatile unsigned int turnleft_delay;
+volatile unsigned int turnright_delay;
+volatile unsigned char overtime_flag;
 volatile unsigned char colourcard_flag;
 volatile unsigned char unknowncard_flag;
 volatile unsigned char returnhome_flag;
@@ -24611,7 +24614,6 @@ void colourcards_readRGBC(RGBC_val *abs, DC_motor *mL, DC_motor *mR)
                 unknowncard_flag = 0;
             }
         } else {
-            forward(mL, mR);
             unknowncard_flag = 0;
         }
     }

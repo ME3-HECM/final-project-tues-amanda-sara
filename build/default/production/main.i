@@ -24388,7 +24388,8 @@ typedef struct {
 
 
 
-extern volatile unsigned int DCmotors_turntime;
+extern volatile unsigned int turnleft_delay;
+extern volatile unsigned int turnright_delay;
 extern volatile unsigned char returnhome_flag;
 
 
@@ -24405,8 +24406,8 @@ void left(DC_motor *mL, DC_motor *mR, unsigned int deg);
 void right(DC_motor *mL, DC_motor *mR, unsigned int deg);
 void turnleft(DC_motor *mL, DC_motor *mR, unsigned int deg);
 void turnright(DC_motor *mL, DC_motor *mR, unsigned int deg);
+void adjdelay(unsigned char mode);
 void DCmotors_calibration(DC_motor *mL, DC_motor *mR);
-void DCmotors_adjustval(void);
 void DCmotors_testing(DC_motor *mL, DC_motor *mR);
 # 7 "./colour_cards.h" 2
 
@@ -24449,8 +24450,8 @@ unsigned char I2C_2_Master_Read(unsigned char ack);
 # 16 "./interrupts.h"
 extern volatile unsigned int interrupts_lowerbound;
 extern volatile unsigned int interrupts_upperbound;
+extern volatile unsigned char overtime_flag;
 extern volatile unsigned char colourcard_flag;
-extern volatile unsigned char battery_flag;
 
 
 
@@ -24511,9 +24512,11 @@ void sendTxBuf(void);
 
 
 
-volatile unsigned int DCmotors_turntime;
 volatile unsigned int interrupts_lowerbound;
 volatile unsigned int interrupts_upperbound;
+volatile unsigned int turnleft_delay;
+volatile unsigned int turnright_delay;
+volatile unsigned char overtime_flag;
 volatile unsigned char colourcard_flag;
 volatile unsigned char unknowncard_flag;
 volatile unsigned char returnhome_flag;
@@ -24528,9 +24531,11 @@ void main(void) {
 
 
     unsigned char PWMperiod = 99;
-    DCmotors_turntime = 100;
     interrupts_lowerbound = 0;
     interrupts_upperbound = 32767;
+    turnleft_delay = 0;
+    turnright_delay = 0;
+    overtime_flag = 0;
     colourcard_flag = 0;
     unknowncard_flag = 0;
     returnhome_flag = 0;
@@ -24585,7 +24590,12 @@ void main(void) {
     RGBC_val current;
     while(1) {
         if (colourcard_flag==1) {
+            stop(&motorL, &motorR);
+            _delay((unsigned long)((1000)*(64000000/4000.0)));
             colourcards_readRGBC(&current, &motorL, &motorR);
+            _delay((unsigned long)((1000)*(64000000/4000.0)));
+            forward(&motorL, &motorR);
+
             colourcard_flag = 0;
         }
     }

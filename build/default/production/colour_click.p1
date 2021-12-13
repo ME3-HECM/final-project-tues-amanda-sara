@@ -2595,8 +2595,8 @@ Version 4.0 HI-TECH Software Intermediate Code
 [; ;colour_click.c: 198:         colourclick_testing(&initial, &current);
 [e ( _colourclick_testing (2 , &U _initial &U _current ]
 "199
-[; ;colour_click.c: 199:         _delay((unsigned long)((100)*(64000000/4000.0)));
-[e ( __delay (1 -> * -> -> 100 `i `d / -> -> 64000000 `l `d .4000.0 `ul ]
+[; ;colour_click.c: 199:         _delay((unsigned long)((1000)*(64000000/4000.0)));
+[e ( __delay (1 -> * -> -> 1000 `i `d / -> -> 64000000 `l `d .4000.0 `ul ]
 "200
 [; ;colour_click.c: 200:         LATDbits.LATD7 = 0;
 [e = . . _LATDbits 0 7 -> -> 0 `i `uc ]

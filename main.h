@@ -38,9 +38,11 @@
 /******************
  * Global variables
  ******************/
-volatile unsigned int DCmotors_turntime;
 volatile unsigned int interrupts_lowerbound; // Lower threshold value to trigger interrupts
 volatile unsigned int interrupts_upperbound; // Upper threshold value to trigger interrupts
+volatile unsigned int turnleft_delay;
+volatile unsigned int turnright_delay;
+volatile unsigned char overtime_flag;
 volatile unsigned char colourcard_flag;
 volatile unsigned char unknowncard_flag;
 volatile unsigned char returnhome_flag;

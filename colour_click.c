@@ -196,7 +196,7 @@ void colourclick_calibration(void) {
             interrupts_upperbound = current.C;
         }
         colourclick_testing(&initial, &current);
-        __delay_ms(100);
+        __delay_ms(1000);
         RD7_LED = 0;
     }
     MAINBEAM_LED = 0;

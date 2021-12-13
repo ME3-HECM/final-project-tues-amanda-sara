@@ -4,6 +4,7 @@
 #include "colour_click.h"
 #include "I2C.h"
 #include "DC_motors.h"
+#include "timers.h"
 
 /****************************************************************************************************
  * interrupts_init
@@ -17,15 +18,15 @@ void interrupts_init(void){
     INT1PPS=0x09;
     
     PIE0bits.INT1IE = 1; //enable external interrupt source
-    //PIE?bits.? = 1; //enable ? interrupt source
+    PIE0bits.TMR0IE = 1; //enable timer interrupt source
     
     IPR0bits.INT1IP = 1; //set clear channel interrupt to high priority 
-    //IPR?bits.? = 0; //set ? interrupt to low priority
+    IPR0bits.TMR0IP = 0; //set timer interrupt to low priority
     
     interrupts_clear();
     
+    INTCONbits.INT1EDG = 0; // Set interrupt on falling edge
     INTCONbits.IPEN = 1; // Enable priority levels on interrupts
-    INTCONbits.INT1EDG = 0; //falling edge
     INTCONbits.PEIE = 1;                        // Enable peripheral interrupts
     INTCONbits.GIE = 1;                         // Enable global interrupts (when this is off, all interrupts are deactivated)
 }
@@ -77,9 +78,12 @@ void __interrupt(high_priority) HighISR() {
  * Battery low
  ****************************************************************/
 void __interrupt(low_priority) LowISR() {
-//    if (PIR?bits.?) {                      // Check the interrupt source
-//        RD7_LED = 1;
-//        PIR?bits.? = 0;                    // Clear the interrupt flag
-//        PIE?bits.? = 0;
-//    }
+    if (PIR0bits.TMR0IF) {                      // Check the interrupt source
+        overtime_flag = 1;
+        returnhome_flag = 1;
+        TMR0H=TMR0H_BITS;
+        TMR0L=TMR0L_BITS;
+        PIR0bits.TMR0IF = 0;                    // Clear the interrupt flag
+        PIE0bits.TMR0IE = 0;
+    }
 }

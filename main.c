@@ -9,9 +9,11 @@ void main(void) {
      * Initialisation functions
      **************************/
     unsigned char PWMperiod = 99; // 0.0001s*(64MHz/4)/16 -1 = 99
-    DCmotors_turntime = 100;
     interrupts_lowerbound = 0;
     interrupts_upperbound = 32767;
+    turnleft_delay = 0;
+    turnright_delay = 0;
+    overtime_flag = 0;
     colourcard_flag = 0;
     unknowncard_flag = 0;
     returnhome_flag = 0;
@@ -66,7 +68,12 @@ void main(void) {
     RGBC_val current;
     while(1) {
         if (colourcard_flag==1) {
+            stop(&motorL, &motorR);
+            __delay_ms(1000);
             colourcards_readRGBC(&current, &motorL, &motorR);
+            __delay_ms(1000);
+            forward(&motorL, &motorR);
+            
             colourcard_flag = 0;
         }
     }

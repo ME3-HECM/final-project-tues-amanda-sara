@@ -150,7 +150,7 @@ void stop(DC_motor *mL, DC_motor *mR)
 void left(DC_motor *mL, DC_motor *mR, unsigned int deg)
 {
     // Calculations
-    double delay = (deg*12.5) - 135;
+    double delay = (deg*12.5) - 135 + turnleft_delay;
     
     // in order for it to make it turn on the spot: (Assume it was stationary before)
     mL->direction = 0; // left wheels go backward
@@ -183,7 +183,7 @@ void left(DC_motor *mL, DC_motor *mR, unsigned int deg)
 void right(DC_motor *mL, DC_motor *mR, unsigned int deg)
 {
     // Calculations
-    unsigned int delay = (8*deg) + 180;
+    unsigned int delay = (8*deg) + 180 + turnright_delay;
     
     // in order for it to make it turn on the spot: (Assume it was stationary before)
     mL->direction = 1; // left wheels go forward
@@ -244,47 +244,49 @@ void DCmotors_calibration(DC_motor *mL, DC_motor *mR)
 {
     while(RF2_BUTTON && RF3_BUTTON);
     MAINBEAM_LED = 1;
+    __delay_ms(200);
     turnleft(mL, mR, 360);
     __delay_ms(1000);
     stop(mL, mR);
     
     while(RF2_BUTTON && RF3_BUTTON);
-    __delay_ms(1000);
-    DCmotors_adjustval();
+    adjdelay(1);
     MAINBEAM_LED = 0;
-
-    while(RF2_BUTTON && RF3_BUTTON);
+    __delay_ms(1000);
+    
     MAINBEAM_LED = 1;
+    __delay_ms(200);
     turnright(mL, mR, 360);
     __delay_ms(1000);
     stop(mL, mR);
     
     while(RF2_BUTTON && RF3_BUTTON);
-    __delay_ms(1000);
-    DCmotors_adjustval();
+    adjdelay(2);
     MAINBEAM_LED = 0;
 }
 
 /******************
  * 
  ******************/
-void DCmotors_adjustval(void)
+void adjdelay(unsigned char mode)
 {
+    __delay_ms(1000);
     unsigned char i;
     for (i=0; i<10; i++) {
-        if (RF2_BUTTON) {
+        if (!RF2_BUTTON && RF3_BUTTON) {
             RD7_LED = 1;
-            DCmotors_turntime+=5;
-            __delay_ms(100);
+            if (mode==1) {turnright_delay+=5;}
+            else if (mode==2) {turnleft_delay+=5;}
+            __delay_ms(800);
             RD7_LED = 0;
-            __delay_ms(1000);
-        } else if (RF3_BUTTON) {
+        } else if (!RF3_BUTTON && RF2_BUTTON) {
             RH3_LED = 1;
-            DCmotors_turntime-=5;
-            __delay_ms(100);
+            if (mode==1) {turnright_delay-=5;}
+            else if (mode==2) {turnleft_delay-=5;}
+            __delay_ms(800);
             RH3_LED = 0;
-            __delay_ms(1000);
         }
+        __delay_ms(200);
     }
 }
 

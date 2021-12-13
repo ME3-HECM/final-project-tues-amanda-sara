@@ -24593,7 +24593,7 @@ void colourclick_calibration(void) {
             interrupts_upperbound = current.C;
         }
         colourclick_testing(&initial, &current);
-        _delay((unsigned long)((100)*(64000000/4000.0)));
+        _delay((unsigned long)((1000)*(64000000/4000.0)));
         LATDbits.LATD7 = 0;
     }
     LATDbits.LATD3 = 0;

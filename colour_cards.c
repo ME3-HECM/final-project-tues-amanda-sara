@@ -102,7 +102,6 @@ void colourcards_readRGBC(RGBC_val *abs, DC_motor *mL, DC_motor *mR)
                 unknowncard_flag = 0;
             }
         } else {
-            forward(mL, mR);
             unknowncard_flag = 0;
         }
     }

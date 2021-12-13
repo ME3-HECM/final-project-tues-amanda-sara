@@ -1,4 +1,4 @@
-# 1 "interrupts.c"
+# 1 "timers.c"
 # 1 "<built-in>" 1
 # 1 "<built-in>" 3
 # 288 "<built-in>" 3
@@ -6,7 +6,7 @@
 # 1 "<built-in>" 2
 # 1 "C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\\pic\\include\\language_support.h" 1 3
 # 2 "<built-in>" 2
-# 1 "interrupts.c" 2
+# 1 "timers.c" 2
 # 1 "C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\\pic\\include\\xc.h" 1 3
 # 18 "C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\\pic\\include\\xc.h" 3
 extern const char __xc8_OPTIM_SPEED;
@@ -24175,118 +24175,12 @@ extern __attribute__((nonreentrant)) void _delaywdt(unsigned long);
 #pragma intrinsic(_delay3)
 extern __attribute__((nonreentrant)) void _delay3(unsigned char);
 # 33 "C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\\pic\\include\\xc.h" 2 3
-# 1 "interrupts.c" 2
-
-# 1 "./interrupts.h" 1
-# 16 "./interrupts.h"
-extern volatile unsigned int interrupts_lowerbound;
-extern volatile unsigned int interrupts_upperbound;
-extern volatile unsigned char overtime_flag;
-extern volatile unsigned char colourcard_flag;
-
-
-
-
-void interrupts_init(void);
-void interrupts_clear(void);
-void interrupts_colour(void);
-void __attribute__((picinterrupt(("high_priority")))) HighISR();
-void __attribute__((picinterrupt(("low_priority")))) LowISR();
-# 2 "interrupts.c" 2
-
-# 1 "./buttons_n_LEDs.h" 1
-# 39 "./buttons_n_LEDs.h"
-void clicker2buttons_init(void);
-void clicker2LEDs_init(void);
-void buggyLEDs_init(void);
-void colourclickLEDs_init(void);
-void colourclickLEDs_RGB(void);
-void colourclickLEDs_C(unsigned char tog);
-# 3 "interrupts.c" 2
-
-# 1 "./colour_click.h" 1
-# 11 "./colour_click.h"
-typedef struct {
-    unsigned int R, G, B, C;
-} RGBC_val;
-
-typedef struct {
-    float R, G, B;
-} RGB_rel;
-
-
-
-
-extern volatile unsigned int interrupts_lowerbound;
-extern volatile unsigned int interrupts_upperbound;
-
-
-
-
-void colourclick_init(void);
-void colourclick_writetoaddr(char address, char value);
-unsigned int colourclick_readR(void);
-unsigned int colourclick_readG(void);
-unsigned int colourclick_readB(void);
-unsigned int colourclick_readC(void);
-void colourclick_readRGBC(RGBC_val *tmpval);
-void colourclick_readRGBC2(RGBC_val *tmpval, unsigned char mode);
-void colourclick_calibration(void);
-void colourclick_testing(RGBC_val *initval, RGBC_val *tmpval);
-# 4 "interrupts.c" 2
-
-# 1 "./I2C.h" 1
-# 12 "./I2C.h"
-void I2C_2_Master_Init(void);
-void I2C_2_Master_Idle(void);
-void I2C_2_Master_Start(void);
-void I2C_2_Master_RepStart(void);
-void I2C_2_Master_Stop(void);
-void I2C_2_Master_Write(unsigned char data_byte);
-unsigned char I2C_2_Master_Read(unsigned char ack);
-# 5 "interrupts.c" 2
-
-# 1 "./DC_motors.h" 1
-# 14 "./DC_motors.h"
-typedef struct {
-    char power;
-    char direction;
-    unsigned char *dutyHighByte;
-    unsigned char *dir_LAT;
-    char dir_pin;
-    int PWMperiod;
-} DC_motor;
-
-
-
-
-extern volatile unsigned int turnleft_delay;
-extern volatile unsigned int turnright_delay;
-extern volatile unsigned char returnhome_flag;
-
-
-
-
-
-void DCmotors_init(unsigned char PWMperiod);
-void DCmotors_setPWM(DC_motor *m);
-void checkbatterylevel(void);
-void forward(DC_motor *mL, DC_motor *mR);
-void reverse(DC_motor *mL, DC_motor *mR);
-void stop(DC_motor *mL, DC_motor *mR);
-void left(DC_motor *mL, DC_motor *mR, unsigned int deg);
-void right(DC_motor *mL, DC_motor *mR, unsigned int deg);
-void turnleft(DC_motor *mL, DC_motor *mR, unsigned int deg);
-void turnright(DC_motor *mL, DC_motor *mR, unsigned int deg);
-void adjdelay(unsigned char mode);
-void DCmotors_calibration(DC_motor *mL, DC_motor *mR);
-void DCmotors_testing(DC_motor *mL, DC_motor *mR);
-# 6 "interrupts.c" 2
+# 1 "timers.c" 2
 
 # 1 "./timers.h" 1
 # 14 "./timers.h"
 void Timer0_init(void);
-# 7 "interrupts.c" 2
+# 2 "timers.c" 2
 
 
 
@@ -24294,79 +24188,14 @@ void Timer0_init(void);
 
 
 
+ void Timer0_init(void) {
+    T0CON1bits.T0CS=0b010;
+    T0CON1bits.T0ASYNC=1;
+    T0CON1bits.T0CKPS=0b1000;
+    T0CON0bits.T016BIT=1;
 
-void interrupts_init(void){
-    TRISBbits.TRISB1 = 1;
-    ANSELBbits.ANSELB1 = 0;
-    INT1PPS=0x09;
-
-    PIE0bits.INT1IE = 1;
-    PIE0bits.TMR0IE = 1;
-
-    IPR0bits.INT1IP = 1;
-    IPR0bits.TMR0IP = 0;
-
-    interrupts_clear();
-
-    INTCONbits.INT1EDG = 0;
-    INTCONbits.IPEN = 1;
-    INTCONbits.PEIE = 1;
-    INTCONbits.GIE = 1;
-}
-
-
-
-
-void interrupts_clear(void){
-    I2C_2_Master_Start();
-    I2C_2_Master_Write(0x52 | 0x00);
-    I2C_2_Master_Write(0b11100110);
-    I2C_2_Master_Stop();
-
-    interrupts_colour();
-}
-
-
-
-
-void interrupts_colour(void){
-    colourclick_writetoaddr(0x00, 0b10011);
-    _delay((unsigned long)((3)*(64000000/4000.0)));
-    colourclick_writetoaddr(0x0C, 0b0100);
-    colourclick_writetoaddr(0x04, (interrupts_lowerbound & 0x00FF));
-    colourclick_writetoaddr(0x05, (interrupts_lowerbound >> 8));
-    colourclick_writetoaddr(0x06, (interrupts_upperbound & 0x00FF));
-    colourclick_writetoaddr(0x07, (interrupts_upperbound >> 8));
-}
-
-
-
-
-
-
-
-void __attribute__((picinterrupt(("high_priority")))) HighISR() {
-    if (PIR0bits.INT1IF) {
-        colourcard_flag = 1;
-        LATDbits.LATD7 = !LATDbits.LATD7;
-        interrupts_clear();
-        PIR0bits.INT1IF = 0;
-    }
-}
-
-
-
-
-
-
-
-void __attribute__((picinterrupt(("low_priority")))) LowISR() {
-    if (PIR0bits.TMR0IF) {
-        overtime_flag = 1;
-        returnhome_flag = 1;
-        TMR0H=0b1011;
-        TMR0L=0b11011011;
-        PIR0bits.TMR0IF = 0;
-        PIE0bits.TMR0IE = 0;
-    }
+    TMR0H=0b1011;
+    TMR0L=0b11011011;
+    T0CON0bits.T0EN=1;
+# 34 "timers.c"
 }

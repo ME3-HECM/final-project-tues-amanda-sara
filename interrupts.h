@@ -15,6 +15,7 @@
  ******************/
 extern volatile unsigned int interrupts_lowerbound; // Lower threshold value to trigger interrupts
 extern volatile unsigned int interrupts_upperbound; // Upper threshold value to trigger interrupts
+extern volatile unsigned char overtime_flag;
 extern volatile unsigned char colourcard_flag;
 
 /*********************

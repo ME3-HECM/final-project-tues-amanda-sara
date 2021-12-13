@@ -23,7 +23,8 @@ typedef struct {                 // Define a structure
 /******************
  * Global variables
  ******************/
-extern volatile unsigned int DCmotors_turntime;
+extern volatile unsigned int turnleft_delay;
+extern volatile unsigned int turnright_delay;
 extern volatile unsigned char returnhome_flag; // Toggled when the final card has been found (i.e. encountered the white card)
                                                // or in exceptional scenarios (i.e. cannot identify a card or stuck in the maze for too long)
 
@@ -40,8 +41,8 @@ void left(DC_motor *mL, DC_motor *mR, unsigned int deg);
 void right(DC_motor *mL, DC_motor *mR, unsigned int deg);
 void turnleft(DC_motor *mL, DC_motor *mR, unsigned int deg);
 void turnright(DC_motor *mL, DC_motor *mR, unsigned int deg);
+void adjdelay(unsigned char mode);
 void DCmotors_calibration(DC_motor *mL, DC_motor *mR);
-void DCmotors_adjustval(void);
 void DCmotors_testing(DC_motor *mL, DC_motor *mR);
 
 #endif // End of _DC_MOTOR_H

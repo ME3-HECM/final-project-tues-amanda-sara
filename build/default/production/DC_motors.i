@@ -24191,7 +24191,8 @@ typedef struct {
 
 
 
-extern volatile unsigned int DCmotors_turntime;
+extern volatile unsigned int turnleft_delay;
+extern volatile unsigned int turnright_delay;
 extern volatile unsigned char returnhome_flag;
 
 
@@ -24208,8 +24209,8 @@ void left(DC_motor *mL, DC_motor *mR, unsigned int deg);
 void right(DC_motor *mL, DC_motor *mR, unsigned int deg);
 void turnleft(DC_motor *mL, DC_motor *mR, unsigned int deg);
 void turnright(DC_motor *mL, DC_motor *mR, unsigned int deg);
+void adjdelay(unsigned char mode);
 void DCmotors_calibration(DC_motor *mL, DC_motor *mR);
-void DCmotors_adjustval(void);
 void DCmotors_testing(DC_motor *mL, DC_motor *mR);
 # 2 "DC_motors.c" 2
 
@@ -24377,7 +24378,7 @@ void stop(DC_motor *mL, DC_motor *mR)
 void left(DC_motor *mL, DC_motor *mR, unsigned int deg)
 {
 
-    double delay = (deg*12.5) - 135;
+    double delay = (deg*12.5) - 135 + turnleft_delay;
 
 
     mL->direction = 0;
@@ -24410,7 +24411,7 @@ void left(DC_motor *mL, DC_motor *mR, unsigned int deg)
 void right(DC_motor *mL, DC_motor *mR, unsigned int deg)
 {
 
-    unsigned int delay = (8*deg) + 180;
+    unsigned int delay = (8*deg) + 180 + turnright_delay;
 
 
     mL->direction = 1;
@@ -24471,47 +24472,49 @@ void DCmotors_calibration(DC_motor *mL, DC_motor *mR)
 {
     while(PORTFbits.RF2 && PORTFbits.RF3);
     LATDbits.LATD3 = 1;
+    _delay((unsigned long)((200)*(64000000/4000.0)));
     turnleft(mL, mR, 360);
     _delay((unsigned long)((1000)*(64000000/4000.0)));
     stop(mL, mR);
 
     while(PORTFbits.RF2 && PORTFbits.RF3);
-    _delay((unsigned long)((1000)*(64000000/4000.0)));
-    DCmotors_adjustval();
+    adjdelay(1);
     LATDbits.LATD3 = 0;
+    _delay((unsigned long)((1000)*(64000000/4000.0)));
 
-    while(PORTFbits.RF2 && PORTFbits.RF3);
     LATDbits.LATD3 = 1;
+    _delay((unsigned long)((200)*(64000000/4000.0)));
     turnright(mL, mR, 360);
     _delay((unsigned long)((1000)*(64000000/4000.0)));
     stop(mL, mR);
 
     while(PORTFbits.RF2 && PORTFbits.RF3);
-    _delay((unsigned long)((1000)*(64000000/4000.0)));
-    DCmotors_adjustval();
+    adjdelay(2);
     LATDbits.LATD3 = 0;
 }
 
 
 
 
-void DCmotors_adjustval(void)
+void adjdelay(unsigned char mode)
 {
+    _delay((unsigned long)((1000)*(64000000/4000.0)));
     unsigned char i;
     for (i=0; i<10; i++) {
-        if (PORTFbits.RF2) {
+        if (!PORTFbits.RF2 && PORTFbits.RF3) {
             LATDbits.LATD7 = 1;
-            DCmotors_turntime+=5;
-            _delay((unsigned long)((100)*(64000000/4000.0)));
+            if (mode==1) {turnright_delay+=5;}
+            else if (mode==2) {turnleft_delay+=5;}
+            _delay((unsigned long)((800)*(64000000/4000.0)));
             LATDbits.LATD7 = 0;
-            _delay((unsigned long)((1000)*(64000000/4000.0)));
-        } else if (PORTFbits.RF3) {
+        } else if (!PORTFbits.RF3 && PORTFbits.RF2) {
             LATHbits.LATH3 = 1;
-            DCmotors_turntime-=5;
-            _delay((unsigned long)((100)*(64000000/4000.0)));
+            if (mode==1) {turnright_delay-=5;}
+            else if (mode==2) {turnleft_delay-=5;}
+            _delay((unsigned long)((800)*(64000000/4000.0)));
             LATHbits.LATH3 = 0;
-            _delay((unsigned long)((1000)*(64000000/4000.0)));
         }
+        _delay((unsigned long)((200)*(64000000/4000.0)));
     }
 }
 
