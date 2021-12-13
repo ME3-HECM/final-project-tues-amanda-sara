@@ -24302,11 +24302,8 @@ void checkbatterylevel(void)
 {
     unsigned char batterylevel;
     batterylevel = ADC_getval();
-    if (batterylevel<200) {
-        LATDbits.LATD7 = 1;
-    } else {
-        LATDbits.LATD7 = 0;
-    }
+    if (batterylevel<100) {LATDbits.LATD7 = 1;}
+    else {LATDbits.LATD7 = 0;}
 }
 
 
@@ -24358,7 +24355,6 @@ void stop(DC_motor *mL, DC_motor *mR)
 {
     LATDbits.LATD4 = 1;
 
-
     while((mL->power > 0) && (mR->power > 0)){
         mL->power -= 10;
         mR->power -= 10;
@@ -24368,7 +24364,7 @@ void stop(DC_motor *mL, DC_motor *mR)
         DCmotors_setPWM(mR);
         _delay((unsigned long)((50)*(64000000/4000000.0)));
     }
-
+    _delay((unsigned long)((500)*(64000000/4000.0)));
     LATDbits.LATD4 = 0;
 }
 
@@ -24385,10 +24381,8 @@ void left(DC_motor *mL, DC_motor *mR, unsigned int deg)
     mR->direction = 1;
 
 
+    LATFbits.LATF0 = 1;
     while((mL->power < 40) || (mR->power < 40)){
-
-        LATFbits.LATF0 = !LATFbits.LATF0;
-
 
         if (mL->power < 40) {mL->power += 10;}
         if (mR->power < 40) {mR->power += 10;}
@@ -24401,7 +24395,6 @@ void left(DC_motor *mL, DC_motor *mR, unsigned int deg)
 
     unsigned int i;
     for (i=0; i<delay; i++) {_delay((unsigned long)((1)*(64000000/4000.0)));}
-
     LATFbits.LATF0 = 0;
 }
 
@@ -24418,10 +24411,8 @@ void right(DC_motor *mL, DC_motor *mR, unsigned int deg)
     mR->direction = 0;
 
 
+    LATHbits.LATH0 = 1;
     while((mL->power < 40) || (mR->power < 40)){
-
-        LATHbits.LATH0 = !LATHbits.LATH0;
-
 
         if (mL->power < 40) {mL->power += 10;}
         if (mR->power < 40) {mR->power += 10;}
@@ -24434,7 +24425,6 @@ void right(DC_motor *mL, DC_motor *mR, unsigned int deg)
 
     unsigned int i;
     for (i=0; i<delay; i++) {_delay((unsigned long)((1)*(64000000/4000.0)));}
-    _delay((unsigned long)((1)*(64000000/4000.0)));
 
     LATHbits.LATH0 = 0;
 }
@@ -24445,11 +24435,8 @@ void right(DC_motor *mL, DC_motor *mR, unsigned int deg)
 
 void turnleft(DC_motor *mL, DC_motor *mR, unsigned int deg)
 {
-    if (returnhome_flag==0) {
-        left(mL, mR, deg);
-    } else {
-        right(mL, mR, deg);
-    }
+    if (returnhome_flag==0) {left(mL, mR, deg);}
+    else {right(mL, mR, deg);}
 }
 
 
@@ -24458,11 +24445,8 @@ void turnleft(DC_motor *mL, DC_motor *mR, unsigned int deg)
 
 void turnright(DC_motor *mL, DC_motor *mR, unsigned int deg)
 {
-    if (returnhome_flag==0) {
-        right(mL, mR, deg);
-    } else {
-        left(mL, mR, deg);
-    }
+    if (returnhome_flag==0) {right(mL, mR, deg);}
+    else {left(mL, mR, deg);}
 }
 
 

@@ -2592,11 +2592,11 @@ Version 4.0 HI-TECH Software Intermediate Code
 [e :U 2048 ]
 [e :U 2047 ]
 "198
-[; ;colour_click.c: 198:         colourclick_testing(&initial, &current);
-[e ( _colourclick_testing (2 , &U _initial &U _current ]
+[; ;colour_click.c: 198:         _delay((unsigned long)((200)*(64000000/4000.0)));
+[e ( __delay (1 -> * -> -> 200 `i `d / -> -> 64000000 `l `d .4000.0 `ul ]
 "199
-[; ;colour_click.c: 199:         _delay((unsigned long)((1000)*(64000000/4000.0)));
-[e ( __delay (1 -> * -> -> 1000 `i `d / -> -> 64000000 `l `d .4000.0 `ul ]
+[; ;colour_click.c: 199:         colourclick_testing(&initial, &current);
+[e ( _colourclick_testing (2 , &U _initial &U _current ]
 "200
 [; ;colour_click.c: 200:         LATDbits.LATD7 = 0;
 [e = . . _LATDbits 0 7 -> -> 0 `i `uc ]
@@ -2652,8 +2652,8 @@ Version 4.0 HI-TECH Software Intermediate Code
 [v _C `ui ~T0 @X0 1 a ]
 [e = _C . *U _current 3 ]
 "214
-[; ;colour_click.c: 214:     char buf[40];
-[v _buf `uc ~T0 @X0 -> 40 `i a ]
+[; ;colour_click.c: 214:     char buf[100];
+[v _buf `uc ~T0 @X0 -> 100 `i a ]
 "215
 [; ;colour_click.c: 215:     sprintf(buf,"RGBC: %i %i %i %i     Threshold: %i %i %i\n\r", R, G, B, C, interrupts_lowerbound, ambient, interrupts_upperbound);
 [e ( _sprintf (1 , , , , , , , (. , &U _buf :s 1C _R _G _B _C _interrupts_lowerbound _ambient _interrupts_upperbound ]

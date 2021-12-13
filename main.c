@@ -60,19 +60,18 @@ void main(void) {
     colourclickLEDs_C(1);
     __delay_ms(1000);
     interrupts_init();
-    forward(&motorL, &motorR);
     
     /*****************
      * Maze navigation
      *****************/
     RGBC_val current;
     while(1) {
+        forward(&motorL, &motorR);
         if (colourcard_flag==1) {
             stop(&motorL, &motorR);
             __delay_ms(1000);
             colourcards_readRGBC(&current, &motorL, &motorR);
             __delay_ms(1000);
-            forward(&motorL, &motorR);
             
             colourcard_flag = 0;
         }

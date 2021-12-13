@@ -24592,8 +24592,8 @@ void colourclick_calibration(void) {
         } else if ((current.C>initial.C) && (current.C<interrupts_upperbound)) {
             interrupts_upperbound = current.C;
         }
+        _delay((unsigned long)((200)*(64000000/4000.0)));
         colourclick_testing(&initial, &current);
-        _delay((unsigned long)((1000)*(64000000/4000.0)));
         LATDbits.LATD7 = 0;
     }
     LATDbits.LATD3 = 0;
@@ -24608,7 +24608,7 @@ void colourclick_testing(RGBC_val *initial, RGBC_val *current)
     unsigned int B = current->B;
     unsigned int C = current->C;
 
-    char buf[40];
+    char buf[100];
     sprintf(buf,"RGBC: %i %i %i %i     Threshold: %i %i %i\n\r", R, G, B, C, interrupts_lowerbound, ambient, interrupts_upperbound);
 
     sendStringSerial4(buf);

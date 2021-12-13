@@ -77,14 +77,14 @@ Version 4.0 HI-TECH Software Intermediate Code
 "24 ./interrupts.h
 [; ;./interrupts.h: 24: void interrupts_init(void);
 [v _interrupts_init `(v ~T0 @X0 0 ef ]
-"37 ./DC_motors.h
-[; ;./DC_motors.h: 37: void forward(DC_motor *mL, DC_motor *mR);
-[v _forward `(v ~T0 @X0 0 ef2`*S2023`*S2023 ]
 "11 ./colour_click.h
 [; ;./colour_click.h: 11: typedef struct {
 [s S2021 `ui 1 `ui 1 `ui 1 `ui 1 ]
 [n S2021 . R G B C ]
-"39 ./DC_motors.h
+"37 ./DC_motors.h
+[; ;./DC_motors.h: 37: void forward(DC_motor *mL, DC_motor *mR);
+[v _forward `(v ~T0 @X0 0 ef2`*S2023`*S2023 ]
+"39
 [; ;./DC_motors.h: 39: void stop(DC_motor *mL, DC_motor *mR);
 [v _stop `(v ~T0 @X0 0 ef2`*S2023`*S2023 ]
 "23 ./colour_cards.h
@@ -2233,16 +2233,16 @@ Version 4.0 HI-TECH Software Intermediate Code
 "62
 [; ;main.c: 62:     interrupts_init();
 [e ( _interrupts_init ..  ]
-"63
-[; ;main.c: 63:     forward(&motorL, &motorR);
-[e ( _forward (2 , &U _motorL &U _motorR ]
-"68
-[; ;main.c: 68:     RGBC_val current;
+"67
+[; ;main.c: 67:     RGBC_val current;
 [v _current `S2021 ~T0 @X0 1 a ]
-"69
-[; ;main.c: 69:     while(1) {
+"68
+[; ;main.c: 68:     while(1) {
 [e :U 2029 ]
 {
+"69
+[; ;main.c: 69:         forward(&motorL, &motorR);
+[e ( _forward (2 , &U _motorL &U _motorR ]
 "70
 [; ;main.c: 70:         if (colourcard_flag==1) {
 [e $ ! == -> _colourcard_flag `i -> 1 `i 2031  ]
@@ -2259,23 +2259,20 @@ Version 4.0 HI-TECH Software Intermediate Code
 "74
 [; ;main.c: 74:             _delay((unsigned long)((1000)*(64000000/4000.0)));
 [e ( __delay (1 -> * -> -> 1000 `i `d / -> -> 64000000 `l `d .4000.0 `ul ]
-"75
-[; ;main.c: 75:             forward(&motorL, &motorR);
-[e ( _forward (2 , &U _motorL &U _motorR ]
-"77
-[; ;main.c: 77:             colourcard_flag = 0;
+"76
+[; ;main.c: 76:             colourcard_flag = 0;
 [e = _colourcard_flag -> -> 0 `i `uc ]
-"78
-[; ;main.c: 78:         }
+"77
+[; ;main.c: 77:         }
 }
 [e :U 2031 ]
-"79
-[; ;main.c: 79:     }
+"78
+[; ;main.c: 78:     }
 }
 [e :U 2028 ]
 [e $U 2029  ]
 [e :U 2030 ]
-"80
-[; ;main.c: 80: }
+"79
+[; ;main.c: 79: }
 [e :UE 2024 ]
 }

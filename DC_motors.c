@@ -74,11 +74,8 @@ void checkbatterylevel(void)
 {
     unsigned char batterylevel;
     batterylevel = ADC_getval();
-    if (batterylevel<200) {
-        RD7_LED = 1;
-    } else {
-        RD7_LED = 0;
-    }
+    if (batterylevel<100) {RD7_LED = 1;}
+    else {RD7_LED = 0;}
 }
 
 /************************************************
@@ -129,7 +126,6 @@ void reverse(DC_motor *mL, DC_motor *mR)
 void stop(DC_motor *mL, DC_motor *mR)
 {
     BRAKE_LED = 1;
-    
     // need to slowly bring both motors to a stop
     while((mL->power > 0) && (mR->power > 0)){    // will be True until both motors have 0 power
         mL->power -= 10;
@@ -140,7 +136,7 @@ void stop(DC_motor *mL, DC_motor *mR)
         DCmotors_setPWM(mR);
         __delay_us(50);    // set a delay so that motor decelerates non-instantaneously
     }
-    
+    __delay_ms(500);
     BRAKE_LED = 0;
 }
 
@@ -157,10 +153,8 @@ void left(DC_motor *mL, DC_motor *mR, unsigned int deg)
     mR->direction = 1; // right wheels go forward
 
     // make both motors accelerate
+    TURNLEFT_LED = 1;
     while((mL->power < LOW) || (mR->power < HIGH)){
-        // flash left signal
-        TURNLEFT_LED = !TURNLEFT_LED;
-
         // gradually turn left
         if (mL->power < LOW) {mL->power += 10;}
         if (mR->power < HIGH) {mR->power += 10;}
@@ -173,7 +167,6 @@ void left(DC_motor *mL, DC_motor *mR, unsigned int deg)
     
     unsigned int i;
     for (i=0; i<delay; i++) {__delay_ms(1);}
-    // switch off left signal
     TURNLEFT_LED = 0;
 }
 
@@ -190,10 +183,8 @@ void right(DC_motor *mL, DC_motor *mR, unsigned int deg)
     mR->direction = 0; // right wheels go backward
 
     // make both motors accelerate
+    TURNRIGHT_LED = 1;
     while((mL->power < HIGH) || (mR->power < LOW)){
-        // flash right signal
-        TURNRIGHT_LED = !TURNRIGHT_LED;
-
         // gradually turn right
         if (mL->power < HIGH) {mL->power += 10;}
         if (mR->power < LOW) {mR->power += 10;}
@@ -206,7 +197,6 @@ void right(DC_motor *mL, DC_motor *mR, unsigned int deg)
     
     unsigned int i;
     for (i=0; i<delay; i++) {__delay_ms(1);}
-    __delay_ms(1);
     // switch off right signal
     TURNRIGHT_LED = 0;
 }
@@ -217,11 +207,8 @@ void right(DC_motor *mL, DC_motor *mR, unsigned int deg)
  **************************************/
 void turnleft(DC_motor *mL, DC_motor *mR, unsigned int deg)
 {
-    if (returnhome_flag==0) {
-        left(mL, mR, deg);
-    } else {
-        right(mL, mR, deg);
-    }
+    if (returnhome_flag==0) {left(mL, mR, deg);}
+    else {right(mL, mR, deg);}
 }
 
 /***************************************
@@ -230,11 +217,8 @@ void turnleft(DC_motor *mL, DC_motor *mR, unsigned int deg)
  ***************************************/
 void turnright(DC_motor *mL, DC_motor *mR, unsigned int deg)
 {
-    if (returnhome_flag==0) {
-        right(mL, mR, deg);
-    } else {
-        left(mL, mR, deg);
-    }
+    if (returnhome_flag==0) {right(mL, mR, deg);}
+    else {left(mL, mR, deg);}
 }
 
 /*************************

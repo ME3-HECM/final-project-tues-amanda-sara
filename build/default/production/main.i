@@ -24582,19 +24582,18 @@ void main(void) {
     colourclickLEDs_C(1);
     _delay((unsigned long)((1000)*(64000000/4000.0)));
     interrupts_init();
-    forward(&motorL, &motorR);
 
 
 
 
     RGBC_val current;
     while(1) {
+        forward(&motorL, &motorR);
         if (colourcard_flag==1) {
             stop(&motorL, &motorR);
             _delay((unsigned long)((1000)*(64000000/4000.0)));
             colourcards_readRGBC(&current, &motorL, &motorR);
             _delay((unsigned long)((1000)*(64000000/4000.0)));
-            forward(&motorL, &motorR);
 
             colourcard_flag = 0;
         }

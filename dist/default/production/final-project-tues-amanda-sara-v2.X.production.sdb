@@ -132,23 +132,23 @@
 [v _DCmotors_setPWM DCmotors_setPWM `(v  1 e 1 0 ]
 "73
 [v _checkbatterylevel checkbatterylevel `(v  1 e 1 0 ]
-"88
+"85
 [v _forward forward `(v  1 e 1 0 ]
-"108
+"105
 [v _reverse reverse `(v  1 e 1 0 ]
-"129
+"126
 [v _stop stop `(v  1 e 1 0 ]
-"150
+"146
 [v _left left `(v  1 e 1 0 ]
-"183
+"176
 [v _right right `(v  1 e 1 0 ]
-"218
+"208
 [v _turnleft turnleft `(v  1 e 1 0 ]
-"231
+"218
 [v _turnright turnright `(v  1 e 1 0 ]
-"243
+"227
 [v _DCmotors_calibration DCmotors_calibration `(v  1 e 1 0 ]
-"271
+"255
 [v _adjdelay adjdelay `(v  1 e 1 0 ]
 "8 C:\Users\amand\MPLABXProjects\final-project-tues-amanda-sara-v2.X\I2C.c
 [v _I2C_2_Master_Init I2C_2_Master_Init `(v  1 e 1 0 ]
@@ -945,13 +945,13 @@
 {
 [s S24 . 9 `uc 1 power 1 0 `uc 1 direction 1 1 `*.39uc 1 dutyHighByte 2 2 `*.39uc 1 dir_LAT 2 4 `uc 1 dir_pin 1 6 `i 1 PWMperiod 2 7 ]
 "29
-[v main@motorR motorR `S24  1 a 9 84 ]
+[v main@motorR motorR `S24  1 a 9 17 ]
 "21
-[v main@motorL motorL `S24  1 a 9 75 ]
-[s S157 . 8 `ui 1 R 2 0 `ui 1 G 2 2 `ui 1 B 2 4 `ui 1 C 2 6 ]
-"68
-[v main@current current `S157  1 a 8 67 ]
-"80
+[v main@motorL motorL `S24  1 a 9 8 ]
+[s S151 . 8 `ui 1 R 2 0 `ui 1 G 2 2 `ui 1 B 2 4 `ui 1 C 2 6 ]
+"67
+[v main@current current `S151  1 a 8 0 ]
+"79
 } 0
 "15 C:\Users\amand\MPLABXProjects\final-project-tues-amanda-sara-v2.X\interrupts.c
 [v _interrupts_init interrupts_init `(v  1 e 1 0 ]
@@ -996,34 +996,34 @@
 "176 C:\Users\amand\MPLABXProjects\final-project-tues-amanda-sara-v2.X\colour_click.c
 [v _colourclick_calibration colourclick_calibration `(v  1 e 1 0 ]
 {
-[s S157 . 8 `ui 1 R 2 0 `ui 1 G 2 2 `ui 1 B 2 4 `ui 1 C 2 6 ]
+[s S151 . 8 `ui 1 R 2 0 `ui 1 G 2 2 `ui 1 B 2 4 `ui 1 C 2 6 ]
 "188
-[v colourclick_calibration@current current `S157  1 a 8 59 ]
+[v colourclick_calibration@current current `S151  1 a 8 119 ]
 "177
-[v colourclick_calibration@initial initial `S157  1 a 8 51 ]
+[v colourclick_calibration@initial initial `S151  1 a 8 111 ]
 "187
-[v colourclick_calibration@i i `uc  1 a 1 50 ]
+[v colourclick_calibration@i i `uc  1 a 1 110 ]
 "204
 } 0
 "206
 [v _colourclick_testing colourclick_testing `(v  1 e 1 0 ]
 {
 "214
-[v colourclick_testing@buf buf `[40]uc  1 a 40 0 ]
+[v colourclick_testing@buf buf `[100]uc  1 a 100 0 ]
 "212
-[v colourclick_testing@C C `ui  1 a 2 48 ]
+[v colourclick_testing@C C `ui  1 a 2 108 ]
 "211
-[v colourclick_testing@B B `ui  1 a 2 46 ]
+[v colourclick_testing@B B `ui  1 a 2 106 ]
 "210
-[v colourclick_testing@G G `ui  1 a 2 44 ]
+[v colourclick_testing@G G `ui  1 a 2 104 ]
 "209
-[v colourclick_testing@R R `ui  1 a 2 42 ]
+[v colourclick_testing@R R `ui  1 a 2 102 ]
 "208
-[v colourclick_testing@ambient ambient `ui  1 a 2 40 ]
-[s S157 . 8 `ui 1 R 2 0 `ui 1 G 2 2 `ui 1 B 2 4 `ui 1 C 2 6 ]
+[v colourclick_testing@ambient ambient `ui  1 a 2 100 ]
+[s S151 . 8 `ui 1 R 2 0 `ui 1 G 2 2 `ui 1 B 2 4 `ui 1 C 2 6 ]
 "206
-[v colourclick_testing@initial initial `*.39S157  1 p 2 138 ]
-[v colourclick_testing@current current `*.39S157  1 p 2 140 ]
+[v colourclick_testing@initial initial `*.39S151  1 p 2 138 ]
+[v colourclick_testing@current current `*.39S151  1 p 2 140 ]
 "219
 } 0
 "9 C:\Program Files\Microchip\xc8\v2.32\pic\sources\c99\common\nf_sprintf.c
@@ -1364,43 +1364,43 @@
 [s S501 . 12 `f 1 R 4 0 `f 1 G 4 4 `f 1 B 4 8 ]
 "18
 [v colourcards_readRGBC@rel rel `S501  1 a 12 22 ]
-[s S157 . 8 `ui 1 R 2 0 `ui 1 G 2 2 `ui 1 B 2 4 `ui 1 C 2 6 ]
+[s S151 . 8 `ui 1 R 2 0 `ui 1 G 2 2 `ui 1 B 2 4 `ui 1 C 2 6 ]
 "12
-[v colourcards_readRGBC@abs abs `*.39S157  1 p 2 16 ]
+[v colourcards_readRGBC@abs abs `*.39S151  1 p 2 16 ]
 [s S24 . 9 `uc 1 power 1 0 `uc 1 direction 1 1 `*.39uc 1 dutyHighByte 2 2 `*.39uc 1 dir_LAT 2 4 `uc 1 dir_pin 1 6 `i 1 PWMperiod 2 7 ]
 [v colourcards_readRGBC@mL mL `*.39S24  1 p 2 18 ]
 [v colourcards_readRGBC@mR mR `*.39S24  1 p 2 20 ]
 "110
 } 0
-"108 C:\Users\amand\MPLABXProjects\final-project-tues-amanda-sara-v2.X\DC_motors.c
+"105 C:\Users\amand\MPLABXProjects\final-project-tues-amanda-sara-v2.X\DC_motors.c
 [v _reverse reverse `(v  1 e 1 0 ]
 {
 [s S24 . 9 `uc 1 power 1 0 `uc 1 direction 1 1 `*.39uc 1 dutyHighByte 2 2 `*.39uc 1 dir_LAT 2 4 `uc 1 dir_pin 1 6 `i 1 PWMperiod 2 7 ]
 [v reverse@mL mL `*.39S24  1 p 2 34 ]
 [v reverse@mR mR `*.39S24  1 p 2 36 ]
-"123
+"120
 } 0
-"88
+"85
 [v _forward forward `(v  1 e 1 0 ]
 {
 [s S24 . 9 `uc 1 power 1 0 `uc 1 direction 1 1 `*.39uc 1 dutyHighByte 2 2 `*.39uc 1 dir_LAT 2 4 `uc 1 dir_pin 1 6 `i 1 PWMperiod 2 7 ]
 [v forward@mL mL `*.39S24  1 p 2 34 ]
 [v forward@mR mR `*.39S24  1 p 2 36 ]
-"102
+"99
 } 0
 "140 C:\Users\amand\MPLABXProjects\final-project-tues-amanda-sara-v2.X\colour_click.c
 [v _colourclick_readRGBC2 colourclick_readRGBC2 `(v  1 e 1 0 ]
 {
-[s S157 . 8 `ui 1 R 2 0 `ui 1 G 2 2 `ui 1 B 2 4 `ui 1 C 2 6 ]
-[v colourclick_readRGBC2@tmpval tmpval `*.39S157  1 p 2 22 ]
+[s S151 . 8 `ui 1 R 2 0 `ui 1 G 2 2 `ui 1 B 2 4 `ui 1 C 2 6 ]
+[v colourclick_readRGBC2@tmpval tmpval `*.39S151  1 p 2 22 ]
 [v colourclick_readRGBC2@mode mode `uc  1 p 1 24 ]
 "170
 } 0
 "128
 [v _colourclick_readRGBC colourclick_readRGBC `(v  1 e 1 0 ]
 {
-[s S157 . 8 `ui 1 R 2 0 `ui 1 G 2 2 `ui 1 B 2 4 `ui 1 C 2 6 ]
-[v colourclick_readRGBC@tmpval tmpval `*.39S157  1 p 2 20 ]
+[s S151 . 8 `ui 1 R 2 0 `ui 1 G 2 2 `ui 1 B 2 4 `ui 1 C 2 6 ]
+[v colourclick_readRGBC@tmpval tmpval `*.39S151  1 p 2 20 ]
 "134
 } 0
 "53
@@ -1492,9 +1492,9 @@
 [v colourcards_normaliseRGBC@G G `ui  1 a 2 54 ]
 "211
 [v colourcards_normaliseRGBC@R R `ui  1 a 2 52 ]
-[s S157 . 8 `ui 1 R 2 0 `ui 1 G 2 2 `ui 1 B 2 4 `ui 1 C 2 6 ]
+[s S151 . 8 `ui 1 R 2 0 `ui 1 G 2 2 `ui 1 B 2 4 `ui 1 C 2 6 ]
 "209
-[v colourcards_normaliseRGBC@abs abs `*.39S157  1 p 2 48 ]
+[v colourcards_normaliseRGBC@abs abs `*.39S151  1 p 2 48 ]
 [s S501 . 12 `f 1 R 4 0 `f 1 G 4 4 `f 1 B 4 8 ]
 [v colourcards_normaliseRGBC@rel rel `*.39S501  1 p 2 50 ]
 "219
@@ -1524,7 +1524,7 @@
 {
 "75
 [v checkbatterylevel@batterylevel batterylevel `uc  1 a 1 10 ]
-"82
+"79
 } 0
 "26 C:\Users\amand\MPLABXProjects\final-project-tues-amanda-sara-v2.X\ADC.c
 [v _ADC_getval ADC_getval `(uc  1 e 1 0 ]
@@ -1562,59 +1562,59 @@
 {
 "44
 } 0
-"243 C:\Users\amand\MPLABXProjects\final-project-tues-amanda-sara-v2.X\DC_motors.c
+"227 C:\Users\amand\MPLABXProjects\final-project-tues-amanda-sara-v2.X\DC_motors.c
 [v _DCmotors_calibration DCmotors_calibration `(v  1 e 1 0 ]
 {
 [s S24 . 9 `uc 1 power 1 0 `uc 1 direction 1 1 `*.39uc 1 dutyHighByte 2 2 `*.39uc 1 dir_LAT 2 4 `uc 1 dir_pin 1 6 `i 1 PWMperiod 2 7 ]
 [v DCmotors_calibration@mL mL `*.39S24  1 p 2 71 ]
 [v DCmotors_calibration@mR mR `*.39S24  1 p 2 73 ]
-"266
+"250
 } 0
-"231
+"218
 [v _turnright turnright `(v  1 e 1 0 ]
 {
 [s S24 . 9 `uc 1 power 1 0 `uc 1 direction 1 1 `*.39uc 1 dutyHighByte 2 2 `*.39uc 1 dir_LAT 2 4 `uc 1 dir_pin 1 6 `i 1 PWMperiod 2 7 ]
 [v turnright@mL mL `*.39S24  1 p 2 10 ]
 [v turnright@mR mR `*.39S24  1 p 2 12 ]
 [v turnright@deg deg `ui  1 p 2 14 ]
-"238
+"222
 } 0
-"218
+"208
 [v _turnleft turnleft `(v  1 e 1 0 ]
 {
 [s S24 . 9 `uc 1 power 1 0 `uc 1 direction 1 1 `*.39uc 1 dutyHighByte 2 2 `*.39uc 1 dir_LAT 2 4 `uc 1 dir_pin 1 6 `i 1 PWMperiod 2 7 ]
 [v turnleft@mL mL `*.39S24  1 p 2 10 ]
 [v turnleft@mR mR `*.39S24  1 p 2 12 ]
 [v turnleft@deg deg `ui  1 p 2 14 ]
-"225
+"212
 } 0
-"183
+"176
 [v _right right `(v  1 e 1 0 ]
 {
-"207
+"198
 [v right@i i `ui  1 a 2 44 ]
-"186
+"179
 [v right@delay delay `ui  1 a 2 42 ]
 [s S24 . 9 `uc 1 power 1 0 `uc 1 direction 1 1 `*.39uc 1 dutyHighByte 2 2 `*.39uc 1 dir_LAT 2 4 `uc 1 dir_pin 1 6 `i 1 PWMperiod 2 7 ]
-"183
+"176
 [v right@mL mL `*.39S24  1 p 2 34 ]
 [v right@mR mR `*.39S24  1 p 2 36 ]
 [v right@deg deg `ui  1 p 2 38 ]
-"212
+"202
 } 0
-"150
+"146
 [v _left left `(v  1 e 1 0 ]
 {
-"153
+"149
 [v left@delay delay `d  1 a 4 0 ]
-"174
+"168
 [v left@i i `ui  1 a 2 8 ]
 [s S24 . 9 `uc 1 power 1 0 `uc 1 direction 1 1 `*.39uc 1 dutyHighByte 2 2 `*.39uc 1 dir_LAT 2 4 `uc 1 dir_pin 1 6 `i 1 PWMperiod 2 7 ]
-"150
+"146
 [v left@mL mL `*.39S24  1 p 2 64 ]
 [v left@mR mR `*.39S24  1 p 2 66 ]
 [v left@deg deg `ui  1 p 2 68 ]
-"178
+"171
 } 0
 "10 C:\Program Files\Microchip\xc8\v2.32\pic\sources\c99\common\xxtofl.c
 [v ___xxtofl __xxtofl `(d  1 e 4 0 ]
@@ -1679,13 +1679,13 @@
 [v ___fladd@a a `d  1 p 4 52 ]
 "237
 } 0
-"129 C:\Users\amand\MPLABXProjects\final-project-tues-amanda-sara-v2.X\DC_motors.c
+"126 C:\Users\amand\MPLABXProjects\final-project-tues-amanda-sara-v2.X\DC_motors.c
 [v _stop stop `(v  1 e 1 0 ]
 {
 [s S24 . 9 `uc 1 power 1 0 `uc 1 direction 1 1 `*.39uc 1 dutyHighByte 2 2 `*.39uc 1 dir_LAT 2 4 `uc 1 dir_pin 1 6 `i 1 PWMperiod 2 7 ]
 [v stop@mL mL `*.39S24  1 p 2 34 ]
 [v stop@mR mR `*.39S24  1 p 2 36 ]
-"145
+"141
 } 0
 "51
 [v _DCmotors_setPWM DCmotors_setPWM `(v  1 e 1 0 ]
@@ -1720,17 +1720,17 @@
 [v ___awdiv@divisor divisor `i  1 p 2 17 ]
 "41
 } 0
-"271 C:\Users\amand\MPLABXProjects\final-project-tues-amanda-sara-v2.X\DC_motors.c
+"255 C:\Users\amand\MPLABXProjects\final-project-tues-amanda-sara-v2.X\DC_motors.c
 [v _adjdelay adjdelay `(v  1 e 1 0 ]
 {
 [v adjdelay@mode mode `uc  1 a 1 wreg ]
-"274
+"258
 [v adjdelay@i i `uc  1 a 1 11 ]
-"271
+"255
 [v adjdelay@mode mode `uc  1 a 1 wreg ]
-"273
+"257
 [v adjdelay@mode mode `uc  1 a 1 12 ]
-"291
+"275
 } 0
 "8 C:\Users\amand\MPLABXProjects\final-project-tues-amanda-sara-v2.X\ADC.c
 [v _ADC_init ADC_init `(v  1 e 1 0 ]
