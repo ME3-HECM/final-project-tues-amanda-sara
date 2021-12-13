@@ -60,21 +60,42 @@ void main(void) {
     colourclickLEDs_C(1);
     __delay_ms(1000);
     interrupts_init();
-    forward(&motorL, &motorR);
     
+    unsigned char start = 0;
     /*****************
      * Maze navigation
      *****************/
     RGBC_val current;
     while(1) {
-        if (colourcard_flag==1) {
+        if (start<1 && colourcard_flag>0){      //prevents accident trips at beginning
+            colourcard_flag = 0;
+            start = 1;
+        }
+        
+        if (colourcard_flag==1 && start>0) {
+            stop(&motorL, &motorR);
+            MAINBEAM_LED = 0;
+            TURNLEFT_LED = 1;
+            TURNRIGHT_LED = 1;
+            reverse(&motorL, &motorR);
+            __delay_ms(100);
             stop(&motorL, &motorR);
             __delay_ms(1000);
+            TURNLEFT_LED = 0;
+            TURNRIGHT_LED = 0;
+            MAINBEAM_LED = 1;
+            
+            TURNLEFT_LED = 1;
+            TURNRIGHT_LED = 1;
             colourcards_readRGBC(&current, &motorL, &motorR);
             __delay_ms(1000);
-            forward(&motorL, &motorR);
+            TURNLEFT_LED = 0;
+            TURNRIGHT_LED = 0;
             
+            colourclick_readRGBC(&current);
+            interrupts_upperbound = current.C + 100;
+            interrupts_lowerbound = current.C - 150;
             colourcard_flag = 0;
-        }
+        } else forward(&motorL, &motorR);
     }
 }
