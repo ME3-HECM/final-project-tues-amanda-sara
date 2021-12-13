@@ -16,7 +16,7 @@ extern volatile unsigned char colourcard_flag;  // Toggled when any colour card 
 extern volatile unsigned char unknowncard_flag; // Incremented when card cannot be identified
 extern volatile unsigned char returnhome_flag;  // Toggled when the final card has been found (i.e. encountered the white card)
                                                 // or in exceptional scenarios (i.e. cannot identify a card or stuck in the maze for too long)
-
+extern volatile 
 /*********************
  * Function prototypes
  *********************/
@@ -25,5 +25,6 @@ void colourcards_readHSV(RGBC_val *tmpval, DC_motor *mL, DC_motor *mR);
 void colourcards_testingRGBC();
 void colourcards_testingHSV();
 void colourcards_normaliseRGBC(RGBC_val *abs, RGB_rel *rel);
+void car_clearance(DC_motor *mL, DC_motor *mR);
 
 #endif // End of _COLOUR_CARDS_H

@@ -25,11 +25,13 @@ void colourcards_readRGBC(RGBC_val *abs, DC_motor *mL, DC_motor *mR)
         colourclick_readRGBC2(abs, 3); // Blue LED
         colourcards_normaliseRGBC(abs, &rel);
         if (rel.B<0.56) {
+            car_clearance(mL, mR);
             // Orange card - Turn right 135 degrees
             turnright(mL, mR, 135);
             stop(mL, mR);
             unknowncard_flag = 0;
         } else {
+            car_clearance(mL, mR);
             // Red card - Turn right 90 degrees
             turnright(mL, mR, 90);
             stop(mL, mR);
@@ -41,16 +43,19 @@ void colourcards_readRGBC(RGBC_val *abs, DC_motor *mL, DC_motor *mR)
         colourclick_readRGBC2(abs, 3); // Blue LED
         colourcards_normaliseRGBC(abs, &rel);
         if ((rel.R<0.65) && (rel.B>0.67)) {
+            car_clearance(mL, mR);
             // Blue card - Turn 180 degrees
             turnright(mL, mR, 180);
             stop(mL, mR);
             unknowncard_flag = 0;
         } else if ((rel.R<0.09) && (rel.B>0.62)) {
+            car_clearance(mL, mR);
             // Green card - Turn left 90 degrees
             turnleft(mL, mR, 90);
             stop(mL, mR);
             unknowncard_flag = 0;
         } else {
+            car_clearance(mL, mR);
             // Light blue card - Turn left 135 degrees
             turnleft(mL, mR, 135);
             stop(mL, mR);
@@ -59,6 +64,7 @@ void colourcards_readRGBC(RGBC_val *abs, DC_motor *mL, DC_motor *mR)
 
     // Other colours
     } else if ((rel.R>0.49) && (rel.G>0.285) && (rel.B>0.18)) {
+        car_clearance(mL, mR);
         // Yellow card - Reverse 1 square and turn right 90 degrees
         reverse(mL, mR);
         stop(mL, mR);
@@ -68,6 +74,7 @@ void colourcards_readRGBC(RGBC_val *abs, DC_motor *mL, DC_motor *mR)
         unknowncard_flag = 0;
 
     } else if ((rel.R>0.49) && (rel.G<0.275) && (rel.B>0.195)) {
+        car_clearance(mL, mR);
         // Pink card - Reverse 1 square and turn left 90 degrees
         reverse(mL, mR);
         stop(mL, mR);
@@ -77,6 +84,7 @@ void colourcards_readRGBC(RGBC_val *abs, DC_motor *mL, DC_motor *mR)
         unknowncard_flag = 0;
 
     } else if ((rel.R<0.46) && (rel.G>0.295) && (rel.B>0.21)) {
+        car_clearance(mL, mR);
         // White card - Finish (return home)
         turnright(mL, mR, 180);
         stop(mL, mR);
@@ -115,6 +123,18 @@ void colourcards_readRGBC(RGBC_val *abs, DC_motor *mL, DC_motor *mR)
 void colourcards_readHSV(RGBC_val *tmpval, DC_motor *mL, DC_motor *mR)
 {
     
+}
+
+/***********************************
+ * creates clearance for car to turn
+ ***********************************/
+void car_clearance(DC_motor *mL, DC_motor *mR){
+    MAINBEAM_LED = 0;
+    reverse(mL, mR);
+    __delay_ms(500);
+    stop(mL, mR);
+    __delay_ms(1000);
+    MAINBEAM_LED = 0;
 }
 
 /*************************

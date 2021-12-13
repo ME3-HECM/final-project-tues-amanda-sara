@@ -184,21 +184,9 @@ void colourclick_calibration(void) {
     __delay_ms(1000);
     RD7_LED = 0;
     
-    unsigned char i;
-    RGBC_val current;
-    for (i=0; i<8; i++) {
-        while(RF2_BUTTON);
-        RD7_LED = 1;
-        colourclick_readRGBC(&current);
-        if ((current.C<initial.C) && (current.C>interrupts_lowerbound)) {
-            interrupts_lowerbound = current.C;
-        } else if ((current.C>initial.C) && (current.C<interrupts_upperbound)) {
-            interrupts_upperbound = current.C;
-        }
-        __delay_ms(200);
-        colourclick_testing(&initial, &current);
-        RD7_LED = 0;
-    }
+    interrupts_lowerbound = initial.C - 150;
+    interrupts_upperbound = initial.C + 100;
+    
     MAINBEAM_LED = 0;
     colourclickLEDs_C(0);
 }
@@ -211,7 +199,7 @@ void colourclick_testing(RGBC_val *initial, RGBC_val *current)
     unsigned int B = current->B;
     unsigned int C = current->C;
     
-    char buf[100];
+    char buf[40];
     sprintf(buf,"RGBC: %i %i %i %i     Threshold: %i %i %i\n\r",\
             R, G, B, C, interrupts_lowerbound, ambient, interrupts_upperbound);
     sendStringSerial4(buf);

@@ -109,7 +109,7 @@ void reverse(DC_motor *mL, DC_motor *mR)
     mR->direction = 0; // right wheels go forward
     
     // make both motors accelerate to 50
-    while((mL->power < 40) && (mR->power < 40)){    // will be True until both motors have 100 power
+    while((mL->power < 50) && (mR->power < 50)){    // will be True until both motors have 100 power
         mL->power += 10;
         mR->power += 10;
         // set PWM output
@@ -257,21 +257,36 @@ void adjdelay(unsigned char mode)
     __delay_ms(1000);
     unsigned char i;
     for (i=0; i<10; i++) {
-        if (!RF2_BUTTON && RF3_BUTTON) {
-            RD7_LED = 1;
-            if (mode==1) {turnright_delay+=5;}
-            else if (mode==2) {turnleft_delay+=5;}
-            __delay_ms(800);
-            RD7_LED = 0;
-        } else if (!RF3_BUTTON && RF2_BUTTON) {
-            RH3_LED = 1;
-            if (mode==1) {turnright_delay-=5;}
-            else if (mode==2) {turnleft_delay-=5;}
-            __delay_ms(800);
-            RH3_LED = 0;
-        }
-        __delay_ms(200);
-    }
+        if(mode==1){
+            if(!RF2_BUTTON && RF3_BUTTON){
+                RD7_LED = 1;
+                turnright_delay+=5;
+                __delay_ms(800);
+                RD7_LED = 0;               
+            }
+            if(!RF3_BUTTON && RF2_BUTTON){
+                RH3_LED = 1;
+                turnright_delay-=5;
+                __delay_ms(800);
+                RH3_LED = 0;               
+            }
+
+        } else if(mode==2){
+            if(!RF2_BUTTON && RF3_BUTTON){
+                RD7_LED = 1;
+                turnleft_delay-=5;
+                __delay_ms(800);
+                RD7_LED = 0;               
+            }
+            if(!RF3_BUTTON && RF2_BUTTON){
+                RH3_LED = 1;
+                turnleft_delay+=5;
+                __delay_ms(800);
+                RH3_LED = 0;               
+            }
+
+        }        
+    }  
 }
 
 /**********************
