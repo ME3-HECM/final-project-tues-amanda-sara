@@ -2,8 +2,8 @@ Version 4.0 HI-TECH Software Intermediate Code
 [p mainexit ]
 "14 ./DC_motors.h
 [; ;./DC_motors.h: 14: typedef struct {
-[s S2022 `uc 1 `uc 1 `*uc 1 `*uc 1 `uc 1 `i 1 ]
-[n S2022 . power direction dutyHighByte dir_LAT dir_pin PWMperiod ]
+[s S2023 `uc 1 `uc 1 `*uc 1 `*uc 1 `uc 1 `i 1 ]
+[n S2023 . power direction dutyHighByte dir_LAT dir_pin PWMperiod ]
 "33981 C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\proc\pic18f67k40.h
 [; ;C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\proc\pic18f67k40.h: 33981: extern volatile unsigned char PWM6DCH __attribute__((address(0xFA3)));
 [v _PWM6DCH `Vuc ~T0 @X0 0 e@4003 ]
@@ -19,8 +19,8 @@ Version 4.0 HI-TECH Software Intermediate Code
 "11 ./ADC.h
 [; ;./ADC.h: 11: void ADC_init(void);
 [v _ADC_init `(v ~T0 @X0 0 ef ]
-"24 ./colour_click.h
-[; ;./colour_click.h: 24: void colourclick_init(void);
+"28 ./colour_click.h
+[; ;./colour_click.h: 28: void colourclick_init(void);
 [v _colourclick_init `(v ~T0 @X0 0 ef ]
 "33 ./DC_motors.h
 [; ;./DC_motors.h: 33: void DCmotors_init(unsigned char PWMperiod);
@@ -31,9 +31,9 @@ Version 4.0 HI-TECH Software Intermediate Code
 "35 ./DC_motors.h
 [; ;./DC_motors.h: 35: void checkbatterylevel(void);
 [v _checkbatterylevel `(v ~T0 @X0 0 ef ]
-"45
-[; ;./DC_motors.h: 45: void DCmotors_testing(DC_motor *mL, DC_motor *mR);
-[v _DCmotors_testing `(v ~T0 @X0 0 ef2`*S2022`*S2022 ]
+"25 ./colour_cards.h
+[; ;./colour_cards.h: 25: void colourcards_testingRGBC();
+[v _colourcards_testingRGBC `(v ~T0 @X0 0 e? ]
 "30630 C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\proc\pic18f67k40.h
 [; ;C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\proc\pic18f67k40.h: 30630:     struct {
 [s S1415 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
@@ -71,16 +71,13 @@ Version 4.0 HI-TECH Software Intermediate Code
 "203 C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\pic18.h
 [v __delay `JF14184 ~T0 @X0 0 e ]
 [p i __delay ]
-"36 ./DC_motors.h
-[; ;./DC_motors.h: 36: void forward(DC_motor *mL, DC_motor *mR);
-[v _forward `(v ~T0 @X0 0 ef2`*S2022`*S2022 ]
 "11 ./colour_click.h
 [; ;./colour_click.h: 11: typedef struct {
 [s S2021 `ui 1 `ui 1 `ui 1 `ui 1 ]
 [n S2021 . R G B C ]
 "23 ./colour_cards.h
-[; ;./colour_cards.h: 23: void colourcards_readRGBC(RGBC_val *tmpval, DC_motor *mL, DC_motor *mR);
-[v _colourcards_readRGBC `(v ~T0 @X0 0 ef3`*S2021`*S2022`*S2022 ]
+[; ;./colour_cards.h: 23: void colourcards_readRGBC(RGBC_val *abs, DC_motor *mL, DC_motor *mR);
+[v _colourcards_readRGBC `(v ~T0 @X0 0 ef3`*S2021`*S2023`*S2023 ]
 "54 C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\proc\pic18f67k40.h
 [; ;C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\proc\pic18f67k40.h: 54: __asm("PPSLOCK equ 0DEFh");
 [; <" PPSLOCK equ 0DEFh ;# ">
@@ -2134,7 +2131,7 @@ Version 4.0 HI-TECH Software Intermediate Code
 [e = _returnhome_flag -> -> 0 `i `uc ]
 "19
 [; ;main.c: 19:     DC_motor motorL;
-[v _motorL `S2022 ~T0 @X0 1 a ]
+[v _motorL `S2023 ~T0 @X0 1 a ]
 "20
 [; ;main.c: 20:     motorL.power=0;
 [e = . _motorL 0 -> -> 0 `i `uc ]
@@ -2155,7 +2152,7 @@ Version 4.0 HI-TECH Software Intermediate Code
 [e = . _motorL 5 -> _PWMperiod `i ]
 "27
 [; ;main.c: 27:     DC_motor motorR;
-[v _motorR `S2022 ~T0 @X0 1 a ]
+[v _motorR `S2023 ~T0 @X0 1 a ]
 "28
 [; ;main.c: 28:     motorR.power=0;
 [e = . _motorR 0 -> -> 0 `i `uc ]
@@ -2189,16 +2186,16 @@ Version 4.0 HI-TECH Software Intermediate Code
 "39
 [; ;main.c: 39:     checkbatterylevel();
 [e ( _checkbatterylevel ..  ]
-"51
-[; ;main.c: 51:     DCmotors_testing(&motorL, &motorR);
-[e ( _DCmotors_testing (2 , &U _motorL &U _motorR ]
+"45
+[; ;main.c: 45:     colourcards_testingRGBC();
+[e ( _colourcards_testingRGBC ..  ]
 "56
 [; ;main.c: 56:     while(PORTFbits.RF2 && PORTFbits.RF3);
-[e $U 2024  ]
-[e :U 2025 ]
-[e :U 2024 ]
-[e $ && != -> . . _PORTFbits 0 2 `i -> 0 `i != -> . . _PORTFbits 0 3 `i -> 0 `i 2025  ]
+[e $U 2025  ]
 [e :U 2026 ]
+[e :U 2025 ]
+[e $ && != -> . . _PORTFbits 0 2 `i -> 0 `i != -> . . _PORTFbits 0 3 `i -> 0 `i 2026  ]
+[e :U 2027 ]
 "57
 [; ;main.c: 57:     LATDbits.LATD3 = 1;
 [e = . . _LATDbits 0 3 -> -> 1 `i `uc ]
@@ -2208,37 +2205,30 @@ Version 4.0 HI-TECH Software Intermediate Code
 "59
 [; ;main.c: 59:     _delay((unsigned long)((1000)*(64000000/4000.0)));
 [e ( __delay (1 -> * -> -> 1000 `i `d / -> -> 64000000 `l `d .4000.0 `ul ]
-"61
-[; ;main.c: 61:     forward(&motorL, &motorR);
-[e ( _forward (2 , &U _motorL &U _motorR ]
 "66
 [; ;main.c: 66:     RGBC_val current;
 [v _current `S2021 ~T0 @X0 1 a ]
 "67
 [; ;main.c: 67:     while(1) {
-[e :U 2028 ]
+[e :U 2029 ]
 {
 "68
-[; ;main.c: 68:         if (colourcard_flag==1) {
-[e $ ! == -> _colourcard_flag `i -> 1 `i 2030  ]
-{
+[; ;main.c: 68:         while (PORTFbits.RF2 && PORTFbits.RF3);
+[e $U 2031  ]
+[e :U 2032 ]
+[e :U 2031 ]
+[e $ && != -> . . _PORTFbits 0 2 `i -> 0 `i != -> . . _PORTFbits 0 3 `i -> 0 `i 2032  ]
+[e :U 2033 ]
 "69
-[; ;main.c: 69:             colourcards_readRGBC(&current, &motorL, &motorR);
+[; ;main.c: 69:         colourcards_readRGBC(&current, &motorL, &motorR);
 [e ( _colourcards_readRGBC (3 , , &U _current &U _motorL &U _motorR ]
-"70
-[; ;main.c: 70:             colourcard_flag = 0;
-[e = _colourcard_flag -> -> 0 `i `uc ]
-"71
-[; ;main.c: 71:         }
+"75
+[; ;main.c: 75:     }
 }
+[e :U 2028 ]
+[e $U 2029  ]
 [e :U 2030 ]
-"72
-[; ;main.c: 72:     }
-}
-[e :U 2027 ]
-[e $U 2028  ]
-[e :U 2029 ]
-"73
-[; ;main.c: 73: }
-[e :UE 2023 ]
+"76
+[; ;main.c: 76: }
+[e :UE 2024 ]
 }

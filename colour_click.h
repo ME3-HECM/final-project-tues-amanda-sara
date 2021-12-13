@@ -12,6 +12,10 @@ typedef struct {             // Define a structure
     unsigned int R, G, B, C; // Containing the RGBC values read by the colour click
 } RGBC_val;                  // This structure is named RGB_val
 
+typedef struct {
+    float R, G, B;
+} RGB_rel;
+
 /******************
  * Global variables
  ******************/
@@ -28,7 +32,7 @@ unsigned int colourclick_readG(void);
 unsigned int colourclick_readB(void);
 unsigned int colourclick_readC(void);
 void colourclick_readRGBC(RGBC_val *tmpval);
-void colourclick_readRGBC2(RGBC_val *tmpval);
+void colourclick_readRGBC2(RGBC_val *tmpval, unsigned char mode);
 void colourclick_calibration(void);
 void colourclick_testing(RGBC_val *initval, RGBC_val *tmpval);
 

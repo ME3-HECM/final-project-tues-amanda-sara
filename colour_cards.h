@@ -20,9 +20,10 @@ extern volatile unsigned char returnhome_flag;  // Toggled when the final card h
 /*********************
  * Function prototypes
  *********************/
-void colourcards_readRGBC(RGBC_val *tmpval, DC_motor *mL, DC_motor *mR);
+void colourcards_readRGBC(RGBC_val *abs, DC_motor *mL, DC_motor *mR);
 void colourcards_readHSV(RGBC_val *tmpval, DC_motor *mL, DC_motor *mR);
 void colourcards_testingRGBC();
 void colourcards_testingHSV();
+void colourcards_normaliseRGBC(RGBC_val *abs, RGB_rel *rel);
 
 #endif // End of _COLOUR_CARDS_H
