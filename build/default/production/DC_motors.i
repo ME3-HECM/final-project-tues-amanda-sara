@@ -24378,13 +24378,13 @@ void left(DC_motor *mL, DC_motor *mR, unsigned int deg)
     mR->direction = 1;
 
 
-    while((mL->power < 40) || (mR->power < 40)){
+    while((mL->power < 70) || (mR->power < 70)){
 
         LATFbits.LATF0 = !LATFbits.LATF0;
 
 
-        if (mL->power < 40) {mL->power += 10;}
-        if (mR->power < 40) {mR->power += 10;}
+        if (mL->power < 70) {mL->power += 10;}
+        if (mR->power < 70) {mR->power += 10;}
 
 
         DCmotors_setPWM(mL);
@@ -24411,13 +24411,13 @@ void right(DC_motor *mL, DC_motor *mR, unsigned int deg)
     mR->direction = 0;
 
 
-    while((mL->power < 40) || (mR->power < 40)){
+    while((mL->power < 70) || (mR->power < 70)){
 
         LATHbits.LATH0 = !LATHbits.LATH0;
 
 
-        if (mL->power < 40) {mL->power += 10;}
-        if (mR->power < 40) {mR->power += 10;}
+        if (mL->power < 70) {mL->power += 10;}
+        if (mR->power < 70) {mR->power += 10;}
 
 
         DCmotors_setPWM(mL);

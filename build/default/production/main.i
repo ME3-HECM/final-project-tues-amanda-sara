@@ -24551,8 +24551,19 @@ void main(void) {
 
 
 
+    DCmotors_calibration(&motorL, &motorR);
+
+
+
+
+
     colourclick_calibration();
-# 58 "main.c"
+
+
+
+
+
+
     while(PORTFbits.RF2 && PORTFbits.RF3);
     LATDbits.LATD3 = 1;
     colourclickLEDs_C(1);

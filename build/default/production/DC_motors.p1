@@ -2658,7 +2658,7 @@ Version 4.0 HI-TECH Software Intermediate Code
 [; ;DC_motors.c: 157:     mR->direction = 1;
 [e = . *U _mR 1 -> -> 1 `i `uc ]
 "160
-[; ;DC_motors.c: 160:     while((mL->power < 40) || (mR->power < 40)){
+[; ;DC_motors.c: 160:     while((mL->power < 70) || (mR->power < 70)){
 [e $U 2042  ]
 [e :U 2043 ]
 {
@@ -2666,15 +2666,15 @@ Version 4.0 HI-TECH Software Intermediate Code
 [; ;DC_motors.c: 162:         LATFbits.LATF0 = !LATFbits.LATF0;
 [e = . . _LATFbits 0 0 -> -> ! != -> . . _LATFbits 0 0 `i -> 0 `i `i `uc ]
 "165
-[; ;DC_motors.c: 165:         if (mL->power < 40) {mL->power += 10;}
-[e $ ! < -> . *U _mL 0 `i -> 40 `i 2045  ]
+[; ;DC_motors.c: 165:         if (mL->power < 70) {mL->power += 10;}
+[e $ ! < -> . *U _mL 0 `i -> 70 `i 2045  ]
 {
 [e =+ . *U _mL 0 -> -> 10 `i `uc ]
 }
 [e :U 2045 ]
 "166
-[; ;DC_motors.c: 166:         if (mR->power < 40) {mR->power += 10;}
-[e $ ! < -> . *U _mR 0 `i -> 40 `i 2046  ]
+[; ;DC_motors.c: 166:         if (mR->power < 70) {mR->power += 10;}
+[e $ ! < -> . *U _mR 0 `i -> 70 `i 2046  ]
 {
 [e =+ . *U _mR 0 -> -> 10 `i `uc ]
 }
@@ -2693,8 +2693,8 @@ Version 4.0 HI-TECH Software Intermediate Code
 }
 [e :U 2042 ]
 "160
-[; ;DC_motors.c: 160:     while((mL->power < 40) || (mR->power < 40)){
-[e $ || < -> . *U _mL 0 `i -> 40 `i < -> . *U _mR 0 `i -> 40 `i 2043  ]
+[; ;DC_motors.c: 160:     while((mL->power < 70) || (mR->power < 70)){
+[e $ || < -> . *U _mL 0 `i -> 70 `i < -> . *U _mR 0 `i -> 70 `i 2043  ]
 [e :U 2044 ]
 "174
 [; ;DC_motors.c: 174:     unsigned int i;
@@ -2746,7 +2746,7 @@ Version 4.0 HI-TECH Software Intermediate Code
 [; ;DC_motors.c: 190:     mR->direction = 0;
 [e = . *U _mR 1 -> -> 0 `i `uc ]
 "193
-[; ;DC_motors.c: 193:     while((mL->power < 40) || (mR->power < 40)){
+[; ;DC_motors.c: 193:     while((mL->power < 70) || (mR->power < 70)){
 [e $U 2052  ]
 [e :U 2053 ]
 {
@@ -2754,15 +2754,15 @@ Version 4.0 HI-TECH Software Intermediate Code
 [; ;DC_motors.c: 195:         LATHbits.LATH0 = !LATHbits.LATH0;
 [e = . . _LATHbits 0 0 -> -> ! != -> . . _LATHbits 0 0 `i -> 0 `i `i `uc ]
 "198
-[; ;DC_motors.c: 198:         if (mL->power < 40) {mL->power += 10;}
-[e $ ! < -> . *U _mL 0 `i -> 40 `i 2055  ]
+[; ;DC_motors.c: 198:         if (mL->power < 70) {mL->power += 10;}
+[e $ ! < -> . *U _mL 0 `i -> 70 `i 2055  ]
 {
 [e =+ . *U _mL 0 -> -> 10 `i `uc ]
 }
 [e :U 2055 ]
 "199
-[; ;DC_motors.c: 199:         if (mR->power < 40) {mR->power += 10;}
-[e $ ! < -> . *U _mR 0 `i -> 40 `i 2056  ]
+[; ;DC_motors.c: 199:         if (mR->power < 70) {mR->power += 10;}
+[e $ ! < -> . *U _mR 0 `i -> 70 `i 2056  ]
 {
 [e =+ . *U _mR 0 -> -> 10 `i `uc ]
 }
@@ -2781,8 +2781,8 @@ Version 4.0 HI-TECH Software Intermediate Code
 }
 [e :U 2052 ]
 "193
-[; ;DC_motors.c: 193:     while((mL->power < 40) || (mR->power < 40)){
-[e $ || < -> . *U _mL 0 `i -> 40 `i < -> . *U _mR 0 `i -> 40 `i 2053  ]
+[; ;DC_motors.c: 193:     while((mL->power < 70) || (mR->power < 70)){
+[e $ || < -> . *U _mL 0 `i -> 70 `i < -> . *U _mR 0 `i -> 70 `i 2053  ]
 [e :U 2054 ]
 "207
 [; ;DC_motors.c: 207:     unsigned int i;
