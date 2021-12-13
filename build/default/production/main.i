@@ -24415,7 +24415,6 @@ extern volatile unsigned char returnhome_flag;
 
 
 
-
 void colourcards_readRGBC(RGBC_val *abs, DC_motor *mL, DC_motor *mR);
 void colourcards_readHSV(RGBC_val *tmpval, DC_motor *mL, DC_motor *mR);
 void colourcards_testingRGBC();

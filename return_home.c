@@ -7,7 +7,3 @@
 
 
 #include <xc.h>
-
-void (void) {
-    
-}
