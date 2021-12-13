@@ -228,28 +228,63 @@ void turnright(DC_motor *mL, DC_motor *mR, unsigned int deg)
  *************************/
 void DCmotors_calibration(DC_motor *mL, DC_motor *mR)
 {
-    while(RF2_BUTTON && RF3_BUTTON);
-    MAINBEAM_LED = 1;
-    __delay_ms(200);
-    turnleft(mL, mR, 360);
-    stop(mL, mR);
-    __delay_ms(1000);
+    unsigned char okay = 0;
+    while(okay<1){
+        while(RF2_BUTTON && RF3_BUTTON);
+        MAINBEAM_LED = 1;
+        __delay_ms(200);
+        turnleft(mL, mR, 360);
+        stop(mL, mR);
+        __delay_ms(1000);
+
+        while(RF2_BUTTON && RF3_BUTTON);
+        adjdelay(1);
+        MAINBEAM_LED = 0;
+        __delay_ms(1000);
+
+        MAINBEAM_LED = 1;
+        __delay_ms(200);
+        turnright(mL, mR, 360);
+        stop(mL, mR);
+        __delay_ms(1000);
+
+        while(RF2_BUTTON && RF3_BUTTON);
+        adjdelay(2);
+        MAINBEAM_LED = 0;
+                
+        __delay_ms(1000);
+        turnleft(mL, mR, 360);
+        stop(mL, mR);
+        __delay_ms(1000);       
+        turnright(mL, mR, 360);
+        stop(mL, mR);
+        __delay_ms(1000);
+        
+        RH3_LED = 1;
+        RD7_LED = 1;
+        
+        __delay_ms(1000);
+        __delay_ms(1000);
+        
+        while(RF3_BUTTON && RF2_BUTTON);
+        
+        if(!RF2_BUTTON && RF3_BUTTON){
+            RH3_LED = 0;
+            __delay_ms(1000);
+            okay = 1;
+        } else if(!RF3_BUTTON && RF2_BUTTON){
+            RD7_LED = 0;
+            __delay_ms(1000);
+        }
+        
+        RH3_LED = 0;
+        RD7_LED = 0;
+        __delay_ms(1000);
+        
+    }
     
-    while(RF2_BUTTON && RF3_BUTTON);
-    adjdelay(1);
-    MAINBEAM_LED = 0;
-    __delay_ms(1000);
-    
-    MAINBEAM_LED = 1;
-    __delay_ms(200);
-    turnright(mL, mR, 360);
-    stop(mL, mR);
-    __delay_ms(1000);
-    
-    while(RF2_BUTTON && RF3_BUTTON);
-    adjdelay(2);
-    MAINBEAM_LED = 0;
 }
+
 
 /******************
  * 
@@ -260,18 +295,22 @@ void adjdelay(unsigned char mode)
     unsigned char i;
     for (i=0; i<10; i++) {
         if(mode==2){
+            BRAKE_LED = 1;
             if(!RF2_BUTTON && RF3_BUTTON){
                 RD7_LED = 1;
                 turnright_delay+=1;
                 __delay_ms(800);
                 RD7_LED = 0;               
             }
-            if(!RF3_BUTTON && RF2_BUTTON){
+            else if(!RF3_BUTTON && RF2_BUTTON){
                 RH3_LED = 1;
                 turnright_delay-=1;
                 __delay_ms(800);
-                RH3_LED = 0;               
+                RH3_LED = 0;     
             }
+            
+            __delay_ms(500);
+            BRAKE_LED = 0;
 
         } else if(mode==1){
             if(!RF2_BUTTON && RF3_BUTTON){
@@ -280,12 +319,14 @@ void adjdelay(unsigned char mode)
                 __delay_ms(800);
                 RD7_LED = 0;               
             }
-            if(!RF3_BUTTON && RF2_BUTTON){
+            else if(!RF3_BUTTON && RF2_BUTTON){
                 RH3_LED = 1;
                 turnleft_delay+=1;
                 __delay_ms(800);
                 RH3_LED = 0;               
             }
+            
+            __delay_ms(500);
 
         }        
     }  

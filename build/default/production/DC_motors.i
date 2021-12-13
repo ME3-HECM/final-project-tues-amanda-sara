@@ -24465,28 +24465,63 @@ void turnright(DC_motor *mL, DC_motor *mR, unsigned int deg)
 
 void DCmotors_calibration(DC_motor *mL, DC_motor *mR)
 {
-    while(PORTFbits.RF2 && PORTFbits.RF3);
-    LATDbits.LATD3 = 1;
-    _delay((unsigned long)((200)*(64000000/4000.0)));
-    turnleft(mL, mR, 360);
-    stop(mL, mR);
-    _delay((unsigned long)((1000)*(64000000/4000.0)));
+    unsigned char okay = 0;
+    while(okay<1){
+        while(PORTFbits.RF2 && PORTFbits.RF3);
+        LATDbits.LATD3 = 1;
+        _delay((unsigned long)((200)*(64000000/4000.0)));
+        turnleft(mL, mR, 360);
+        stop(mL, mR);
+        _delay((unsigned long)((1000)*(64000000/4000.0)));
 
-    while(PORTFbits.RF2 && PORTFbits.RF3);
-    adjdelay(1);
-    LATDbits.LATD3 = 0;
-    _delay((unsigned long)((1000)*(64000000/4000.0)));
+        while(PORTFbits.RF2 && PORTFbits.RF3);
+        adjdelay(1);
+        LATDbits.LATD3 = 0;
+        _delay((unsigned long)((1000)*(64000000/4000.0)));
 
-    LATDbits.LATD3 = 1;
-    _delay((unsigned long)((200)*(64000000/4000.0)));
-    turnright(mL, mR, 360);
-    stop(mL, mR);
-    _delay((unsigned long)((1000)*(64000000/4000.0)));
+        LATDbits.LATD3 = 1;
+        _delay((unsigned long)((200)*(64000000/4000.0)));
+        turnright(mL, mR, 360);
+        stop(mL, mR);
+        _delay((unsigned long)((1000)*(64000000/4000.0)));
 
-    while(PORTFbits.RF2 && PORTFbits.RF3);
-    adjdelay(2);
-    LATDbits.LATD3 = 0;
+        while(PORTFbits.RF2 && PORTFbits.RF3);
+        adjdelay(2);
+        LATDbits.LATD3 = 0;
+
+        _delay((unsigned long)((1000)*(64000000/4000.0)));
+        turnleft(mL, mR, 360);
+        stop(mL, mR);
+        _delay((unsigned long)((1000)*(64000000/4000.0)));
+        turnright(mL, mR, 360);
+        stop(mL, mR);
+        _delay((unsigned long)((1000)*(64000000/4000.0)));
+
+        LATHbits.LATH3 = 1;
+        LATDbits.LATD7 = 1;
+
+        _delay((unsigned long)((1000)*(64000000/4000.0)));
+        _delay((unsigned long)((1000)*(64000000/4000.0)));
+
+        while(PORTFbits.RF3 && PORTFbits.RF2);
+
+        if(!PORTFbits.RF2 && PORTFbits.RF3){
+            LATHbits.LATH3 = 0;
+            _delay((unsigned long)((1000)*(64000000/4000.0)));
+            okay = 1;
+        } else if(!PORTFbits.RF3 && PORTFbits.RF2){
+            LATDbits.LATD7 = 0;
+            _delay((unsigned long)((1000)*(64000000/4000.0)));
+        }
+
+        LATHbits.LATH3 = 0;
+        LATDbits.LATD7 = 0;
+        _delay((unsigned long)((1000)*(64000000/4000.0)));
+
+    }
+
 }
+
 
 
 
@@ -24497,18 +24532,22 @@ void adjdelay(unsigned char mode)
     unsigned char i;
     for (i=0; i<10; i++) {
         if(mode==2){
+            LATDbits.LATD4 = 1;
             if(!PORTFbits.RF2 && PORTFbits.RF3){
                 LATDbits.LATD7 = 1;
                 turnright_delay+=1;
                 _delay((unsigned long)((800)*(64000000/4000.0)));
                 LATDbits.LATD7 = 0;
             }
-            if(!PORTFbits.RF3 && PORTFbits.RF2){
+            else if(!PORTFbits.RF3 && PORTFbits.RF2){
                 LATHbits.LATH3 = 1;
                 turnright_delay-=1;
                 _delay((unsigned long)((800)*(64000000/4000.0)));
                 LATHbits.LATH3 = 0;
             }
+
+            _delay((unsigned long)((500)*(64000000/4000.0)));
+            LATDbits.LATD4 = 0;
 
         } else if(mode==1){
             if(!PORTFbits.RF2 && PORTFbits.RF3){
@@ -24517,12 +24556,14 @@ void adjdelay(unsigned char mode)
                 _delay((unsigned long)((800)*(64000000/4000.0)));
                 LATDbits.LATD7 = 0;
             }
-            if(!PORTFbits.RF3 && PORTFbits.RF2){
+            else if(!PORTFbits.RF3 && PORTFbits.RF2){
                 LATHbits.LATH3 = 1;
                 turnleft_delay+=1;
                 _delay((unsigned long)((800)*(64000000/4000.0)));
                 LATHbits.LATH3 = 0;
             }
+
+            _delay((unsigned long)((500)*(64000000/4000.0)));
 
         }
     }
@@ -24534,7 +24575,7 @@ void adjdelay(unsigned char mode)
 void DCmotors_testing(DC_motor *mL, DC_motor *mR)
 {
     INTCONbits.GIE = 0;
-# 329 "DC_motors.c"
+# 370 "DC_motors.c"
     while (PORTFbits.RF2 && PORTFbits.RF3);
     _delay((unsigned long)((500)*(64000000/4000.0)));
     turnright(mL, mR, 90);
