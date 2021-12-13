@@ -24468,7 +24468,7 @@ void DCmotors_calibration(DC_motor *mL, DC_motor *mR)
     while(PORTFbits.RF2 && PORTFbits.RF3);
     LATDbits.LATD3 = 1;
     _delay((unsigned long)((200)*(64000000/4000.0)));
-    turnleft(mL, mR, 90);
+    turnleft(mL, mR, 360);
     stop(mL, mR);
     _delay((unsigned long)((1000)*(64000000/4000.0)));
 
@@ -24479,7 +24479,7 @@ void DCmotors_calibration(DC_motor *mL, DC_motor *mR)
 
     LATDbits.LATD3 = 1;
     _delay((unsigned long)((200)*(64000000/4000.0)));
-    turnright(mL, mR, 90);
+    turnright(mL, mR, 360);
     stop(mL, mR);
     _delay((unsigned long)((1000)*(64000000/4000.0)));
 
