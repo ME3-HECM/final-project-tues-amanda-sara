@@ -11,5 +11,6 @@ volatile unsigned char returnhome_flag;
 
 RGB_val read_colour(RGB_val current);
 void read_card(RGB_val initial, RGB_val current, DC_motor *mL, DC_motor *mR);
+unsigned char stop_check(RGB_val current);
 
 #endif

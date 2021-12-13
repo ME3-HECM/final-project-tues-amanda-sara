@@ -24333,7 +24333,7 @@ void forward(DC_motor *mL, DC_motor *mR)
     mR->direction = 1;
 
 
-    while(((mL->power)<30) && ((mR->power)<30)){
+    while(((mL->power)<20) && ((mR->power)<20)){
         mL->power+=5;
         mR->power+=5;
 

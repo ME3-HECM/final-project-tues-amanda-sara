@@ -24389,6 +24389,7 @@ volatile unsigned char returnhome_flag;
 
 RGB_val read_colour(RGB_val current);
 void read_card(RGB_val initial, RGB_val current, DC_motor *mL, DC_motor *mR);
+unsigned char stop_check(RGB_val current);
 # 33 "./main.h" 2
 
 
@@ -24435,6 +24436,7 @@ void sendTxBuf(void);
 # 12 "./interrupts.h"
 volatile unsigned char card_flag;
 volatile unsigned char battery_flag;
+volatile unsigned char read_val;
 
 
 void interrupts_init(void);
@@ -24442,6 +24444,7 @@ void interrupts_clear(void);
 void colour_int_init(void);
 void __attribute__((picinterrupt(("high_priority")))) HighISR();
 void __attribute__((picinterrupt(("low_priority")))) LowISR();
+void Timer0_init(void);
 # 38 "./main.h" 2
 
 extern volatile unsigned char card_flag;
@@ -24452,6 +24455,7 @@ extern volatile unsigned char returnhome_flag;
 volatile unsigned int clear_lower = 0;
 volatile unsigned int clear_upper = 0;
 volatile unsigned char card_flag = 0;
+volatile unsigned char read_val;
 
 
 
@@ -24468,6 +24472,7 @@ void main(void) {
     colorclick_init();
     DCmotors_init(PWMperiod);
     USART4_init();
+    Timer0_init();
 
 
 
@@ -24488,7 +24493,7 @@ void main(void) {
     motorR.dir_LAT=(unsigned char *)(&LATG);
     motorR.dir_pin=6;
     motorR.PWMperiod=PWMperiod;
-# 52 "main.c"
+# 54 "main.c"
     LATDbits.LATD7 = 0;
     LATHbits.LATH3 = 0;
 
@@ -24499,58 +24504,32 @@ void main(void) {
 
     RGB_val initial;
     initial = colorclick_readColour(initial);
+    _delay((unsigned long)((100)*(64000000/4000.0)));
 
-
-    clear_lower = initial.C - 10;
-    clear_upper = initial.C + 10;
-
-    if(clear_lower<0) clear_lower = 0;
-
-    _delay((unsigned long)((1000)*(64000000/4000.0)));
 
     interrupts_init();
-# 122 "main.c"
+# 118 "main.c"
     RGB_val current;
 
     unsigned char start = 0;
     unsigned char move = 0;
 
     while(1) {
-# 156 "main.c"
-        LATHbits.LATH3 = card_flag;
-        LATDbits.LATD7 = move;
-        LATFbits.LATF0 = start;
 
 
 
-        if(start==0 && card_flag){
-            card_flag = 0;
-            start = 1;
-            _delay((unsigned long)((100)*(64000000/4000.0)));
-        }
 
-        if(move<1 && start>0){
-            _delay((unsigned long)((100)*(64000000/4000.0)));
-            forward(&motorL, &motorR);
-            if(card_flag==1){
-                stop(&motorL, &motorR);
-                _delay((unsigned long)((60)*(64000000/4000.0)));
-                move = 1;
-            }
-        }
-
-        if (card_flag==1) {
-            _delay((unsigned long)((100)*(64000000/4000.0)));
-            current = colorclick_readColour(current);
-            read_card(initial, current, &motorL, &motorR);
-            _delay((unsigned long)((500)*(64000000/4000.0)));
-            current = colorclick_readColour(current);
-            clear_lower = current.C - 10;
-            clear_upper = current.C + 10;
-            card_flag = 0;
-            move = 0;
-        }
-
-
+        current = colorclick_readColour(current);
+        char buf[40];
+        unsigned int tmpR = current.R;
+        unsigned int tmpG = current.G;
+        unsigned int tmpB = current.B;
+        unsigned int tmpC = current.C;
+        sprintf(buf,"%i %i %i %i\n",clear_lower,clear_upper,initial.C,tmpC);
+        sendStringSerial4(buf);
+        _delay((unsigned long)((300)*(64000000/4000.0)));
+# 194 "main.c"
+        LATHbits.LATH3 = stop_check(current);
+# 218 "main.c"
     }
 }

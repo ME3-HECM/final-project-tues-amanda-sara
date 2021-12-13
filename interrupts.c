@@ -9,6 +9,7 @@
 #define AIHTL 0x06
 #define AIHTH 0x07
 
+volatile unsigned char read_val;
 volatile unsigned int clear_lower;
 volatile unsigned int clear_upper;
 
@@ -18,21 +19,37 @@ volatile unsigned int clear_upper;
  * Turn on the interrupt sources, peripheral interrupts and global interrupts
  * It's a good idea to turn on global interrupts last, once all other interrupt configuration is done
  ****************************************************************************************************/
+
+void Timer0_init(void)
+{
+    T0CON1bits.T0CS=0b010; // Fosc/4
+    T0CON1bits.T0ASYNC=1; // see datasheet errata - needed to ensure correct operation when Fosc/4 used as clock source
+    T0CON1bits.T0CKPS=0b1000; // 1:256 count every 1.6ms
+    T0CON0bits.T016BIT=1;	//16bit mode	
+	
+    // it's a good idea to initialise the timer registers so we know we are at 0
+    TMR0H=0xFD;            // should be exactly 10ms to overflow 
+    TMR0L=0x8F;
+    T0CON0bits.T0EN=1;	//start the timer
+}
+
+
 void interrupts_init(void){
-    TRISBbits.TRISB1 = 1;
-    ANSELBbits.ANSELB1 = 0;
-    INT1PPS=0x09;
+//    TRISBbits.TRISB1 = 1;
+//    ANSELBbits.ANSELB1 = 0;
+//    INT1PPS=0x09;
     
-    PIE0bits.INT1IE = 1; //enable external interrupt source
+//    PIE0bits.INT1IE = 1; //enable external interrupt source
+    PIE0bits.TMR0IE=1; 
     //PIE?bits.? = 1; //enable ? interrupt source
     
     IPR0bits.INT1IP = 1; //set clear channel interrupt to high priority 
     //IPR?bits.? = 0; //set ? interrupt to low priority
     
-    interrupts_clear();
+//    interrupts_clear();
     
     INTCONbits.IPEN = 1; // Enable priority levels on interrupts
-    INTCONbits.INT1EDG = 0; //falling edge
+//    INTCONbits.INT1EDG = 0; //falling edge
     INTCONbits.PEIE = 1;                        // Enable peripheral interrupts
     INTCONbits.GIE = 1;                         // Enable global interrupts (when this is off, all interrupts are deactivated)
 }
@@ -65,11 +82,13 @@ void colour_int_init(void){
  * Approaching card
  ****************************************************************/
 void __interrupt(high_priority) HighISR() {
-    if (PIR0bits.INT1IF) {                        // Check the interrupt source 
-        card_flag = 1;                            // Toggle variable to run read card routine 
+    if (PIR0bits.TMR0IF) {                        // Check the interrupt source 
+        read_val = 1;                            // Toggle variable to run read card routine 
+        TMR0H=0xFD;                               // should be exactly 10ms to overflow 
+        TMR0L=0x8F;
 //        RD7_LED = !RD7_LED;                       // Testing
-        interrupts_clear();
-        PIR0bits.INT1IF = 0;                      // Clear the interrupt flag
+//        interrupts_clear();
+        PIR0bits.TMR0IF = 0;                      // Clear the interrupt flag
     }
 }
 

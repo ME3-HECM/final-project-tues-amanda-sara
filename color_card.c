@@ -58,3 +58,49 @@ void read_card(RGB_val initial, RGB_val current, DC_motor *mL, DC_motor *mR) {
         stop(mL, mR);
     }
 }
+
+unsigned char stop_check(RGB_val current) {
+    // At 15 cm distance
+    float R_rel = current.R/current.C;
+    float G_rel = current.G/current.C;
+    float B_rel = current.B/current.C;
+    float stop_pls = 0;
+    
+    if ((R_rel>0.474) && (G_rel<0.272) && (B_rel<0.193)) {
+        // Red card - Turn right 90 degrees
+        stop_pls = 1;
+        
+    } else if ((R_rel<0.453) && (G_rel>0.284) && (B_rel>0.193)) {
+        // Green card - Turn left 90 degrees
+        stop_pls = 1;
+        
+    } else if ((R_rel<0.452) && (G_rel>0.282) && (B_rel>0.196)) {
+        // Blue card - Turn left 90 degrees
+        stop_pls = 1;
+        
+    } else if ((R_rel<0.466) && (G_rel>0.281) && (B_rel>0.190)) {
+        // Yellow card - Turn left 90 degrees
+        stop_pls = 1;
+        
+    } else if ((R_rel<0.474) && (G_rel>0.272) && (B_rel>0.189)) {
+        // Orange card - Turn left 90 degrees
+        stop_pls = 1;
+        
+    } else if ((R_rel<0.466) && (G_rel>0.277) && (B_rel>0.194)) {
+        // Pink card - Turn left 90 degrees
+        stop_pls = 1;
+        
+    } else if ((R_rel<0.453) && (G_rel>0.284) && (B_rel>0.197)) {
+        // Light blue card - Turn left 90 degrees
+        stop_pls = 1;
+        
+    } else if ((R_rel<0.459) && (G_rel>0.283) && (B_rel>0.196)) {
+        // white card - Turn left 90 degrees
+        stop_pls = 1;
+        
+    } else {
+        // Exceptions (return back to the starting position if final card cannot be found)
+        stop_pls = 0;
+    }
+    return stop_pls = 0;
+}

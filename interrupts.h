@@ -11,6 +11,7 @@
 // This allows use of global variables in other source files
 volatile unsigned char card_flag;          // Declare global variable to toggle when ?
 volatile unsigned char battery_flag;       // Declare global variable to toggle when ?
+volatile unsigned char read_val;
 
 // Function prototypes
 void interrupts_init(void);
@@ -18,5 +19,6 @@ void interrupts_clear(void);
 void colour_int_init(void);
 void __interrupt(high_priority) HighISR();
 void __interrupt(low_priority) LowISR();
+void Timer0_init(void);
 
 #endif	/* _interrupts_H */

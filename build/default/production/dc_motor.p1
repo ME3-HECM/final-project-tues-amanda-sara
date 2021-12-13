@@ -2566,7 +2566,7 @@ Version 4.0 HI-TECH Software Intermediate Code
 [; ;dc_motor.c: 134:     mR->direction = 1;
 [e = . *U _mR 1 -> -> 1 `i `uc ]
 "137
-[; ;dc_motor.c: 137:     while(((mL->power)<30) && ((mR->power)<30)){
+[; ;dc_motor.c: 137:     while(((mL->power)<20) && ((mR->power)<20)){
 [e $U 2031  ]
 [e :U 2032 ]
 {
@@ -2590,8 +2590,8 @@ Version 4.0 HI-TECH Software Intermediate Code
 }
 [e :U 2031 ]
 "137
-[; ;dc_motor.c: 137:     while(((mL->power)<30) && ((mR->power)<30)){
-[e $ && < -> . *U _mL 0 `i -> 30 `i < -> . *U _mR 0 `i -> 30 `i 2032  ]
+[; ;dc_motor.c: 137:     while(((mL->power)<20) && ((mR->power)<20)){
+[e $ && < -> . *U _mL 0 `i -> 20 `i < -> . *U _mR 0 `i -> 20 `i 2032  ]
 [e :U 2033 ]
 "145
 [; ;dc_motor.c: 145: }

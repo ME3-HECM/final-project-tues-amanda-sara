@@ -134,7 +134,7 @@ void forward(DC_motor *mL, DC_motor *mR)
     mR->direction = 1; // right wheels go forward
     
     // make both motors accelerate to 100
-    while(((mL->power)<30) && ((mR->power)<30)){    // will be True until both motors have 100 power
+    while(((mL->power)<20) && ((mR->power)<20)){    // will be True until both motors have 100 power
         mL->power+=5;
         mR->power+=5;
         // set PWM output

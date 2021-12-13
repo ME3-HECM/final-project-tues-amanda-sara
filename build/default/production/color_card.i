@@ -24228,6 +24228,7 @@ volatile unsigned char returnhome_flag;
 
 RGB_val read_colour(RGB_val current);
 void read_card(RGB_val initial, RGB_val current, DC_motor *mL, DC_motor *mR);
+unsigned char stop_check(RGB_val current);
 # 3 "color_card.c" 2
 
 
@@ -24286,4 +24287,50 @@ void read_card(RGB_val initial, RGB_val current, DC_motor *mL, DC_motor *mR) {
         turnRight(mL, mR, 180);
         stop(mL, mR);
     }
+}
+
+unsigned char stop_check(RGB_val current) {
+
+    float R_rel = current.R/current.C;
+    float G_rel = current.G/current.C;
+    float B_rel = current.B/current.C;
+    float stop_pls = 0;
+
+    if ((R_rel>0.474) && (G_rel<0.272) && (B_rel<0.193)) {
+
+        stop_pls = 1;
+
+    } else if ((R_rel<0.453) && (G_rel>0.284) && (B_rel>0.193)) {
+
+        stop_pls = 1;
+
+    } else if ((R_rel<0.452) && (G_rel>0.282) && (B_rel>0.196)) {
+
+        stop_pls = 1;
+
+    } else if ((R_rel<0.466) && (G_rel>0.281) && (B_rel>0.190)) {
+
+        stop_pls = 1;
+
+    } else if ((R_rel<0.474) && (G_rel>0.272) && (B_rel>0.189)) {
+
+        stop_pls = 1;
+
+    } else if ((R_rel<0.466) && (G_rel>0.277) && (B_rel>0.194)) {
+
+        stop_pls = 1;
+
+    } else if ((R_rel<0.453) && (G_rel>0.284) && (B_rel>0.197)) {
+
+        stop_pls = 1;
+
+    } else if ((R_rel<0.459) && (G_rel>0.283) && (B_rel>0.196)) {
+
+        stop_pls = 1;
+
+    } else {
+
+        stop_pls = 0;
+    }
+    return stop_pls = 0;
 }

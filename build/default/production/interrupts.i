@@ -24212,6 +24212,7 @@ unsigned char I2C_2_Master_Read(unsigned char ack);
 
 volatile unsigned char card_flag;
 volatile unsigned char battery_flag;
+volatile unsigned char read_val;
 
 
 void interrupts_init(void);
@@ -24219,6 +24220,7 @@ void interrupts_clear(void);
 void colour_int_init(void);
 void __attribute__((picinterrupt(("high_priority")))) HighISR();
 void __attribute__((picinterrupt(("low_priority")))) LowISR();
+void Timer0_init(void);
 # 3 "interrupts.c" 2
 
 
@@ -24254,30 +24256,40 @@ void turnRight(DC_motor *mL, DC_motor *mR, unsigned char deg);
 
 
 
+volatile unsigned char read_val;
 volatile unsigned int clear_lower;
 volatile unsigned int clear_upper;
+# 23 "interrupts.c"
+void Timer0_init(void)
+{
+    T0CON1bits.T0CS=0b010;
+    T0CON1bits.T0ASYNC=1;
+    T0CON1bits.T0CKPS=0b1000;
+    T0CON0bits.T016BIT=1;
 
 
-
-
-
+    TMR0H=0xFD;
+    TMR0L=0x8F;
+    T0CON0bits.T0EN=1;
+}
 
 
 void interrupts_init(void){
-    TRISBbits.TRISB1 = 1;
-    ANSELBbits.ANSELB1 = 0;
-    INT1PPS=0x09;
 
-    PIE0bits.INT1IE = 1;
+
+
+
+
+    PIE0bits.TMR0IE=1;
 
 
     IPR0bits.INT1IP = 1;
 
 
-    interrupts_clear();
+
 
     INTCONbits.IPEN = 1;
-    INTCONbits.INT1EDG = 0;
+
     INTCONbits.PEIE = 1;
     INTCONbits.GIE = 1;
 }
@@ -24310,11 +24322,13 @@ void colour_int_init(void){
 
 
 void __attribute__((picinterrupt(("high_priority")))) HighISR() {
-    if (PIR0bits.INT1IF) {
-        card_flag = 1;
+    if (PIR0bits.TMR0IF) {
+        read_val = 1;
+        TMR0H=0xFD;
+        TMR0L=0x8F;
 
-        interrupts_clear();
-        PIR0bits.INT1IF = 0;
+
+        PIR0bits.TMR0IF = 0;
     }
 }
 

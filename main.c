@@ -4,6 +4,7 @@
 volatile unsigned int clear_lower = 0;
 volatile unsigned int clear_upper = 0;
 volatile unsigned char card_flag = 0;
+volatile unsigned char read_val;
 
 /***************
  * Main function
@@ -20,6 +21,7 @@ void main(void) {
     colorclick_init();
     DCmotors_init(PWMperiod);
     USART4_init();
+    Timer0_init();
 
     /**************************
      * Motor structures
@@ -59,14 +61,8 @@ void main(void) {
     
     RGB_val initial;
     initial = colorclick_readColour(initial); //read initial light value
-//    __delay_ms(100);
-    
-    clear_lower = initial.C - 10;
-    clear_upper = initial.C + 10;
-    
-    if(clear_lower<0) clear_lower = 0;
-    
-    __delay_ms(1000);
+    __delay_ms(100);
+   
     
     interrupts_init();
     
@@ -129,15 +125,15 @@ void main(void) {
          * Testing using serial communication
          ************************************/
         
-//        current = colorclick_readColour(current); //read current light value
-//        char buf[10];
-//        unsigned int tmpR = current.R;
-//        unsigned int tmpG = current.G;
-//        unsigned int tmpB = current.B;
-//        unsigned int tmpC = current.C;
-//        sprintf(buf,"%i %i %i %i\n",clear_lower,clear_upper,initial.C,tmpC);
-//        sendStringSerial4(buf);
-//        __delay_ms(200);
+        current = colorclick_readColour(current); //read current light value
+        char buf[40];
+        unsigned int tmpR = current.R;
+        unsigned int tmpG = current.G;
+        unsigned int tmpB = current.B;
+        unsigned int tmpC = current.C;
+        sprintf(buf,"%i %i %i %i\n",clear_lower,clear_upper,initial.C,tmpC);
+        sendStringSerial4(buf);
+        __delay_ms(300);
 //        
         /*****************
          * Maze navigation
@@ -153,40 +149,71 @@ void main(void) {
 //            battery_flag = 0;
 //        }
         
-        RH3_LED = card_flag;
-        RD7_LED = move;
-        TURNLEFT_LED = start;
+//        RH3_LED = card_flag;
+//        RD7_LED = move;
+//        TURNLEFT_LED = start;
+//        
+//        
+//        //prevents false flag trips at start
+//        if(start==0 && card_flag){ 
+//            card_flag = 0;
+//            start = 1;
+//            __delay_ms(100);
+//        }
+//
+//        if(move<1 && start>0){
+//            __delay_ms(100);
+//            forward(&motorL, &motorR);
+//            if(card_flag==1){
+//                stop(&motorL, &motorR);
+//                __delay_ms(60);
+//                move = 1;
+//            }
+//        }
+//        
+//        if (card_flag>0 && move>0) {
+//            __delay_ms(100);
+//            current = colorclick_readColour(current); //read current light value
+//            read_card(initial, current, &motorL, &motorR);
+//            __delay_ms(500);
+//            current = colorclick_readColour(current);
+//            upper = ((current.C/30) - 24);
+//            lower = ((upper*8)/5);
+//            clear_lower = current.C - lower;
+//            clear_upper = current.C + upper;
+//            card_flag = 0;
+//            move = 0;
+//        }
         
+//        if(read_val>0 && move<1){
+//            current = colorclick_readColour(current);
+//            card_flag = stop_check(current);
+//            read_val = 0;
+//        }
         
-        //prevents false flag trips at start
-        if(start==0 && card_flag){ 
-            card_flag = 0;
-            start = 1;
-            __delay_ms(100);
-        }
-
-        if(move<1 && start>0){
-            __delay_ms(100);
-            forward(&motorL, &motorR);
-            if(card_flag==1){
-                stop(&motorL, &motorR);
-                __delay_ms(60);
-                move = 1;
-            }
-        }
+        RH3_LED = stop_check(current);
+ 
+//        if(move==0){
+//            __delay_ms(100);
+//            forward(&motorL, &motorR);
+//            if(card_flag>1){
+//                move = 1;
+//            }
+//        }
         
-        if (card_flag==1) {
-            __delay_ms(100);
-            current = colorclick_readColour(current); //read current light value
-            read_card(initial, current, &motorL, &motorR);
-            __delay_ms(500);
-            current = colorclick_readColour(current);
-            clear_lower = current.C - 10;
-            clear_upper = current.C + 10;
-            card_flag = 0;
-            move = 0;
-        }
-                
-        
+//        if(card_flag>0 && move<1){
+//            stop(&motorL, &motorR);
+//            __delay_ms(60);
+//            move = 1;
+//        }
+//        
+//        if (card_flag>0 && move>0) {
+//            __delay_ms(100);
+//            current = colorclick_readColour(current); //read current light value
+//            __delay_ms(50);
+//            read_card(initial, current, &motorL, &motorR);
+//            card_flag = 0;
+//            move = 0;
+//        }                  
     }
 }
