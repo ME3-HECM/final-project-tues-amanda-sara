@@ -13,7 +13,7 @@
       <itemPath>serial_comm.h</itemPath>
       <itemPath>buttons_n_LEDs.h</itemPath>
       <itemPath>DC_motors.h</itemPath>
-      <itemPath>comparator.h</itemPath>
+      <itemPath>timers.h</itemPath>
     </logicalFolder>
     <logicalFolder name="LinkerScript"
                    displayName="Linker Files"
@@ -31,7 +31,7 @@
       <itemPath>I2C.c</itemPath>
       <itemPath>serial_comm.c</itemPath>
       <itemPath>DC_motors.c</itemPath>
-      <itemPath>comparator.c</itemPath>
+      <itemPath>timers.c</itemPath>
     </logicalFolder>
     <logicalFolder name="ExternalFiles"
                    displayName="Important Files"
