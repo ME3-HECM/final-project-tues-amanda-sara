@@ -23,6 +23,7 @@ extern volatile unsigned char battery_flag;
  *********************/
 void interrupts_init(void);
 void interrupts_clear(void);
+void interrupts_colour(void);
 void __interrupt(high_priority) HighISR();
 void __interrupt(low_priority) LowISR();
 

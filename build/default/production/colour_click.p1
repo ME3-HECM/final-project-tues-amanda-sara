@@ -2226,7 +2226,7 @@ Version 4.0 HI-TECH Software Intermediate Code
 [; ;colour_click.c: 61:  tmp=I2C_2_Master_Read(1);
 [e = _tmp -> ( _I2C_2_Master_Read (1 -> -> 1 `i `uc `ui ]
 "62
-[; ;colour_click.c: 62:  tmp=tmp | (I2C_2_Master_Read(0)<<8);
+[; ;colour_click.c: 62:  tmp=tmp | (unsigned int)(I2C_2_Master_Read(0)<<8);
 [e = _tmp | _tmp -> << -> ( _I2C_2_Master_Read (1 -> -> 0 `i `uc `i -> 8 `i `ui ]
 "63
 [; ;colour_click.c: 63:  I2C_2_Master_Stop();
@@ -2269,7 +2269,7 @@ Version 4.0 HI-TECH Software Intermediate Code
 [; ;colour_click.c: 80:  tmp=I2C_2_Master_Read(1);
 [e = _tmp -> ( _I2C_2_Master_Read (1 -> -> 1 `i `uc `ui ]
 "81
-[; ;colour_click.c: 81:  tmp=tmp | (I2C_2_Master_Read(0)<<8);
+[; ;colour_click.c: 81:  tmp=tmp | (unsigned int)(I2C_2_Master_Read(0)<<8);
 [e = _tmp | _tmp -> << -> ( _I2C_2_Master_Read (1 -> -> 0 `i `uc `i -> 8 `i `ui ]
 "82
 [; ;colour_click.c: 82:  I2C_2_Master_Stop();
@@ -2312,7 +2312,7 @@ Version 4.0 HI-TECH Software Intermediate Code
 [; ;colour_click.c: 99:  tmp=I2C_2_Master_Read(1);
 [e = _tmp -> ( _I2C_2_Master_Read (1 -> -> 1 `i `uc `ui ]
 "100
-[; ;colour_click.c: 100:  tmp=tmp | (I2C_2_Master_Read(0)<<8);
+[; ;colour_click.c: 100:  tmp=tmp | (unsigned int)(I2C_2_Master_Read(0)<<8);
 [e = _tmp | _tmp -> << -> ( _I2C_2_Master_Read (1 -> -> 0 `i `uc `i -> 8 `i `ui ]
 "101
 [; ;colour_click.c: 101:  I2C_2_Master_Stop();
@@ -2355,7 +2355,7 @@ Version 4.0 HI-TECH Software Intermediate Code
 [; ;colour_click.c: 118:  tmp=I2C_2_Master_Read(1);
 [e = _tmp -> ( _I2C_2_Master_Read (1 -> -> 1 `i `uc `ui ]
 "119
-[; ;colour_click.c: 119:  tmp=tmp | (I2C_2_Master_Read(0)<<8);
+[; ;colour_click.c: 119:  tmp=tmp | (unsigned int)(I2C_2_Master_Read(0)<<8);
 [e = _tmp | _tmp -> << -> ( _I2C_2_Master_Read (1 -> -> 0 `i `uc `i -> 8 `i `ui ]
 "120
 [; ;colour_click.c: 120:  I2C_2_Master_Stop();

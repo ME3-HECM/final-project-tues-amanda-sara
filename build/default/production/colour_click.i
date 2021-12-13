@@ -24456,7 +24456,7 @@ unsigned int colourclick_readR(void)
  I2C_2_Master_RepStart();
  I2C_2_Master_Write(0x52 | 0x01);
  tmp=I2C_2_Master_Read(1);
- tmp=tmp | (I2C_2_Master_Read(0)<<8);
+ tmp=tmp | (unsigned int)(I2C_2_Master_Read(0)<<8);
  I2C_2_Master_Stop();
  return tmp;
 }
@@ -24475,7 +24475,7 @@ unsigned int colourclick_readG(void)
  I2C_2_Master_RepStart();
  I2C_2_Master_Write(0x52 | 0x01);
  tmp=I2C_2_Master_Read(1);
- tmp=tmp | (I2C_2_Master_Read(0)<<8);
+ tmp=tmp | (unsigned int)(I2C_2_Master_Read(0)<<8);
  I2C_2_Master_Stop();
  return tmp;
 }
@@ -24494,7 +24494,7 @@ unsigned int colourclick_readB(void)
  I2C_2_Master_RepStart();
  I2C_2_Master_Write(0x52 | 0x01);
  tmp=I2C_2_Master_Read(1);
- tmp=tmp | (I2C_2_Master_Read(0)<<8);
+ tmp=tmp | (unsigned int)(I2C_2_Master_Read(0)<<8);
  I2C_2_Master_Stop();
  return tmp;
 }
@@ -24513,7 +24513,7 @@ unsigned int colourclick_readC(void)
  I2C_2_Master_RepStart();
  I2C_2_Master_Write(0x52 | 0x01);
  tmp=I2C_2_Master_Read(1);
- tmp=tmp | (I2C_2_Master_Read(0)<<8);
+ tmp=tmp | (unsigned int)(I2C_2_Master_Read(0)<<8);
  I2C_2_Master_Stop();
  return tmp;
 }

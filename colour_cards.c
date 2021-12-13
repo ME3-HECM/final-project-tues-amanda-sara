@@ -107,7 +107,6 @@ void colourcards_readRGBC(RGBC_val *abs, DC_motor *mL, DC_motor *mR)
         }
     }
     // Switch on interrupts again (to prepare for the next card)
-    colourcard_flag = 0;
     PIE0bits.INT1IE = 1;
 }
 

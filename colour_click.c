@@ -59,7 +59,7 @@ unsigned int colourclick_readR(void)
 	I2C_2_Master_RepStart();			// start a repeated transmission
 	I2C_2_Master_Write(0x52 | 0x01);     //7 bit address + Read (1) mode
 	tmp=I2C_2_Master_Read(1);			//read the Red LSB
-	tmp=tmp | (I2C_2_Master_Read(0)<<8); //read the Red MSB (don't acknowledge as this is the last read)
+	tmp=tmp | (unsigned int)(I2C_2_Master_Read(0)<<8); //read the Red MSB (don't acknowledge as this is the last read)
 	I2C_2_Master_Stop();          //Stop condition
 	return tmp;
 }
@@ -78,7 +78,7 @@ unsigned int colourclick_readG(void)
 	I2C_2_Master_RepStart();			// start a repeated transmission
 	I2C_2_Master_Write(0x52 | 0x01);     //7 bit address + Read (1) mode
 	tmp=I2C_2_Master_Read(1);			//read the Green LSB
-	tmp=tmp | (I2C_2_Master_Read(0)<<8); //read the Green MSB (don't acknowledge as this is the last read)
+	tmp=tmp | (unsigned int)(I2C_2_Master_Read(0)<<8); //read the Green MSB (don't acknowledge as this is the last read)
 	I2C_2_Master_Stop();          //Stop condition
 	return tmp;
 }
@@ -97,7 +97,7 @@ unsigned int colourclick_readB(void)
 	I2C_2_Master_RepStart();			// start a repeated transmission
 	I2C_2_Master_Write(0x52 | 0x01);     //7 bit address + Read (1) mode
 	tmp=I2C_2_Master_Read(1);			//read the Blue LSB
-	tmp=tmp | (I2C_2_Master_Read(0)<<8); //read the Blue MSB (don't acknowledge as this is the last read)
+	tmp=tmp | (unsigned int)(I2C_2_Master_Read(0)<<8); //read the Blue MSB (don't acknowledge as this is the last read)
 	I2C_2_Master_Stop();          //Stop condition
 	return tmp;
 }
@@ -116,7 +116,7 @@ unsigned int colourclick_readC(void)
 	I2C_2_Master_RepStart();			// start a repeated transmission
 	I2C_2_Master_Write(0x52 | 0x01);     //7 bit address + Read (1) mode
 	tmp=I2C_2_Master_Read(1);			//read the Blue LSB
-	tmp=tmp | (I2C_2_Master_Read(0)<<8); //read the Blue MSB (don't acknowledge as this is the last read)
+	tmp=tmp | (unsigned int)(I2C_2_Master_Read(0)<<8); //read the Blue MSB (don't acknowledge as this is the last read)
 	I2C_2_Master_Stop();          //Stop condition
 	return tmp;
 }

@@ -98,10 +98,7 @@ Version 4.0 HI-TECH Software Intermediate Code
 "29309
 [; ;C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\proc\pic18f67k40.h: 29309: extern volatile LATHbits_t LATHbits __attribute__((address(0xF80)));
 [v _LATHbits `VS1363 ~T0 @X0 0 e@3968 ]
-"15 ./colour_cards.h
-[; ;./colour_cards.h: 15: extern volatile unsigned char colourcard_flag;
-[v _colourcard_flag `Vuc ~T0 @X0 0 e ]
-"40532 C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\proc\pic18f67k40.h
+"40532
 [; ;C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\proc\pic18f67k40.h: 40532:     struct {
 [s S1989 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
 [n S1989 . INT0EDG INT1EDG INT2EDG INT3EDG . IPEN PEIE_GIEL GIE_GIEH ]
@@ -2465,282 +2462,279 @@ Version 4.0 HI-TECH Software Intermediate Code
 [e :U 2034 ]
 [e :U 2028 ]
 "110
-[; ;colour_cards.c: 110:     colourcard_flag = 0;
-[e = _colourcard_flag -> -> 0 `i `uc ]
-"111
-[; ;colour_cards.c: 111:     PIE0bits.INT1IE = 1;
+[; ;colour_cards.c: 110:     PIE0bits.INT1IE = 1;
 [e = . . _PIE0bits 0 1 -> -> 1 `i `uc ]
-"112
-[; ;colour_cards.c: 112: }
+"111
+[; ;colour_cards.c: 111: }
 [e :UE 2024 ]
 }
-"117
-[; ;colour_cards.c: 117: void colourcards_readHSV(RGBC_val *tmpval, DC_motor *mL, DC_motor *mR)
+"116
+[; ;colour_cards.c: 116: void colourcards_readHSV(RGBC_val *tmpval, DC_motor *mL, DC_motor *mR)
 [v _colourcards_readHSV `(v ~T0 @X0 1 ef3`*S2021`*S2023`*S2023 ]
-"118
-[; ;colour_cards.c: 118: {
+"117
+[; ;colour_cards.c: 117: {
 {
 [e :U _colourcards_readHSV ]
-"117
-[; ;colour_cards.c: 117: void colourcards_readHSV(RGBC_val *tmpval, DC_motor *mL, DC_motor *mR)
+"116
+[; ;colour_cards.c: 116: void colourcards_readHSV(RGBC_val *tmpval, DC_motor *mL, DC_motor *mR)
 [v _tmpval `*S2021 ~T0 @X0 1 r1 ]
 [v _mL `*S2023 ~T0 @X0 1 r2 ]
 [v _mR `*S2023 ~T0 @X0 1 r3 ]
-"118
-[; ;colour_cards.c: 118: {
+"117
+[; ;colour_cards.c: 117: {
 [f ]
-"120
-[; ;colour_cards.c: 120: }
+"119
+[; ;colour_cards.c: 119: }
 [e :UE 2045 ]
 }
-"125
-[; ;colour_cards.c: 125: void colourcards_testingRGBC()
+"124
+[; ;colour_cards.c: 124: void colourcards_testingRGBC()
 [v _colourcards_testingRGBC `(v ~T0 @X0 1 ef ]
-"126
-[; ;colour_cards.c: 126: {
+"125
+[; ;colour_cards.c: 125: {
 {
 [e :U _colourcards_testingRGBC ]
 [f ]
-"127
-[; ;colour_cards.c: 127:     INTCONbits.GIE = 0;
+"126
+[; ;colour_cards.c: 126:     INTCONbits.GIE = 0;
 [e = . . _INTCONbits 1 2 -> -> 0 `i `uc ]
-"129
-[; ;colour_cards.c: 129:     while (PORTFbits.RF2 && PORTFbits.RF3);
+"128
+[; ;colour_cards.c: 128:     while (PORTFbits.RF2 && PORTFbits.RF3);
 [e $U 2047  ]
 [e :U 2048 ]
 [e :U 2047 ]
 [e $ && != -> . . _PORTFbits 0 2 `i -> 0 `i != -> . . _PORTFbits 0 3 `i -> 0 `i 2048  ]
 [e :U 2049 ]
-"130
-[; ;colour_cards.c: 130:     LATDbits.LATD3 = 1;
+"129
+[; ;colour_cards.c: 129:     LATDbits.LATD3 = 1;
 [e = . . _LATDbits 0 3 -> -> 1 `i `uc ]
-"131
-[; ;colour_cards.c: 131:     colourclickLEDs_C(1);
+"130
+[; ;colour_cards.c: 130:     colourclickLEDs_C(1);
 [e ( _colourclickLEDs_C (1 -> -> 1 `i `uc ]
-"132
-[; ;colour_cards.c: 132:     _delay((unsigned long)((1000)*(64000000/4000.0)));
+"131
+[; ;colour_cards.c: 131:     _delay((unsigned long)((1000)*(64000000/4000.0)));
 [e ( __delay (1 -> * -> -> 1000 `i `d / -> -> 64000000 `l `d .4000.0 `ul ]
-"134
-[; ;colour_cards.c: 134:     RGBC_val abs;
+"133
+[; ;colour_cards.c: 133:     RGBC_val abs;
 [v _abs `S2021 ~T0 @X0 1 a ]
-"135
-[; ;colour_cards.c: 135:     RGB_rel rel;
+"134
+[; ;colour_cards.c: 134:     RGB_rel rel;
 [v _rel `S2022 ~T0 @X0 1 a ]
-"136
-[; ;colour_cards.c: 136:     while (1) {
+"135
+[; ;colour_cards.c: 135:     while (1) {
 [e :U 2051 ]
 {
-"137
-[; ;colour_cards.c: 137:         while (PORTFbits.RF2 && PORTFbits.RF3);
+"136
+[; ;colour_cards.c: 136:         while (PORTFbits.RF2 && PORTFbits.RF3);
 [e $U 2053  ]
 [e :U 2054 ]
 [e :U 2053 ]
 [e $ && != -> . . _PORTFbits 0 2 `i -> 0 `i != -> . . _PORTFbits 0 3 `i -> 0 `i 2054  ]
 [e :U 2055 ]
-"138
-[; ;colour_cards.c: 138:         colourclick_readRGBC(&abs);
+"137
+[; ;colour_cards.c: 137:         colourclick_readRGBC(&abs);
 [e ( _colourclick_readRGBC (1 &U _abs ]
-"139
-[; ;colour_cards.c: 139:         colourcards_normaliseRGBC(&abs, &rel);
+"138
+[; ;colour_cards.c: 138:         colourcards_normaliseRGBC(&abs, &rel);
 [e ( _colourcards_normaliseRGBC (2 , &U _abs &U _rel ]
-"141
-[; ;colour_cards.c: 141:         char buf[30];
+"140
+[; ;colour_cards.c: 140:         char buf[30];
 [v _buf `uc ~T0 @X0 -> 30 `i a ]
-"143
-[; ;colour_cards.c: 143:         if ((rel.R>0.54) && (rel.G<0.245) && (rel.B<0.18)) {
+"142
+[; ;colour_cards.c: 142:         if ((rel.R>0.54) && (rel.G<0.245) && (rel.B<0.18)) {
 [e $ ! && && > -> . _rel 0 `d .0.54 < -> . _rel 1 `d .0.245 < -> . _rel 2 `d .0.18 2056  ]
 {
-"144
-[; ;colour_cards.c: 144:             colourclick_readRGBC2(&abs, 3);
+"143
+[; ;colour_cards.c: 143:             colourclick_readRGBC2(&abs, 3);
 [e ( _colourclick_readRGBC2 (2 , &U _abs -> -> 3 `i `uc ]
-"145
-[; ;colour_cards.c: 145:             colourcards_normaliseRGBC(&abs, &rel);
+"144
+[; ;colour_cards.c: 144:             colourcards_normaliseRGBC(&abs, &rel);
 [e ( _colourcards_normaliseRGBC (2 , &U _abs &U _rel ]
-"146
-[; ;colour_cards.c: 146:             if (rel.B<0.56) {
+"145
+[; ;colour_cards.c: 145:             if (rel.B<0.56) {
 [e $ ! < -> . _rel 2 `d .0.56 2057  ]
 {
-"148
-[; ;colour_cards.c: 148:                 sprintf(buf,"RGBC: %i %i %i %i     RGBC_rel: %.3f %.3f %.3f     Colour: %s\n\r", abs.R, abs.G, abs.B, abs.C, rel.R, rel.G, rel.B, "orange");
+"147
+[; ;colour_cards.c: 147:                 sprintf(buf,"RGBC: %i %i %i %i     RGBC_rel: %.3f %.3f %.3f     Colour: %s\n\r", abs.R, abs.G, abs.B, abs.C, rel.R, rel.G, rel.B, "orange");
 [e ( _sprintf (1 , , , , , , , , (. , &U _buf :s 1C . _abs 0 . _abs 1 . _abs 2 . _abs 3 -> . _rel 0 `d -> . _rel 1 `d -> . _rel 2 `d :s 2C ]
-"150
-[; ;colour_cards.c: 150:             } else {
+"149
+[; ;colour_cards.c: 149:             } else {
 }
 [e $U 2058  ]
 [e :U 2057 ]
 {
-"152
-[; ;colour_cards.c: 152:                 sprintf(buf,"RGBC: %i %i %i %i     RGBC_rel: %.3f %.3f %.3f     Colour: %s\n\r", abs.R, abs.G, abs.B, abs.C, rel.R, rel.G, rel.B, "red");
+"151
+[; ;colour_cards.c: 151:                 sprintf(buf,"RGBC: %i %i %i %i     RGBC_rel: %.3f %.3f %.3f     Colour: %s\n\r", abs.R, abs.G, abs.B, abs.C, rel.R, rel.G, rel.B, "red");
 [e ( _sprintf (1 , , , , , , , , (. , &U _buf :s 3C . _abs 0 . _abs 1 . _abs 2 . _abs 3 -> . _rel 0 `d -> . _rel 1 `d -> . _rel 2 `d :s 4C ]
-"154
-[; ;colour_cards.c: 154:             }
+"153
+[; ;colour_cards.c: 153:             }
 }
 [e :U 2058 ]
-"157
-[; ;colour_cards.c: 157:         } else if ((rel.R<0.44) && (rel.G>0.30) && (rel.B>0.195)) {
+"156
+[; ;colour_cards.c: 156:         } else if ((rel.R<0.44) && (rel.G>0.30) && (rel.B>0.195)) {
 }
 [e $U 2059  ]
 [e :U 2056 ]
 [e $ ! && && < -> . _rel 0 `d .0.44 > -> . _rel 1 `d .0.30 > -> . _rel 2 `d .0.195 2060  ]
 {
-"158
-[; ;colour_cards.c: 158:             colourclick_readRGBC2(&abs, 3);
+"157
+[; ;colour_cards.c: 157:             colourclick_readRGBC2(&abs, 3);
 [e ( _colourclick_readRGBC2 (2 , &U _abs -> -> 3 `i `uc ]
-"159
-[; ;colour_cards.c: 159:             colourcards_normaliseRGBC(&abs, &rel);
+"158
+[; ;colour_cards.c: 158:             colourcards_normaliseRGBC(&abs, &rel);
 [e ( _colourcards_normaliseRGBC (2 , &U _abs &U _rel ]
-"160
-[; ;colour_cards.c: 160:             if ((rel.R<0.65) && (rel.B>0.67)) {
+"159
+[; ;colour_cards.c: 159:             if ((rel.R<0.65) && (rel.B>0.67)) {
 [e $ ! && < -> . _rel 0 `d .0.65 > -> . _rel 2 `d .0.67 2061  ]
 {
-"162
-[; ;colour_cards.c: 162:                 sprintf(buf,"RGBC: %i %i %i %i     RGBC_rel: %.3f %.3f %.3f     Colour: %s\n\r", abs.R, abs.G, abs.B, abs.C, rel.R, rel.G, rel.B, "blue");
+"161
+[; ;colour_cards.c: 161:                 sprintf(buf,"RGBC: %i %i %i %i     RGBC_rel: %.3f %.3f %.3f     Colour: %s\n\r", abs.R, abs.G, abs.B, abs.C, rel.R, rel.G, rel.B, "blue");
 [e ( _sprintf (1 , , , , , , , , (. , &U _buf :s 5C . _abs 0 . _abs 1 . _abs 2 . _abs 3 -> . _rel 0 `d -> . _rel 1 `d -> . _rel 2 `d :s 6C ]
-"164
-[; ;colour_cards.c: 164:             } else if ((rel.R<0.09) && (rel.B>0.62)) {
+"163
+[; ;colour_cards.c: 163:             } else if ((rel.R<0.09) && (rel.B>0.62)) {
 }
 [e $U 2062  ]
 [e :U 2061 ]
 [e $ ! && < -> . _rel 0 `d .0.09 > -> . _rel 2 `d .0.62 2063  ]
 {
-"166
-[; ;colour_cards.c: 166:                 sprintf(buf,"RGBC: %i %i %i %i     RGBC_rel: %.3f %.3f %.3f     Colour: %s\n\r", abs.R, abs.G, abs.B, abs.C, rel.R, rel.G, rel.B, "green");
+"165
+[; ;colour_cards.c: 165:                 sprintf(buf,"RGBC: %i %i %i %i     RGBC_rel: %.3f %.3f %.3f     Colour: %s\n\r", abs.R, abs.G, abs.B, abs.C, rel.R, rel.G, rel.B, "green");
 [e ( _sprintf (1 , , , , , , , , (. , &U _buf :s 7C . _abs 0 . _abs 1 . _abs 2 . _abs 3 -> . _rel 0 `d -> . _rel 1 `d -> . _rel 2 `d :s 8C ]
-"168
-[; ;colour_cards.c: 168:             } else {
+"167
+[; ;colour_cards.c: 167:             } else {
 }
 [e $U 2064  ]
 [e :U 2063 ]
 {
-"170
-[; ;colour_cards.c: 170:                 sprintf(buf,"RGBC: %i %i %i %i     RGBC_rel: %.3f %.3f %.3f     Colour: %s\n\r", abs.R, abs.G, abs.B, abs.C, rel.R, rel.G, rel.B, "light blue");
+"169
+[; ;colour_cards.c: 169:                 sprintf(buf,"RGBC: %i %i %i %i     RGBC_rel: %.3f %.3f %.3f     Colour: %s\n\r", abs.R, abs.G, abs.B, abs.C, rel.R, rel.G, rel.B, "light blue");
 [e ( _sprintf (1 , , , , , , , , (. , &U _buf :s 9C . _abs 0 . _abs 1 . _abs 2 . _abs 3 -> . _rel 0 `d -> . _rel 1 `d -> . _rel 2 `d :s 10C ]
-"172
-[; ;colour_cards.c: 172:             }
+"171
+[; ;colour_cards.c: 171:             }
 }
 [e :U 2064 ]
 [e :U 2062 ]
-"175
-[; ;colour_cards.c: 175:         } else if ((rel.R>0.49) && (rel.G>0.285) && (rel.B>0.18)) {
+"174
+[; ;colour_cards.c: 174:         } else if ((rel.R>0.49) && (rel.G>0.285) && (rel.B>0.18)) {
 }
 [e $U 2065  ]
 [e :U 2060 ]
 [e $ ! && && > -> . _rel 0 `d .0.49 > -> . _rel 1 `d .0.285 > -> . _rel 2 `d .0.18 2066  ]
 {
-"177
-[; ;colour_cards.c: 177:             sprintf(buf,"RGBC: %i %i %i %i     RGBC_rel: %.3f %.3f %.3f     Colour: %s\n\r", abs.R, abs.G, abs.B, abs.C, rel.R, rel.G, rel.B, "yellow");
+"176
+[; ;colour_cards.c: 176:             sprintf(buf,"RGBC: %i %i %i %i     RGBC_rel: %.3f %.3f %.3f     Colour: %s\n\r", abs.R, abs.G, abs.B, abs.C, rel.R, rel.G, rel.B, "yellow");
 [e ( _sprintf (1 , , , , , , , , (. , &U _buf :s 11C . _abs 0 . _abs 1 . _abs 2 . _abs 3 -> . _rel 0 `d -> . _rel 1 `d -> . _rel 2 `d :s 12C ]
-"180
-[; ;colour_cards.c: 180:         } else if ((rel.R>0.49) && (rel.G<0.275) && (rel.B>0.195)) {
+"179
+[; ;colour_cards.c: 179:         } else if ((rel.R>0.49) && (rel.G<0.275) && (rel.B>0.195)) {
 }
 [e $U 2067  ]
 [e :U 2066 ]
 [e $ ! && && > -> . _rel 0 `d .0.49 < -> . _rel 1 `d .0.275 > -> . _rel 2 `d .0.195 2068  ]
 {
-"182
-[; ;colour_cards.c: 182:             sprintf(buf,"RGBC: %i %i %i %i     RGBC_rel: %.3f %.3f %.3f     Colour: %s\n\r", abs.R, abs.G, abs.B, abs.C, rel.R, rel.G, rel.B, "pink");
+"181
+[; ;colour_cards.c: 181:             sprintf(buf,"RGBC: %i %i %i %i     RGBC_rel: %.3f %.3f %.3f     Colour: %s\n\r", abs.R, abs.G, abs.B, abs.C, rel.R, rel.G, rel.B, "pink");
 [e ( _sprintf (1 , , , , , , , , (. , &U _buf :s 13C . _abs 0 . _abs 1 . _abs 2 . _abs 3 -> . _rel 0 `d -> . _rel 1 `d -> . _rel 2 `d :s 14C ]
-"185
-[; ;colour_cards.c: 185:         } else if ((rel.R<0.46) && (rel.G>0.295) && (rel.B>0.21)) {
+"184
+[; ;colour_cards.c: 184:         } else if ((rel.R<0.46) && (rel.G>0.295) && (rel.B>0.21)) {
 }
 [e $U 2069  ]
 [e :U 2068 ]
 [e $ ! && && < -> . _rel 0 `d .0.46 > -> . _rel 1 `d .0.295 > -> . _rel 2 `d .0.21 2070  ]
 {
-"187
-[; ;colour_cards.c: 187:             sprintf(buf,"RGBC: %i %i %i %i     RGBC_rel: %.3f %.3f %.3f     Colour: %s\n\r", abs.R, abs.G, abs.B, abs.C, rel.R, rel.G, rel.B, "white");
+"186
+[; ;colour_cards.c: 186:             sprintf(buf,"RGBC: %i %i %i %i     RGBC_rel: %.3f %.3f %.3f     Colour: %s\n\r", abs.R, abs.G, abs.B, abs.C, rel.R, rel.G, rel.B, "white");
 [e ( _sprintf (1 , , , , , , , , (. , &U _buf :s 15C . _abs 0 . _abs 1 . _abs 2 . _abs 3 -> . _rel 0 `d -> . _rel 1 `d -> . _rel 2 `d :s 16C ]
-"190
-[; ;colour_cards.c: 190:         } else {
+"189
+[; ;colour_cards.c: 189:         } else {
 }
 [e $U 2071  ]
 [e :U 2070 ]
 {
-"192
-[; ;colour_cards.c: 192:             sprintf(buf,"RGBC: %i %i %i %i     RGBC_rel: %.3f %.3f %.3f     Colour: %s\n\r", abs.R, abs.G, abs.B, abs.C, rel.R, rel.G, rel.B, "unknown");
+"191
+[; ;colour_cards.c: 191:             sprintf(buf,"RGBC: %i %i %i %i     RGBC_rel: %.3f %.3f %.3f     Colour: %s\n\r", abs.R, abs.G, abs.B, abs.C, rel.R, rel.G, rel.B, "unknown");
 [e ( _sprintf (1 , , , , , , , , (. , &U _buf :s 17C . _abs 0 . _abs 1 . _abs 2 . _abs 3 -> . _rel 0 `d -> . _rel 1 `d -> . _rel 2 `d :s 18C ]
-"194
-[; ;colour_cards.c: 194:         }
+"193
+[; ;colour_cards.c: 193:         }
 }
 [e :U 2071 ]
 [e :U 2069 ]
 [e :U 2067 ]
 [e :U 2065 ]
 [e :U 2059 ]
-"195
-[; ;colour_cards.c: 195:         sendStringSerial4(buf);
+"194
+[; ;colour_cards.c: 194:         sendStringSerial4(buf);
 [e ( _sendStringSerial4 (1 &U _buf ]
-"196
-[; ;colour_cards.c: 196:         _delay((unsigned long)((500)*(64000000/4000.0)));
+"195
+[; ;colour_cards.c: 195:         _delay((unsigned long)((500)*(64000000/4000.0)));
 [e ( __delay (1 -> * -> -> 500 `i `d / -> -> 64000000 `l `d .4000.0 `ul ]
-"197
-[; ;colour_cards.c: 197:     }
+"196
+[; ;colour_cards.c: 196:     }
 }
 [e :U 2050 ]
 [e $U 2051  ]
 [e :U 2052 ]
-"198
-[; ;colour_cards.c: 198: }
+"197
+[; ;colour_cards.c: 197: }
 [e :UE 2046 ]
 }
-"203
-[; ;colour_cards.c: 203: void colourcards_testingHSV(RGBC_val *tmpval)
+"202
+[; ;colour_cards.c: 202: void colourcards_testingHSV(RGBC_val *tmpval)
 [v _colourcards_testingHSV `(v ~T0 @X0 1 ef1`*S2021 ]
-"204
-[; ;colour_cards.c: 204: {
+"203
+[; ;colour_cards.c: 203: {
 {
 [e :U _colourcards_testingHSV ]
-"203
-[; ;colour_cards.c: 203: void colourcards_testingHSV(RGBC_val *tmpval)
+"202
+[; ;colour_cards.c: 202: void colourcards_testingHSV(RGBC_val *tmpval)
 [v _tmpval `*S2021 ~T0 @X0 1 r1 ]
-"204
-[; ;colour_cards.c: 204: {
+"203
+[; ;colour_cards.c: 203: {
 [f ]
-"206
-[; ;colour_cards.c: 206: }
+"205
+[; ;colour_cards.c: 205: }
 [e :UE 2072 ]
 }
-"211
-[; ;colour_cards.c: 211: void colourcards_normaliseRGBC(RGBC_val *abs, RGB_rel *rel)
+"210
+[; ;colour_cards.c: 210: void colourcards_normaliseRGBC(RGBC_val *abs, RGB_rel *rel)
 [v _colourcards_normaliseRGBC `(v ~T0 @X0 1 ef2`*S2021`*S2022 ]
-"212
-[; ;colour_cards.c: 212: {
+"211
+[; ;colour_cards.c: 211: {
 {
 [e :U _colourcards_normaliseRGBC ]
-"211
-[; ;colour_cards.c: 211: void colourcards_normaliseRGBC(RGBC_val *abs, RGB_rel *rel)
+"210
+[; ;colour_cards.c: 210: void colourcards_normaliseRGBC(RGBC_val *abs, RGB_rel *rel)
 [v _abs `*S2021 ~T0 @X0 1 r1 ]
 [v _rel `*S2022 ~T0 @X0 1 r2 ]
-"212
-[; ;colour_cards.c: 212: {
+"211
+[; ;colour_cards.c: 211: {
 [f ]
-"213
-[; ;colour_cards.c: 213:     unsigned int R = abs->R;
+"212
+[; ;colour_cards.c: 212:     unsigned int R = abs->R;
 [v _R `ui ~T0 @X0 1 a ]
 [e = _R . *U _abs 0 ]
-"214
-[; ;colour_cards.c: 214:     unsigned int G = abs->G;
+"213
+[; ;colour_cards.c: 213:     unsigned int G = abs->G;
 [v _G `ui ~T0 @X0 1 a ]
 [e = _G . *U _abs 1 ]
-"215
-[; ;colour_cards.c: 215:     unsigned int B = abs->B;
+"214
+[; ;colour_cards.c: 214:     unsigned int B = abs->B;
 [v _B `ui ~T0 @X0 1 a ]
 [e = _B . *U _abs 2 ]
-"216
-[; ;colour_cards.c: 216:     unsigned int C = abs->C;
+"215
+[; ;colour_cards.c: 215:     unsigned int C = abs->C;
 [v _C `ui ~T0 @X0 1 a ]
 [e = _C . *U _abs 3 ]
-"218
-[; ;colour_cards.c: 218:     rel->R = (float)R/(float)C;
+"217
+[; ;colour_cards.c: 217:     rel->R = (float)R/(float)C;
 [e = . *U _rel 0 / -> _R `f -> _C `f ]
-"219
-[; ;colour_cards.c: 219:     rel->G = (float)G/(float)C;
+"218
+[; ;colour_cards.c: 218:     rel->G = (float)G/(float)C;
 [e = . *U _rel 1 / -> _G `f -> _C `f ]
-"220
-[; ;colour_cards.c: 220:     rel->B = (float)B/(float)C;
+"219
+[; ;colour_cards.c: 219:     rel->B = (float)B/(float)C;
 [e = . *U _rel 2 / -> _B `f -> _C `f ]
-"221
-[; ;colour_cards.c: 221: }
+"220
+[; ;colour_cards.c: 220: }
 [e :UE 2073 ]
 }
 [p f _sprintf 8724608 ]

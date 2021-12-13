@@ -24434,6 +24434,7 @@ extern volatile unsigned char battery_flag;
 
 void interrupts_init(void);
 void interrupts_clear(void);
+void interrupts_colour(void);
 void __attribute__((picinterrupt(("high_priority")))) HighISR();
 void __attribute__((picinterrupt(("low_priority")))) LowISR();
 # 22 "./main.h" 2
@@ -24615,7 +24616,6 @@ void colourcards_readRGBC(RGBC_val *abs, DC_motor *mL, DC_motor *mR)
         }
     }
 
-    colourcard_flag = 0;
     PIE0bits.INT1IE = 1;
 }
 

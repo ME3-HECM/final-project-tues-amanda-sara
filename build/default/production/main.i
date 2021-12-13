@@ -24457,6 +24457,7 @@ extern volatile unsigned char battery_flag;
 
 void interrupts_init(void);
 void interrupts_clear(void);
+void interrupts_colour(void);
 void __attribute__((picinterrupt(("high_priority")))) HighISR();
 void __attribute__((picinterrupt(("low_priority")))) LowISR();
 # 22 "./main.h" 2
@@ -24559,27 +24560,33 @@ void main(void) {
 
 
 
+    colourclick_calibration();
 
-    colourcards_testingRGBC();
-# 56 "main.c"
+
+
+
+
+    DCmotors_calibration(&motorL, &motorR);
+
+
+
+
+
     while(PORTFbits.RF2 && PORTFbits.RF3);
     LATDbits.LATD3 = 1;
     colourclickLEDs_C(1);
     _delay((unsigned long)((1000)*(64000000/4000.0)));
-
-
+    interrupts_init();
+    forward(&motorL, &motorR);
 
 
 
 
     RGBC_val current;
     while(1) {
-        while (PORTFbits.RF2 && PORTFbits.RF3);
-        colourcards_readRGBC(&current, &motorL, &motorR);
-
-
-
-
-
+        if (colourcard_flag==1) {
+            colourcards_readRGBC(&current, &motorL, &motorR);
+            colourcard_flag = 0;
+        }
     }
 }
