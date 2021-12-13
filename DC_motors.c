@@ -146,7 +146,8 @@ void stop(DC_motor *mL, DC_motor *mR)
 void left(DC_motor *mL, DC_motor *mR, unsigned int deg)
 {
     // Calculations
-    double delay = (deg*12.5) - 135 + turnleft_delay;
+//    double delay = (deg*12.5) - 135 + turnleft_delay;
+    double delay = (deg*2.4) + 48 + ((turnleft_delay*deg)/90);
     
     // in order for it to make it turn on the spot: (Assume it was stationary before)
     mL->direction = 0; // left wheels go backward
@@ -176,7 +177,8 @@ void left(DC_motor *mL, DC_motor *mR, unsigned int deg)
 void right(DC_motor *mL, DC_motor *mR, unsigned int deg)
 {
     // Calculations
-    unsigned int delay = (8*deg) + 180 + turnright_delay;
+    //unsigned int delay = (8*deg) + 180 + turnright_delay;
+    double delay = (2.7*deg) + 27 + ((turnright_delay*deg)/90);
     
     // in order for it to make it turn on the spot: (Assume it was stationary before)
     mL->direction = 1; // left wheels go forward
@@ -230,8 +232,8 @@ void DCmotors_calibration(DC_motor *mL, DC_motor *mR)
     MAINBEAM_LED = 1;
     __delay_ms(200);
     turnleft(mL, mR, 360);
-    __delay_ms(1000);
     stop(mL, mR);
+    __delay_ms(1000);
     
     while(RF2_BUTTON && RF3_BUTTON);
     adjdelay(1);
@@ -241,8 +243,8 @@ void DCmotors_calibration(DC_motor *mL, DC_motor *mR)
     MAINBEAM_LED = 1;
     __delay_ms(200);
     turnright(mL, mR, 360);
-    __delay_ms(1000);
     stop(mL, mR);
+    __delay_ms(1000);
     
     while(RF2_BUTTON && RF3_BUTTON);
     adjdelay(2);
@@ -257,30 +259,30 @@ void adjdelay(unsigned char mode)
     __delay_ms(1000);
     unsigned char i;
     for (i=0; i<10; i++) {
-        if(mode==1){
+        if(mode==2){
             if(!RF2_BUTTON && RF3_BUTTON){
                 RD7_LED = 1;
-                turnright_delay+=5;
+                turnright_delay+=1;
                 __delay_ms(800);
                 RD7_LED = 0;               
             }
             if(!RF3_BUTTON && RF2_BUTTON){
                 RH3_LED = 1;
-                turnright_delay-=5;
+                turnright_delay-=1;
                 __delay_ms(800);
                 RH3_LED = 0;               
             }
 
-        } else if(mode==2){
+        } else if(mode==1){
             if(!RF2_BUTTON && RF3_BUTTON){
                 RD7_LED = 1;
-                turnleft_delay-=5;
+                turnleft_delay-=1;
                 __delay_ms(800);
                 RD7_LED = 0;               
             }
             if(!RF3_BUTTON && RF2_BUTTON){
                 RH3_LED = 1;
-                turnleft_delay+=5;
+                turnleft_delay+=1;
                 __delay_ms(800);
                 RH3_LED = 0;               
             }
@@ -296,50 +298,60 @@ void DCmotors_testing(DC_motor *mL, DC_motor *mR)
 {
     INTCONbits.GIE = 0;
     
-    while (RF2_BUTTON && RF3_BUTTON);
-    forward(mL, mR);
-    __delay_ms(1000);
-    stop(mL, mR);
-    __delay_ms(1000);
+//    while (RF2_BUTTON && RF3_BUTTON);
+//    forward(mL, mR);
+//    __delay_ms(1000);
+//    stop(mL, mR);
+//    __delay_ms(1000);
+//    
+//    while (RF2_BUTTON && RF3_BUTTON);
+//    reverse(mL, mR);
+//    __delay_ms(2020);
+//    stop(mL, mR);
+//    __delay_ms(1000);
     
     while (RF2_BUTTON && RF3_BUTTON);
-    reverse(mL, mR);
-    __delay_ms(2020);
-    stop(mL, mR);
-    __delay_ms(1000);
-    
-    while (RF2_BUTTON && RF3_BUTTON);
+    __delay_ms(500);
     turnright(mL, mR, 90);
 //    __delay_ms(920);
     stop(mL, mR);
     __delay_ms(100);
     
     while (RF2_BUTTON && RF3_BUTTON);
+    __delay_ms(500);
     turnleft(mL, mR, 90);
 //    __delay_ms(995);
     stop(mL, mR);
     __delay_ms(100);
     
     while (RF2_BUTTON && RF3_BUTTON);
+    __delay_ms(500);
+
     turnright(mL, mR, 180);
 //    __delay_ms(1660);
     stop(mL, mR);
     __delay_ms(100);
     
     while (RF2_BUTTON && RF3_BUTTON);
+    __delay_ms(500);
+
     turnleft(mL, mR, 180);
 //    __delay_ms(2115);
     stop(mL, mR);
     __delay_ms(100);
     
     while (RF2_BUTTON && RF3_BUTTON);
-    turnright(mL, mR, 135);
+    __delay_ms(500);
+
+    turnright(mL, mR, 360);
 //    __delay_ms(1240);
     stop(mL, mR);
     __delay_ms(100);
     
     while (RF2_BUTTON && RF3_BUTTON);
-    turnleft(mL, mR, 135);
+    __delay_ms(500);
+
+    turnleft(mL, mR, 360);
 //    __delay_ms(1555);
     stop(mL, mR);
     __delay_ms(100);

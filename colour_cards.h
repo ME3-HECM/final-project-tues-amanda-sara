@@ -16,7 +16,6 @@ extern volatile unsigned char colourcard_flag;  // Toggled when any colour card 
 extern volatile unsigned char unknowncard_flag; // Incremented when card cannot be identified
 extern volatile unsigned char returnhome_flag;  // Toggled when the final card has been found (i.e. encountered the white card)
                                                 // or in exceptional scenarios (i.e. cannot identify a card or stuck in the maze for too long)
-extern volatile 
 /*********************
  * Function prototypes
  *********************/

@@ -25,14 +25,14 @@ Version 4.0 HI-TECH Software Intermediate Code
 "34
 [; ;./colour_click.h: 34: void colourclick_readRGBC(RGBC_val *tmpval);
 [v _colourclick_readRGBC `(v ~T0 @X0 0 ef1`*S2021 ]
-"27 ./colour_cards.h
-[; ;./colour_cards.h: 27: void colourcards_normaliseRGBC(RGBC_val *abs, RGB_rel *rel);
+"26 ./colour_cards.h
+[; ;./colour_cards.h: 26: void colourcards_normaliseRGBC(RGBC_val *abs, RGB_rel *rel);
 [v _colourcards_normaliseRGBC `(v ~T0 @X0 0 ef2`*S2021`*S2022 ]
 "35 ./colour_click.h
 [; ;./colour_click.h: 35: void colourclick_readRGBC2(RGBC_val *tmpval, unsigned char mode);
 [v _colourclick_readRGBC2 `(v ~T0 @X0 0 ef2`*S2021`uc ]
-"28 ./colour_cards.h
-[; ;./colour_cards.h: 28: void car_clearance(DC_motor *mL, DC_motor *mR);
+"27 ./colour_cards.h
+[; ;./colour_cards.h: 27: void car_clearance(DC_motor *mL, DC_motor *mR);
 [v _car_clearance `(v ~T0 @X0 0 ef2`*S2023`*S2023 ]
 "43 ./DC_motors.h
 [; ;./DC_motors.h: 43: void turnright(DC_motor *mL, DC_motor *mR, unsigned int deg);
