@@ -253,10 +253,10 @@ void DCmotors_calibration(DC_motor *mL, DC_motor *mR)
         MAINBEAM_LED = 0;
                 
         __delay_ms(1000);
-        turnleft(mL, mR, 360);
+        turnleft(mL, mR, 90);
         stop(mL, mR);
         __delay_ms(1000);       
-        turnright(mL, mR, 360);
+        turnright(mL, mR, 90);
         stop(mL, mR);
         __delay_ms(1000);
         
