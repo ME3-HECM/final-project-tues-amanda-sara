@@ -184,21 +184,9 @@ void colourclick_calibration(void) {
     __delay_ms(1000);
     RD7_LED = 0;
     
-    unsigned char i;
-    RGBC_val current;
-    for (i=0; i<8; i++) {
-        while(RF2_BUTTON);
-        RD7_LED = 1;
-        colourclick_readRGBC(&current);
-        if ((current.C<initial.C) && (current.C>interrupts_lowerbound)) {
-            interrupts_lowerbound = current.C;
-        } else if ((current.C>initial.C) && (current.C<interrupts_upperbound)) {
-            interrupts_upperbound = current.C;
-        }
-        colourclick_testing(&initial, &current);
-        __delay_ms(1000);
-        RD7_LED = 0;
-    }
+    interrupts_lowerbound = initial.C - 150;
+    interrupts_upperbound = initial.C + 100;
+    
     MAINBEAM_LED = 0;
     colourclickLEDs_C(0);
 }
