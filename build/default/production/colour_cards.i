@@ -24628,10 +24628,12 @@ void colourcards_readHSV(RGBC_val *tmpval, DC_motor *mL, DC_motor *mR)
 
 
 void car_clearance(DC_motor *mL, DC_motor *mR){
+    LATDbits.LATD3 = 0;
     reverse(mL, mR);
     _delay((unsigned long)((500)*(64000000/4000.0)));
     stop(mL, mR);
-    _delay((unsigned long)((100)*(64000000/4000.0)));
+    _delay((unsigned long)((1000)*(64000000/4000.0)));
+    LATDbits.LATD3 = 0;
 }
 
 

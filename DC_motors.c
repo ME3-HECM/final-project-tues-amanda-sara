@@ -112,7 +112,7 @@ void reverse(DC_motor *mL, DC_motor *mR)
     mR->direction = 0; // right wheels go forward
     
     // make both motors accelerate to 50
-    while((mL->power < 40) && (mR->power < 40)){    // will be True until both motors have 100 power
+    while((mL->power < 50) && (mR->power < 50)){    // will be True until both motors have 100 power
         mL->power += 10;
         mR->power += 10;
         // set PWM output

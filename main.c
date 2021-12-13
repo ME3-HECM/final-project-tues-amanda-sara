@@ -40,17 +40,18 @@ void main(void) {
     USART4_init();
     checkbatterylevel();
     
+    /***************************
+     * Motor calibration routine
+     ***************************/
+    DCmotors_calibration(&motorL, &motorR);
+//    DCmotors_testing(&motorL, &motorR);
+    
     /****************************
      * Colour calibration routine
      ****************************/
     colourclick_calibration();
 //    colourcards_testingRGBC();
     
-    /***************************
-     * Motor calibration routine
-     ***************************/
-    DCmotors_calibration(&motorL, &motorR);
-//    DCmotors_testing(&motorL, &motorR);
     
     /***************
      * Getting ready

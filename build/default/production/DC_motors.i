@@ -24333,7 +24333,7 @@ void reverse(DC_motor *mL, DC_motor *mR)
     mR->direction = 0;
 
 
-    while((mL->power < 40) && (mR->power < 40)){
+    while((mL->power < 50) && (mR->power < 50)){
         mL->power += 10;
         mR->power += 10;
 

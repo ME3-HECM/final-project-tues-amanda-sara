@@ -129,10 +129,12 @@ void colourcards_readHSV(RGBC_val *tmpval, DC_motor *mL, DC_motor *mR)
  * creates clearance for car to turn
  ***********************************/
 void car_clearance(DC_motor *mL, DC_motor *mR){
+    MAINBEAM_LED = 0;
     reverse(mL, mR);
-    __delay_ms(800);
+    __delay_ms(500);
     stop(mL, mR);
-    __delay_ms(100);
+    __delay_ms(1000);
+    MAINBEAM_LED = 0;
 }
 
 /*************************

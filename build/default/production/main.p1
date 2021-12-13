@@ -34,9 +34,6 @@ Version 4.0 HI-TECH Software Intermediate Code
 "36 ./colour_click.h
 [; ;./colour_click.h: 36: void colourclick_calibration(void);
 [v _colourclick_calibration `(v ~T0 @X0 0 ef ]
-"45 ./DC_motors.h
-[; ;./DC_motors.h: 45: void DCmotors_calibration(DC_motor *mL, DC_motor *mR);
-[v _DCmotors_calibration `(v ~T0 @X0 0 ef2`*S2023`*S2023 ]
 "30630 /Applications/microchip/mplabx/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8/pic/include/proc/pic18f67k40.h
 [; ;/Applications/microchip/mplabx/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8/pic/include/proc/pic18f67k40.h: 30630:     struct {
 [s S1415 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
@@ -2263,9 +2260,6 @@ Version 4.0 HI-TECH Software Intermediate Code
 "46
 [; ;main.c: 46:     colourclick_calibration();
 [e ( _colourclick_calibration ..  ]
-"52
-[; ;main.c: 52:     DCmotors_calibration(&motorL, &motorR);
-[e ( _DCmotors_calibration (2 , &U _motorL &U _motorR ]
 "58
 [; ;main.c: 58:     while(PORTFbits.RF2 && PORTFbits.RF3);
 [e $U 2025  ]
