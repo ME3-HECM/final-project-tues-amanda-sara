@@ -302,7 +302,7 @@ void adjdelay(unsigned char mode)
             }
 
         }        
-        
+    }  
 }
 
 /**********************
