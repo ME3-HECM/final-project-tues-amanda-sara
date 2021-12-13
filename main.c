@@ -36,13 +36,13 @@ void main(void) {
     colourclick_init();
     DCmotors_init(PWMperiod);
     USART4_init();
-    checkbatterylevel();
     
     /****************************
      * Colour calibration routine
      ****************************/
-    colourclick_calibration();
-    colourcards_testingRGBC();
+    checkbatterylevel();
+//    colourclick_calibration();
+//    colourcards_testingRGBC();
     
     /***************************
      * Motor calibration routine
@@ -59,16 +59,18 @@ void main(void) {
     colourclickLEDs_C(1);
     __delay_ms(1000);
 //    interrupts_init();
-    forward(&motorL, &motorR);
+//    forward(&motorL, &motorR);
     
     /*****************
      * Maze navigation
      *****************/
     RGBC_val current;
     while(1) {
-        if (colourcard_flag==1) {
-            colourcards_readRGBC(&current, &motorL, &motorR);
-            colourcard_flag = 0;
-        }
+        while (RF2_BUTTON && RF3_BUTTON);
+        colourcards_readRGBC(&current, &motorL, &motorR);
+//        if (colourcard_flag==1) {
+//            colourcards_readRGBC(&current, &motorL, &motorR);
+//            colourcard_flag = 0;
+//        }
     }
 }

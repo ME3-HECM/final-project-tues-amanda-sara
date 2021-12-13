@@ -137,29 +137,36 @@ void colourclick_readRGBC(RGBC_val *tmpval)
  * colorclick_readColor
  * Function used to
  **********************/
-void colourclick_readRGBC2(RGBC_val *tmpval)
+void colourclick_readRGBC2(RGBC_val *tmpval, unsigned char mode)
 {
     colourclickLEDs_C(0);
+    __delay_ms(100);
     
-    RED_LED = 1;
-    tmpval->R = colourclick_readR();
-    __delay_ms(1000);
-    RED_LED = 0;
-    __delay_ms(20);
-    
-    GREEN_LED = 1;
-    tmpval->G = colourclick_readG();
-    __delay_ms(1000);
-    GREEN_LED = 0;
-    __delay_ms(20);
-    
-    BLUE_LED = 1;
-    tmpval->B = colourclick_readB();
-    __delay_ms(1000);
-    BLUE_LED = 0;
-    __delay_ms(20);
+    if (mode==1) {
+        RED_LED = 1;
+        __delay_ms(1000);
+        colourclick_readRGBC(tmpval);
+        __delay_ms(1000);
+        RED_LED = 0;
+        __delay_ms(20);
+    } else if (mode==2) {
+        GREEN_LED = 1;
+        __delay_ms(1000);
+        colourclick_readRGBC(tmpval);
+        __delay_ms(1000);
+        GREEN_LED = 0;
+        __delay_ms(20);
+    } else if (mode==3) {
+        BLUE_LED = 1;
+        __delay_ms(1000);
+        colourclick_readRGBC(tmpval);
+        __delay_ms(1000);
+        BLUE_LED = 0;
+        __delay_ms(20);
+    }
     
     colourclickLEDs_C(1);
+    __delay_ms(100);
 }
 
 /*************************

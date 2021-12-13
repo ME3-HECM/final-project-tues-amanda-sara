@@ -24358,9 +24358,9 @@ void stop(DC_motor *mL, DC_motor *mR)
     LATDbits.LATD4 = 1;
 
 
-    while(((mL->power)>0) && ((mR->power)>0)){
-        mL->power-=1;
-        mR->power-=1;
+    while((mL->power > 0) && (mR->power > 0)){
+        mL->power -= 1;
+        mR->power -= 1;
 
 
         DCmotors_setPWM(mL);

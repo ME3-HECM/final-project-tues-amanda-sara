@@ -24323,6 +24323,10 @@ typedef struct {
     unsigned int R, G, B, C;
 } RGBC_val;
 
+typedef struct {
+    float R, G, B;
+} RGB_rel;
+
 
 
 
@@ -24339,7 +24343,7 @@ unsigned int colourclick_readG(void);
 unsigned int colourclick_readB(void);
 unsigned int colourclick_readC(void);
 void colourclick_readRGBC(RGBC_val *tmpval);
-void colourclick_readRGBC2(RGBC_val *tmpval);
+void colourclick_readRGBC2(RGBC_val *tmpval, unsigned char mode);
 void colourclick_calibration(void);
 void colourclick_testing(RGBC_val *initval, RGBC_val *tmpval);
 # 3 "colour_click.c" 2
@@ -24530,29 +24534,36 @@ void colourclick_readRGBC(RGBC_val *tmpval)
 
 
 
-void colourclick_readRGBC2(RGBC_val *tmpval)
+void colourclick_readRGBC2(RGBC_val *tmpval, unsigned char mode)
 {
     colourclickLEDs_C(0);
+    _delay((unsigned long)((100)*(64000000/4000.0)));
 
-    LATGbits.LATG1 = 1;
-    tmpval->R = colourclick_readR();
-    _delay((unsigned long)((1000)*(64000000/4000.0)));
-    LATGbits.LATG1 = 0;
-    _delay((unsigned long)((20)*(64000000/4000.0)));
-
-    LATAbits.LATA4 = 1;
-    tmpval->G = colourclick_readG();
-    _delay((unsigned long)((1000)*(64000000/4000.0)));
-    LATAbits.LATA4 = 0;
-    _delay((unsigned long)((20)*(64000000/4000.0)));
-
-    LATFbits.LATF7 = 1;
-    tmpval->B = colourclick_readB();
-    _delay((unsigned long)((1000)*(64000000/4000.0)));
-    LATFbits.LATF7 = 0;
-    _delay((unsigned long)((20)*(64000000/4000.0)));
+    if (mode==1) {
+        LATGbits.LATG1 = 1;
+        _delay((unsigned long)((1000)*(64000000/4000.0)));
+        colourclick_readRGBC(tmpval);
+        _delay((unsigned long)((1000)*(64000000/4000.0)));
+        LATGbits.LATG1 = 0;
+        _delay((unsigned long)((20)*(64000000/4000.0)));
+    } else if (mode==2) {
+        LATAbits.LATA4 = 1;
+        _delay((unsigned long)((1000)*(64000000/4000.0)));
+        colourclick_readRGBC(tmpval);
+        _delay((unsigned long)((1000)*(64000000/4000.0)));
+        LATAbits.LATA4 = 0;
+        _delay((unsigned long)((20)*(64000000/4000.0)));
+    } else if (mode==3) {
+        LATFbits.LATF7 = 1;
+        _delay((unsigned long)((1000)*(64000000/4000.0)));
+        colourclick_readRGBC(tmpval);
+        _delay((unsigned long)((1000)*(64000000/4000.0)));
+        LATFbits.LATF7 = 0;
+        _delay((unsigned long)((20)*(64000000/4000.0)));
+    }
 
     colourclickLEDs_C(1);
+    _delay((unsigned long)((100)*(64000000/4000.0)));
 }
 
 

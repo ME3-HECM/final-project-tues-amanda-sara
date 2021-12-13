@@ -24349,6 +24349,10 @@ typedef struct {
     unsigned int R, G, B, C;
 } RGBC_val;
 
+typedef struct {
+    float R, G, B;
+} RGB_rel;
+
 
 
 
@@ -24365,7 +24369,7 @@ unsigned int colourclick_readG(void);
 unsigned int colourclick_readB(void);
 unsigned int colourclick_readC(void);
 void colourclick_readRGBC(RGBC_val *tmpval);
-void colourclick_readRGBC2(RGBC_val *tmpval);
+void colourclick_readRGBC2(RGBC_val *tmpval, unsigned char mode);
 void colourclick_calibration(void);
 void colourclick_testing(RGBC_val *initval, RGBC_val *tmpval);
 # 6 "./colour_cards.h" 2
@@ -24425,6 +24429,7 @@ void colourcards_readRGBC(RGBC_val *tmpval, DC_motor *mL, DC_motor *mR);
 void colourcards_readHSV(RGBC_val *tmpval, DC_motor *mL, DC_motor *mR);
 void colourcards_testingRGBC();
 void colourcards_testingHSV();
+void colourcards_normaliseRGBC(RGBC_val *abs, RGB_rel *rel);
 # 18 "./main.h" 2
 
 
@@ -24549,13 +24554,13 @@ void main(void) {
     colourclick_init();
     DCmotors_init(PWMperiod);
     USART4_init();
+
+
+
+
     checkbatterylevel();
 
 
-
-
-    colourclick_calibration();
-    colourcards_testingRGBC();
 
 
 
@@ -24572,16 +24577,18 @@ void main(void) {
     colourclickLEDs_C(1);
     _delay((unsigned long)((1000)*(64000000/4000.0)));
 
-    forward(&motorL, &motorR);
+
 
 
 
 
     RGBC_val current;
     while(1) {
-        if (colourcard_flag==1) {
-            colourcards_readRGBC(&current, &motorL, &motorR);
-            colourcard_flag = 0;
-        }
+        while (PORTFbits.RF2 && PORTFbits.RF3);
+        colourcards_readRGBC(&current, &motorL, &motorR);
+
+
+
+
     }
 }

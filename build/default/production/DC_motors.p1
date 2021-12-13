@@ -2595,15 +2595,15 @@ Version 4.0 HI-TECH Software Intermediate Code
 [; ;DC_motors.c: 131:     LATDbits.LATD4 = 1;
 [e = . . _LATDbits 0 4 -> -> 1 `i `uc ]
 "134
-[; ;DC_motors.c: 134:     while(((mL->power)>0) && ((mR->power)>0)){
+[; ;DC_motors.c: 134:     while((mL->power > 0) && (mR->power > 0)){
 [e $U 2038  ]
 [e :U 2039 ]
 {
 "135
-[; ;DC_motors.c: 135:         mL->power-=1;
+[; ;DC_motors.c: 135:         mL->power -= 1;
 [e =- . *U _mL 0 -> -> 1 `i `uc ]
 "136
-[; ;DC_motors.c: 136:         mR->power-=1;
+[; ;DC_motors.c: 136:         mR->power -= 1;
 [e =- . *U _mR 0 -> -> 1 `i `uc ]
 "139
 [; ;DC_motors.c: 139:         DCmotors_setPWM(mL);
@@ -2619,7 +2619,7 @@ Version 4.0 HI-TECH Software Intermediate Code
 }
 [e :U 2038 ]
 "134
-[; ;DC_motors.c: 134:     while(((mL->power)>0) && ((mR->power)>0)){
+[; ;DC_motors.c: 134:     while((mL->power > 0) && (mR->power > 0)){
 [e $ && > -> . *U _mL 0 `i -> 0 `i > -> . *U _mR 0 `i -> 0 `i 2039  ]
 [e :U 2040 ]
 "144

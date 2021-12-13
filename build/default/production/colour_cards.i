@@ -24350,6 +24350,10 @@ typedef struct {
     unsigned int R, G, B, C;
 } RGBC_val;
 
+typedef struct {
+    float R, G, B;
+} RGB_rel;
+
 
 
 
@@ -24366,7 +24370,7 @@ unsigned int colourclick_readG(void);
 unsigned int colourclick_readB(void);
 unsigned int colourclick_readC(void);
 void colourclick_readRGBC(RGBC_val *tmpval);
-void colourclick_readRGBC2(RGBC_val *tmpval);
+void colourclick_readRGBC2(RGBC_val *tmpval, unsigned char mode);
 void colourclick_calibration(void);
 void colourclick_testing(RGBC_val *initval, RGBC_val *tmpval);
 # 19 "./main.h" 2
@@ -24503,6 +24507,7 @@ void colourcards_readRGBC(RGBC_val *tmpval, DC_motor *mL, DC_motor *mR);
 void colourcards_readHSV(RGBC_val *tmpval, DC_motor *mL, DC_motor *mR);
 void colourcards_testingRGBC();
 void colourcards_testingHSV();
+void colourcards_normaliseRGBC(RGBC_val *abs, RGB_rel *rel);
 # 4 "colour_cards.c" 2
 
 
@@ -24518,60 +24523,80 @@ void colourcards_readRGBC(RGBC_val *tmpval, DC_motor *mL, DC_motor *mR)
     PIE0bits.INT1IE = 0;
 
 
+    RGB_rel rel;
     colourclick_readRGBC(tmpval);
-    float R_rel = (float)tmpval->R / (float)tmpval->C;
-    float G_rel = (float)tmpval->G / (float)tmpval->C;
-    float B_rel = (float)tmpval->B / (float)tmpval->C;
+    colourcards_normaliseRGBC(&abs, &rel);
 
 
-    if ((R_rel>0.54) && (G_rel<0.245) && (B_rel<0.18)) {
 
-        turnright(mL, mR, 90);
-        unknowncard_flag = 0;
+    if ((rel.R>0.54) && (rel.G<0.245) && (rel.B<0.18)) {
+        colourclick_readRGBC2(&abs, 3);
+        colourcards_normaliseRGBC(&abs, &rel);
+        if (rel.B<0.56) {
 
-    } else if ((R_rel<0.435) && (G_rel>0.31) && (B_rel>0.195)) {
+            turnright(mL, mR, 135);
+            stop(mL, mR);
+            unknowncard_flag = 0;
+        } else {
 
-        turnleft(mL, mR, 90);
-        unknowncard_flag = 0;
+            turnright(mL, mR, 90);
+            stop(mL, mR);
+            unknowncard_flag = 0;
+        }
 
-    } else if ((R_rel<0.43) && (G_rel>0.30) && (B_rel>0.21)) {
 
-        turnright(mL, mR, 180);
-        unknowncard_flag = 0;
+    } else if ((rel.R<0.44) && (rel.G>0.30) && (rel.B>0.195)) {
+        colourclick_readRGBC2(&abs, 3);
+        colourcards_normaliseRGBC(&abs, &rel);
+        if ((rel.R<0.65) && (rel.B>0.67)) {
 
-    } else if ((R_rel>0.49) && (G_rel>0.285) && (B_rel>0.18)) {
+            turnright(mL, mR, 180);
+            stop(mL, mR);
+            unknowncard_flag = 0;
+        } else if ((rel.R<0.09) && (rel.B>0.62)) {
+
+            turnleft(mL, mR, 90);
+            stop(mL, mR);
+            unknowncard_flag = 0;
+        } else {
+
+            turnleft(mL, mR, 135);
+            stop(mL, mR);
+            unknowncard_flag = 0;
+        }
+
+
+    } else if ((rel.R>0.49) && (rel.G>0.285) && (rel.B>0.18)) {
 
         reverse(mL, mR);
         stop(mL, mR);
+        _delay((unsigned long)((100)*(64000000/4000.0)));
         turnright(mL, mR, 90);
+        stop(mL, mR);
         unknowncard_flag = 0;
 
-    } else if ((R_rel>0.49) && (G_rel<0.275) && (B_rel>0.195)) {
+    } else if ((rel.R>0.49) && (rel.G<0.275) && (rel.B>0.195)) {
 
         reverse(mL, mR);
         stop(mL, mR);
+        _delay((unsigned long)((100)*(64000000/4000.0)));
         turnleft(mL, mR, 90);
+        stop(mL, mR);
         unknowncard_flag = 0;
 
-    } else if ((R_rel>0.54) && (G_rel<0.24) && (B_rel<0.18)) {
-
-        turnright(mL, mR, 135);
-        unknowncard_flag = 0;
-
-    } else if ((R_rel<0.44) && (G_rel>0.305) && (B_rel>0.21)) {
-
-        turnleft(mL, mR, 135);
-        unknowncard_flag = 0;
-
-    } else if ((R_rel<0.46) && (G_rel>0.295) && (B_rel>0.21)) {
+    } else if ((rel.R<0.46) && (rel.G>0.295) && (rel.B>0.21)) {
 
         turnright(mL, mR, 180);
+        stop(mL, mR);
         unknowncard_flag = 0;
         returnhome_flag = 1;
 
     } else {
 
         _delay((unsigned long)((1000)*(64000000/4000.0)));
+        forward(mL, mR);
+        _delay((unsigned long)((10)*(64000000/4000.0)));
+        stop(mL, mR);
         colourclick_readRGBC(tmpval);
         if ((tmpval->C < interrupts_lowerbound) || (tmpval->C > interrupts_upperbound)) {
             if (unknowncard_flag<3) {
@@ -24580,6 +24605,7 @@ void colourcards_readRGBC(RGBC_val *tmpval, DC_motor *mL, DC_motor *mR)
             } else {
                 LATHbits.LATH3 = 1;
                 turnright(mL, mR, 180);
+                stop(mL, mR);
                 returnhome_flag = !returnhome_flag;
                 unknowncard_flag = 0;
             }
@@ -24588,7 +24614,6 @@ void colourcards_readRGBC(RGBC_val *tmpval, DC_motor *mL, DC_motor *mR)
             unknowncard_flag = 0;
         }
     }
-
 
     colourcard_flag = 0;
     PIE0bits.INT1IE = 1;
@@ -24607,68 +24632,72 @@ void colourcards_readHSV(RGBC_val *tmpval, DC_motor *mL, DC_motor *mR)
 
 void colourcards_testingRGBC()
 {
-    while (PORTFbits.RF2 && PORTFbits.RF3);
     INTCONbits.GIE = 0;
+
+    while (PORTFbits.RF2 && PORTFbits.RF3);
     LATDbits.LATD3 = 1;
     colourclickLEDs_C(1);
     _delay((unsigned long)((1000)*(64000000/4000.0)));
 
-    RGBC_val tmpval;
+    RGBC_val abs;
+    RGB_rel rel;
     while (1) {
         while (PORTFbits.RF2 && PORTFbits.RF3);
-        colourclick_readRGBC(&tmpval);
-        unsigned int R = tmpval.R;
-        unsigned int G = tmpval.G;
-        unsigned int B = tmpval.B;
-        unsigned int C = tmpval.C;
-        float R_rel = (float)R/(float)C;
-        float G_rel = (float)G/(float)C;
-        float B_rel = (float)B/(float)C;
+        colourclick_readRGBC(&abs);
+        colourcards_normaliseRGBC(&abs, &rel);
 
-        char buf[20];
-        if ((R_rel>0.54) && (G_rel<0.245) && (B_rel<0.18)) {
+        char buf[30];
 
-            sprintf(buf,"RGBC: %i %i %i %i     RGBC_rel: %.3f %.3f %.3f     Colour: %s\n\r", R, G, B, C, R_rel, G_rel, B_rel, "red");
+        if ((rel.R>0.54) && (rel.G<0.245) && (rel.B<0.18)) {
+            colourclick_readRGBC2(&abs, 3);
+            colourcards_normaliseRGBC(&abs, &rel);
+            if (rel.B<0.56) {
 
+                sprintf(buf,"RGBC: %i %i %i %i     RGBC_rel: %.3f %.3f %.3f     Colour: %s\n\r", abs.R, abs.G, abs.B, abs.C, rel.R, rel.G, rel.B, "orange");
 
-        } else if ((R_rel<0.435) && (G_rel>0.31) && (B_rel>0.195)) {
+            } else {
 
-            sprintf(buf,"RGBC: %i %i %i %i     RGBC_rel: %.3f %.3f %.3f     Colour: %s\n\r", R, G, B, C, R_rel, G_rel, B_rel, "green");
+                sprintf(buf,"RGBC: %i %i %i %i     RGBC_rel: %.3f %.3f %.3f     Colour: %s\n\r", abs.R, abs.G, abs.B, abs.C, rel.R, rel.G, rel.B, "red");
 
-
-        } else if ((R_rel<0.43) && (G_rel>0.30) && (B_rel>0.21)) {
-
-            sprintf(buf,"RGBC: %i %i %i %i     RGBC_rel: %.3f %.3f %.3f     Colour: %s\n\r", R, G, B, C, R_rel, G_rel, B_rel, "blue");
+            }
 
 
-        } else if ((R_rel>0.49) && (G_rel>0.285) && (B_rel>0.18)) {
+        } else if ((rel.R<0.44) && (rel.G>0.30) && (rel.B>0.195)) {
+            colourclick_readRGBC2(&abs, 3);
+            colourcards_normaliseRGBC(&abs, &rel);
+            if ((rel.R<0.65) && (rel.B>0.67)) {
 
-            sprintf(buf,"RGBC: %i %i %i %i     RGBC_rel: %.3f %.3f %.3f     Colour: %s\n\r", R, G, B, C, R_rel, G_rel, B_rel, "yellow");
+                sprintf(buf,"RGBC: %i %i %i %i     RGBC_rel: %.3f %.3f %.3f     Colour: %s\n\r", abs.R, abs.G, abs.B, abs.C, rel.R, rel.G, rel.B, "blue");
 
+            } else if ((rel.R<0.09) && (rel.B>0.62)) {
 
-        } else if ((R_rel>0.49) && (G_rel<0.275) && (B_rel>0.195)) {
+                sprintf(buf,"RGBC: %i %i %i %i     RGBC_rel: %.3f %.3f %.3f     Colour: %s\n\r", abs.R, abs.G, abs.B, abs.C, rel.R, rel.G, rel.B, "green");
 
-            sprintf(buf,"RGBC: %i %i %i %i     RGBC_rel: %.3f %.3f %.3f     Colour: %s\n\r", R, G, B, C, R_rel, G_rel, B_rel, "pink");
+            } else {
 
+                sprintf(buf,"RGBC: %i %i %i %i     RGBC_rel: %.3f %.3f %.3f     Colour: %s\n\r", abs.R, abs.G, abs.B, abs.C, rel.R, rel.G, rel.B, "light blue");
 
-        } else if ((R_rel>0.54) && (G_rel<0.24) && (B_rel<0.18)) {
-
-            sprintf(buf,"RGBC: %i %i %i %i     RGBC_rel: %.3f %.3f %.3f     Colour: %s\n\r", R, G, B, C, R_rel, G_rel, B_rel, "orange");
-
-
-        } else if ((R_rel<0.44) && (G_rel>0.305) && (B_rel>0.21)) {
-
-            sprintf(buf,"RGBC: %i %i %i %i     RGBC_rel: %.3f %.3f %.3f     Colour: %s\n\r", R, G, B, C, R_rel, G_rel, B_rel, "light blue");
+            }
 
 
-        } else if ((R_rel<0.46) && (G_rel>0.295) && (B_rel>0.21)) {
+        } else if ((rel.R>0.49) && (rel.G>0.285) && (rel.B>0.18)) {
 
-            sprintf(buf,"RGBC: %i %i %i %i     RGBC_rel: %.3f %.3f %.3f     Colour: %s\n\r", R, G, B, C, R_rel, G_rel, B_rel, "white");
+            sprintf(buf,"RGBC: %i %i %i %i     RGBC_rel: %.3f %.3f %.3f     Colour: %s\n\r", abs.R, abs.G, abs.B, abs.C, rel.R, rel.G, rel.B, "yellow");
+
+
+        } else if ((rel.R>0.49) && (rel.G<0.275) && (rel.B>0.195)) {
+
+            sprintf(buf,"RGBC: %i %i %i %i     RGBC_rel: %.3f %.3f %.3f     Colour: %s\n\r", abs.R, abs.G, abs.B, abs.C, rel.R, rel.G, rel.B, "pink");
+
+
+        } else if ((rel.R<0.46) && (rel.G>0.295) && (rel.B>0.21)) {
+
+            sprintf(buf,"RGBC: %i %i %i %i     RGBC_rel: %.3f %.3f %.3f     Colour: %s\n\r", abs.R, abs.G, abs.B, abs.C, rel.R, rel.G, rel.B, "white");
 
 
         } else {
 
-            sprintf(buf,"RGBC: %i %i %i %i     RGBC_rel: %.3f %.3f %.3f     Colour: %s\n\r", R, G, B, C, R_rel, G_rel, B_rel, "unknown");
+            sprintf(buf,"RGBC: %i %i %i %i     RGBC_rel: %.3f %.3f %.3f     Colour: %s\n\r", abs.R, abs.G, abs.B, abs.C, rel.R, rel.G, rel.B, "unknown");
 
         }
         sendStringSerial4(buf);
@@ -24682,4 +24711,19 @@ void colourcards_testingRGBC()
 void colourcards_testingHSV(RGBC_val *tmpval)
 {
 
+}
+
+
+
+
+void colourcards_normaliseRGBC(RGBC_val *abs, RGB_rel *rel)
+{
+    unsigned int R = abs->R;
+    unsigned int G = abs->G;
+    unsigned int B = abs->B;
+    unsigned int C = abs->C;
+
+    rel->R = (float)R/(float)C;
+    rel->G = (float)G/(float)C;
+    rel->B = (float)B/(float)C;
 }
