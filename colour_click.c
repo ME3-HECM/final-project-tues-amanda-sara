@@ -18,12 +18,12 @@ void colourclick_init(void) {
     __delay_ms(3);                        //need to wait 3ms for everthing to start up
     
     //turn on device ADC
-	colourclick_writetoaddr(0x00, 0x03);
+	colourclick_writetoaddr(0x00, 0x03); // write to enable register and turn on ADC bit
 
     //set integration time
-	colourclick_writetoaddr(0x01, 0xD5);
+	colourclick_writetoaddr(0x01, 0xD5); // write to timing register and set integration time to 101ms
     
-    colourclickLEDs_init();
+    colourclickLEDs_init();              // initialise R,G,B LEDs 
 }
 
 /***************************************************
@@ -111,6 +111,7 @@ unsigned int colourclick_readC(void) {
  * Function used to read the RGBC values using clear light
  *********************************************************/
 void colourclick_readRGBC(RGBC_val *tmpval) {
+    // read each value and store in relevant address
     tmpval->R = colourclick_readR(); //
     tmpval->G = colourclick_readG(); //
     tmpval->B = colourclick_readB(); //
@@ -122,31 +123,31 @@ void colourclick_readRGBC(RGBC_val *tmpval) {
  * Function used to read the RGBC values using the red, green or blue LEDs
  *************************************************************************/
 void colourclick_readRGBC2(RGBC_val *tmpval, unsigned char mode) {
-    colourclickLEDs_C(0);             // Switch off colour click LEDs
+    colourclickLEDs_C(0);             // Switch off all colour click LEDs
     __delay_ms(100);                  //
     
-    if (mode==1) {                    //
-        RED_LED = 1;                  //
+    if (mode==1) {                    // red LED mode 
+        RED_LED = 1;                  // turn on red LED
+        __delay_ms(1000);             // wait until on fully to read
+        colourclick_readRGBC(tmpval); // read values with red LED on
         __delay_ms(1000);             //
-        colourclick_readRGBC(tmpval); //
-        __delay_ms(1000);             //
-        RED_LED = 0;                  //
+        RED_LED = 0;                  // turn off red LED
         __delay_ms(20);               //
         
-    } else if (mode==2) {             //
-        GREEN_LED = 1;                //
-        __delay_ms(1000);             //
-        colourclick_readRGBC(tmpval); //
-        __delay_ms(1000);             //
-        GREEN_LED = 0;                //
+    } else if (mode==2) {             // green LED mode
+        GREEN_LED = 1;                // turn on green LED
+        __delay_ms(1000);             // wait until on fully to read
+        colourclick_readRGBC(tmpval); // read values with green LED on
+        __delay_ms(1000);             // 
+        GREEN_LED = 0;                // turn off green LED
         __delay_ms(20);               //
         
-    } else if (mode==3) {             //
-        BLUE_LED = 1;                 //
+    } else if (mode==3) {             // blue LED mode
+        BLUE_LED = 1;                 // turn on blue LED
+        __delay_ms(1000);             // wait until on fully to read
+        colourclick_readRGBC(tmpval); // read values with blue LED on
         __delay_ms(1000);             //
-        colourclick_readRGBC(tmpval); //
-        __delay_ms(1000);             //
-        BLUE_LED = 0;                 //
+        BLUE_LED = 0;                 // turn off blue LED
         __delay_ms(20);               //
     }
     
@@ -160,23 +161,23 @@ void colourclick_readRGBC2(RGBC_val *tmpval, unsigned char mode) {
  ****************************************************/
 void colourclick_calibration(void) {
     RGBC_val initial;
-    while(RF2_BUTTON && RF3_BUTTON); //
-    if (!RF2_BUTTON) {RD7_LED=1;}    //
+    while(RF2_BUTTON && RF3_BUTTON); // wait for button press
+    if (!RF2_BUTTON) {RD7_LED=1;}    // 
     if (!RF3_BUTTON) {RH3_LED=1;}    //
-    MAINBEAM_LED = 1;                //
-    colourclickLEDs_C(1);            //
-    __delay_ms(1000);                //
+    MAINBEAM_LED = 1;                // turn on buggy main LEDs
+    colourclickLEDs_C(1);            // turn on clicker white LED
+    __delay_ms(1000);                // wait to turn on fully
     
-    colourclick_readRGBC(&initial);  //read initial ambient light value
+    colourclick_readRGBC(&initial);  // read initial ambient light value
     
     __delay_ms(1000);                //   
-    MAINBEAM_LED = 0;                //
-    colourclickLEDs_C(0);            //
-    RD7_LED = 0;                     //
-    RH3_LED = 0;                     //
+    MAINBEAM_LED = 0;                // turn off LEDs
+    colourclickLEDs_C(0);            
+    RD7_LED = 0;                     
+    RH3_LED = 0;                     
     
-    interrupts_lowerbound = initial.C - 150; //
-    interrupts_upperbound = initial.C + 100; //
+    interrupts_lowerbound = initial.C - 150; // set lower interrupt threshold with initial clear value
+    interrupts_upperbound = initial.C + 100; // set upper interrupt threshold with initial clear value 
 }
 
 /***********************************************
