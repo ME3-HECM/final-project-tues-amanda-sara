@@ -26,7 +26,7 @@ The buggy detects there is a card in front of it by using a clear interrupt on t
 
 ## Hardware setup
 
-![Buggy setup](gifs/buggy_setup.jpg)
+![Buggy setup](gifs/buggy_setup.png)
 
 ## Demonstration video
 
