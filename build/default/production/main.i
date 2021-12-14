@@ -24507,7 +24507,7 @@ void timer0_init(void);
 
 
 
-volatile unsigned int tmp;
+volatile unsigned int timer;
 volatile unsigned int instr[20];
 volatile unsigned int dur[20];
 volatile unsigned char instr_counter;
@@ -24532,7 +24532,7 @@ void main(void) {
     RGBC_val current;
     unsigned char start = 0;
     unsigned char PWMperiod = 99;
-    tmp = 0;
+    timer = 0;
     instr_counter = 0;
     dur_counter = 0;
     turnleft_calangle = 360;
@@ -24591,12 +24591,14 @@ void main(void) {
 
 
 
+
     while(1) {
         checkbatterylevel();
 
         if (start<1 && colourcard_flag==1) {
             colourcard_flag = 0;
             start = 1;
+
         } else if (start>0 && colourcard_flag==1) {
             stop(&motorL, &motorR);
             LATDbits.LATD7 = 1;
@@ -24616,9 +24618,11 @@ void main(void) {
             interrupts_upperbound = current.C + 100;
 
             colourcard_flag = 0;
+
         } else if (returnhome_flag==1) {
             returnhome(&motorL, &motorR);
             returnhome_flag=2;
+
         } else if (returnhome_flag==0) {
             forward(&motorL, &motorR);
         }

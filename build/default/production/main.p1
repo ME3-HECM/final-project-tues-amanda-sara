@@ -2126,7 +2126,7 @@ Version 4.0 HI-TECH Software Intermediate Code
 "37
 [p x WDTE  =  OFF  ]
 "42
-[v _tmp `Vui ~T0 @X0 1 e ]
+[v _timer `Vui ~T0 @X0 1 e ]
 "43
 [v _instr `Vui ~T0 @X0 -> 20 `i e ]
 "44
@@ -2168,8 +2168,8 @@ Version 4.0 HI-TECH Software Intermediate Code
 [v _PWMperiod `uc ~T0 @X0 1 a ]
 [e = _PWMperiod -> -> 99 `i `uc ]
 "14
-[; ;main.c: 14:     tmp = 0;
-[e = _tmp -> -> 0 `i `ui ]
+[; ;main.c: 14:     timer = 0;
+[e = _timer -> -> 0 `i `ui ]
 "15
 [; ;main.c: 15:     instr_counter = 0;
 [e = _instr_counter -> -> 0 `i `uc ]
@@ -2282,112 +2282,112 @@ Version 4.0 HI-TECH Software Intermediate Code
 "68
 [; ;main.c: 68:     timer0_init();
 [e ( _timer0_init ..  ]
-"73
-[; ;main.c: 73:     while(1) {
+"74
+[; ;main.c: 74:     while(1) {
 [e :U 2029 ]
 {
-"74
-[; ;main.c: 74:         checkbatterylevel();
+"75
+[; ;main.c: 75:         checkbatterylevel();
 [e ( _checkbatterylevel ..  ]
-"76
-[; ;main.c: 76:         if (start<1 && colourcard_flag==1) {
+"77
+[; ;main.c: 77:         if (start<1 && colourcard_flag==1) {
 [e $ ! && < -> _start `i -> 1 `i == -> _colourcard_flag `i -> 1 `i 2031  ]
 {
-"77
-[; ;main.c: 77:             colourcard_flag = 0;
-[e = _colourcard_flag -> -> 0 `i `uc ]
 "78
-[; ;main.c: 78:             start = 1;
-[e = _start -> -> 1 `i `uc ]
+[; ;main.c: 78:             colourcard_flag = 0;
+[e = _colourcard_flag -> -> 0 `i `uc ]
 "79
-[; ;main.c: 79:         } else if (start>0 && colourcard_flag==1) {
+[; ;main.c: 79:             start = 1;
+[e = _start -> -> 1 `i `uc ]
+"81
+[; ;main.c: 81:         } else if (start>0 && colourcard_flag==1) {
 }
 [e $U 2032  ]
 [e :U 2031 ]
 [e $ ! && > -> _start `i -> 0 `i == -> _colourcard_flag `i -> 1 `i 2033  ]
 {
-"80
-[; ;main.c: 80:             stop(&motorL, &motorR);
-[e ( _stop (2 , &U _motorL &U _motorR ]
-"81
-[; ;main.c: 81:             LATDbits.LATD7 = 1;
-[e = . . _LATDbits 0 7 -> -> 1 `i `uc ]
 "82
-[; ;main.c: 82:             LATHbits.LATH3 = 1;
-[e = . . _LATHbits 0 3 -> -> 1 `i `uc ]
-"83
-[; ;main.c: 83:             reverse(&motorL, &motorR);
-[e ( _reverse (2 , &U _motorL &U _motorR ]
-"84
-[; ;main.c: 84:             _delay((unsigned long)((100)*(64000000/4000.0)));
-[e ( __delay (1 -> * -> -> 100 `i `d / -> -> 64000000 `l `d .4000.0 `ul ]
-"85
-[; ;main.c: 85:             stop(&motorL, &motorR);
+[; ;main.c: 82:             stop(&motorL, &motorR);
 [e ( _stop (2 , &U _motorL &U _motorR ]
+"83
+[; ;main.c: 83:             LATDbits.LATD7 = 1;
+[e = . . _LATDbits 0 7 -> -> 1 `i `uc ]
+"84
+[; ;main.c: 84:             LATHbits.LATH3 = 1;
+[e = . . _LATHbits 0 3 -> -> 1 `i `uc ]
+"85
+[; ;main.c: 85:             reverse(&motorL, &motorR);
+[e ( _reverse (2 , &U _motorL &U _motorR ]
 "86
-[; ;main.c: 86:             LATDbits.LATD7 = 0;
-[e = . . _LATDbits 0 7 -> -> 0 `i `uc ]
+[; ;main.c: 86:             _delay((unsigned long)((100)*(64000000/4000.0)));
+[e ( __delay (1 -> * -> -> 100 `i `d / -> -> 64000000 `l `d .4000.0 `ul ]
 "87
-[; ;main.c: 87:             LATHbits.LATH3 = 0;
-[e = . . _LATHbits 0 3 -> -> 0 `i `uc ]
+[; ;main.c: 87:             stop(&motorL, &motorR);
+[e ( _stop (2 , &U _motorL &U _motorR ]
 "88
-[; ;main.c: 88:             _delay((unsigned long)((1000)*(64000000/4000.0)));
-[e ( __delay (1 -> * -> -> 1000 `i `d / -> -> 64000000 `l `d .4000.0 `ul ]
+[; ;main.c: 88:             LATDbits.LATD7 = 0;
+[e = . . _LATDbits 0 7 -> -> 0 `i `uc ]
+"89
+[; ;main.c: 89:             LATHbits.LATH3 = 0;
+[e = . . _LATHbits 0 3 -> -> 0 `i `uc ]
 "90
-[; ;main.c: 90:             colourcards_readRGBC(&current, &motorL, &motorR);
-[e ( _colourcards_readRGBC (3 , , &U _current &U _motorL &U _motorR ]
-"92
-[; ;main.c: 92:             _delay((unsigned long)((1000)*(64000000/4000.0)));
+[; ;main.c: 90:             _delay((unsigned long)((1000)*(64000000/4000.0)));
 [e ( __delay (1 -> * -> -> 1000 `i `d / -> -> 64000000 `l `d .4000.0 `ul ]
-"93
-[; ;main.c: 93:             colourclick_readRGBC(&current);
-[e ( _colourclick_readRGBC (1 &U _current ]
+"92
+[; ;main.c: 92:             colourcards_readRGBC(&current, &motorL, &motorR);
+[e ( _colourcards_readRGBC (3 , , &U _current &U _motorL &U _motorR ]
 "94
-[; ;main.c: 94:             interrupts_lowerbound = current.C - 150;
-[e = _interrupts_lowerbound - . _current 3 -> -> 150 `i `ui ]
+[; ;main.c: 94:             _delay((unsigned long)((1000)*(64000000/4000.0)));
+[e ( __delay (1 -> * -> -> 1000 `i `d / -> -> 64000000 `l `d .4000.0 `ul ]
 "95
-[; ;main.c: 95:             interrupts_upperbound = current.C + 100;
-[e = _interrupts_upperbound + . _current 3 -> -> 100 `i `ui ]
+[; ;main.c: 95:             colourclick_readRGBC(&current);
+[e ( _colourclick_readRGBC (1 &U _current ]
+"96
+[; ;main.c: 96:             interrupts_lowerbound = current.C - 150;
+[e = _interrupts_lowerbound - . _current 3 -> -> 150 `i `ui ]
 "97
-[; ;main.c: 97:             colourcard_flag = 0;
+[; ;main.c: 97:             interrupts_upperbound = current.C + 100;
+[e = _interrupts_upperbound + . _current 3 -> -> 100 `i `ui ]
+"99
+[; ;main.c: 99:             colourcard_flag = 0;
 [e = _colourcard_flag -> -> 0 `i `uc ]
-"98
-[; ;main.c: 98:         } else if (returnhome_flag==1) {
+"101
+[; ;main.c: 101:         } else if (returnhome_flag==1) {
 }
 [e $U 2034  ]
 [e :U 2033 ]
 [e $ ! == -> _returnhome_flag `i -> 1 `i 2035  ]
 {
-"99
-[; ;main.c: 99:             returnhome(&motorL, &motorR);
+"102
+[; ;main.c: 102:             returnhome(&motorL, &motorR);
 [e ( _returnhome (2 , &U _motorL &U _motorR ]
-"100
-[; ;main.c: 100:             returnhome_flag=2;
+"103
+[; ;main.c: 103:             returnhome_flag=2;
 [e = _returnhome_flag -> -> 2 `i `uc ]
-"101
-[; ;main.c: 101:         } else if (returnhome_flag==0) {
+"105
+[; ;main.c: 105:         } else if (returnhome_flag==0) {
 }
 [e $U 2036  ]
 [e :U 2035 ]
 [e $ ! == -> _returnhome_flag `i -> 0 `i 2037  ]
 {
-"102
-[; ;main.c: 102:             forward(&motorL, &motorR);
+"106
+[; ;main.c: 106:             forward(&motorL, &motorR);
 [e ( _forward (2 , &U _motorL &U _motorR ]
-"103
-[; ;main.c: 103:         }
+"107
+[; ;main.c: 107:         }
 }
 [e :U 2037 ]
 [e :U 2036 ]
 [e :U 2034 ]
 [e :U 2032 ]
-"104
-[; ;main.c: 104:     }
+"108
+[; ;main.c: 108:     }
 }
 [e :U 2028 ]
 [e $U 2029  ]
 [e :U 2030 ]
-"105
-[; ;main.c: 105: }
+"109
+[; ;main.c: 109: }
 [e :UE 2024 ]
 }

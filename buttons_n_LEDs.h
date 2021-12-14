@@ -34,7 +34,7 @@
  *********************/
 void clicker2buttons_init(void);           // Function used to initialise the buttons on the clicker 2 board
 void clicker2LEDs_init(void);              // Function used to initialise the LEDs on the clicker 2 board
-void colourclickLEDs_init(void);           // Function used to initialise the LEDs on the colour click module
+void colourclickLEDs_init(void);           // Function used to initialise the RGB LEDs on the colour click module
 void colourclickLEDs_RGB(void);            // Function used to cycle the red, green and blue LEDs on the colour click module
 void colourclickLEDs_C(unsigned char tog); // Function used to toggle the clear light on the colour click module
 void buggyLEDs_init(void);                 // Function used to initialise the LEDs on the buggy

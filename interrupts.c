@@ -10,24 +10,22 @@
  * Function used to turn on and set priority for interrupts to detect colour cards and track time
  ************************************************************************************************/
 void interrupts_init(void){
-    TRISBbits.TRISB1 = 1;
-    ANSELBbits.ANSELB1 = 0;
-    INT1PPS=0x09;
+    TRISBbits.TRISB1 = 1;   // Set TRIS value for pin RB1 (input)
+    ANSELBbits.ANSELB1 = 0; // Turn off analogue input for pin RB1
+    INT1PPS=0x09;           // Set peripheral pin select module
     
-    PIE0bits.INT1IE = 1; //enable external interrupt source
-    PIE0bits.TMR0IE = 1; //enable timer interrupt source
+    PIE0bits.INT1IE = 1;    // Enable external interrupt source
+    PIE0bits.TMR0IE = 1;    // Enable timer interrupt source
     
-    IPR0bits.INT1IP = 1; //set clear channel interrupt to high priority 
-    IPR0bits.TMR0IP = 0; //set timer interrupt to low priority
+    IPR0bits.INT1IP = 1;    // Set clear channel interrupt to high priority 
+    IPR0bits.TMR0IP = 0;    // Set timer interrupt to low priority
     
-    interrupts_clear();
+    interrupts_clear();     // Clear interrupts on the colour click module
     
     INTCONbits.INT1EDG = 0; // Set interrupt on falling edge
-    INTCONbits.IPEN = 1; // Enable priority levels on interrupts
-    INTCONbits.PEIE = 1;                        // Enable peripheral interrupts
-    INTCONbits.GIE = 1;                         // Enable global interrupts (when this is off, all interrupts are deactivated)
-    // Turn on the interrupt sources, peripheral interrupts and global interrupts
-    // It's a good idea to turn on global interrupts last, once all other interrupt configuration is done
+    INTCONbits.IPEN = 1;    // Enable priority levels on interrupts
+    INTCONbits.PEIE = 1;    // Enable peripheral interrupts
+    INTCONbits.GIE = 1;     // Enable global interrupts last, once all other interrupt configuration is done (when this is off, all interrupts are deactivated)
 }
 
 /**************************************************************
@@ -35,12 +33,12 @@ void interrupts_init(void){
  * Function used to clear interrupts on the colour click module
  **************************************************************/
 void interrupts_clear(void){
-    I2C_2_Master_Start();         //Start condition
-    I2C_2_Master_Write(0x52 | 0x00);     //7 bit device address + Write mode
-    I2C_2_Master_Write(0b11100110);    //command + register address  
-    I2C_2_Master_Stop();
+    I2C_2_Master_Start();            // Start condition
+    I2C_2_Master_Write(0x52 | 0x00); // 7 bit device address + Write mode
+    I2C_2_Master_Write(0b11100110);  // Command + Register address  
+    I2C_2_Master_Stop();             // Send stop bit
     
-    interrupts_colourclick();
+    interrupts_colourclick();        // Initialise interrupts on colour click modules
 }
 
 /***************************************************************
@@ -48,13 +46,13 @@ void interrupts_clear(void){
  * Function used to set up interrupts on the colour click module
 ****************************************************************/
 void interrupts_colourclick(void){
-    colourclick_writetoaddr(0x00, 0b10011);
-    __delay_ms(3);
-    colourclick_writetoaddr(0x0C, 0b0100);
-    colourclick_writetoaddr(0x04, (interrupts_lowerbound & 0x00FF));
-    colourclick_writetoaddr(0x05, (interrupts_lowerbound >> 8));
-    colourclick_writetoaddr(0x06, (interrupts_upperbound & 0x00FF));
-    colourclick_writetoaddr(0x07, (interrupts_upperbound >> 8));
+    colourclick_writetoaddr(0x00, 0b10011);                          // 
+    __delay_ms(3);                                                   //
+    colourclick_writetoaddr(0x0C, 0b0100);                           //
+    colourclick_writetoaddr(0x04, (interrupts_lowerbound & 0x00FF)); //
+    colourclick_writetoaddr(0x05, (interrupts_lowerbound >> 8));     //
+    colourclick_writetoaddr(0x06, (interrupts_upperbound & 0x00FF)); //
+    colourclick_writetoaddr(0x07, (interrupts_upperbound >> 8));     //
 }
 
 /********************************************************************************************
@@ -62,11 +60,11 @@ void interrupts_colourclick(void){
  * Special function for high priority interrupt service routine when approaching colour cards
  ********************************************************************************************/
 void __interrupt(high_priority) HighISR() {
-    if (PIR0bits.INT1IF) {          // Check the interrupt source 
-        colourcard_flag = 1;        // Toggle variable to run read card routine
-//        RD7_LED = !RD7_LED;         // Testing
-        interrupts_clear();
-        PIR0bits.INT1IF = 0;        // Clear the interrupt flag
+    if (PIR0bits.INT1IF) {    // Check the interrupt source 
+        colourcard_flag = 1;  // Toggle variable to run read card routine
+//        RD7_LED = !RD7_LED; // Testing
+        interrupts_clear();   //
+        PIR0bits.INT1IF = 0;  // Clear the interrupt flag
     }
 }
 
@@ -75,11 +73,11 @@ void __interrupt(high_priority) HighISR() {
  * Special function for low priority interrupt service routine when timer 0 overflows
  ************************************************************************************/
 void __interrupt(low_priority) LowISR() {
-    if (PIR0bits.TMR0IF) {                      // Check the interrupt source
-//        RD7_LED=!RD7_LED; // Testing
-        tmp++;
-        TMR0H=TMR0H_BITS;
-        TMR0L=TMR0L_BITS;
-        PIR0bits.TMR0IF = 0;                    // Clear the interrupt flag
+    if (PIR0bits.TMR0IF) {  // Check the interrupt source
+//        RD7_LED=!RD7_LED; / / Testing
+        tmp++;               //
+        TMR0H=TMR0H_BITS;    //
+        TMR0L=TMR0L_BITS;    //
+        PIR0bits.TMR0IF = 0; // Clear the interrupt flag
     }
 }

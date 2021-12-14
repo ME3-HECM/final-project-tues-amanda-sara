@@ -11,19 +11,16 @@
  * Function used to identify the colour card and respond accordingly
  *******************************************************************/
 void colourcards_readRGBC(RGBC_val *abs, DC_motor *mL, DC_motor *mR) {
-    // Switch off interrupts (to avoid unwanted interrupts while identifying cards)
-    PIE0bits.INT1IE = 0;
+    PIE0bits.INT1IE = 0; // Prevent unwanted interrupts from the colour click module
     
-    // Current values at 5 cm distance
-    RGB_rel rel;
-    colourclick_readRGBC(abs);
-    colourcards_normaliseRGBC(abs, &rel);
+    RGB_rel rel;                                         //
+    colourclick_readRGBC(abs);                           //
+    colourcards_normaliseRGBC(abs, &rel);                //
     
-    // Threshold values at 5 cm distance
-    // Red/orange
+    // Category 1: Red/orange cards (very similar in colour)
     if ((rel.R>0.54) && (rel.G<0.245) && (rel.B<0.18)) {
-        colourclick_readRGBC2(abs, 3); // Blue LED
-        colourcards_normaliseRGBC(abs, &rel);
+        colourclick_readRGBC2(abs, 3);         // Blue LED
+        colourcards_normaliseRGBC(abs, &rel);  //
         if (rel.G<0.185) {
             // Red card - Turn right 90 degrees
             instructions(mL, mR, 1);
@@ -32,7 +29,7 @@ void colourcards_readRGBC(RGBC_val *abs, DC_motor *mL, DC_motor *mR) {
             instructions(mL, mR, 6);
         }
 
-    // Green/blue/light blue
+    // Category 2: Green/blue/light blue cards (very similar in colour)
     } else if ((rel.R<0.44) && (rel.G>0.30) && (rel.B>0.195)) {
         colourclick_readRGBC2(abs, 1); // Red LED
         colourcards_normaliseRGBC(abs, &rel);
@@ -50,7 +47,7 @@ void colourcards_readRGBC(RGBC_val *abs, DC_motor *mL, DC_motor *mR) {
                 instructions(mL, mR, 7);
             }
         }
-    // Other colours
+    // Category 3: Other cards (distinct and easy to identify)
     } else if ((rel.R>0.49) && (rel.G>0.285) && (rel.B>0.18)) {
         // Yellow card - Reverse 1 square and turn right 90 degrees
         instructions(mL, mR, 4);
@@ -184,12 +181,12 @@ void colourcards_testingRGBC2() {
  * Function used to normalise the RGBC values
  ********************************************/
 void colourcards_normaliseRGBC(RGBC_val *abs, RGB_rel *rel) {
-    unsigned int R = abs->R;
-    unsigned int G = abs->G;
-    unsigned int B = abs->B;
-    unsigned int C = abs->C;
+    unsigned int R = abs->R; // 
+    unsigned int G = abs->G; // 
+    unsigned int B = abs->B; // 
+    unsigned int C = abs->C; // 
     
-    rel->R = (float)R/(float)C;
-    rel->G = (float)G/(float)C;
-    rel->B = (float)B/(float)C;
+    rel->R = (float)R/(float)C; // 
+    rel->G = (float)G/(float)C; // 
+    rel->B = (float)B/(float)C; // 
 }

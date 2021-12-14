@@ -24272,7 +24272,6 @@ void DCmotors_init(unsigned char PWMperiod) {
     RE2PPS=0x0A;
     RC7PPS=0x0B;
 
-
     clicker2buttons_init();
     clicker2LEDs_init();
     buggyLEDs_init();
@@ -24285,19 +24284,13 @@ void DCmotors_init(unsigned char PWMperiod) {
 void DCmotors_setPWM(DC_motor *m) {
  int PWMduty;
 
- if (m->direction){
-  PWMduty = (m->PWMperiod) - ((int)(m->power)*(m->PWMperiod))/100;
- } else {
-  PWMduty=((int)(m->power)*(m->PWMperiod))/100;
- }
+ if (m->direction){PWMduty = (m->PWMperiod)-((int)(m->power)*(m->PWMperiod))/100;}
+ else {PWMduty=((int)(m->power)*(m->PWMperiod))/100;}
 
  *(m->dutyHighByte) = (unsigned char)(PWMduty);
 
- if (m->direction){
-  *(m->dir_LAT) = (unsigned char)(*(m->dir_LAT) | (1<<(m->dir_pin)));
- } else {
-  *(m->dir_LAT) = (unsigned char)(*(m->dir_LAT) & (~(1<<(m->dir_pin))));
- }
+ if (m->direction){*(m->dir_LAT) = (unsigned char)(*(m->dir_LAT) | (1<<(m->dir_pin)));}
+ else {*(m->dir_LAT) = (unsigned char)(*(m->dir_LAT) & (~(1<<(m->dir_pin))));}
 }
 
 
@@ -24308,7 +24301,7 @@ void checkbatterylevel(void) {
     unsigned char batterylevel;
     batterylevel = ADC_getval();
     if (batterylevel<50) {
-        while(1) {
+        while(!PORTFbits.RF2 && !PORTFbits.RF3) {
             LATDbits.LATD7 = !LATDbits.LATD7;
             LATHbits.LATH3 = !LATHbits.LATH3;
             LATDbits.LATD3 = !LATDbits.LATD3;
@@ -24329,7 +24322,6 @@ void forward(DC_motor *mL, DC_motor *mR) {
     mL->direction = 1;
     mR->direction = 1;
 
-
     while((mL->power < 20) && (mR->power < 20)){
         mL->power += 10;
         mR->power += 10;
@@ -24348,7 +24340,6 @@ void reverse(DC_motor *mL, DC_motor *mR) {
 
     mL->direction = 0;
     mR->direction = 0;
-
 
     while((mL->power < 50) && (mR->power < 50)){
         mL->power += 10;
@@ -24383,7 +24374,6 @@ void stop(DC_motor *mL, DC_motor *mR) {
     while((mL->power > 0) && (mR->power > 0)){
         mL->power -= 10;
         mR->power -= 10;
-
 
         DCmotors_setPWM(mL);
         DCmotors_setPWM(mR);
@@ -24460,6 +24450,7 @@ void turnright(DC_motor *mL, DC_motor *mR, unsigned int deg) {
 
 void instructions(DC_motor *mL, DC_motor *mR, unsigned char num) {
     if (returnhome_flag==0) {
+        clearance(mL, mR);
         unknowncard_flag = 0;
         instr[instr_counter] = num;
         instr_counter++;
@@ -24467,17 +24458,14 @@ void instructions(DC_motor *mL, DC_motor *mR, unsigned char num) {
 
     if (num==1) {
 
-        clearance(mL, mR);
         turnright(mL, mR, 90);
         stop(mL, mR);
     } else if (num==2) {
 
-        clearance(mL, mR);
         turnleft(mL, mR, 90);
         stop(mL, mR);
     } else if (num==3) {
 
-        clearance(mL, mR);
         turnright(mL, mR, 180);
         stop(mL, mR);
     } else if (num==4) {
@@ -24498,12 +24486,10 @@ void instructions(DC_motor *mL, DC_motor *mR, unsigned char num) {
         stop(mL, mR);
     } else if (num==6) {
 
-        clearance(mL, mR);
         turnright(mL, mR, 135);
         stop(mL, mR);
     } else if (num==7) {
 
-        clearance(mL, mR);
         turnleft(mL, mR, 135);
         stop(mL, mR);
     }
@@ -24518,7 +24504,6 @@ void reverseinstructions(DC_motor *mL, DC_motor *mR) {
     else if (instr[instr_counter]==2) {instructions(mL, mR, 1);}
     else if (instr[instr_counter]==3) {instructions(mL, mR, 3);}
     else if (instr[instr_counter]==4) {
-        forward(mL, mR);
         _delay((unsigned long)((2500)*(64000000/4000.0)));
         stop(mL, mR);
         _delay((unsigned long)((100)*(64000000/4000.0)));

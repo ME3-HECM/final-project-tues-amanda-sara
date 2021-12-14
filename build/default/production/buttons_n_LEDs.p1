@@ -21,28 +21,6 @@ Version 4.0 HI-TECH Software Intermediate Code
 "12319
 [; ;C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\proc\pic18f67k40.h: 12319: extern volatile ANSELFbits_t ANSELFbits __attribute__((address(0xEB4)));
 [v _ANSELFbits `VS567 ~T0 @X0 0 e@3764 ]
-"29751
-[; ;C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\proc\pic18f67k40.h: 29751:     struct {
-[s S1383 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
-[n S1383 . TRISD0 TRISD1 TRISD2 TRISD3 TRISD4 TRISD5 TRISD6 TRISD7 ]
-"29750
-[; ;C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\proc\pic18f67k40.h: 29750: typedef union {
-[u S1382 `S1383 1 ]
-[n S1382 . . ]
-"29762
-[; ;C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\proc\pic18f67k40.h: 29762: extern volatile TRISDbits_t TRISDbits __attribute__((address(0xF84)));
-[v _TRISDbits `VS1382 ~T0 @X0 0 e@3972 ]
-"30109
-[; ;C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\proc\pic18f67k40.h: 30109:     struct {
-[s S1395 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
-[n S1395 . TRISH0 TRISH1 TRISH2 TRISH3 ]
-"30108
-[; ;C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\proc\pic18f67k40.h: 30108: typedef union {
-[u S1394 `S1395 1 ]
-[n S1394 . . ]
-"30116
-[; ;C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\proc\pic18f67k40.h: 30116: extern volatile TRISHbits_t TRISHbits __attribute__((address(0xF88)));
-[v _TRISHbits `VS1394 ~T0 @X0 0 e@3976 ]
 "28855
 [; ;C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\proc\pic18f67k40.h: 28855:     struct {
 [s S1352 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
@@ -89,7 +67,32 @@ Version 4.0 HI-TECH Software Intermediate Code
 "29309
 [; ;C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\proc\pic18f67k40.h: 29309: extern volatile LATHbits_t LATHbits __attribute__((address(0xF80)));
 [v _LATHbits `VS1363 ~T0 @X0 0 e@3968 ]
-"30052
+"29751
+[; ;C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\proc\pic18f67k40.h: 29751:     struct {
+[s S1383 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S1383 . TRISD0 TRISD1 TRISD2 TRISD3 TRISD4 TRISD5 TRISD6 TRISD7 ]
+"29750
+[; ;C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\proc\pic18f67k40.h: 29750: typedef union {
+[u S1382 `S1383 1 ]
+[n S1382 . . ]
+"29762
+[; ;C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\proc\pic18f67k40.h: 29762: extern volatile TRISDbits_t TRISDbits __attribute__((address(0xF84)));
+[v _TRISDbits `VS1382 ~T0 @X0 0 e@3972 ]
+"30109
+[; ;C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\proc\pic18f67k40.h: 30109:     struct {
+[s S1395 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S1395 . TRISH0 TRISH1 TRISH2 TRISH3 ]
+"30108
+[; ;C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\proc\pic18f67k40.h: 30108: typedef union {
+[u S1394 `S1395 1 ]
+[n S1394 . . ]
+"30116
+[; ;C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\proc\pic18f67k40.h: 30116: extern volatile TRISHbits_t TRISHbits __attribute__((address(0xF88)));
+[v _TRISHbits `VS1394 ~T0 @X0 0 e@3976 ]
+"39 ./buttons_n_LEDs.h
+[; ;./buttons_n_LEDs.h: 39: void colourclickLEDs_C(unsigned char tog);
+[v _colourclickLEDs_C `(v ~T0 @X0 0 ef1`uc ]
+"30052 C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\proc\pic18f67k40.h
 [; ;C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\proc\pic18f67k40.h: 30052:     struct {
 [s S1393 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
 [n S1393 . TRISG0 TRISG1 TRISG2 TRISG3 TRISG4 . TRISG6 TRISG7 ]
@@ -111,10 +114,7 @@ Version 4.0 HI-TECH Software Intermediate Code
 "29396
 [; ;C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\proc\pic18f67k40.h: 29396: extern volatile TRISAbits_t TRISAbits __attribute__((address(0xF81)));
 [v _TRISAbits `VS1370 ~T0 @X0 0 e@3969 ]
-"39 ./buttons_n_LEDs.h
-[; ;./buttons_n_LEDs.h: 39: void colourclickLEDs_C(unsigned char tog);
-[v _colourclickLEDs_C `(v ~T0 @X0 0 ef1`uc ]
-"29191 C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\proc\pic18f67k40.h
+"29191
 [; ;C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\proc\pic18f67k40.h: 29191:     struct {
 [s S1361 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
 [n S1361 . LATG0 LATG1 LATG2 LATG3 LATG4 . LATG6 LATG7 ]
@@ -2143,11 +2143,11 @@ Version 4.0 HI-TECH Software Intermediate Code
 {
 [e :U _clicker2buttons_init ]
 [f ]
-"10
-[; ;buttons_n_LEDs.c: 10:     TRISFbits.TRISF2=1;
+"9
+[; ;buttons_n_LEDs.c: 9:     TRISFbits.TRISF2=1;
 [e = . . _TRISFbits 0 2 -> -> 1 `i `uc ]
-"11
-[; ;buttons_n_LEDs.c: 11:     TRISFbits.TRISF3=1;
+"10
+[; ;buttons_n_LEDs.c: 10:     TRISFbits.TRISF3=1;
 [e = . . _TRISFbits 0 3 -> -> 1 `i `uc ]
 "12
 [; ;buttons_n_LEDs.c: 12:     ANSELFbits.ANSELF2=0;
@@ -2166,17 +2166,17 @@ Version 4.0 HI-TECH Software Intermediate Code
 [e :U _clicker2LEDs_init ]
 [f ]
 "21
-[; ;buttons_n_LEDs.c: 21:     TRISDbits.TRISD7 = 0;
-[e = . . _TRISDbits 0 7 -> -> 0 `i `uc ]
-"22
-[; ;buttons_n_LEDs.c: 22:     TRISHbits.TRISH3 = 0;
-[e = . . _TRISHbits 0 3 -> -> 0 `i `uc ]
-"24
-[; ;buttons_n_LEDs.c: 24:     LATDbits.LATD7 = 0;
+[; ;buttons_n_LEDs.c: 21:     LATDbits.LATD7 = 0;
 [e = . . _LATDbits 0 7 -> -> 0 `i `uc ]
-"25
-[; ;buttons_n_LEDs.c: 25:     LATHbits.LATH3 = 0;
+"22
+[; ;buttons_n_LEDs.c: 22:     LATHbits.LATH3 = 0;
 [e = . . _LATHbits 0 3 -> -> 0 `i `uc ]
+"24
+[; ;buttons_n_LEDs.c: 24:     TRISDbits.TRISD7 = 0;
+[e = . . _TRISDbits 0 7 -> -> 0 `i `uc ]
+"25
+[; ;buttons_n_LEDs.c: 25:     TRISHbits.TRISH3 = 0;
+[e = . . _TRISHbits 0 3 -> -> 0 `i `uc ]
 "26
 [; ;buttons_n_LEDs.c: 26: }
 [e :UE 2020 ]
@@ -2187,125 +2187,125 @@ Version 4.0 HI-TECH Software Intermediate Code
 {
 [e :U _colourclickLEDs_init ]
 [f ]
-"34
-[; ;buttons_n_LEDs.c: 34:     TRISGbits.TRISG1 = 0;
-[e = . . _TRISGbits 0 1 -> -> 0 `i `uc ]
-"35
-[; ;buttons_n_LEDs.c: 35:     TRISAbits.TRISA4 = 0;
-[e = . . _TRISAbits 0 4 -> -> 0 `i `uc ]
-"36
-[; ;buttons_n_LEDs.c: 36:     TRISFbits.TRISF7 = 0;
-[e = . . _TRISFbits 0 7 -> -> 0 `i `uc ]
-"39
-[; ;buttons_n_LEDs.c: 39:     colourclickLEDs_C(0);
+"33
+[; ;buttons_n_LEDs.c: 33:     colourclickLEDs_C(0);
 [e ( _colourclickLEDs_C (1 -> -> 0 `i `uc ]
-"40
-[; ;buttons_n_LEDs.c: 40: }
+"35
+[; ;buttons_n_LEDs.c: 35:     TRISGbits.TRISG1 = 0;
+[e = . . _TRISGbits 0 1 -> -> 0 `i `uc ]
+"36
+[; ;buttons_n_LEDs.c: 36:     TRISAbits.TRISA4 = 0;
+[e = . . _TRISAbits 0 4 -> -> 0 `i `uc ]
+"37
+[; ;buttons_n_LEDs.c: 37:     TRISFbits.TRISF7 = 0;
+[e = . . _TRISFbits 0 7 -> -> 0 `i `uc ]
+"38
+[; ;buttons_n_LEDs.c: 38: }
 [e :UE 2021 ]
 }
-"46
-[; ;buttons_n_LEDs.c: 46: void colourclickLEDs_RGB(void) {
+"44
+[; ;buttons_n_LEDs.c: 44: void colourclickLEDs_RGB(void) {
 [v _colourclickLEDs_RGB `(v ~T0 @X0 1 ef ]
 {
 [e :U _colourclickLEDs_RGB ]
 [f ]
-"47
-[; ;buttons_n_LEDs.c: 47:     LATGbits.LATG1 = 1;
+"45
+[; ;buttons_n_LEDs.c: 45:     LATGbits.LATG1 = 1;
 [e = . . _LATGbits 0 1 -> -> 1 `i `uc ]
+"46
+[; ;buttons_n_LEDs.c: 46:     _delay((unsigned long)((20)*(64000000/4000.0)));
+[e ( __delay (1 -> * -> -> 20 `i `d / -> -> 64000000 `l `d .4000.0 `ul ]
+"47
+[; ;buttons_n_LEDs.c: 47:     LATGbits.LATG1 = 0;
+[e = . . _LATGbits 0 1 -> -> 0 `i `uc ]
 "48
 [; ;buttons_n_LEDs.c: 48:     _delay((unsigned long)((20)*(64000000/4000.0)));
 [e ( __delay (1 -> * -> -> 20 `i `d / -> -> 64000000 `l `d .4000.0 `ul ]
-"49
-[; ;buttons_n_LEDs.c: 49:     LATGbits.LATG1 = 0;
-[e = . . _LATGbits 0 1 -> -> 0 `i `uc ]
 "50
-[; ;buttons_n_LEDs.c: 50:     _delay((unsigned long)((20)*(64000000/4000.0)));
+[; ;buttons_n_LEDs.c: 50:     LATAbits.LATA4 = 1;
+[e = . . _LATAbits 0 4 -> -> 1 `i `uc ]
+"51
+[; ;buttons_n_LEDs.c: 51:     _delay((unsigned long)((20)*(64000000/4000.0)));
 [e ( __delay (1 -> * -> -> 20 `i `d / -> -> 64000000 `l `d .4000.0 `ul ]
 "52
-[; ;buttons_n_LEDs.c: 52:     LATAbits.LATA4 = 1;
-[e = . . _LATAbits 0 4 -> -> 1 `i `uc ]
+[; ;buttons_n_LEDs.c: 52:     LATAbits.LATA4 = 0;
+[e = . . _LATAbits 0 4 -> -> 0 `i `uc ]
 "53
 [; ;buttons_n_LEDs.c: 53:     _delay((unsigned long)((20)*(64000000/4000.0)));
 [e ( __delay (1 -> * -> -> 20 `i `d / -> -> 64000000 `l `d .4000.0 `ul ]
-"54
-[; ;buttons_n_LEDs.c: 54:     LATAbits.LATA4 = 0;
-[e = . . _LATAbits 0 4 -> -> 0 `i `uc ]
 "55
-[; ;buttons_n_LEDs.c: 55:     _delay((unsigned long)((20)*(64000000/4000.0)));
+[; ;buttons_n_LEDs.c: 55:     LATFbits.LATF7 = 1;
+[e = . . _LATFbits 0 7 -> -> 1 `i `uc ]
+"56
+[; ;buttons_n_LEDs.c: 56:     _delay((unsigned long)((20)*(64000000/4000.0)));
 [e ( __delay (1 -> * -> -> 20 `i `d / -> -> 64000000 `l `d .4000.0 `ul ]
 "57
-[; ;buttons_n_LEDs.c: 57:     LATFbits.LATF7 = 1;
-[e = . . _LATFbits 0 7 -> -> 1 `i `uc ]
+[; ;buttons_n_LEDs.c: 57:     LATFbits.LATF7 = 0;
+[e = . . _LATFbits 0 7 -> -> 0 `i `uc ]
 "58
 [; ;buttons_n_LEDs.c: 58:     _delay((unsigned long)((20)*(64000000/4000.0)));
 [e ( __delay (1 -> * -> -> 20 `i `d / -> -> 64000000 `l `d .4000.0 `ul ]
 "59
-[; ;buttons_n_LEDs.c: 59:     LATFbits.LATF7 = 0;
-[e = . . _LATFbits 0 7 -> -> 0 `i `uc ]
-"60
-[; ;buttons_n_LEDs.c: 60:     _delay((unsigned long)((20)*(64000000/4000.0)));
-[e ( __delay (1 -> * -> -> 20 `i `d / -> -> 64000000 `l `d .4000.0 `ul ]
-"61
-[; ;buttons_n_LEDs.c: 61: }
+[; ;buttons_n_LEDs.c: 59: }
 [e :UE 2022 ]
 }
-"67
-[; ;buttons_n_LEDs.c: 67: void colourclickLEDs_C(unsigned char tog) {
+"65
+[; ;buttons_n_LEDs.c: 65: void colourclickLEDs_C(unsigned char tog) {
 [v _colourclickLEDs_C `(v ~T0 @X0 1 ef1`uc ]
 {
 [e :U _colourclickLEDs_C ]
 [v _tog `uc ~T0 @X0 1 r1 ]
 [f ]
-"68
-[; ;buttons_n_LEDs.c: 68:     LATGbits.LATG1 = tog;
+"66
+[; ;buttons_n_LEDs.c: 66:     LATGbits.LATG1 = tog;
 [e = . . _LATGbits 0 1 _tog ]
-"69
-[; ;buttons_n_LEDs.c: 69:     LATAbits.LATA4 = tog;
+"67
+[; ;buttons_n_LEDs.c: 67:     LATAbits.LATA4 = tog;
 [e = . . _LATAbits 0 4 _tog ]
-"70
-[; ;buttons_n_LEDs.c: 70:     LATFbits.LATF7 = tog;
+"68
+[; ;buttons_n_LEDs.c: 68:     LATFbits.LATF7 = tog;
 [e = . . _LATFbits 0 7 _tog ]
-"71
-[; ;buttons_n_LEDs.c: 71: }
+"69
+[; ;buttons_n_LEDs.c: 69: }
 [e :UE 2023 ]
 }
-"77
-[; ;buttons_n_LEDs.c: 77: void buggyLEDs_init(void) {
+"75
+[; ;buttons_n_LEDs.c: 75: void buggyLEDs_init(void) {
 [v _buggyLEDs_init `(v ~T0 @X0 1 ef ]
 {
 [e :U _buggyLEDs_init ]
 [f ]
-"78
-[; ;buttons_n_LEDs.c: 78:     TRISHbits.TRISH1 = 0;
-[e = . . _TRISHbits 0 1 -> -> 0 `i `uc ]
-"79
-[; ;buttons_n_LEDs.c: 79:     TRISDbits.TRISD3 = 0;
-[e = . . _TRISDbits 0 3 -> -> 0 `i `uc ]
-"80
-[; ;buttons_n_LEDs.c: 80:     TRISDbits.TRISD4 = 0;
-[e = . . _TRISDbits 0 4 -> -> 0 `i `uc ]
-"81
-[; ;buttons_n_LEDs.c: 81:     TRISFbits.TRISF0 = 0;
-[e = . . _TRISFbits 0 0 -> -> 0 `i `uc ]
-"82
-[; ;buttons_n_LEDs.c: 82:     TRISHbits.TRISH0 = 0;
-[e = . . _TRISHbits 0 0 -> -> 0 `i `uc ]
-"84
-[; ;buttons_n_LEDs.c: 84:     LATHbits.LATH1 = 0;
+"76
+[; ;buttons_n_LEDs.c: 76:     LATHbits.LATH1 = 0;
 [e = . . _LATHbits 0 1 -> -> 0 `i `uc ]
-"85
-[; ;buttons_n_LEDs.c: 85:     LATDbits.LATD3 = 0;
+"77
+[; ;buttons_n_LEDs.c: 77:     LATDbits.LATD3 = 0;
 [e = . . _LATDbits 0 3 -> -> 0 `i `uc ]
-"86
-[; ;buttons_n_LEDs.c: 86:     LATDbits.LATD4 = 0;
+"78
+[; ;buttons_n_LEDs.c: 78:     LATDbits.LATD4 = 0;
 [e = . . _LATDbits 0 4 -> -> 0 `i `uc ]
-"87
-[; ;buttons_n_LEDs.c: 87:     LATFbits.LATF0 = 0;
+"79
+[; ;buttons_n_LEDs.c: 79:     LATFbits.LATF0 = 0;
 [e = . . _LATFbits 0 0 -> -> 0 `i `uc ]
-"88
-[; ;buttons_n_LEDs.c: 88:     LATHbits.LATH0 = 0;
+"80
+[; ;buttons_n_LEDs.c: 80:     LATHbits.LATH0 = 0;
 [e = . . _LATHbits 0 0 -> -> 0 `i `uc ]
-"89
-[; ;buttons_n_LEDs.c: 89: }
+"82
+[; ;buttons_n_LEDs.c: 82:     TRISHbits.TRISH1 = 0;
+[e = . . _TRISHbits 0 1 -> -> 0 `i `uc ]
+"83
+[; ;buttons_n_LEDs.c: 83:     TRISDbits.TRISD3 = 0;
+[e = . . _TRISDbits 0 3 -> -> 0 `i `uc ]
+"84
+[; ;buttons_n_LEDs.c: 84:     TRISDbits.TRISD4 = 0;
+[e = . . _TRISDbits 0 4 -> -> 0 `i `uc ]
+"85
+[; ;buttons_n_LEDs.c: 85:     TRISFbits.TRISF0 = 0;
+[e = . . _TRISFbits 0 0 -> -> 0 `i `uc ]
+"86
+[; ;buttons_n_LEDs.c: 86:     TRISHbits.TRISH0 = 0;
+[e = . . _TRISHbits 0 0 -> -> 0 `i `uc ]
+"87
+[; ;buttons_n_LEDs.c: 87: }
 [e :UE 2024 ]
 }

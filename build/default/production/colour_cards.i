@@ -24481,7 +24481,7 @@ void timer0_init(void);
 
 
 
-volatile unsigned int tmp;
+volatile unsigned int timer;
 volatile unsigned int instr[20];
 volatile unsigned int dur[20];
 volatile unsigned char instr_counter;
@@ -24514,14 +24514,11 @@ void colourcards_normaliseRGBC(RGBC_val *abs, RGB_rel *rel);
 # 3 "colour_cards.c" 2
 # 13 "colour_cards.c"
 void colourcards_readRGBC(RGBC_val *abs, DC_motor *mL, DC_motor *mR) {
-
     PIE0bits.INT1IE = 0;
-
 
     RGB_rel rel;
     colourclick_readRGBC(abs);
     colourcards_normaliseRGBC(abs, &rel);
-
 
 
     if ((rel.R>0.54) && (rel.G<0.245) && (rel.B<0.18)) {

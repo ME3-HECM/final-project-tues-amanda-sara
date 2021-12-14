@@ -275,6 +275,21 @@ Version 4.0 HI-TECH Software Intermediate Code
 "203 C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\pic18.h
 [v __delay `JF14184 ~T0 @X0 0 e ]
 [p i __delay ]
+"30630 C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\proc\pic18f67k40.h
+[; ;C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\proc\pic18f67k40.h: 30630:     struct {
+[s S1415 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S1415 . RF0 RF1 RF2 RF3 RF4 RF5 RF6 RF7 ]
+"30640
+[; ;C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\proc\pic18f67k40.h: 30640:     struct {
+[s S1416 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S1416 . . C2OUTF C1OUTF ]
+"30629
+[; ;C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\proc\pic18f67k40.h: 30629: typedef union {
+[u S1414 `S1415 1 `S1416 1 ]
+[n S1414 . . . ]
+"30646
+[; ;C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\proc\pic18f67k40.h: 30646: extern volatile PORTFbits_t PORTFbits __attribute__((address(0xF8E)));
+[v _PORTFbits `VS1414 ~T0 @X0 0 e@3982 ]
 "42 ./DC_motors.h
 [; ;./DC_motors.h: 42: void stop(DC_motor *mL, DC_motor *mR);
 [v _stop `(v ~T0 @X0 0 ef2`*S2019`*S2019 ]
@@ -318,22 +333,7 @@ Version 4.0 HI-TECH Software Intermediate Code
 "27 ./DC_motors.h
 [; ;./DC_motors.h: 27: extern volatile unsigned char dur_counter;
 [v _dur_counter `Vuc ~T0 @X0 0 e ]
-"30630 C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\proc\pic18f67k40.h
-[; ;C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\proc\pic18f67k40.h: 30630:     struct {
-[s S1415 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
-[n S1415 . RF0 RF1 RF2 RF3 RF4 RF5 RF6 RF7 ]
-"30640
-[; ;C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\proc\pic18f67k40.h: 30640:     struct {
-[s S1416 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
-[n S1416 . . C2OUTF C1OUTF ]
-"30629
-[; ;C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\proc\pic18f67k40.h: 30629: typedef union {
-[u S1414 `S1415 1 `S1416 1 ]
-[n S1414 . . . ]
-"30646
-[; ;C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\proc\pic18f67k40.h: 30646: extern volatile PORTFbits_t PORTFbits __attribute__((address(0xF8E)));
-[v _PORTFbits `VS1414 ~T0 @X0 0 e@3982 ]
-"48 ./DC_motors.h
+"48
 [; ;./DC_motors.h: 48: void adjdelay(unsigned char mode);
 [v _adjdelay `(v ~T0 @X0 0 ef1`uc ]
 "54 C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\proc\pic18f67k40.h
@@ -2374,307 +2374,298 @@ Version 4.0 HI-TECH Software Intermediate Code
 "38
 [; ;DC_motors.c: 38:     RC7PPS=0x0B;
 [e = _RC7PPS -> -> 11 `i `uc ]
-"41
-[; ;DC_motors.c: 41:     clicker2buttons_init();
+"40
+[; ;DC_motors.c: 40:     clicker2buttons_init();
 [e ( _clicker2buttons_init ..  ]
-"42
-[; ;DC_motors.c: 42:     clicker2LEDs_init();
+"41
+[; ;DC_motors.c: 41:     clicker2LEDs_init();
 [e ( _clicker2LEDs_init ..  ]
-"43
-[; ;DC_motors.c: 43:     buggyLEDs_init();
+"42
+[; ;DC_motors.c: 42:     buggyLEDs_init();
 [e ( _buggyLEDs_init ..  ]
-"44
-[; ;DC_motors.c: 44: }
+"43
+[; ;DC_motors.c: 43: }
 [e :UE 2020 ]
 }
-"50
-[; ;DC_motors.c: 50: void DCmotors_setPWM(DC_motor *m) {
+"49
+[; ;DC_motors.c: 49: void DCmotors_setPWM(DC_motor *m) {
 [v _DCmotors_setPWM `(v ~T0 @X0 1 ef1`*S2019 ]
 {
 [e :U _DCmotors_setPWM ]
 [v _m `*S2019 ~T0 @X0 1 r1 ]
 [f ]
-"51
-[; ;DC_motors.c: 51:  int PWMduty;
+"50
+[; ;DC_motors.c: 50:  int PWMduty;
 [v _PWMduty `i ~T0 @X0 1 a ]
-"53
-[; ;DC_motors.c: 53:  if (m->direction){
+"52
+[; ;DC_motors.c: 52:  if (m->direction){PWMduty = (m->PWMperiod)-((int)(m->power)*(m->PWMperiod))/100;}
 [e $ ! != -> . *U _m 1 `i -> 0 `i 2022  ]
 {
-"54
-[; ;DC_motors.c: 54:   PWMduty = (m->PWMperiod) - ((int)(m->power)*(m->PWMperiod))/100;
 [e = _PWMduty - . *U _m 5 / * -> . *U _m 0 `i . *U _m 5 -> 100 `i ]
-"55
-[; ;DC_motors.c: 55:  } else {
 }
 [e $U 2023  ]
+"53
+[; ;DC_motors.c: 53:  else {PWMduty=((int)(m->power)*(m->PWMperiod))/100;}
 [e :U 2022 ]
 {
-"56
-[; ;DC_motors.c: 56:   PWMduty=((int)(m->power)*(m->PWMperiod))/100;
 [e = _PWMduty / * -> . *U _m 0 `i . *U _m 5 -> 100 `i ]
-"57
-[; ;DC_motors.c: 57:  }
 }
 [e :U 2023 ]
-"59
-[; ;DC_motors.c: 59:  *(m->dutyHighByte) = (unsigned char)(PWMduty);
+"55
+[; ;DC_motors.c: 55:  *(m->dutyHighByte) = (unsigned char)(PWMduty);
 [e = *U . *U _m 2 -> _PWMduty `uc ]
-"61
-[; ;DC_motors.c: 61:  if (m->direction){
+"57
+[; ;DC_motors.c: 57:  if (m->direction){*(m->dir_LAT) = (unsigned char)(*(m->dir_LAT) | (1<<(m->dir_pin)));}
 [e $ ! != -> . *U _m 1 `i -> 0 `i 2024  ]
 {
-"62
-[; ;DC_motors.c: 62:   *(m->dir_LAT) = (unsigned char)(*(m->dir_LAT) | (1<<(m->dir_pin)));
 [e = *U . *U _m 3 -> | -> *U . *U _m 3 `i << -> 1 `i -> . *U _m 4 `i `uc ]
-"63
-[; ;DC_motors.c: 63:  } else {
 }
 [e $U 2025  ]
+"58
+[; ;DC_motors.c: 58:  else {*(m->dir_LAT) = (unsigned char)(*(m->dir_LAT) & (~(1<<(m->dir_pin))));}
 [e :U 2024 ]
 {
-"64
-[; ;DC_motors.c: 64:   *(m->dir_LAT) = (unsigned char)(*(m->dir_LAT) & (~(1<<(m->dir_pin))));
 [e = *U . *U _m 3 -> & -> *U . *U _m 3 `i ~ << -> 1 `i -> . *U _m 4 `i `uc ]
-"65
-[; ;DC_motors.c: 65:  }
 }
 [e :U 2025 ]
-"66
-[; ;DC_motors.c: 66: }
+"59
+[; ;DC_motors.c: 59: }
 [e :UE 2021 ]
 }
-"72
-[; ;DC_motors.c: 72: void checkbatterylevel(void) {
+"65
+[; ;DC_motors.c: 65: void checkbatterylevel(void) {
 [v _checkbatterylevel `(v ~T0 @X0 1 ef ]
 {
 [e :U _checkbatterylevel ]
 [f ]
-"73
-[; ;DC_motors.c: 73:     unsigned char batterylevel;
+"66
+[; ;DC_motors.c: 66:     unsigned char batterylevel;
 [v _batterylevel `uc ~T0 @X0 1 a ]
-"74
-[; ;DC_motors.c: 74:     batterylevel = ADC_getval();
+"67
+[; ;DC_motors.c: 67:     batterylevel = ADC_getval();
 [e = _batterylevel ( _ADC_getval ..  ]
-"75
-[; ;DC_motors.c: 75:     if (batterylevel<50) {
+"68
+[; ;DC_motors.c: 68:     if (batterylevel<50) {
 [e $ ! < -> _batterylevel `i -> 50 `i 2027  ]
 {
-"76
-[; ;DC_motors.c: 76:         while(1) {
+"69
+[; ;DC_motors.c: 69:         while(!PORTFbits.RF2 && !PORTFbits.RF3) {
+[e $U 2028  ]
 [e :U 2029 ]
 {
-"77
-[; ;DC_motors.c: 77:             LATDbits.LATD7 = !LATDbits.LATD7;
+"70
+[; ;DC_motors.c: 70:             LATDbits.LATD7 = !LATDbits.LATD7;
 [e = . . _LATDbits 0 7 -> -> ! != -> . . _LATDbits 0 7 `i -> 0 `i `i `uc ]
-"78
-[; ;DC_motors.c: 78:             LATHbits.LATH3 = !LATHbits.LATH3;
+"71
+[; ;DC_motors.c: 71:             LATHbits.LATH3 = !LATHbits.LATH3;
 [e = . . _LATHbits 0 3 -> -> ! != -> . . _LATHbits 0 3 `i -> 0 `i `i `uc ]
-"79
-[; ;DC_motors.c: 79:             LATDbits.LATD3 = !LATDbits.LATD3;
+"72
+[; ;DC_motors.c: 72:             LATDbits.LATD3 = !LATDbits.LATD3;
 [e = . . _LATDbits 0 3 -> -> ! != -> . . _LATDbits 0 3 `i -> 0 `i `i `uc ]
-"80
-[; ;DC_motors.c: 80:             LATDbits.LATD4 = !LATDbits.LATD4;
+"73
+[; ;DC_motors.c: 73:             LATDbits.LATD4 = !LATDbits.LATD4;
 [e = . . _LATDbits 0 4 -> -> ! != -> . . _LATDbits 0 4 `i -> 0 `i `i `uc ]
-"81
-[; ;DC_motors.c: 81:             LATFbits.LATF0 = !LATFbits.LATF0;
+"74
+[; ;DC_motors.c: 74:             LATFbits.LATF0 = !LATFbits.LATF0;
 [e = . . _LATFbits 0 0 -> -> ! != -> . . _LATFbits 0 0 `i -> 0 `i `i `uc ]
-"82
-[; ;DC_motors.c: 82:             LATHbits.LATH0 = !LATHbits.LATH0;
+"75
+[; ;DC_motors.c: 75:             LATHbits.LATH0 = !LATHbits.LATH0;
 [e = . . _LATHbits 0 0 -> -> ! != -> . . _LATHbits 0 0 `i -> 0 `i `i `uc ]
-"83
-[; ;DC_motors.c: 83:             colourclickLEDs_RGB();
+"76
+[; ;DC_motors.c: 76:             colourclickLEDs_RGB();
 [e ( _colourclickLEDs_RGB ..  ]
-"84
-[; ;DC_motors.c: 84:             _delay((unsigned long)((5)*(64000000/4000.0)));
+"77
+[; ;DC_motors.c: 77:             _delay((unsigned long)((5)*(64000000/4000.0)));
 [e ( __delay (1 -> * -> -> 5 `i `d / -> -> 64000000 `l `d .4000.0 `ul ]
-"85
-[; ;DC_motors.c: 85:         }
+"78
+[; ;DC_motors.c: 78:         }
 }
 [e :U 2028 ]
-[e $U 2029  ]
+"69
+[; ;DC_motors.c: 69:         while(!PORTFbits.RF2 && !PORTFbits.RF3) {
+[e $ && ! != -> . . _PORTFbits 0 2 `i -> 0 `i ! != -> . . _PORTFbits 0 3 `i -> 0 `i 2029  ]
 [e :U 2030 ]
-"86
-[; ;DC_motors.c: 86:     }
+"79
+[; ;DC_motors.c: 79:     }
 }
 [e :U 2027 ]
-"87
-[; ;DC_motors.c: 87: }
+"80
+[; ;DC_motors.c: 80: }
 [e :UE 2026 ]
 }
-"93
-[; ;DC_motors.c: 93: void forward(DC_motor *mL, DC_motor *mR) {
+"86
+[; ;DC_motors.c: 86: void forward(DC_motor *mL, DC_motor *mR) {
 [v _forward `(v ~T0 @X0 1 ef2`*S2019`*S2019 ]
 {
 [e :U _forward ]
 [v _mL `*S2019 ~T0 @X0 1 r1 ]
 [v _mR `*S2019 ~T0 @X0 1 r2 ]
 [f ]
-"94
-[; ;DC_motors.c: 94:     mL->direction = 1;
+"87
+[; ;DC_motors.c: 87:     mL->direction = 1;
 [e = . *U _mL 1 -> -> 1 `i `uc ]
-"95
-[; ;DC_motors.c: 95:     mR->direction = 1;
+"88
+[; ;DC_motors.c: 88:     mR->direction = 1;
 [e = . *U _mR 1 -> -> 1 `i `uc ]
-"98
-[; ;DC_motors.c: 98:     while((mL->power < 20) && (mR->power < 20)){
+"90
+[; ;DC_motors.c: 90:     while((mL->power < 20) && (mR->power < 20)){
 [e $U 2032  ]
 [e :U 2033 ]
 {
-"99
-[; ;DC_motors.c: 99:         mL->power += 10;
+"91
+[; ;DC_motors.c: 91:         mL->power += 10;
 [e =+ . *U _mL 0 -> -> 10 `i `uc ]
-"100
-[; ;DC_motors.c: 100:         mR->power += 10;
+"92
+[; ;DC_motors.c: 92:         mR->power += 10;
 [e =+ . *U _mR 0 -> -> 10 `i `uc ]
-"102
-[; ;DC_motors.c: 102:         DCmotors_setPWM(mL);
+"94
+[; ;DC_motors.c: 94:         DCmotors_setPWM(mL);
 [e ( _DCmotors_setPWM (1 _mL ]
-"103
-[; ;DC_motors.c: 103:         DCmotors_setPWM(mR);
+"95
+[; ;DC_motors.c: 95:         DCmotors_setPWM(mR);
 [e ( _DCmotors_setPWM (1 _mR ]
-"104
-[; ;DC_motors.c: 104:         _delay((unsigned long)((50)*(64000000/4000000.0)));
+"96
+[; ;DC_motors.c: 96:         _delay((unsigned long)((50)*(64000000/4000000.0)));
 [e ( __delay (1 -> * -> -> 50 `i `d / -> -> 64000000 `l `d .4000000.0 `ul ]
-"105
-[; ;DC_motors.c: 105:     }
+"97
+[; ;DC_motors.c: 97:     }
 }
 [e :U 2032 ]
-"98
-[; ;DC_motors.c: 98:     while((mL->power < 20) && (mR->power < 20)){
+"90
+[; ;DC_motors.c: 90:     while((mL->power < 20) && (mR->power < 20)){
 [e $ && < -> . *U _mL 0 `i -> 20 `i < -> . *U _mR 0 `i -> 20 `i 2033  ]
 [e :U 2034 ]
-"106
-[; ;DC_motors.c: 106: }
+"98
+[; ;DC_motors.c: 98: }
 [e :UE 2031 ]
 }
-"112
-[; ;DC_motors.c: 112: void reverse(DC_motor *mL, DC_motor *mR) {
+"104
+[; ;DC_motors.c: 104: void reverse(DC_motor *mL, DC_motor *mR) {
 [v _reverse `(v ~T0 @X0 1 ef2`*S2019`*S2019 ]
 {
 [e :U _reverse ]
 [v _mL `*S2019 ~T0 @X0 1 r1 ]
 [v _mR `*S2019 ~T0 @X0 1 r2 ]
 [f ]
-"114
-[; ;DC_motors.c: 114:     mL->direction = 0;
+"106
+[; ;DC_motors.c: 106:     mL->direction = 0;
 [e = . *U _mL 1 -> -> 0 `i `uc ]
-"115
-[; ;DC_motors.c: 115:     mR->direction = 0;
+"107
+[; ;DC_motors.c: 107:     mR->direction = 0;
 [e = . *U _mR 1 -> -> 0 `i `uc ]
-"118
-[; ;DC_motors.c: 118:     while((mL->power < 50) && (mR->power < 50)){
+"109
+[; ;DC_motors.c: 109:     while((mL->power < 50) && (mR->power < 50)){
 [e $U 2036  ]
 [e :U 2037 ]
 {
-"119
-[; ;DC_motors.c: 119:         mL->power += 10;
+"110
+[; ;DC_motors.c: 110:         mL->power += 10;
 [e =+ . *U _mL 0 -> -> 10 `i `uc ]
-"120
-[; ;DC_motors.c: 120:         mR->power += 10;
+"111
+[; ;DC_motors.c: 111:         mR->power += 10;
 [e =+ . *U _mR 0 -> -> 10 `i `uc ]
-"122
-[; ;DC_motors.c: 122:         DCmotors_setPWM(mL);
+"113
+[; ;DC_motors.c: 113:         DCmotors_setPWM(mL);
 [e ( _DCmotors_setPWM (1 _mL ]
-"123
-[; ;DC_motors.c: 123:         DCmotors_setPWM(mR);
+"114
+[; ;DC_motors.c: 114:         DCmotors_setPWM(mR);
 [e ( _DCmotors_setPWM (1 _mR ]
-"124
-[; ;DC_motors.c: 124:         _delay((unsigned long)((50)*(64000000/4000000.0)));
+"115
+[; ;DC_motors.c: 115:         _delay((unsigned long)((50)*(64000000/4000000.0)));
 [e ( __delay (1 -> * -> -> 50 `i `d / -> -> 64000000 `l `d .4000000.0 `ul ]
-"125
-[; ;DC_motors.c: 125:     }
+"116
+[; ;DC_motors.c: 116:     }
 }
 [e :U 2036 ]
-"118
-[; ;DC_motors.c: 118:     while((mL->power < 50) && (mR->power < 50)){
+"109
+[; ;DC_motors.c: 109:     while((mL->power < 50) && (mR->power < 50)){
 [e $ && < -> . *U _mL 0 `i -> 50 `i < -> . *U _mR 0 `i -> 50 `i 2037  ]
 [e :U 2038 ]
-"126
-[; ;DC_motors.c: 126: }
+"117
+[; ;DC_motors.c: 117: }
 [e :UE 2035 ]
 }
-"132
-[; ;DC_motors.c: 132: void clearance(DC_motor *mL, DC_motor *mR) {
+"123
+[; ;DC_motors.c: 123: void clearance(DC_motor *mL, DC_motor *mR) {
 [v _clearance `(v ~T0 @X0 1 ef2`*S2019`*S2019 ]
 {
 [e :U _clearance ]
 [v _mL `*S2019 ~T0 @X0 1 r1 ]
 [v _mR `*S2019 ~T0 @X0 1 r2 ]
 [f ]
-"133
-[; ;DC_motors.c: 133:     LATDbits.LATD3 = 0;
+"124
+[; ;DC_motors.c: 124:     LATDbits.LATD3 = 0;
 [e = . . _LATDbits 0 3 -> -> 0 `i `uc ]
-"134
-[; ;DC_motors.c: 134:     reverse(mL, mR);
+"125
+[; ;DC_motors.c: 125:     reverse(mL, mR);
 [e ( _reverse (2 , _mL _mR ]
-"135
-[; ;DC_motors.c: 135:     _delay((unsigned long)((350)*(64000000/4000.0)));
+"126
+[; ;DC_motors.c: 126:     _delay((unsigned long)((350)*(64000000/4000.0)));
 [e ( __delay (1 -> * -> -> 350 `i `d / -> -> 64000000 `l `d .4000.0 `ul ]
-"136
-[; ;DC_motors.c: 136:     stop(mL, mR);
+"127
+[; ;DC_motors.c: 127:     stop(mL, mR);
 [e ( _stop (2 , _mL _mR ]
-"137
-[; ;DC_motors.c: 137:     _delay((unsigned long)((1000)*(64000000/4000.0)));
+"128
+[; ;DC_motors.c: 128:     _delay((unsigned long)((1000)*(64000000/4000.0)));
 [e ( __delay (1 -> * -> -> 1000 `i `d / -> -> 64000000 `l `d .4000.0 `ul ]
-"138
-[; ;DC_motors.c: 138:     LATDbits.LATD3 = 0;
+"129
+[; ;DC_motors.c: 129:     LATDbits.LATD3 = 0;
 [e = . . _LATDbits 0 3 -> -> 0 `i `uc ]
-"139
-[; ;DC_motors.c: 139: }
+"130
+[; ;DC_motors.c: 130: }
 [e :UE 2039 ]
 }
-"145
-[; ;DC_motors.c: 145: void stop(DC_motor *mL, DC_motor *mR) {
+"136
+[; ;DC_motors.c: 136: void stop(DC_motor *mL, DC_motor *mR) {
 [v _stop `(v ~T0 @X0 1 ef2`*S2019`*S2019 ]
 {
 [e :U _stop ]
 [v _mL `*S2019 ~T0 @X0 1 r1 ]
 [v _mR `*S2019 ~T0 @X0 1 r2 ]
 [f ]
-"146
-[; ;DC_motors.c: 146:     LATDbits.LATD4 = 1;
+"137
+[; ;DC_motors.c: 137:     LATDbits.LATD4 = 1;
 [e = . . _LATDbits 0 4 -> -> 1 `i `uc ]
-"148
-[; ;DC_motors.c: 148:     while((mL->power > 0) && (mR->power > 0)){
+"139
+[; ;DC_motors.c: 139:     while((mL->power > 0) && (mR->power > 0)){
 [e $U 2041  ]
 [e :U 2042 ]
 {
-"149
-[; ;DC_motors.c: 149:         mL->power -= 10;
+"140
+[; ;DC_motors.c: 140:         mL->power -= 10;
 [e =- . *U _mL 0 -> -> 10 `i `uc ]
-"150
-[; ;DC_motors.c: 150:         mR->power -= 10;
+"141
+[; ;DC_motors.c: 141:         mR->power -= 10;
 [e =- . *U _mR 0 -> -> 10 `i `uc ]
-"153
-[; ;DC_motors.c: 153:         DCmotors_setPWM(mL);
+"143
+[; ;DC_motors.c: 143:         DCmotors_setPWM(mL);
 [e ( _DCmotors_setPWM (1 _mL ]
-"154
-[; ;DC_motors.c: 154:         DCmotors_setPWM(mR);
+"144
+[; ;DC_motors.c: 144:         DCmotors_setPWM(mR);
 [e ( _DCmotors_setPWM (1 _mR ]
-"155
-[; ;DC_motors.c: 155:         _delay((unsigned long)((50)*(64000000/4000000.0)));
+"145
+[; ;DC_motors.c: 145:         _delay((unsigned long)((50)*(64000000/4000000.0)));
 [e ( __delay (1 -> * -> -> 50 `i `d / -> -> 64000000 `l `d .4000000.0 `ul ]
-"156
-[; ;DC_motors.c: 156:     }
+"146
+[; ;DC_motors.c: 146:     }
 }
 [e :U 2041 ]
-"148
-[; ;DC_motors.c: 148:     while((mL->power > 0) && (mR->power > 0)){
+"139
+[; ;DC_motors.c: 139:     while((mL->power > 0) && (mR->power > 0)){
 [e $ && > -> . *U _mL 0 `i -> 0 `i > -> . *U _mR 0 `i -> 0 `i 2042  ]
 [e :U 2043 ]
-"157
-[; ;DC_motors.c: 157:     _delay((unsigned long)((500)*(64000000/4000.0)));
+"147
+[; ;DC_motors.c: 147:     _delay((unsigned long)((500)*(64000000/4000.0)));
 [e ( __delay (1 -> * -> -> 500 `i `d / -> -> 64000000 `l `d .4000.0 `ul ]
-"158
-[; ;DC_motors.c: 158:     LATDbits.LATD4 = 0;
+"148
+[; ;DC_motors.c: 148:     LATDbits.LATD4 = 0;
 [e = . . _LATDbits 0 4 -> -> 0 `i `uc ]
-"159
-[; ;DC_motors.c: 159: }
+"149
+[; ;DC_motors.c: 149: }
 [e :UE 2040 ]
 }
-"165
-[; ;DC_motors.c: 165: void turnleft(DC_motor *mL, DC_motor *mR, unsigned int deg) {
+"155
+[; ;DC_motors.c: 155: void turnleft(DC_motor *mL, DC_motor *mR, unsigned int deg) {
 [v _turnleft `(v ~T0 @X0 1 ef3`*S2019`*S2019`ui ]
 {
 [e :U _turnleft ]
@@ -2682,60 +2673,60 @@ Version 4.0 HI-TECH Software Intermediate Code
 [v _mR `*S2019 ~T0 @X0 1 r2 ]
 [v _deg `ui ~T0 @X0 1 r3 ]
 [f ]
-"167
-[; ;DC_motors.c: 167:     double delay = ((deg*2.332)+31.506) * 360/turnleft_calangle;
+"157
+[; ;DC_motors.c: 157:     double delay = ((deg*2.332)+31.506) * 360/turnleft_calangle;
 [v _delay `d ~T0 @X0 1 a ]
 [e = _delay / * + * -> _deg `d .2.332 .31.506 -> -> 360 `i `d -> _turnleft_calangle `d ]
-"170
-[; ;DC_motors.c: 170:     mL->direction = 0;
+"160
+[; ;DC_motors.c: 160:     mL->direction = 0;
 [e = . *U _mL 1 -> -> 0 `i `uc ]
-"171
-[; ;DC_motors.c: 171:     mR->direction = 1;
+"161
+[; ;DC_motors.c: 161:     mR->direction = 1;
 [e = . *U _mR 1 -> -> 1 `i `uc ]
-"174
-[; ;DC_motors.c: 174:     LATFbits.LATF0 = 1;
+"164
+[; ;DC_motors.c: 164:     LATFbits.LATF0 = 1;
 [e = . . _LATFbits 0 0 -> -> 1 `i `uc ]
-"175
-[; ;DC_motors.c: 175:     while((mL->power < 70) || (mR->power < 70)){
+"165
+[; ;DC_motors.c: 165:     while((mL->power < 70) || (mR->power < 70)){
 [e $U 2045  ]
 [e :U 2046 ]
 {
-"177
-[; ;DC_motors.c: 177:         if (mL->power < 70) {mL->power += 10;}
+"167
+[; ;DC_motors.c: 167:         if (mL->power < 70) {mL->power += 10;}
 [e $ ! < -> . *U _mL 0 `i -> 70 `i 2048  ]
 {
 [e =+ . *U _mL 0 -> -> 10 `i `uc ]
 }
 [e :U 2048 ]
-"178
-[; ;DC_motors.c: 178:         if (mR->power < 70) {mR->power += 10;}
+"168
+[; ;DC_motors.c: 168:         if (mR->power < 70) {mR->power += 10;}
 [e $ ! < -> . *U _mR 0 `i -> 70 `i 2049  ]
 {
 [e =+ . *U _mR 0 -> -> 10 `i `uc ]
 }
 [e :U 2049 ]
-"181
-[; ;DC_motors.c: 181:         DCmotors_setPWM(mL);
+"171
+[; ;DC_motors.c: 171:         DCmotors_setPWM(mL);
 [e ( _DCmotors_setPWM (1 _mL ]
-"182
-[; ;DC_motors.c: 182:         DCmotors_setPWM(mR);
+"172
+[; ;DC_motors.c: 172:         DCmotors_setPWM(mR);
 [e ( _DCmotors_setPWM (1 _mR ]
-"183
-[; ;DC_motors.c: 183:         _delay((unsigned long)((50)*(64000000/4000000.0)));
+"173
+[; ;DC_motors.c: 173:         _delay((unsigned long)((50)*(64000000/4000000.0)));
 [e ( __delay (1 -> * -> -> 50 `i `d / -> -> 64000000 `l `d .4000000.0 `ul ]
-"184
-[; ;DC_motors.c: 184:     }
+"174
+[; ;DC_motors.c: 174:     }
 }
 [e :U 2045 ]
-"175
-[; ;DC_motors.c: 175:     while((mL->power < 70) || (mR->power < 70)){
+"165
+[; ;DC_motors.c: 165:     while((mL->power < 70) || (mR->power < 70)){
 [e $ || < -> . *U _mL 0 `i -> 70 `i < -> . *U _mR 0 `i -> 70 `i 2046  ]
 [e :U 2047 ]
-"186
-[; ;DC_motors.c: 186:     unsigned int i;
+"176
+[; ;DC_motors.c: 176:     unsigned int i;
 [v _i `ui ~T0 @X0 1 a ]
-"187
-[; ;DC_motors.c: 187:     for (i=0; i<delay; i++) {_delay((unsigned long)((1)*(64000000/4000.0)));}
+"177
+[; ;DC_motors.c: 177:     for (i=0; i<delay; i++) {_delay((unsigned long)((1)*(64000000/4000.0)));}
 {
 [e = _i -> -> 0 `i `ui ]
 [e $U 2053  ]
@@ -2748,15 +2739,15 @@ Version 4.0 HI-TECH Software Intermediate Code
 [e $ < -> _i `d _delay 2050  ]
 [e :U 2051 ]
 }
-"188
-[; ;DC_motors.c: 188:     LATFbits.LATF0 = 0;
+"178
+[; ;DC_motors.c: 178:     LATFbits.LATF0 = 0;
 [e = . . _LATFbits 0 0 -> -> 0 `i `uc ]
-"189
-[; ;DC_motors.c: 189: }
+"179
+[; ;DC_motors.c: 179: }
 [e :UE 2044 ]
 }
-"195
-[; ;DC_motors.c: 195: void turnright(DC_motor *mL, DC_motor *mR, unsigned int deg) {
+"185
+[; ;DC_motors.c: 185: void turnright(DC_motor *mL, DC_motor *mR, unsigned int deg) {
 [v _turnright `(v ~T0 @X0 1 ef3`*S2019`*S2019`ui ]
 {
 [e :U _turnright ]
@@ -2764,60 +2755,60 @@ Version 4.0 HI-TECH Software Intermediate Code
 [v _mR `*S2019 ~T0 @X0 1 r2 ]
 [v _deg `ui ~T0 @X0 1 r3 ]
 [f ]
-"197
-[; ;DC_motors.c: 197:     double delay = ((deg*2.0303)+62.964) * 360/turnright_calangle;
+"187
+[; ;DC_motors.c: 187:     double delay = ((deg*2.0303)+62.964) * 360/turnright_calangle;
 [v _delay `d ~T0 @X0 1 a ]
 [e = _delay / * + * -> _deg `d .2.0303 .62.964 -> -> 360 `i `d -> _turnright_calangle `d ]
-"200
-[; ;DC_motors.c: 200:     mL->direction = 1;
+"190
+[; ;DC_motors.c: 190:     mL->direction = 1;
 [e = . *U _mL 1 -> -> 1 `i `uc ]
-"201
-[; ;DC_motors.c: 201:     mR->direction = 0;
+"191
+[; ;DC_motors.c: 191:     mR->direction = 0;
 [e = . *U _mR 1 -> -> 0 `i `uc ]
-"204
-[; ;DC_motors.c: 204:     LATHbits.LATH0 = 1;
+"194
+[; ;DC_motors.c: 194:     LATHbits.LATH0 = 1;
 [e = . . _LATHbits 0 0 -> -> 1 `i `uc ]
-"205
-[; ;DC_motors.c: 205:     while((mL->power < 70) || (mR->power < 70)){
+"195
+[; ;DC_motors.c: 195:     while((mL->power < 70) || (mR->power < 70)){
 [e $U 2055  ]
 [e :U 2056 ]
 {
-"207
-[; ;DC_motors.c: 207:         if (mL->power < 70) {mL->power += 10;}
+"197
+[; ;DC_motors.c: 197:         if (mL->power < 70) {mL->power += 10;}
 [e $ ! < -> . *U _mL 0 `i -> 70 `i 2058  ]
 {
 [e =+ . *U _mL 0 -> -> 10 `i `uc ]
 }
 [e :U 2058 ]
-"208
-[; ;DC_motors.c: 208:         if (mR->power < 70) {mR->power += 10;}
+"198
+[; ;DC_motors.c: 198:         if (mR->power < 70) {mR->power += 10;}
 [e $ ! < -> . *U _mR 0 `i -> 70 `i 2059  ]
 {
 [e =+ . *U _mR 0 -> -> 10 `i `uc ]
 }
 [e :U 2059 ]
-"211
-[; ;DC_motors.c: 211:         DCmotors_setPWM(mL);
+"201
+[; ;DC_motors.c: 201:         DCmotors_setPWM(mL);
 [e ( _DCmotors_setPWM (1 _mL ]
-"212
-[; ;DC_motors.c: 212:         DCmotors_setPWM(mR);
+"202
+[; ;DC_motors.c: 202:         DCmotors_setPWM(mR);
 [e ( _DCmotors_setPWM (1 _mR ]
-"213
-[; ;DC_motors.c: 213:         _delay((unsigned long)((50)*(64000000/4000000.0)));
+"203
+[; ;DC_motors.c: 203:         _delay((unsigned long)((50)*(64000000/4000000.0)));
 [e ( __delay (1 -> * -> -> 50 `i `d / -> -> 64000000 `l `d .4000000.0 `ul ]
-"214
-[; ;DC_motors.c: 214:     }
+"204
+[; ;DC_motors.c: 204:     }
 }
 [e :U 2055 ]
-"205
-[; ;DC_motors.c: 205:     while((mL->power < 70) || (mR->power < 70)){
+"195
+[; ;DC_motors.c: 195:     while((mL->power < 70) || (mR->power < 70)){
 [e $ || < -> . *U _mL 0 `i -> 70 `i < -> . *U _mR 0 `i -> 70 `i 2056  ]
 [e :U 2057 ]
-"216
-[; ;DC_motors.c: 216:     unsigned int i;
+"206
+[; ;DC_motors.c: 206:     unsigned int i;
 [v _i `ui ~T0 @X0 1 a ]
-"217
-[; ;DC_motors.c: 217:     for (i=0; i<delay; i++) {_delay((unsigned long)((1)*(64000000/4000.0)));}
+"207
+[; ;DC_motors.c: 207:     for (i=0; i<delay; i++) {_delay((unsigned long)((1)*(64000000/4000.0)));}
 {
 [e = _i -> -> 0 `i `ui ]
 [e $U 2063  ]
@@ -2830,15 +2821,15 @@ Version 4.0 HI-TECH Software Intermediate Code
 [e $ < -> _i `d _delay 2060  ]
 [e :U 2061 ]
 }
-"219
-[; ;DC_motors.c: 219:     LATHbits.LATH0 = 0;
+"209
+[; ;DC_motors.c: 209:     LATHbits.LATH0 = 0;
 [e = . . _LATHbits 0 0 -> -> 0 `i `uc ]
-"220
-[; ;DC_motors.c: 220: }
+"210
+[; ;DC_motors.c: 210: }
 [e :UE 2054 ]
 }
-"226
-[; ;DC_motors.c: 226: void instructions(DC_motor *mL, DC_motor *mR, unsigned char num) {
+"216
+[; ;DC_motors.c: 216: void instructions(DC_motor *mL, DC_motor *mR, unsigned char num) {
 [v _instructions `(v ~T0 @X0 1 ef3`*S2019`*S2019`uc ]
 {
 [e :U _instructions ]
@@ -2846,152 +2837,140 @@ Version 4.0 HI-TECH Software Intermediate Code
 [v _mR `*S2019 ~T0 @X0 1 r2 ]
 [v _num `uc ~T0 @X0 1 r3 ]
 [f ]
-"227
-[; ;DC_motors.c: 227:     if (returnhome_flag==0) {
+"217
+[; ;DC_motors.c: 217:     if (returnhome_flag==0) {
 [e $ ! == -> _returnhome_flag `i -> 0 `i 2065  ]
 {
-"228
-[; ;DC_motors.c: 228:         unknowncard_flag = 0;
+"218
+[; ;DC_motors.c: 218:         clearance(mL, mR);
+[e ( _clearance (2 , _mL _mR ]
+"219
+[; ;DC_motors.c: 219:         unknowncard_flag = 0;
 [e = _unknowncard_flag -> -> 0 `i `uc ]
-"229
-[; ;DC_motors.c: 229:         instr[instr_counter] = num;
+"220
+[; ;DC_motors.c: 220:         instr[instr_counter] = num;
 [e = *U + &U _instr * -> _instr_counter `ux -> -> # *U &U _instr `ui `ux -> _num `ui ]
-"230
-[; ;DC_motors.c: 230:         instr_counter++;
+"221
+[; ;DC_motors.c: 221:         instr_counter++;
 [e ++ _instr_counter -> -> 1 `i `Vuc ]
-"231
-[; ;DC_motors.c: 231:     }
+"222
+[; ;DC_motors.c: 222:     }
 }
 [e :U 2065 ]
-"233
-[; ;DC_motors.c: 233:     if (num==1) {
+"224
+[; ;DC_motors.c: 224:     if (num==1) {
 [e $ ! == -> _num `i -> 1 `i 2066  ]
 {
-"235
-[; ;DC_motors.c: 235:         clearance(mL, mR);
-[e ( _clearance (2 , _mL _mR ]
-"236
-[; ;DC_motors.c: 236:         turnright(mL, mR, 90);
+"226
+[; ;DC_motors.c: 226:         turnright(mL, mR, 90);
 [e ( _turnright (3 , , _mL _mR -> -> 90 `i `ui ]
-"237
-[; ;DC_motors.c: 237:         stop(mL, mR);
+"227
+[; ;DC_motors.c: 227:         stop(mL, mR);
 [e ( _stop (2 , _mL _mR ]
-"238
-[; ;DC_motors.c: 238:     } else if (num==2) {
+"228
+[; ;DC_motors.c: 228:     } else if (num==2) {
 }
 [e $U 2067  ]
 [e :U 2066 ]
 [e $ ! == -> _num `i -> 2 `i 2068  ]
 {
-"240
-[; ;DC_motors.c: 240:         clearance(mL, mR);
-[e ( _clearance (2 , _mL _mR ]
-"241
-[; ;DC_motors.c: 241:         turnleft(mL, mR, 90);
+"230
+[; ;DC_motors.c: 230:         turnleft(mL, mR, 90);
 [e ( _turnleft (3 , , _mL _mR -> -> 90 `i `ui ]
-"242
-[; ;DC_motors.c: 242:         stop(mL, mR);
+"231
+[; ;DC_motors.c: 231:         stop(mL, mR);
 [e ( _stop (2 , _mL _mR ]
-"243
-[; ;DC_motors.c: 243:     } else if (num==3) {
+"232
+[; ;DC_motors.c: 232:     } else if (num==3) {
 }
 [e $U 2069  ]
 [e :U 2068 ]
 [e $ ! == -> _num `i -> 3 `i 2070  ]
 {
-"245
-[; ;DC_motors.c: 245:         clearance(mL, mR);
-[e ( _clearance (2 , _mL _mR ]
-"246
-[; ;DC_motors.c: 246:         turnright(mL, mR, 180);
+"234
+[; ;DC_motors.c: 234:         turnright(mL, mR, 180);
 [e ( _turnright (3 , , _mL _mR -> -> 180 `i `ui ]
-"247
-[; ;DC_motors.c: 247:         stop(mL, mR);
+"235
+[; ;DC_motors.c: 235:         stop(mL, mR);
 [e ( _stop (2 , _mL _mR ]
-"248
-[; ;DC_motors.c: 248:     } else if (num==4) {
+"236
+[; ;DC_motors.c: 236:     } else if (num==4) {
 }
 [e $U 2071  ]
 [e :U 2070 ]
 [e $ ! == -> _num `i -> 4 `i 2072  ]
 {
-"250
-[; ;DC_motors.c: 250:         reverse(mL, mR);
+"238
+[; ;DC_motors.c: 238:         reverse(mL, mR);
 [e ( _reverse (2 , _mL _mR ]
-"251
-[; ;DC_motors.c: 251:         _delay((unsigned long)((1400)*(64000000/4000.0)));
+"239
+[; ;DC_motors.c: 239:         _delay((unsigned long)((1400)*(64000000/4000.0)));
 [e ( __delay (1 -> * -> -> 1400 `i `d / -> -> 64000000 `l `d .4000.0 `ul ]
-"252
-[; ;DC_motors.c: 252:         stop(mL, mR);
+"240
+[; ;DC_motors.c: 240:         stop(mL, mR);
 [e ( _stop (2 , _mL _mR ]
-"253
-[; ;DC_motors.c: 253:         _delay((unsigned long)((100)*(64000000/4000.0)));
+"241
+[; ;DC_motors.c: 241:         _delay((unsigned long)((100)*(64000000/4000.0)));
 [e ( __delay (1 -> * -> -> 100 `i `d / -> -> 64000000 `l `d .4000.0 `ul ]
-"254
-[; ;DC_motors.c: 254:         turnright(mL, mR, 90);
+"242
+[; ;DC_motors.c: 242:         turnright(mL, mR, 90);
 [e ( _turnright (3 , , _mL _mR -> -> 90 `i `ui ]
-"255
-[; ;DC_motors.c: 255:         stop(mL, mR);
+"243
+[; ;DC_motors.c: 243:         stop(mL, mR);
 [e ( _stop (2 , _mL _mR ]
-"256
-[; ;DC_motors.c: 256:     } else if (num==5) {
+"244
+[; ;DC_motors.c: 244:     } else if (num==5) {
 }
 [e $U 2073  ]
 [e :U 2072 ]
 [e $ ! == -> _num `i -> 5 `i 2074  ]
 {
-"258
-[; ;DC_motors.c: 258:         reverse(mL, mR);
+"246
+[; ;DC_motors.c: 246:         reverse(mL, mR);
 [e ( _reverse (2 , _mL _mR ]
-"259
-[; ;DC_motors.c: 259:         _delay((unsigned long)((1400)*(64000000/4000.0)));
+"247
+[; ;DC_motors.c: 247:         _delay((unsigned long)((1400)*(64000000/4000.0)));
 [e ( __delay (1 -> * -> -> 1400 `i `d / -> -> 64000000 `l `d .4000.0 `ul ]
-"260
-[; ;DC_motors.c: 260:         stop(mL, mR);
+"248
+[; ;DC_motors.c: 248:         stop(mL, mR);
 [e ( _stop (2 , _mL _mR ]
-"261
-[; ;DC_motors.c: 261:         _delay((unsigned long)((100)*(64000000/4000.0)));
+"249
+[; ;DC_motors.c: 249:         _delay((unsigned long)((100)*(64000000/4000.0)));
 [e ( __delay (1 -> * -> -> 100 `i `d / -> -> 64000000 `l `d .4000.0 `ul ]
-"262
-[; ;DC_motors.c: 262:         turnleft(mL, mR, 90);
+"250
+[; ;DC_motors.c: 250:         turnleft(mL, mR, 90);
 [e ( _turnleft (3 , , _mL _mR -> -> 90 `i `ui ]
-"263
-[; ;DC_motors.c: 263:         stop(mL, mR);
+"251
+[; ;DC_motors.c: 251:         stop(mL, mR);
 [e ( _stop (2 , _mL _mR ]
-"264
-[; ;DC_motors.c: 264:     } else if (num==6) {
+"252
+[; ;DC_motors.c: 252:     } else if (num==6) {
 }
 [e $U 2075  ]
 [e :U 2074 ]
 [e $ ! == -> _num `i -> 6 `i 2076  ]
 {
-"266
-[; ;DC_motors.c: 266:         clearance(mL, mR);
-[e ( _clearance (2 , _mL _mR ]
-"267
-[; ;DC_motors.c: 267:         turnright(mL, mR, 135);
+"254
+[; ;DC_motors.c: 254:         turnright(mL, mR, 135);
 [e ( _turnright (3 , , _mL _mR -> -> 135 `i `ui ]
-"268
-[; ;DC_motors.c: 268:         stop(mL, mR);
+"255
+[; ;DC_motors.c: 255:         stop(mL, mR);
 [e ( _stop (2 , _mL _mR ]
-"269
-[; ;DC_motors.c: 269:     } else if (num==7) {
+"256
+[; ;DC_motors.c: 256:     } else if (num==7) {
 }
 [e $U 2077  ]
 [e :U 2076 ]
 [e $ ! == -> _num `i -> 7 `i 2078  ]
 {
-"271
-[; ;DC_motors.c: 271:         clearance(mL, mR);
-[e ( _clearance (2 , _mL _mR ]
-"272
-[; ;DC_motors.c: 272:         turnleft(mL, mR, 135);
+"258
+[; ;DC_motors.c: 258:         turnleft(mL, mR, 135);
 [e ( _turnleft (3 , , _mL _mR -> -> 135 `i `ui ]
-"273
-[; ;DC_motors.c: 273:         stop(mL, mR);
+"259
+[; ;DC_motors.c: 259:         stop(mL, mR);
 [e ( _stop (2 , _mL _mR ]
-"274
-[; ;DC_motors.c: 274:     }
+"260
+[; ;DC_motors.c: 260:     }
 }
 [e :U 2078 ]
 [e :U 2077 ]
@@ -3000,105 +2979,102 @@ Version 4.0 HI-TECH Software Intermediate Code
 [e :U 2071 ]
 [e :U 2069 ]
 [e :U 2067 ]
-"275
-[; ;DC_motors.c: 275: }
+"261
+[; ;DC_motors.c: 261: }
 [e :UE 2064 ]
 }
-"281
-[; ;DC_motors.c: 281: void reverseinstructions(DC_motor *mL, DC_motor *mR) {
+"267
+[; ;DC_motors.c: 267: void reverseinstructions(DC_motor *mL, DC_motor *mR) {
 [v _reverseinstructions `(v ~T0 @X0 1 ef2`*S2019`*S2019 ]
 {
 [e :U _reverseinstructions ]
 [v _mL `*S2019 ~T0 @X0 1 r1 ]
 [v _mR `*S2019 ~T0 @X0 1 r2 ]
 [f ]
-"282
-[; ;DC_motors.c: 282:     if (instr[instr_counter]==1) {instructions(mL, mR, 2);}
+"268
+[; ;DC_motors.c: 268:     if (instr[instr_counter]==1) {instructions(mL, mR, 2);}
 [e $ ! == *U + &U _instr * -> _instr_counter `ux -> -> # *U &U _instr `ui `ux -> -> 1 `i `ui 2080  ]
 {
 [e ( _instructions (3 , , _mL _mR -> -> 2 `i `uc ]
 }
 [e $U 2081  ]
-"283
-[; ;DC_motors.c: 283:     else if (instr[instr_counter]==2) {instructions(mL, mR, 1);}
+"269
+[; ;DC_motors.c: 269:     else if (instr[instr_counter]==2) {instructions(mL, mR, 1);}
 [e :U 2080 ]
 [e $ ! == *U + &U _instr * -> _instr_counter `ux -> -> # *U &U _instr `ui `ux -> -> 2 `i `ui 2082  ]
 {
 [e ( _instructions (3 , , _mL _mR -> -> 1 `i `uc ]
 }
 [e $U 2083  ]
-"284
-[; ;DC_motors.c: 284:     else if (instr[instr_counter]==3) {instructions(mL, mR, 3);}
+"270
+[; ;DC_motors.c: 270:     else if (instr[instr_counter]==3) {instructions(mL, mR, 3);}
 [e :U 2082 ]
 [e $ ! == *U + &U _instr * -> _instr_counter `ux -> -> # *U &U _instr `ui `ux -> -> 3 `i `ui 2084  ]
 {
 [e ( _instructions (3 , , _mL _mR -> -> 3 `i `uc ]
 }
 [e $U 2085  ]
-"285
-[; ;DC_motors.c: 285:     else if (instr[instr_counter]==4) {
+"271
+[; ;DC_motors.c: 271:     else if (instr[instr_counter]==4) {
 [e :U 2084 ]
 [e $ ! == *U + &U _instr * -> _instr_counter `ux -> -> # *U &U _instr `ui `ux -> -> 4 `i `ui 2086  ]
 {
-"286
-[; ;DC_motors.c: 286:         forward(mL, mR);
-[e ( _forward (2 , _mL _mR ]
-"287
-[; ;DC_motors.c: 287:         _delay((unsigned long)((2500)*(64000000/4000.0)));
+"272
+[; ;DC_motors.c: 272:         _delay((unsigned long)((2500)*(64000000/4000.0)));
 [e ( __delay (1 -> * -> -> 2500 `i `d / -> -> 64000000 `l `d .4000.0 `ul ]
-"288
-[; ;DC_motors.c: 288:         stop(mL, mR);
+"273
+[; ;DC_motors.c: 273:         stop(mL, mR);
 [e ( _stop (2 , _mL _mR ]
-"289
-[; ;DC_motors.c: 289:         _delay((unsigned long)((100)*(64000000/4000.0)));
+"274
+[; ;DC_motors.c: 274:         _delay((unsigned long)((100)*(64000000/4000.0)));
 [e ( __delay (1 -> * -> -> 100 `i `d / -> -> 64000000 `l `d .4000.0 `ul ]
-"290
-[; ;DC_motors.c: 290:         turnleft(mL, mR, 90);
+"275
+[; ;DC_motors.c: 275:         turnleft(mL, mR, 90);
 [e ( _turnleft (3 , , _mL _mR -> -> 90 `i `ui ]
-"291
-[; ;DC_motors.c: 291:         stop(mL, mR);
+"276
+[; ;DC_motors.c: 276:         stop(mL, mR);
 [e ( _stop (2 , _mL _mR ]
-"292
-[; ;DC_motors.c: 292:     }
+"277
+[; ;DC_motors.c: 277:     }
 }
 [e $U 2087  ]
-"293
-[; ;DC_motors.c: 293:     else if (instr[instr_counter]==5) {
+"278
+[; ;DC_motors.c: 278:     else if (instr[instr_counter]==5) {
 [e :U 2086 ]
 [e $ ! == *U + &U _instr * -> _instr_counter `ux -> -> # *U &U _instr `ui `ux -> -> 5 `i `ui 2088  ]
 {
-"294
-[; ;DC_motors.c: 294:         forward(mL, mR);
+"279
+[; ;DC_motors.c: 279:         forward(mL, mR);
 [e ( _forward (2 , _mL _mR ]
-"295
-[; ;DC_motors.c: 295:         _delay((unsigned long)((2500)*(64000000/4000.0)));
+"280
+[; ;DC_motors.c: 280:         _delay((unsigned long)((2500)*(64000000/4000.0)));
 [e ( __delay (1 -> * -> -> 2500 `i `d / -> -> 64000000 `l `d .4000.0 `ul ]
-"296
-[; ;DC_motors.c: 296:         stop(mL, mR);
+"281
+[; ;DC_motors.c: 281:         stop(mL, mR);
 [e ( _stop (2 , _mL _mR ]
-"297
-[; ;DC_motors.c: 297:         _delay((unsigned long)((100)*(64000000/4000.0)));
+"282
+[; ;DC_motors.c: 282:         _delay((unsigned long)((100)*(64000000/4000.0)));
 [e ( __delay (1 -> * -> -> 100 `i `d / -> -> 64000000 `l `d .4000.0 `ul ]
-"298
-[; ;DC_motors.c: 298:         turnright(mL, mR, 90);
+"283
+[; ;DC_motors.c: 283:         turnright(mL, mR, 90);
 [e ( _turnright (3 , , _mL _mR -> -> 90 `i `ui ]
-"299
-[; ;DC_motors.c: 299:         stop(mL, mR);
+"284
+[; ;DC_motors.c: 284:         stop(mL, mR);
 [e ( _stop (2 , _mL _mR ]
-"300
-[; ;DC_motors.c: 300:     }
+"285
+[; ;DC_motors.c: 285:     }
 }
 [e $U 2089  ]
-"301
-[; ;DC_motors.c: 301:     else if (instr[instr_counter]==6) {instructions(mL, mR, 7);}
+"286
+[; ;DC_motors.c: 286:     else if (instr[instr_counter]==6) {instructions(mL, mR, 7);}
 [e :U 2088 ]
 [e $ ! == *U + &U _instr * -> _instr_counter `ux -> -> # *U &U _instr `ui `ux -> -> 6 `i `ui 2090  ]
 {
 [e ( _instructions (3 , , _mL _mR -> -> 7 `i `uc ]
 }
 [e $U 2091  ]
-"302
-[; ;DC_motors.c: 302:     else if (instr[instr_counter]==7) {instructions(mL, mR, 6);}
+"287
+[; ;DC_motors.c: 287:     else if (instr[instr_counter]==7) {instructions(mL, mR, 6);}
 [e :U 2090 ]
 [e $ ! == *U + &U _instr * -> _instr_counter `ux -> -> # *U &U _instr `ui `ux -> -> 7 `i `ui 2092  ]
 {
@@ -3111,41 +3087,41 @@ Version 4.0 HI-TECH Software Intermediate Code
 [e :U 2085 ]
 [e :U 2083 ]
 [e :U 2081 ]
-"303
-[; ;DC_motors.c: 303: }
+"288
+[; ;DC_motors.c: 288: }
 [e :UE 2079 ]
 }
-"309
-[; ;DC_motors.c: 309: void returnhome(DC_motor *mL, DC_motor *mR) {
+"294
+[; ;DC_motors.c: 294: void returnhome(DC_motor *mL, DC_motor *mR) {
 [v _returnhome `(v ~T0 @X0 1 ef2`*S2019`*S2019 ]
 {
 [e :U _returnhome ]
 [v _mL `*S2019 ~T0 @X0 1 r1 ]
 [v _mR `*S2019 ~T0 @X0 1 r2 ]
 [f ]
-"310
-[; ;DC_motors.c: 310:     INTCONbits.GIE = 1;
+"295
+[; ;DC_motors.c: 295:     INTCONbits.GIE = 1;
 [e = . . _INTCONbits 1 2 -> -> 1 `i `uc ]
-"312
-[; ;DC_motors.c: 312:     unsigned char i=instr_counter;
+"297
+[; ;DC_motors.c: 297:     unsigned char i=instr_counter;
 [v _i `uc ~T0 @X0 1 a ]
 [e = _i _instr_counter ]
-"313
-[; ;DC_motors.c: 313:     unsigned char j,k;
+"298
+[; ;DC_motors.c: 298:     unsigned char j,k;
 [v _j `uc ~T0 @X0 1 a ]
 [v _k `uc ~T0 @X0 1 a ]
-"314
-[; ;DC_motors.c: 314:     for (j=0; j<=i; j++) {
+"299
+[; ;DC_motors.c: 299:     for (j=0; j<=i; j++) {
 {
 [e = _j -> -> 0 `i `uc ]
 [e $U 2097  ]
 [e :U 2094 ]
 {
-"315
-[; ;DC_motors.c: 315:         reverse(mL, mR);
+"300
+[; ;DC_motors.c: 300:         reverse(mL, mR);
 [e ( _reverse (2 , _mL _mR ]
-"316
-[; ;DC_motors.c: 316:         for (k=0; k<=5; k++) {_delay((unsigned long)((100)*(64000000/4000.0)));}
+"301
+[; ;DC_motors.c: 301:         for (k=0; k<=5; k++) {_delay((unsigned long)((100)*(64000000/4000.0)));}
 {
 [e = _k -> -> 0 `i `uc ]
 [e $ <= -> _k `i -> 5 `i 2098  ]
@@ -3158,31 +3134,31 @@ Version 4.0 HI-TECH Software Intermediate Code
 [e $ <= -> _k `i -> 5 `i 2098  ]
 [e :U 2099 ]
 }
-"317
-[; ;DC_motors.c: 317:         stop(mL, mR);
+"302
+[; ;DC_motors.c: 302:         stop(mL, mR);
 [e ( _stop (2 , _mL _mR ]
-"319
-[; ;DC_motors.c: 319:         reverseinstructions(mL, mR);
+"304
+[; ;DC_motors.c: 304:         reverseinstructions(mL, mR);
 [e ( _reverseinstructions (2 , _mL _mR ]
-"321
-[; ;DC_motors.c: 321:         dur_counter--;
+"306
+[; ;DC_motors.c: 306:         dur_counter--;
 [e -- _dur_counter -> -> 1 `i `Vuc ]
-"322
-[; ;DC_motors.c: 322:         instr_counter--;
+"307
+[; ;DC_motors.c: 307:         instr_counter--;
 [e -- _instr_counter -> -> 1 `i `Vuc ]
-"323
-[; ;DC_motors.c: 323:     }
+"308
+[; ;DC_motors.c: 308:     }
 }
 [e ++ _j -> -> 1 `i `uc ]
 [e :U 2097 ]
 [e $ <= -> _j `i -> _i `i 2094  ]
 [e :U 2095 ]
 }
-"324
-[; ;DC_motors.c: 324:     reverse(mL, mR);
+"309
+[; ;DC_motors.c: 309:     reverse(mL, mR);
 [e ( _reverse (2 , _mL _mR ]
-"325
-[; ;DC_motors.c: 325:     for (k=0; k<=5; k++) {_delay((unsigned long)((100)*(64000000/4000.0)));}
+"310
+[; ;DC_motors.c: 310:     for (k=0; k<=5; k++) {_delay((unsigned long)((100)*(64000000/4000.0)));}
 {
 [e = _k -> -> 0 `i `uc ]
 [e $ <= -> _k `i -> 5 `i 2101  ]
@@ -3195,501 +3171,501 @@ Version 4.0 HI-TECH Software Intermediate Code
 [e $ <= -> _k `i -> 5 `i 2101  ]
 [e :U 2102 ]
 }
-"326
-[; ;DC_motors.c: 326:     stop(mL, mR);
+"311
+[; ;DC_motors.c: 311:     stop(mL, mR);
 [e ( _stop (2 , _mL _mR ]
-"327
-[; ;DC_motors.c: 327: }
+"312
+[; ;DC_motors.c: 312: }
 [e :UE 2093 ]
 }
-"333
-[; ;DC_motors.c: 333: void DCmotors_calibration(DC_motor *mL, DC_motor *mR) {
+"318
+[; ;DC_motors.c: 318: void DCmotors_calibration(DC_motor *mL, DC_motor *mR) {
 [v _DCmotors_calibration `(v ~T0 @X0 1 ef2`*S2019`*S2019 ]
 {
 [e :U _DCmotors_calibration ]
 [v _mL `*S2019 ~T0 @X0 1 r1 ]
 [v _mR `*S2019 ~T0 @X0 1 r2 ]
 [f ]
-"334
-[; ;DC_motors.c: 334:     unsigned char okay = 0;
+"319
+[; ;DC_motors.c: 319:     unsigned char okay = 0;
 [v _okay `uc ~T0 @X0 1 a ]
 [e = _okay -> -> 0 `i `uc ]
-"335
-[; ;DC_motors.c: 335:     while(PORTFbits.RF2 && PORTFbits.RF3);
+"320
+[; ;DC_motors.c: 320:     while(PORTFbits.RF2 && PORTFbits.RF3);
 [e $U 2105  ]
 [e :U 2106 ]
 [e :U 2105 ]
 [e $ && != -> . . _PORTFbits 0 2 `i -> 0 `i != -> . . _PORTFbits 0 3 `i -> 0 `i 2106  ]
 [e :U 2107 ]
-"336
-[; ;DC_motors.c: 336:     while(okay<1){
+"321
+[; ;DC_motors.c: 321:     while(okay<1){
 [e $U 2108  ]
 [e :U 2109 ]
 {
-"338
-[; ;DC_motors.c: 338:         LATDbits.LATD3 = 1;
+"323
+[; ;DC_motors.c: 323:         LATDbits.LATD3 = 1;
 [e = . . _LATDbits 0 3 -> -> 1 `i `uc ]
-"339
-[; ;DC_motors.c: 339:         _delay((unsigned long)((100)*(64000000/4000.0)));
+"324
+[; ;DC_motors.c: 324:         _delay((unsigned long)((100)*(64000000/4000.0)));
 [e ( __delay (1 -> * -> -> 100 `i `d / -> -> 64000000 `l `d .4000.0 `ul ]
-"340
-[; ;DC_motors.c: 340:         turnright(mL, mR, 360);
+"325
+[; ;DC_motors.c: 325:         turnright(mL, mR, 360);
 [e ( _turnright (3 , , _mL _mR -> -> 360 `i `ui ]
-"341
-[; ;DC_motors.c: 341:         stop(mL, mR);
+"326
+[; ;DC_motors.c: 326:         stop(mL, mR);
 [e ( _stop (2 , _mL _mR ]
-"343
-[; ;DC_motors.c: 343:         while(PORTFbits.RF2 && PORTFbits.RF3);
+"328
+[; ;DC_motors.c: 328:         while(PORTFbits.RF2 && PORTFbits.RF3);
 [e $U 2111  ]
 [e :U 2112 ]
 [e :U 2111 ]
 [e $ && != -> . . _PORTFbits 0 2 `i -> 0 `i != -> . . _PORTFbits 0 3 `i -> 0 `i 2112  ]
 [e :U 2113 ]
-"344
-[; ;DC_motors.c: 344:         LATDbits.LATD3 = 0;
+"329
+[; ;DC_motors.c: 329:         LATDbits.LATD3 = 0;
 [e = . . _LATDbits 0 3 -> -> 0 `i `uc ]
-"345
-[; ;DC_motors.c: 345:         _delay((unsigned long)((1000)*(64000000/4000.0)));
+"330
+[; ;DC_motors.c: 330:         _delay((unsigned long)((1000)*(64000000/4000.0)));
 [e ( __delay (1 -> * -> -> 1000 `i `d / -> -> 64000000 `l `d .4000.0 `ul ]
-"346
-[; ;DC_motors.c: 346:         adjdelay(1);
+"331
+[; ;DC_motors.c: 331:         adjdelay(1);
 [e ( _adjdelay (1 -> -> 1 `i `uc ]
-"347
-[; ;DC_motors.c: 347:         _delay((unsigned long)((1000)*(64000000/4000.0)));
+"332
+[; ;DC_motors.c: 332:         _delay((unsigned long)((1000)*(64000000/4000.0)));
 [e ( __delay (1 -> * -> -> 1000 `i `d / -> -> 64000000 `l `d .4000.0 `ul ]
-"349
-[; ;DC_motors.c: 349:         LATDbits.LATD3 = 1;
+"334
+[; ;DC_motors.c: 334:         LATDbits.LATD3 = 1;
 [e = . . _LATDbits 0 3 -> -> 1 `i `uc ]
-"350
-[; ;DC_motors.c: 350:         _delay((unsigned long)((100)*(64000000/4000.0)));
+"335
+[; ;DC_motors.c: 335:         _delay((unsigned long)((100)*(64000000/4000.0)));
 [e ( __delay (1 -> * -> -> 100 `i `d / -> -> 64000000 `l `d .4000.0 `ul ]
-"351
-[; ;DC_motors.c: 351:         turnleft(mL, mR, 360);
+"336
+[; ;DC_motors.c: 336:         turnleft(mL, mR, 360);
 [e ( _turnleft (3 , , _mL _mR -> -> 360 `i `ui ]
-"352
-[; ;DC_motors.c: 352:         stop(mL, mR);
+"337
+[; ;DC_motors.c: 337:         stop(mL, mR);
 [e ( _stop (2 , _mL _mR ]
-"354
-[; ;DC_motors.c: 354:         while(PORTFbits.RF2 && PORTFbits.RF3);
+"339
+[; ;DC_motors.c: 339:         while(PORTFbits.RF2 && PORTFbits.RF3);
 [e $U 2114  ]
 [e :U 2115 ]
 [e :U 2114 ]
 [e $ && != -> . . _PORTFbits 0 2 `i -> 0 `i != -> . . _PORTFbits 0 3 `i -> 0 `i 2115  ]
 [e :U 2116 ]
-"355
-[; ;DC_motors.c: 355:         LATDbits.LATD3 = 0;
+"340
+[; ;DC_motors.c: 340:         LATDbits.LATD3 = 0;
 [e = . . _LATDbits 0 3 -> -> 0 `i `uc ]
-"356
-[; ;DC_motors.c: 356:         _delay((unsigned long)((1000)*(64000000/4000.0)));
+"341
+[; ;DC_motors.c: 341:         _delay((unsigned long)((1000)*(64000000/4000.0)));
 [e ( __delay (1 -> * -> -> 1000 `i `d / -> -> 64000000 `l `d .4000.0 `ul ]
-"357
-[; ;DC_motors.c: 357:         adjdelay(2);
+"342
+[; ;DC_motors.c: 342:         adjdelay(2);
 [e ( _adjdelay (1 -> -> 2 `i `uc ]
-"358
-[; ;DC_motors.c: 358:         _delay((unsigned long)((1000)*(64000000/4000.0)));
+"343
+[; ;DC_motors.c: 343:         _delay((unsigned long)((1000)*(64000000/4000.0)));
 [e ( __delay (1 -> * -> -> 1000 `i `d / -> -> 64000000 `l `d .4000.0 `ul ]
-"361
-[; ;DC_motors.c: 361:         LATDbits.LATD3 = 1;
+"346
+[; ;DC_motors.c: 346:         LATDbits.LATD3 = 1;
 [e = . . _LATDbits 0 3 -> -> 1 `i `uc ]
-"362
-[; ;DC_motors.c: 362:         _delay((unsigned long)((100)*(64000000/4000.0)));
+"347
+[; ;DC_motors.c: 347:         _delay((unsigned long)((100)*(64000000/4000.0)));
 [e ( __delay (1 -> * -> -> 100 `i `d / -> -> 64000000 `l `d .4000.0 `ul ]
-"363
-[; ;DC_motors.c: 363:         turnright(mL, mR, 90);
+"348
+[; ;DC_motors.c: 348:         turnright(mL, mR, 90);
 [e ( _turnright (3 , , _mL _mR -> -> 90 `i `ui ]
-"364
-[; ;DC_motors.c: 364:         stop(mL, mR);
+"349
+[; ;DC_motors.c: 349:         stop(mL, mR);
 [e ( _stop (2 , _mL _mR ]
-"365
-[; ;DC_motors.c: 365:         _delay((unsigned long)((1000)*(64000000/4000.0)));
+"350
+[; ;DC_motors.c: 350:         _delay((unsigned long)((1000)*(64000000/4000.0)));
 [e ( __delay (1 -> * -> -> 1000 `i `d / -> -> 64000000 `l `d .4000.0 `ul ]
-"367
-[; ;DC_motors.c: 367:         turnleft(mL, mR, 90);
+"352
+[; ;DC_motors.c: 352:         turnleft(mL, mR, 90);
 [e ( _turnleft (3 , , _mL _mR -> -> 90 `i `ui ]
-"368
-[; ;DC_motors.c: 368:         stop(mL, mR);
+"353
+[; ;DC_motors.c: 353:         stop(mL, mR);
 [e ( _stop (2 , _mL _mR ]
-"369
-[; ;DC_motors.c: 369:         LATDbits.LATD3 = 0;
+"354
+[; ;DC_motors.c: 354:         LATDbits.LATD3 = 0;
 [e = . . _LATDbits 0 3 -> -> 0 `i `uc ]
-"370
-[; ;DC_motors.c: 370:         _delay((unsigned long)((1000)*(64000000/4000.0)));
+"355
+[; ;DC_motors.c: 355:         _delay((unsigned long)((1000)*(64000000/4000.0)));
 [e ( __delay (1 -> * -> -> 1000 `i `d / -> -> 64000000 `l `d .4000.0 `ul ]
-"373
-[; ;DC_motors.c: 373:         LATHbits.LATH3 = 1;
+"358
+[; ;DC_motors.c: 358:         LATHbits.LATH3 = 1;
 [e = . . _LATHbits 0 3 -> -> 1 `i `uc ]
-"374
-[; ;DC_motors.c: 374:         LATDbits.LATD7 = 1;
+"359
+[; ;DC_motors.c: 359:         LATDbits.LATD7 = 1;
 [e = . . _LATDbits 0 7 -> -> 1 `i `uc ]
-"375
-[; ;DC_motors.c: 375:         while(PORTFbits.RF2 && PORTFbits.RF3);
+"360
+[; ;DC_motors.c: 360:         while(PORTFbits.RF2 && PORTFbits.RF3);
 [e $U 2117  ]
 [e :U 2118 ]
 [e :U 2117 ]
 [e $ && != -> . . _PORTFbits 0 2 `i -> 0 `i != -> . . _PORTFbits 0 3 `i -> 0 `i 2118  ]
 [e :U 2119 ]
-"376
-[; ;DC_motors.c: 376:         if(!PORTFbits.RF2 && PORTFbits.RF3){
+"361
+[; ;DC_motors.c: 361:         if(!PORTFbits.RF2 && PORTFbits.RF3){
 [e $ ! && ! != -> . . _PORTFbits 0 2 `i -> 0 `i != -> . . _PORTFbits 0 3 `i -> 0 `i 2120  ]
 {
-"377
-[; ;DC_motors.c: 377:             LATDbits.LATD7 = 0;
+"362
+[; ;DC_motors.c: 362:             LATDbits.LATD7 = 0;
 [e = . . _LATDbits 0 7 -> -> 0 `i `uc ]
-"378
-[; ;DC_motors.c: 378:             okay = 1;
+"363
+[; ;DC_motors.c: 363:             okay = 1;
 [e = _okay -> -> 1 `i `uc ]
-"379
-[; ;DC_motors.c: 379:         } else if(!PORTFbits.RF3 && PORTFbits.RF2){
+"364
+[; ;DC_motors.c: 364:         } else if(!PORTFbits.RF3 && PORTFbits.RF2){
 }
 [e $U 2121  ]
 [e :U 2120 ]
 [e $ ! && ! != -> . . _PORTFbits 0 3 `i -> 0 `i != -> . . _PORTFbits 0 2 `i -> 0 `i 2122  ]
 {
-"380
-[; ;DC_motors.c: 380:             LATHbits.LATH3 = 0;
+"365
+[; ;DC_motors.c: 365:             LATHbits.LATH3 = 0;
 [e = . . _LATHbits 0 3 -> -> 0 `i `uc ]
-"381
-[; ;DC_motors.c: 381:             okay = 0;
+"366
+[; ;DC_motors.c: 366:             okay = 0;
 [e = _okay -> -> 0 `i `uc ]
-"382
-[; ;DC_motors.c: 382:         }
+"367
+[; ;DC_motors.c: 367:         }
 }
 [e :U 2122 ]
 [e :U 2121 ]
-"383
-[; ;DC_motors.c: 383:         _delay((unsigned long)((200)*(64000000/4000.0)));
+"368
+[; ;DC_motors.c: 368:         _delay((unsigned long)((200)*(64000000/4000.0)));
 [e ( __delay (1 -> * -> -> 200 `i `d / -> -> 64000000 `l `d .4000.0 `ul ]
-"384
-[; ;DC_motors.c: 384:         LATHbits.LATH3 = 0;
+"369
+[; ;DC_motors.c: 369:         LATHbits.LATH3 = 0;
 [e = . . _LATHbits 0 3 -> -> 0 `i `uc ]
-"385
-[; ;DC_motors.c: 385:         LATDbits.LATD7 = 0;
+"370
+[; ;DC_motors.c: 370:         LATDbits.LATD7 = 0;
 [e = . . _LATDbits 0 7 -> -> 0 `i `uc ]
-"386
-[; ;DC_motors.c: 386:         _delay((unsigned long)((1000)*(64000000/4000.0)));
+"371
+[; ;DC_motors.c: 371:         _delay((unsigned long)((1000)*(64000000/4000.0)));
 [e ( __delay (1 -> * -> -> 1000 `i `d / -> -> 64000000 `l `d .4000.0 `ul ]
-"387
-[; ;DC_motors.c: 387:     }
+"372
+[; ;DC_motors.c: 372:     }
 }
 [e :U 2108 ]
-"336
-[; ;DC_motors.c: 336:     while(okay<1){
+"321
+[; ;DC_motors.c: 321:     while(okay<1){
 [e $ < -> _okay `i -> 1 `i 2109  ]
 [e :U 2110 ]
-"388
-[; ;DC_motors.c: 388: }
+"373
+[; ;DC_motors.c: 373: }
 [e :UE 2104 ]
 }
-"394
-[; ;DC_motors.c: 394: void adjdelay(unsigned char mode) {
+"379
+[; ;DC_motors.c: 379: void adjdelay(unsigned char mode) {
 [v _adjdelay `(v ~T0 @X0 1 ef1`uc ]
 {
 [e :U _adjdelay ]
 [v _mode `uc ~T0 @X0 1 r1 ]
 [f ]
-"395
-[; ;DC_motors.c: 395:     unsigned char i;
+"380
+[; ;DC_motors.c: 380:     unsigned char i;
 [v _i `uc ~T0 @X0 1 a ]
-"396
-[; ;DC_motors.c: 396:     for (i=0; i<10; i++) {
+"381
+[; ;DC_motors.c: 381:     for (i=0; i<10; i++) {
 {
 [e = _i -> -> 0 `i `uc ]
 [e $ < -> _i `i -> 10 `i 2124  ]
 [e $U 2125  ]
 [e :U 2124 ]
 {
-"397
-[; ;DC_motors.c: 397:         if (mode==1){
+"382
+[; ;DC_motors.c: 382:         if (mode==1){
 [e $ ! == -> _mode `i -> 1 `i 2127  ]
 {
-"398
-[; ;DC_motors.c: 398:             if (!PORTFbits.RF2 && PORTFbits.RF3) {
+"383
+[; ;DC_motors.c: 383:             if (!PORTFbits.RF2 && PORTFbits.RF3) {
 [e $ ! && ! != -> . . _PORTFbits 0 2 `i -> 0 `i != -> . . _PORTFbits 0 3 `i -> 0 `i 2128  ]
 {
-"399
-[; ;DC_motors.c: 399:                 LATDbits.LATD7 = 1;
+"384
+[; ;DC_motors.c: 384:                 LATDbits.LATD7 = 1;
 [e = . . _LATDbits 0 7 -> -> 1 `i `uc ]
-"400
-[; ;DC_motors.c: 400:                 turnright_calangle -= 5;
+"385
+[; ;DC_motors.c: 385:                 turnright_calangle -= 5;
 [e =- _turnright_calangle -> -> 5 `i `Vi ]
-"401
-[; ;DC_motors.c: 401:                 _delay((unsigned long)((800)*(64000000/4000.0)));
+"386
+[; ;DC_motors.c: 386:                 _delay((unsigned long)((800)*(64000000/4000.0)));
 [e ( __delay (1 -> * -> -> 800 `i `d / -> -> 64000000 `l `d .4000.0 `ul ]
-"402
-[; ;DC_motors.c: 402:                 LATDbits.LATD7 = 0;
+"387
+[; ;DC_motors.c: 387:                 LATDbits.LATD7 = 0;
 [e = . . _LATDbits 0 7 -> -> 0 `i `uc ]
-"403
-[; ;DC_motors.c: 403:             } else if (!PORTFbits.RF3 && PORTFbits.RF2) {
+"388
+[; ;DC_motors.c: 388:             } else if (!PORTFbits.RF3 && PORTFbits.RF2) {
 }
 [e $U 2129  ]
 [e :U 2128 ]
 [e $ ! && ! != -> . . _PORTFbits 0 3 `i -> 0 `i != -> . . _PORTFbits 0 2 `i -> 0 `i 2130  ]
 {
-"404
-[; ;DC_motors.c: 404:                 LATHbits.LATH3 = 1;
+"389
+[; ;DC_motors.c: 389:                 LATHbits.LATH3 = 1;
 [e = . . _LATHbits 0 3 -> -> 1 `i `uc ]
-"405
-[; ;DC_motors.c: 405:                 turnright_calangle += 5;
+"390
+[; ;DC_motors.c: 390:                 turnright_calangle += 5;
 [e =+ _turnright_calangle -> -> 5 `i `Vi ]
-"406
-[; ;DC_motors.c: 406:                 _delay((unsigned long)((800)*(64000000/4000.0)));
+"391
+[; ;DC_motors.c: 391:                 _delay((unsigned long)((800)*(64000000/4000.0)));
 [e ( __delay (1 -> * -> -> 800 `i `d / -> -> 64000000 `l `d .4000.0 `ul ]
-"407
-[; ;DC_motors.c: 407:                 LATHbits.LATH3 = 0;
+"392
+[; ;DC_motors.c: 392:                 LATHbits.LATH3 = 0;
 [e = . . _LATHbits 0 3 -> -> 0 `i `uc ]
-"408
-[; ;DC_motors.c: 408:             }
+"393
+[; ;DC_motors.c: 393:             }
 }
 [e :U 2130 ]
 [e :U 2129 ]
-"409
-[; ;DC_motors.c: 409:             _delay((unsigned long)((200)*(64000000/4000.0)));
+"394
+[; ;DC_motors.c: 394:             _delay((unsigned long)((200)*(64000000/4000.0)));
 [e ( __delay (1 -> * -> -> 200 `i `d / -> -> 64000000 `l `d .4000.0 `ul ]
-"411
-[; ;DC_motors.c: 411:         } else if (mode==2) {
+"396
+[; ;DC_motors.c: 396:         } else if (mode==2) {
 }
 [e $U 2131  ]
 [e :U 2127 ]
 [e $ ! == -> _mode `i -> 2 `i 2132  ]
 {
-"412
-[; ;DC_motors.c: 412:             if (!PORTFbits.RF3 && PORTFbits.RF2) {
+"397
+[; ;DC_motors.c: 397:             if (!PORTFbits.RF3 && PORTFbits.RF2) {
 [e $ ! && ! != -> . . _PORTFbits 0 3 `i -> 0 `i != -> . . _PORTFbits 0 2 `i -> 0 `i 2133  ]
 {
-"413
-[; ;DC_motors.c: 413:                 LATHbits.LATH3 = 1;
+"398
+[; ;DC_motors.c: 398:                 LATHbits.LATH3 = 1;
 [e = . . _LATHbits 0 3 -> -> 1 `i `uc ]
-"414
-[; ;DC_motors.c: 414:                 turnleft_calangle -= 5;
+"399
+[; ;DC_motors.c: 399:                 turnleft_calangle -= 5;
 [e =- _turnleft_calangle -> -> 5 `i `Vi ]
-"415
-[; ;DC_motors.c: 415:                 _delay((unsigned long)((800)*(64000000/4000.0)));
+"400
+[; ;DC_motors.c: 400:                 _delay((unsigned long)((800)*(64000000/4000.0)));
 [e ( __delay (1 -> * -> -> 800 `i `d / -> -> 64000000 `l `d .4000.0 `ul ]
-"416
-[; ;DC_motors.c: 416:                 LATHbits.LATH3 = 0;
+"401
+[; ;DC_motors.c: 401:                 LATHbits.LATH3 = 0;
 [e = . . _LATHbits 0 3 -> -> 0 `i `uc ]
-"417
-[; ;DC_motors.c: 417:             } else if (!PORTFbits.RF2 && PORTFbits.RF3) {
+"402
+[; ;DC_motors.c: 402:             } else if (!PORTFbits.RF2 && PORTFbits.RF3) {
 }
 [e $U 2134  ]
 [e :U 2133 ]
 [e $ ! && ! != -> . . _PORTFbits 0 2 `i -> 0 `i != -> . . _PORTFbits 0 3 `i -> 0 `i 2135  ]
 {
-"418
-[; ;DC_motors.c: 418:                 LATDbits.LATD7 = 1;
+"403
+[; ;DC_motors.c: 403:                 LATDbits.LATD7 = 1;
 [e = . . _LATDbits 0 7 -> -> 1 `i `uc ]
-"419
-[; ;DC_motors.c: 419:                 turnleft_calangle += 5;
+"404
+[; ;DC_motors.c: 404:                 turnleft_calangle += 5;
 [e =+ _turnleft_calangle -> -> 5 `i `Vi ]
-"420
-[; ;DC_motors.c: 420:                 _delay((unsigned long)((800)*(64000000/4000.0)));
+"405
+[; ;DC_motors.c: 405:                 _delay((unsigned long)((800)*(64000000/4000.0)));
 [e ( __delay (1 -> * -> -> 800 `i `d / -> -> 64000000 `l `d .4000.0 `ul ]
-"421
-[; ;DC_motors.c: 421:                 LATDbits.LATD7 = 0;
+"406
+[; ;DC_motors.c: 406:                 LATDbits.LATD7 = 0;
 [e = . . _LATDbits 0 7 -> -> 0 `i `uc ]
-"422
-[; ;DC_motors.c: 422:             }
+"407
+[; ;DC_motors.c: 407:             }
 }
 [e :U 2135 ]
 [e :U 2134 ]
-"423
-[; ;DC_motors.c: 423:             _delay((unsigned long)((200)*(64000000/4000.0)));
+"408
+[; ;DC_motors.c: 408:             _delay((unsigned long)((200)*(64000000/4000.0)));
 [e ( __delay (1 -> * -> -> 200 `i `d / -> -> 64000000 `l `d .4000.0 `ul ]
-"424
-[; ;DC_motors.c: 424:         }
+"409
+[; ;DC_motors.c: 409:         }
 }
 [e :U 2132 ]
 [e :U 2131 ]
-"425
-[; ;DC_motors.c: 425:     }
+"410
+[; ;DC_motors.c: 410:     }
 }
 [e ++ _i -> -> 1 `i `uc ]
 [e $ < -> _i `i -> 10 `i 2124  ]
 [e :U 2125 ]
 }
-"426
-[; ;DC_motors.c: 426: }
+"411
+[; ;DC_motors.c: 411: }
 [e :UE 2123 ]
 }
-"432
-[; ;DC_motors.c: 432: void DCmotors_testing(DC_motor *mL, DC_motor *mR) {
+"417
+[; ;DC_motors.c: 417: void DCmotors_testing(DC_motor *mL, DC_motor *mR) {
 [v _DCmotors_testing `(v ~T0 @X0 1 ef2`*S2019`*S2019 ]
 {
 [e :U _DCmotors_testing ]
 [v _mL `*S2019 ~T0 @X0 1 r1 ]
 [v _mR `*S2019 ~T0 @X0 1 r2 ]
 [f ]
-"433
-[; ;DC_motors.c: 433:     while (PORTFbits.RF2 && PORTFbits.RF3);
+"418
+[; ;DC_motors.c: 418:     while (PORTFbits.RF2 && PORTFbits.RF3);
 [e $U 2137  ]
 [e :U 2138 ]
 [e :U 2137 ]
 [e $ && != -> . . _PORTFbits 0 2 `i -> 0 `i != -> . . _PORTFbits 0 3 `i -> 0 `i 2138  ]
 [e :U 2139 ]
-"434
-[; ;DC_motors.c: 434:     _delay((unsigned long)((500)*(64000000/4000.0)));
+"419
+[; ;DC_motors.c: 419:     _delay((unsigned long)((500)*(64000000/4000.0)));
 [e ( __delay (1 -> * -> -> 500 `i `d / -> -> 64000000 `l `d .4000.0 `ul ]
-"435
-[; ;DC_motors.c: 435:     forward(mL, mR);
+"420
+[; ;DC_motors.c: 420:     forward(mL, mR);
 [e ( _forward (2 , _mL _mR ]
-"436
-[; ;DC_motors.c: 436:     _delay((unsigned long)((1000)*(64000000/4000.0)));
+"421
+[; ;DC_motors.c: 421:     _delay((unsigned long)((1000)*(64000000/4000.0)));
 [e ( __delay (1 -> * -> -> 1000 `i `d / -> -> 64000000 `l `d .4000.0 `ul ]
-"437
-[; ;DC_motors.c: 437:     stop(mL, mR);
+"422
+[; ;DC_motors.c: 422:     stop(mL, mR);
 [e ( _stop (2 , _mL _mR ]
-"439
-[; ;DC_motors.c: 439:     while (PORTFbits.RF2 && PORTFbits.RF3);
+"424
+[; ;DC_motors.c: 424:     while (PORTFbits.RF2 && PORTFbits.RF3);
 [e $U 2140  ]
 [e :U 2141 ]
 [e :U 2140 ]
 [e $ && != -> . . _PORTFbits 0 2 `i -> 0 `i != -> . . _PORTFbits 0 3 `i -> 0 `i 2141  ]
 [e :U 2142 ]
-"440
-[; ;DC_motors.c: 440:     _delay((unsigned long)((500)*(64000000/4000.0)));
+"425
+[; ;DC_motors.c: 425:     _delay((unsigned long)((500)*(64000000/4000.0)));
 [e ( __delay (1 -> * -> -> 500 `i `d / -> -> 64000000 `l `d .4000.0 `ul ]
-"441
-[; ;DC_motors.c: 441:     clearance(mL, mR);
+"426
+[; ;DC_motors.c: 426:     clearance(mL, mR);
 [e ( _clearance (2 , _mL _mR ]
-"443
-[; ;DC_motors.c: 443:     while (PORTFbits.RF2 && PORTFbits.RF3);
+"428
+[; ;DC_motors.c: 428:     while (PORTFbits.RF2 && PORTFbits.RF3);
 [e $U 2143  ]
 [e :U 2144 ]
 [e :U 2143 ]
 [e $ && != -> . . _PORTFbits 0 2 `i -> 0 `i != -> . . _PORTFbits 0 3 `i -> 0 `i 2144  ]
 [e :U 2145 ]
-"444
-[; ;DC_motors.c: 444:     _delay((unsigned long)((500)*(64000000/4000.0)));
+"429
+[; ;DC_motors.c: 429:     _delay((unsigned long)((500)*(64000000/4000.0)));
 [e ( __delay (1 -> * -> -> 500 `i `d / -> -> 64000000 `l `d .4000.0 `ul ]
-"445
-[; ;DC_motors.c: 445:     reverse(mL, mR);
+"430
+[; ;DC_motors.c: 430:     reverse(mL, mR);
 [e ( _reverse (2 , _mL _mR ]
-"446
-[; ;DC_motors.c: 446:     _delay((unsigned long)((1400)*(64000000/4000.0)));
+"431
+[; ;DC_motors.c: 431:     _delay((unsigned long)((1400)*(64000000/4000.0)));
 [e ( __delay (1 -> * -> -> 1400 `i `d / -> -> 64000000 `l `d .4000.0 `ul ]
-"447
-[; ;DC_motors.c: 447:     stop(mL, mR);
+"432
+[; ;DC_motors.c: 432:     stop(mL, mR);
 [e ( _stop (2 , _mL _mR ]
-"449
-[; ;DC_motors.c: 449:     while (PORTFbits.RF2 && PORTFbits.RF3);
+"434
+[; ;DC_motors.c: 434:     while (PORTFbits.RF2 && PORTFbits.RF3);
 [e $U 2146  ]
 [e :U 2147 ]
 [e :U 2146 ]
 [e $ && != -> . . _PORTFbits 0 2 `i -> 0 `i != -> . . _PORTFbits 0 3 `i -> 0 `i 2147  ]
 [e :U 2148 ]
-"450
-[; ;DC_motors.c: 450:     _delay((unsigned long)((500)*(64000000/4000.0)));
+"435
+[; ;DC_motors.c: 435:     _delay((unsigned long)((500)*(64000000/4000.0)));
 [e ( __delay (1 -> * -> -> 500 `i `d / -> -> 64000000 `l `d .4000.0 `ul ]
-"451
-[; ;DC_motors.c: 451:     turnright(mL, mR, 90);
+"436
+[; ;DC_motors.c: 436:     turnright(mL, mR, 90);
 [e ( _turnright (3 , , _mL _mR -> -> 90 `i `ui ]
-"452
-[; ;DC_motors.c: 452:     stop(mL, mR);
+"437
+[; ;DC_motors.c: 437:     stop(mL, mR);
 [e ( _stop (2 , _mL _mR ]
-"454
-[; ;DC_motors.c: 454:     while (PORTFbits.RF2 && PORTFbits.RF3);
+"439
+[; ;DC_motors.c: 439:     while (PORTFbits.RF2 && PORTFbits.RF3);
 [e $U 2149  ]
 [e :U 2150 ]
 [e :U 2149 ]
 [e $ && != -> . . _PORTFbits 0 2 `i -> 0 `i != -> . . _PORTFbits 0 3 `i -> 0 `i 2150  ]
 [e :U 2151 ]
-"455
-[; ;DC_motors.c: 455:     _delay((unsigned long)((500)*(64000000/4000.0)));
+"440
+[; ;DC_motors.c: 440:     _delay((unsigned long)((500)*(64000000/4000.0)));
 [e ( __delay (1 -> * -> -> 500 `i `d / -> -> 64000000 `l `d .4000.0 `ul ]
-"456
-[; ;DC_motors.c: 456:     turnleft(mL, mR, 90);
+"441
+[; ;DC_motors.c: 441:     turnleft(mL, mR, 90);
 [e ( _turnleft (3 , , _mL _mR -> -> 90 `i `ui ]
-"457
-[; ;DC_motors.c: 457:     stop(mL, mR);
+"442
+[; ;DC_motors.c: 442:     stop(mL, mR);
 [e ( _stop (2 , _mL _mR ]
-"459
-[; ;DC_motors.c: 459:     while (PORTFbits.RF2 && PORTFbits.RF3);
+"444
+[; ;DC_motors.c: 444:     while (PORTFbits.RF2 && PORTFbits.RF3);
 [e $U 2152  ]
 [e :U 2153 ]
 [e :U 2152 ]
 [e $ && != -> . . _PORTFbits 0 2 `i -> 0 `i != -> . . _PORTFbits 0 3 `i -> 0 `i 2153  ]
 [e :U 2154 ]
-"460
-[; ;DC_motors.c: 460:     _delay((unsigned long)((500)*(64000000/4000.0)));
+"445
+[; ;DC_motors.c: 445:     _delay((unsigned long)((500)*(64000000/4000.0)));
 [e ( __delay (1 -> * -> -> 500 `i `d / -> -> 64000000 `l `d .4000.0 `ul ]
-"461
-[; ;DC_motors.c: 461:     turnright(mL, mR, 135);
+"446
+[; ;DC_motors.c: 446:     turnright(mL, mR, 135);
 [e ( _turnright (3 , , _mL _mR -> -> 135 `i `ui ]
-"462
-[; ;DC_motors.c: 462:     stop(mL, mR);
+"447
+[; ;DC_motors.c: 447:     stop(mL, mR);
 [e ( _stop (2 , _mL _mR ]
-"464
-[; ;DC_motors.c: 464:     while (PORTFbits.RF2 && PORTFbits.RF3);
+"449
+[; ;DC_motors.c: 449:     while (PORTFbits.RF2 && PORTFbits.RF3);
 [e $U 2155  ]
 [e :U 2156 ]
 [e :U 2155 ]
 [e $ && != -> . . _PORTFbits 0 2 `i -> 0 `i != -> . . _PORTFbits 0 3 `i -> 0 `i 2156  ]
 [e :U 2157 ]
-"465
-[; ;DC_motors.c: 465:     _delay((unsigned long)((500)*(64000000/4000.0)));
+"450
+[; ;DC_motors.c: 450:     _delay((unsigned long)((500)*(64000000/4000.0)));
 [e ( __delay (1 -> * -> -> 500 `i `d / -> -> 64000000 `l `d .4000.0 `ul ]
-"466
-[; ;DC_motors.c: 466:     turnleft(mL, mR, 135);
+"451
+[; ;DC_motors.c: 451:     turnleft(mL, mR, 135);
 [e ( _turnleft (3 , , _mL _mR -> -> 135 `i `ui ]
-"467
-[; ;DC_motors.c: 467:     stop(mL, mR);
+"452
+[; ;DC_motors.c: 452:     stop(mL, mR);
 [e ( _stop (2 , _mL _mR ]
-"469
-[; ;DC_motors.c: 469:     while (PORTFbits.RF2 && PORTFbits.RF3);
+"454
+[; ;DC_motors.c: 454:     while (PORTFbits.RF2 && PORTFbits.RF3);
 [e $U 2158  ]
 [e :U 2159 ]
 [e :U 2158 ]
 [e $ && != -> . . _PORTFbits 0 2 `i -> 0 `i != -> . . _PORTFbits 0 3 `i -> 0 `i 2159  ]
 [e :U 2160 ]
-"470
-[; ;DC_motors.c: 470:     _delay((unsigned long)((500)*(64000000/4000.0)));
+"455
+[; ;DC_motors.c: 455:     _delay((unsigned long)((500)*(64000000/4000.0)));
 [e ( __delay (1 -> * -> -> 500 `i `d / -> -> 64000000 `l `d .4000.0 `ul ]
-"471
-[; ;DC_motors.c: 471:     turnright(mL, mR, 180);
+"456
+[; ;DC_motors.c: 456:     turnright(mL, mR, 180);
 [e ( _turnright (3 , , _mL _mR -> -> 180 `i `ui ]
-"472
-[; ;DC_motors.c: 472:     stop(mL, mR);
+"457
+[; ;DC_motors.c: 457:     stop(mL, mR);
 [e ( _stop (2 , _mL _mR ]
-"474
-[; ;DC_motors.c: 474:     while (PORTFbits.RF2 && PORTFbits.RF3);
+"459
+[; ;DC_motors.c: 459:     while (PORTFbits.RF2 && PORTFbits.RF3);
 [e $U 2161  ]
 [e :U 2162 ]
 [e :U 2161 ]
 [e $ && != -> . . _PORTFbits 0 2 `i -> 0 `i != -> . . _PORTFbits 0 3 `i -> 0 `i 2162  ]
 [e :U 2163 ]
-"475
-[; ;DC_motors.c: 475:     turnleft(mL, mR, 180);
+"460
+[; ;DC_motors.c: 460:     turnleft(mL, mR, 180);
 [e ( _turnleft (3 , , _mL _mR -> -> 180 `i `ui ]
-"476
-[; ;DC_motors.c: 476:     stop(mL, mR);
+"461
+[; ;DC_motors.c: 461:     stop(mL, mR);
 [e ( _stop (2 , _mL _mR ]
-"478
-[; ;DC_motors.c: 478:     while (PORTFbits.RF2 && PORTFbits.RF3);
+"463
+[; ;DC_motors.c: 463:     while (PORTFbits.RF2 && PORTFbits.RF3);
 [e $U 2164  ]
 [e :U 2165 ]
 [e :U 2164 ]
 [e $ && != -> . . _PORTFbits 0 2 `i -> 0 `i != -> . . _PORTFbits 0 3 `i -> 0 `i 2165  ]
 [e :U 2166 ]
-"479
-[; ;DC_motors.c: 479:     turnright(mL, mR, 360);
+"464
+[; ;DC_motors.c: 464:     turnright(mL, mR, 360);
 [e ( _turnright (3 , , _mL _mR -> -> 360 `i `ui ]
-"480
-[; ;DC_motors.c: 480:     stop(mL, mR);
+"465
+[; ;DC_motors.c: 465:     stop(mL, mR);
 [e ( _stop (2 , _mL _mR ]
-"482
-[; ;DC_motors.c: 482:     while (PORTFbits.RF2 && PORTFbits.RF3);
+"467
+[; ;DC_motors.c: 467:     while (PORTFbits.RF2 && PORTFbits.RF3);
 [e $U 2167  ]
 [e :U 2168 ]
 [e :U 2167 ]
 [e $ && != -> . . _PORTFbits 0 2 `i -> 0 `i != -> . . _PORTFbits 0 3 `i -> 0 `i 2168  ]
 [e :U 2169 ]
-"483
-[; ;DC_motors.c: 483:     turnleft(mL, mR, 360);
+"468
+[; ;DC_motors.c: 468:     turnleft(mL, mR, 360);
 [e ( _turnleft (3 , , _mL _mR -> -> 360 `i `ui ]
-"484
-[; ;DC_motors.c: 484:     stop(mL, mR);
+"469
+[; ;DC_motors.c: 469:     stop(mL, mR);
 [e ( _stop (2 , _mL _mR ]
-"485
-[; ;DC_motors.c: 485: }
+"470
+[; ;DC_motors.c: 470: }
 [e :UE 2136 ]
 }

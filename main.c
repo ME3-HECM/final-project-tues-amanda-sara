@@ -61,45 +61,49 @@ void main(void) {
      * Getting ready
      ***************/
     while(RF2_BUTTON && RF3_BUTTON); // Wait for button press
-    MAINBEAM_LED = 1;                //
-    colourclickLEDs_C(1);            //
-    __delay_ms(1000);                //
-    interrupts_init();               //
-    timer0_init();            //
+    MAINBEAM_LED = 1;                // Switch on front and rear headlights
+    colourclickLEDs_C(1);            // Switch on clear light on colour click module to improve colour recognition
+    __delay_ms(1000);                // Wait a short delay before starting the maze
+    interrupts_init();               // Initialise interrupts
+    timer0_init();                   // Initialise timer0 module
     
     /*****************
      * Maze navigation
      *****************/
+    // Infinite while loop
     while(1) {
-        checkbatterylevel();
+        checkbatterylevel();                                  // Step 1: Check current battery level (warn user to charge buggy if low battery)
         
-        if (start<1 && colourcard_flag==1) { // Prevents accidental trips at beginning
-            colourcard_flag = 0;
-            start = 1;
-        } else if (start>0 && colourcard_flag==1) {
-            stop(&motorL, &motorR);
-            RD7_LED = 1;
-            RH3_LED = 1;
-            reverse(&motorL, &motorR);
-            __delay_ms(100);
-            stop(&motorL, &motorR);
-            RD7_LED = 0;
-            RH3_LED = 0;
-            __delay_ms(1000);
+        if (start<1 && colourcard_flag==1) {                  // Step 2: Prevent accidental trips at beginning of maze
+            colourcard_flag = 0;                              // Reset colour card flag if buggy had a false alarm in the first loop
+            start = 1;                                        // Indicate that the buggy has passed the initial hurdle
             
-            colourcards_readRGBC(&current, &motorL, &motorR);
+        } else if (start>0 && colourcard_flag==1) {           // Step 3: 
+            stop(&motorL, &motorR);                           //
+            RD7_LED = 1;                                      //
+            RH3_LED = 1;                                      //
+            reverse(&motorL, &motorR);                        //
+            __delay_ms(100);                                  //
+            stop(&motorL, &motorR);                           //
+            RD7_LED = 0;                                      //
+            RH3_LED = 0;                                      //
+            __delay_ms(1000);                                 //
             
-            __delay_ms(1000);
-            colourclick_readRGBC(&current);
-            interrupts_lowerbound = current.C - 150;
-            interrupts_upperbound = current.C + 100;
+            colourcards_readRGBC(&current, &motorL, &motorR); // Read card colour and move accordingly
             
-            colourcard_flag = 0;
-        } else if (returnhome_flag==1) {
-            returnhome(&motorL, &motorR);
-            returnhome_flag=2;
-        } else if (returnhome_flag==0) {
-            forward(&motorL, &motorR);
+            __delay_ms(1000);                                 // 
+            colourclick_readRGBC(&current);                   //
+            interrupts_lowerbound = current.C - 150;          //
+            interrupts_upperbound = current.C + 100;          //
+            
+            colourcard_flag = 0;                              //
+            
+        } else if (returnhome_flag==1) {                      // Step 4:
+            returnhome(&motorL, &motorR);                     //
+            returnhome_flag=2;                                //
+            
+        } else if (returnhome_flag==0) {                      // Step 5:
+            forward(&motorL, &motorR);                        //
         }
     }
 }

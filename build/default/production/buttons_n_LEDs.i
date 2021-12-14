@@ -24193,9 +24193,9 @@ void buggyLEDs_init(void);
 
 
 void clicker2buttons_init(void) {
-
     TRISFbits.TRISF2=1;
     TRISFbits.TRISF3=1;
+
     ANSELFbits.ANSELF2=0;
     ANSELFbits.ANSELF3=0;
 }
@@ -24205,11 +24205,11 @@ void clicker2buttons_init(void) {
 
 
 void clicker2LEDs_init(void) {
-    TRISDbits.TRISD7 = 0;
-    TRISHbits.TRISH3 = 0;
-
     LATDbits.LATD7 = 0;
     LATHbits.LATH3 = 0;
+
+    TRISDbits.TRISD7 = 0;
+    TRISHbits.TRISH3 = 0;
 }
 
 
@@ -24217,13 +24217,11 @@ void clicker2LEDs_init(void) {
 
 
 void colourclickLEDs_init(void) {
+    colourclickLEDs_C(0);
 
     TRISGbits.TRISG1 = 0;
     TRISAbits.TRISA4 = 0;
     TRISFbits.TRISF7 = 0;
-
-
-    colourclickLEDs_C(0);
 }
 
 
@@ -24262,15 +24260,15 @@ void colourclickLEDs_C(unsigned char tog) {
 
 
 void buggyLEDs_init(void) {
-    TRISHbits.TRISH1 = 0;
-    TRISDbits.TRISD3 = 0;
-    TRISDbits.TRISD4 = 0;
-    TRISFbits.TRISF0 = 0;
-    TRISHbits.TRISH0 = 0;
-
     LATHbits.LATH1 = 0;
     LATDbits.LATD3 = 0;
     LATDbits.LATD4 = 0;
     LATFbits.LATF0 = 0;
     LATHbits.LATH0 = 0;
+
+    TRISHbits.TRISH1 = 0;
+    TRISDbits.TRISD3 = 0;
+    TRISDbits.TRISD4 = 0;
+    TRISFbits.TRISF0 = 0;
+    TRISHbits.TRISH0 = 0;
 }

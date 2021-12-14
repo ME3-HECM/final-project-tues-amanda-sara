@@ -2403,176 +2403,176 @@ Version 4.0 HI-TECH Software Intermediate Code
 "134
 [; ;colour_click.c: 134:         _delay((unsigned long)((20)*(64000000/4000.0)));
 [e ( __delay (1 -> * -> -> 20 `i `d / -> -> 64000000 `l `d .4000.0 `ul ]
-"135
-[; ;colour_click.c: 135:     } else if (mode==2) {
+"136
+[; ;colour_click.c: 136:     } else if (mode==2) {
 }
 [e $U 2032  ]
 [e :U 2031 ]
 [e $ ! == -> _mode `i -> 2 `i 2033  ]
 {
-"136
-[; ;colour_click.c: 136:         LATAbits.LATA4 = 1;
-[e = . . _LATAbits 0 4 -> -> 1 `i `uc ]
 "137
-[; ;colour_click.c: 137:         _delay((unsigned long)((1000)*(64000000/4000.0)));
-[e ( __delay (1 -> * -> -> 1000 `i `d / -> -> 64000000 `l `d .4000.0 `ul ]
+[; ;colour_click.c: 137:         LATAbits.LATA4 = 1;
+[e = . . _LATAbits 0 4 -> -> 1 `i `uc ]
 "138
-[; ;colour_click.c: 138:         colourclick_readRGBC(tmpval);
-[e ( _colourclick_readRGBC (1 _tmpval ]
-"139
-[; ;colour_click.c: 139:         _delay((unsigned long)((1000)*(64000000/4000.0)));
+[; ;colour_click.c: 138:         _delay((unsigned long)((1000)*(64000000/4000.0)));
 [e ( __delay (1 -> * -> -> 1000 `i `d / -> -> 64000000 `l `d .4000.0 `ul ]
+"139
+[; ;colour_click.c: 139:         colourclick_readRGBC(tmpval);
+[e ( _colourclick_readRGBC (1 _tmpval ]
 "140
-[; ;colour_click.c: 140:         LATAbits.LATA4 = 0;
-[e = . . _LATAbits 0 4 -> -> 0 `i `uc ]
+[; ;colour_click.c: 140:         _delay((unsigned long)((1000)*(64000000/4000.0)));
+[e ( __delay (1 -> * -> -> 1000 `i `d / -> -> 64000000 `l `d .4000.0 `ul ]
 "141
-[; ;colour_click.c: 141:         _delay((unsigned long)((20)*(64000000/4000.0)));
-[e ( __delay (1 -> * -> -> 20 `i `d / -> -> 64000000 `l `d .4000.0 `ul ]
+[; ;colour_click.c: 141:         LATAbits.LATA4 = 0;
+[e = . . _LATAbits 0 4 -> -> 0 `i `uc ]
 "142
-[; ;colour_click.c: 142:     } else if (mode==3) {
+[; ;colour_click.c: 142:         _delay((unsigned long)((20)*(64000000/4000.0)));
+[e ( __delay (1 -> * -> -> 20 `i `d / -> -> 64000000 `l `d .4000.0 `ul ]
+"144
+[; ;colour_click.c: 144:     } else if (mode==3) {
 }
 [e $U 2034  ]
 [e :U 2033 ]
 [e $ ! == -> _mode `i -> 3 `i 2035  ]
 {
-"143
-[; ;colour_click.c: 143:         LATFbits.LATF7 = 1;
-[e = . . _LATFbits 0 7 -> -> 1 `i `uc ]
-"144
-[; ;colour_click.c: 144:         _delay((unsigned long)((1000)*(64000000/4000.0)));
-[e ( __delay (1 -> * -> -> 1000 `i `d / -> -> 64000000 `l `d .4000.0 `ul ]
 "145
-[; ;colour_click.c: 145:         colourclick_readRGBC(tmpval);
-[e ( _colourclick_readRGBC (1 _tmpval ]
+[; ;colour_click.c: 145:         LATFbits.LATF7 = 1;
+[e = . . _LATFbits 0 7 -> -> 1 `i `uc ]
 "146
 [; ;colour_click.c: 146:         _delay((unsigned long)((1000)*(64000000/4000.0)));
 [e ( __delay (1 -> * -> -> 1000 `i `d / -> -> 64000000 `l `d .4000.0 `ul ]
 "147
-[; ;colour_click.c: 147:         LATFbits.LATF7 = 0;
-[e = . . _LATFbits 0 7 -> -> 0 `i `uc ]
+[; ;colour_click.c: 147:         colourclick_readRGBC(tmpval);
+[e ( _colourclick_readRGBC (1 _tmpval ]
 "148
-[; ;colour_click.c: 148:         _delay((unsigned long)((20)*(64000000/4000.0)));
-[e ( __delay (1 -> * -> -> 20 `i `d / -> -> 64000000 `l `d .4000.0 `ul ]
+[; ;colour_click.c: 148:         _delay((unsigned long)((1000)*(64000000/4000.0)));
+[e ( __delay (1 -> * -> -> 1000 `i `d / -> -> 64000000 `l `d .4000.0 `ul ]
 "149
-[; ;colour_click.c: 149:     }
+[; ;colour_click.c: 149:         LATFbits.LATF7 = 0;
+[e = . . _LATFbits 0 7 -> -> 0 `i `uc ]
+"150
+[; ;colour_click.c: 150:         _delay((unsigned long)((20)*(64000000/4000.0)));
+[e ( __delay (1 -> * -> -> 20 `i `d / -> -> 64000000 `l `d .4000.0 `ul ]
+"151
+[; ;colour_click.c: 151:     }
 }
 [e :U 2035 ]
 [e :U 2034 ]
 [e :U 2032 ]
-"151
-[; ;colour_click.c: 151:     colourclickLEDs_C(1);
-[e ( _colourclickLEDs_C (1 -> -> 1 `i `uc ]
-"152
-[; ;colour_click.c: 152:     _delay((unsigned long)((100)*(64000000/4000.0)));
-[e ( __delay (1 -> * -> -> 100 `i `d / -> -> 64000000 `l `d .4000.0 `ul ]
 "153
-[; ;colour_click.c: 153: }
+[; ;colour_click.c: 153:     colourclickLEDs_C(1);
+[e ( _colourclickLEDs_C (1 -> -> 1 `i `uc ]
+"154
+[; ;colour_click.c: 154:     _delay((unsigned long)((100)*(64000000/4000.0)));
+[e ( __delay (1 -> * -> -> 100 `i `d / -> -> 64000000 `l `d .4000.0 `ul ]
+"155
+[; ;colour_click.c: 155: }
 [e :UE 2030 ]
 }
-"159
-[; ;colour_click.c: 159: void colourclick_calibration(void) {
+"161
+[; ;colour_click.c: 161: void colourclick_calibration(void) {
 [v _colourclick_calibration `(v ~T0 @X0 1 ef ]
 {
 [e :U _colourclick_calibration ]
 [f ]
-"160
-[; ;colour_click.c: 160:     RGBC_val initial;
+"162
+[; ;colour_click.c: 162:     RGBC_val initial;
 [v _initial `S2021 ~T0 @X0 1 a ]
-"161
-[; ;colour_click.c: 161:     while(PORTFbits.RF2 && PORTFbits.RF3);
+"163
+[; ;colour_click.c: 163:     while(PORTFbits.RF2 && PORTFbits.RF3);
 [e $U 2037  ]
 [e :U 2038 ]
 [e :U 2037 ]
 [e $ && != -> . . _PORTFbits 0 2 `i -> 0 `i != -> . . _PORTFbits 0 3 `i -> 0 `i 2038  ]
 [e :U 2039 ]
-"162
-[; ;colour_click.c: 162:     if (!PORTFbits.RF2) {LATDbits.LATD7=1;}
+"164
+[; ;colour_click.c: 164:     if (!PORTFbits.RF2) {LATDbits.LATD7=1;}
 [e $ ! ! != -> . . _PORTFbits 0 2 `i -> 0 `i 2040  ]
 {
 [e = . . _LATDbits 0 7 -> -> 1 `i `uc ]
 }
 [e :U 2040 ]
-"163
-[; ;colour_click.c: 163:     if (!PORTFbits.RF3) {LATHbits.LATH3=1;}
+"165
+[; ;colour_click.c: 165:     if (!PORTFbits.RF3) {LATHbits.LATH3=1;}
 [e $ ! ! != -> . . _PORTFbits 0 3 `i -> 0 `i 2041  ]
 {
 [e = . . _LATHbits 0 3 -> -> 1 `i `uc ]
 }
 [e :U 2041 ]
-"164
-[; ;colour_click.c: 164:     LATDbits.LATD3 = 1;
-[e = . . _LATDbits 0 3 -> -> 1 `i `uc ]
-"165
-[; ;colour_click.c: 165:     colourclickLEDs_C(1);
-[e ( _colourclickLEDs_C (1 -> -> 1 `i `uc ]
 "166
-[; ;colour_click.c: 166:     _delay((unsigned long)((1000)*(64000000/4000.0)));
-[e ( __delay (1 -> * -> -> 1000 `i `d / -> -> 64000000 `l `d .4000.0 `ul ]
+[; ;colour_click.c: 166:     LATDbits.LATD3 = 1;
+[e = . . _LATDbits 0 3 -> -> 1 `i `uc ]
+"167
+[; ;colour_click.c: 167:     colourclickLEDs_C(1);
+[e ( _colourclickLEDs_C (1 -> -> 1 `i `uc ]
 "168
-[; ;colour_click.c: 168:     colourclick_readRGBC(&initial);
-[e ( _colourclick_readRGBC (1 &U _initial ]
-"170
-[; ;colour_click.c: 170:     _delay((unsigned long)((1000)*(64000000/4000.0)));
+[; ;colour_click.c: 168:     _delay((unsigned long)((1000)*(64000000/4000.0)));
 [e ( __delay (1 -> * -> -> 1000 `i `d / -> -> 64000000 `l `d .4000.0 `ul ]
-"171
-[; ;colour_click.c: 171:     LATDbits.LATD3 = 0;
-[e = . . _LATDbits 0 3 -> -> 0 `i `uc ]
+"170
+[; ;colour_click.c: 170:     colourclick_readRGBC(&initial);
+[e ( _colourclick_readRGBC (1 &U _initial ]
 "172
-[; ;colour_click.c: 172:     colourclickLEDs_C(0);
-[e ( _colourclickLEDs_C (1 -> -> 0 `i `uc ]
+[; ;colour_click.c: 172:     _delay((unsigned long)((1000)*(64000000/4000.0)));
+[e ( __delay (1 -> * -> -> 1000 `i `d / -> -> 64000000 `l `d .4000.0 `ul ]
 "173
-[; ;colour_click.c: 173:     LATDbits.LATD7 = 0;
-[e = . . _LATDbits 0 7 -> -> 0 `i `uc ]
+[; ;colour_click.c: 173:     LATDbits.LATD3 = 0;
+[e = . . _LATDbits 0 3 -> -> 0 `i `uc ]
 "174
-[; ;colour_click.c: 174:     LATHbits.LATH3 = 0;
-[e = . . _LATHbits 0 3 -> -> 0 `i `uc ]
+[; ;colour_click.c: 174:     colourclickLEDs_C(0);
+[e ( _colourclickLEDs_C (1 -> -> 0 `i `uc ]
+"175
+[; ;colour_click.c: 175:     LATDbits.LATD7 = 0;
+[e = . . _LATDbits 0 7 -> -> 0 `i `uc ]
 "176
-[; ;colour_click.c: 176:     interrupts_lowerbound = initial.C - 150;
-[e = _interrupts_lowerbound - . _initial 3 -> -> 150 `i `ui ]
-"177
-[; ;colour_click.c: 177:     interrupts_upperbound = initial.C + 100;
-[e = _interrupts_upperbound + . _initial 3 -> -> 100 `i `ui ]
+[; ;colour_click.c: 176:     LATHbits.LATH3 = 0;
+[e = . . _LATHbits 0 3 -> -> 0 `i `uc ]
 "178
-[; ;colour_click.c: 178: }
+[; ;colour_click.c: 178:     interrupts_lowerbound = initial.C - 150;
+[e = _interrupts_lowerbound - . _initial 3 -> -> 150 `i `ui ]
+"179
+[; ;colour_click.c: 179:     interrupts_upperbound = initial.C + 100;
+[e = _interrupts_upperbound + . _initial 3 -> -> 100 `i `ui ]
+"180
+[; ;colour_click.c: 180: }
 [e :UE 2036 ]
 }
-"184
-[; ;colour_click.c: 184: void colourclick_testing(RGBC_val *initval, RGBC_val *tmpval) {
+"186
+[; ;colour_click.c: 186: void colourclick_testing(RGBC_val *initval, RGBC_val *tmpval) {
 [v _colourclick_testing `(v ~T0 @X0 1 ef2`*S2021`*S2021 ]
 {
 [e :U _colourclick_testing ]
 [v _initval `*S2021 ~T0 @X0 1 r1 ]
 [v _tmpval `*S2021 ~T0 @X0 1 r2 ]
 [f ]
-"185
-[; ;colour_click.c: 185:     unsigned int ambient = initval->C;
+"187
+[; ;colour_click.c: 187:     unsigned int ambient = initval->C;
 [v _ambient `ui ~T0 @X0 1 a ]
 [e = _ambient . *U _initval 3 ]
-"186
-[; ;colour_click.c: 186:     unsigned int R = tmpval->R;
+"188
+[; ;colour_click.c: 188:     unsigned int R = tmpval->R;
 [v _R `ui ~T0 @X0 1 a ]
 [e = _R . *U _tmpval 0 ]
-"187
-[; ;colour_click.c: 187:     unsigned int G = tmpval->G;
+"189
+[; ;colour_click.c: 189:     unsigned int G = tmpval->G;
 [v _G `ui ~T0 @X0 1 a ]
 [e = _G . *U _tmpval 1 ]
-"188
-[; ;colour_click.c: 188:     unsigned int B = tmpval->B;
+"190
+[; ;colour_click.c: 190:     unsigned int B = tmpval->B;
 [v _B `ui ~T0 @X0 1 a ]
 [e = _B . *U _tmpval 2 ]
-"189
-[; ;colour_click.c: 189:     unsigned int C = tmpval->C;
+"191
+[; ;colour_click.c: 191:     unsigned int C = tmpval->C;
 [v _C `ui ~T0 @X0 1 a ]
 [e = _C . *U _tmpval 3 ]
-"191
-[; ;colour_click.c: 191:     if ((C>interrupts_lowerbound) && (C<ambient)) {interrupts_lowerbound = C;}
+"193
+[; ;colour_click.c: 193:     if ((C>interrupts_lowerbound) && (C<ambient)) {interrupts_lowerbound = C;}
 [e $ ! && > _C _interrupts_lowerbound < _C _ambient 2043  ]
 {
 [e = _interrupts_lowerbound _C ]
 }
 [e $U 2044  ]
-"192
-[; ;colour_click.c: 192:     else if ((C<interrupts_upperbound) && (C>ambient)) {interrupts_upperbound=C;}
+"194
+[; ;colour_click.c: 194:     else if ((C<interrupts_upperbound) && (C>ambient)) {interrupts_upperbound=C;}
 [e :U 2043 ]
 [e $ ! && < _C _interrupts_upperbound > _C _ambient 2045  ]
 {
@@ -2580,20 +2580,20 @@ Version 4.0 HI-TECH Software Intermediate Code
 }
 [e :U 2045 ]
 [e :U 2044 ]
-"194
-[; ;colour_click.c: 194:     char buf[100];
+"196
+[; ;colour_click.c: 196:     char buf[100];
 [v _buf `uc ~T0 @X0 -> 100 `i a ]
-"195
-[; ;colour_click.c: 195:     sprintf(buf,"RGBC: %i %i %i %i     Threshold: %i %i %i\n\r", R, G, B, C, interrupts_lowerbound, ambient, interrupts_upperbound);
-[e ( _sprintf (1 , , , , , , , (. , &U _buf :s 1C _R _G _B _C _interrupts_lowerbound _ambient _interrupts_upperbound ]
 "197
-[; ;colour_click.c: 197:     sendStringSerial4(buf);
-[e ( _sendStringSerial4 (1 &U _buf ]
-"198
-[; ;colour_click.c: 198:     _delay((unsigned long)((500)*(64000000/4000.0)));
-[e ( __delay (1 -> * -> -> 500 `i `d / -> -> 64000000 `l `d .4000.0 `ul ]
+[; ;colour_click.c: 197:     sprintf(buf,"RGBC: %i %i %i %i     Threshold: %i %i %i\n\r", R, G, B, C, interrupts_lowerbound, ambient, interrupts_upperbound);
+[e ( _sprintf (1 , , , , , , , (. , &U _buf :s 1C _R _G _B _C _interrupts_lowerbound _ambient _interrupts_upperbound ]
 "199
-[; ;colour_click.c: 199: }
+[; ;colour_click.c: 199:     sendStringSerial4(buf);
+[e ( _sendStringSerial4 (1 &U _buf ]
+"200
+[; ;colour_click.c: 200:     _delay((unsigned long)((500)*(64000000/4000.0)));
+[e ( __delay (1 -> * -> -> 500 `i `d / -> -> 64000000 `l `d .4000.0 `ul ]
+"201
+[; ;colour_click.c: 201: }
 [e :UE 2042 ]
 }
 [p f _sprintf 8388736 ]
