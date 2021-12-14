@@ -24191,7 +24191,7 @@ typedef struct {
 
 
 
-extern volatile unsigned int tmp;
+extern volatile unsigned int timer;
 extern volatile unsigned int instr[20];
 extern volatile unsigned int dur[20];
 extern volatile unsigned char instr_counter;
@@ -24300,8 +24300,8 @@ void DCmotors_setPWM(DC_motor *m) {
 void checkbatterylevel(void) {
     unsigned char batterylevel;
     batterylevel = ADC_getval();
-    if (batterylevel<50) {
-        while(!PORTFbits.RF2 && !PORTFbits.RF3) {
+    if (batterylevel<200) {
+        while(1) {
             LATDbits.LATD7 = !LATDbits.LATD7;
             LATHbits.LATH3 = !LATHbits.LATH3;
             LATDbits.LATD3 = !LATDbits.LATD3;
@@ -24325,7 +24325,6 @@ void forward(DC_motor *mL, DC_motor *mR) {
     while((mL->power < 20) && (mR->power < 20)){
         mL->power += 10;
         mR->power += 10;
-
         DCmotors_setPWM(mL);
         DCmotors_setPWM(mR);
         _delay((unsigned long)((50)*(64000000/4000000.0)));
@@ -24337,14 +24336,12 @@ void forward(DC_motor *mL, DC_motor *mR) {
 
 
 void reverse(DC_motor *mL, DC_motor *mR) {
-
     mL->direction = 0;
     mR->direction = 0;
 
     while((mL->power < 50) && (mR->power < 50)){
         mL->power += 10;
         mR->power += 10;
-
         DCmotors_setPWM(mL);
         DCmotors_setPWM(mR);
         _delay((unsigned long)((50)*(64000000/4000000.0)));
@@ -24374,7 +24371,6 @@ void stop(DC_motor *mL, DC_motor *mR) {
     while((mL->power > 0) && (mR->power > 0)){
         mL->power -= 10;
         mR->power -= 10;
-
         DCmotors_setPWM(mL);
         DCmotors_setPWM(mR);
         _delay((unsigned long)((50)*(64000000/4000000.0)));
@@ -24388,26 +24384,18 @@ void stop(DC_motor *mL, DC_motor *mR) {
 
 
 void turnleft(DC_motor *mL, DC_motor *mR, unsigned int deg) {
-
-    double delay = ((deg*2.332)+31.506) * 360/turnleft_calangle;
-
-
     mL->direction = 0;
     mR->direction = 1;
 
-
     LATFbits.LATF0 = 1;
+    double delay = ((deg*2.332)+31.506) * 360/turnleft_calangle;
     while((mL->power < 70) || (mR->power < 70)){
-
         if (mL->power < 70) {mL->power += 10;}
         if (mR->power < 70) {mR->power += 10;}
-
-
         DCmotors_setPWM(mL);
         DCmotors_setPWM(mR);
         _delay((unsigned long)((50)*(64000000/4000000.0)));
     }
-
     unsigned int i;
     for (i=0; i<delay; i++) {_delay((unsigned long)((1)*(64000000/4000.0)));}
     LATFbits.LATF0 = 0;
@@ -24418,29 +24406,20 @@ void turnleft(DC_motor *mL, DC_motor *mR, unsigned int deg) {
 
 
 void turnright(DC_motor *mL, DC_motor *mR, unsigned int deg) {
-
-    double delay = ((deg*2.0303)+62.964) * 360/turnright_calangle;
-
-
     mL->direction = 1;
     mR->direction = 0;
 
-
     LATHbits.LATH0 = 1;
+    double delay = ((deg*2.0303)+62.964) * 360/turnright_calangle;
     while((mL->power < 70) || (mR->power < 70)){
-
         if (mL->power < 70) {mL->power += 10;}
         if (mR->power < 70) {mR->power += 10;}
-
-
         DCmotors_setPWM(mL);
         DCmotors_setPWM(mR);
         _delay((unsigned long)((50)*(64000000/4000000.0)));
     }
-
     unsigned int i;
     for (i=0; i<delay; i++) {_delay((unsigned long)((1)*(64000000/4000.0)));}
-
     LATHbits.LATH0 = 0;
 }
 
@@ -24456,40 +24435,46 @@ void instructions(DC_motor *mL, DC_motor *mR, unsigned char num) {
         instr_counter++;
     }
 
-    if (num==1) {
 
+    if (num==1) {
         turnright(mL, mR, 90);
         stop(mL, mR);
-    } else if (num==2) {
 
+
+    } else if (num==2) {
         turnleft(mL, mR, 90);
         stop(mL, mR);
-    } else if (num==3) {
 
+
+    } else if (num==3) {
         turnright(mL, mR, 180);
         stop(mL, mR);
-    } else if (num==4) {
 
+
+    } else if (num==4) {
         reverse(mL, mR);
         _delay((unsigned long)((1400)*(64000000/4000.0)));
         stop(mL, mR);
         _delay((unsigned long)((100)*(64000000/4000.0)));
         turnright(mL, mR, 90);
         stop(mL, mR);
-    } else if (num==5) {
 
+
+    } else if (num==5) {
         reverse(mL, mR);
         _delay((unsigned long)((1400)*(64000000/4000.0)));
         stop(mL, mR);
         _delay((unsigned long)((100)*(64000000/4000.0)));
         turnleft(mL, mR, 90);
         stop(mL, mR);
-    } else if (num==6) {
 
+
+    } else if (num==6) {
         turnright(mL, mR, 135);
         stop(mL, mR);
-    } else if (num==7) {
 
+
+    } else if (num==7) {
         turnleft(mL, mR, 135);
         stop(mL, mR);
     }
@@ -24533,7 +24518,7 @@ void returnhome(DC_motor *mL, DC_motor *mR) {
     unsigned char j,k;
     for (j=0; j<=i; j++) {
         reverse(mL, mR);
-        for (k=0; k<=5; k++) {_delay((unsigned long)((100)*(64000000/4000.0)));}
+        _delay((unsigned long)((3000)*(64000000/4000.0)));
         stop(mL, mR);
 
         reverseinstructions(mL, mR);
@@ -24542,7 +24527,7 @@ void returnhome(DC_motor *mL, DC_motor *mR) {
         instr_counter--;
     }
     reverse(mL, mR);
-    for (k=0; k<=5; k++) {_delay((unsigned long)((100)*(64000000/4000.0)));}
+    _delay((unsigned long)((3000)*(64000000/4000.0)));
     stop(mL, mR);
 }
 

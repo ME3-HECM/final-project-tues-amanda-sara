@@ -2,6 +2,21 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group/>
+        <group>
+            <file>file:/C:/Users/amand/MPLABXProjects/final-project-tues-amanda-sara-v2.X/main.h</file>
+            <file>file:/C:/Users/amand/MPLABXProjects/final-project-tues-amanda-sara-v2.X/main.c</file>
+            <file>file:/C:/Users/amand/MPLABXProjects/final-project-tues-amanda-sara-v2.X/DC_motors.h</file>
+            <file>file:/C:/Users/amand/MPLABXProjects/final-project-tues-amanda-sara-v2.X/colour_click.c</file>
+            <file>file:/C:/Users/amand/MPLABXProjects/final-project-tues-amanda-sara-v2.X/buttons_n_LEDs.c</file>
+            <file>file:/C:/Users/amand/MPLABXProjects/final-project-tues-amanda-sara-v2.X/DC_motors.c</file>
+            <file>file:/C:/Users/amand/MPLABXProjects/final-project-tues-amanda-sara-v2.X/serial_comm.c</file>
+            <file>file:/C:/Users/amand/MPLABXProjects/final-project-tues-amanda-sara-v2.X/interrupts.c</file>
+            <file>file:/C:/Users/amand/MPLABXProjects/final-project-tues-amanda-sara-v2.X/buttons_n_LEDs.h</file>
+            <file>file:/C:/Users/amand/MPLABXProjects/final-project-tues-amanda-sara-v2.X/colour_cards.c</file>
+            <file>file:/C:/Users/amand/MPLABXProjects/final-project-tues-amanda-sara-v2.X/I2C.c</file>
+            <file>file:/C:/Users/amand/MPLABXProjects/final-project-tues-amanda-sara-v2.X/timers.c</file>
+            <file>file:/C:/Users/amand/MPLABXProjects/final-project-tues-amanda-sara-v2.X/ADC.c</file>
+            <file>file:/C:/Users/amand/MPLABXProjects/final-project-tues-amanda-sara-v2.X/interrupts.h</file>
+        </group>
     </open-files>
 </project-private>

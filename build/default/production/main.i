@@ -24388,7 +24388,7 @@ typedef struct {
 
 
 
-extern volatile unsigned int tmp;
+extern volatile unsigned int timer;
 extern volatile unsigned int instr[20];
 extern volatile unsigned int dur[20];
 extern volatile unsigned char instr_counter;
@@ -24457,7 +24457,7 @@ unsigned char I2C_2_Master_Read(unsigned char ack);
 
 # 1 "./interrupts.h" 1
 # 11 "./interrupts.h"
-extern volatile unsigned int tmp;
+extern volatile unsigned int timer;
 volatile unsigned int instr[20];
 volatile unsigned int dur[20];
 volatile unsigned char instr_counter;
@@ -24564,16 +24564,7 @@ void main(void) {
     DCmotors_init(PWMperiod);
     USART4_init();
     checkbatterylevel();
-
-
-
-
-    DCmotors_calibration(&motorL, &motorR);
-
-
-
-
-
+# 56 "main.c"
     colourclick_calibration();
 
 

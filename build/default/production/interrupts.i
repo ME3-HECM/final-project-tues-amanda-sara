@@ -24179,7 +24179,7 @@ extern __attribute__((nonreentrant)) void _delay3(unsigned char);
 
 # 1 "./interrupts.h" 1
 # 11 "./interrupts.h"
-extern volatile unsigned int tmp;
+extern volatile unsigned int timer;
 volatile unsigned int instr[20];
 volatile unsigned int dur[20];
 volatile unsigned char instr_counter;
@@ -24278,8 +24278,6 @@ void interrupts_init(void){
     INTCONbits.IPEN = 1;
     INTCONbits.PEIE = 1;
     INTCONbits.GIE = 1;
-
-
 }
 
 
@@ -24329,7 +24327,7 @@ void __attribute__((picinterrupt(("high_priority")))) HighISR() {
 void __attribute__((picinterrupt(("low_priority")))) LowISR() {
     if (PIR0bits.TMR0IF) {
 
-        tmp++;
+        timer++;
         TMR0H=0b00111100;
         TMR0L=0b10101111;
         PIR0bits.TMR0IF = 0;

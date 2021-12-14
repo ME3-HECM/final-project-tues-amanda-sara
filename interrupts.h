@@ -8,7 +8,7 @@
 /******************
  * Global variables
  ******************/
-extern volatile unsigned int tmp;
+extern volatile unsigned int timer;
 volatile unsigned int instr[20];
 volatile unsigned int dur[20];
 volatile unsigned char instr_counter;

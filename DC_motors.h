@@ -20,7 +20,7 @@ typedef struct {                 // Define a structure
 /******************
  * Global variables
  ******************/
-extern volatile unsigned int tmp;
+extern volatile unsigned int timer;
 extern volatile unsigned int instr[20];
 extern volatile unsigned int dur[20];
 extern volatile unsigned char instr_counter;

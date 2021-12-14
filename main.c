@@ -47,7 +47,7 @@ void main(void) {
     /***************************
      * Motor calibration routine
      ***************************/
-    DCmotors_calibration(&motorL, &motorR); // Initiate motor calibration routine (see DC_motors.c)
+//    DCmotors_calibration(&motorL, &motorR); // Initiate motor calibration routine (see DC_motors.c)
 //    DCmotors_testing(&motorL, &motorR);     // Test all DC motor movements
     
     /****************************

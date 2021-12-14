@@ -65,8 +65,8 @@ void DCmotors_setPWM(DC_motor *m) {
 void checkbatterylevel(void) {
     unsigned char batterylevel;             // Initialise variable to store battery level
     batterylevel = ADC_getval();            // Use ADC to get battery voltage value
-    if (batterylevel<50) {                  // If battery is low
-        while(!RF2_BUTTON && !RF3_BUTTON) { // Unless user presses any button to dismiss the warnings
+    if (batterylevel<200) {                  // If battery is low
+        while(1) { // Unless user presses any button to dismiss the warnings
             RD7_LED = !RD7_LED;             // Keep flashing the RD7_LED,
             RH3_LED = !RH3_LED;             // RH3_LED,
             MAINBEAM_LED = !MAINBEAM_LED;   // MAINBEAM_LED,
