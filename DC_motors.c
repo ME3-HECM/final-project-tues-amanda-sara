@@ -154,7 +154,7 @@ void stop(DC_motor *mL, DC_motor *mR) {
  ****************************************************/
 void left(DC_motor *mL, DC_motor *mR, unsigned int deg) {
     // Calculations
-    double delay = (deg*2.332) + 31.506 + ((turnleft_delay*deg)/90);
+    double delay = ((deg*2.332)+31.506) * 360/turnleft_calangle;
     
     // in order for it to make it turn on the spot: (Assume it was stationary before)
     mL->direction = 0; // left wheels go backward
@@ -184,7 +184,7 @@ void left(DC_motor *mL, DC_motor *mR, unsigned int deg) {
  *****************************************************/
 void right(DC_motor *mL, DC_motor *mR, unsigned int deg) {
     // Calculations
-    double delay = (2.0303*deg) + 62.964 + ((turnright_delay*deg)/90);
+    double delay = ((deg*2.0303)+62.964) * 360/turnright_calangle;
     
     // in order for it to make it turn on the spot: (Assume it was stationary before)
     mL->direction = 1; // left wheels go forward
@@ -233,49 +233,55 @@ void turnright(DC_motor *mL, DC_motor *mR, unsigned int deg) {
  *************************************************************************/
 void DCmotors_calibration(DC_motor *mL, DC_motor *mR) {
     unsigned char okay = 0;
+    while(RF2_BUTTON && RF3_BUTTON);
     while(okay<1){
-        while(RF2_BUTTON && RF3_BUTTON);
-        MAINBEAM_LED = 1;
-        __delay_ms(100);
-        turnleft(mL, mR, 360);
-        stop(mL, mR);
-
-        while(RF2_BUTTON && RF3_BUTTON);
-        adjdelay(1);
-        MAINBEAM_LED = 0;
-        __delay_ms(1000);
-
+        // First turning demonstration by buggy
         MAINBEAM_LED = 1;
         __delay_ms(100);
         turnright(mL, mR, 360);
         stop(mL, mR);
-
+        
         while(RF2_BUTTON && RF3_BUTTON);
-        adjdelay(2);
         MAINBEAM_LED = 0;
+        __delay_ms(1000);
+        adjdelay(1);
         __delay_ms(1000);
         
         MAINBEAM_LED = 1;
         __delay_ms(100);
-        turnleft(mL, mR, 90);
+        turnleft(mL, mR, 360);
         stop(mL, mR);
+        
+        while(RF2_BUTTON && RF3_BUTTON);
+        MAINBEAM_LED = 0;
+        __delay_ms(1000);
+        adjdelay(2);
         __delay_ms(1000);
         
+        // Second turning demonstration by buggy after adjustments of turning duration
+        MAINBEAM_LED = 1;
+        __delay_ms(100);
         turnright(mL, mR, 90);
         stop(mL, mR);
         __delay_ms(1000);
-        MAINBEAM_LED = 0;
         
+        turnleft(mL, mR, 90);
+        stop(mL, mR);
+        MAINBEAM_LED = 0;
+        __delay_ms(1000);
+        
+        // Check whether motor calibration is now satisfactory
         RH3_LED = 1;
         RD7_LED = 1;
-        while(RF3_BUTTON && RF2_BUTTON);
+        while(RF2_BUTTON && RF3_BUTTON);
         if(!RF2_BUTTON && RF3_BUTTON){
-            RH3_LED = 0;
+            RD7_LED = 0;
             okay = 1;
         } else if(!RF3_BUTTON && RF2_BUTTON){
-            RD7_LED = 0;
+            RH3_LED = 0;
             okay = 0;
         }
+        __delay_ms(200);
         RH3_LED = 0;
         RD7_LED = 0;
         __delay_ms(1000);
@@ -287,43 +293,35 @@ void DCmotors_calibration(DC_motor *mL, DC_motor *mR) {
  * Function used to adjust the turning duration and hence the turning angle
  **************************************************************************/
 void adjdelay(unsigned char mode) {
-    __delay_ms(1000);
     unsigned char i;
     for (i=0; i<10; i++) {
-        if(mode==2){
-            BRAKE_LED = 1;
-            if(!RF2_BUTTON && RF3_BUTTON){
+        if (mode==1){ // Turn right
+            if (!RF2_BUTTON && RF3_BUTTON) {
                 RD7_LED = 1;
-                turnright_delay+=1;
+                turnright_calangle -= 5;
                 __delay_ms(800);
                 RD7_LED = 0;               
-            }
-            else if(!RF3_BUTTON && RF2_BUTTON){
+            } else if (!RF3_BUTTON && RF2_BUTTON) {
                 RH3_LED = 1;
-                turnright_delay-=1;
+                turnright_calangle += 5;
                 __delay_ms(800);
-                RH3_LED = 0;     
+                RH3_LED = 0;
             }
+            __delay_ms(200);
             
-            __delay_ms(500);
-            BRAKE_LED = 0;
-
-        } else if(mode==1){
-            if(!RF2_BUTTON && RF3_BUTTON){
-                RD7_LED = 1;
-                turnleft_delay-=1;
-                __delay_ms(800);
-                RD7_LED = 0;               
-            }
-            else if(!RF3_BUTTON && RF2_BUTTON){
+        } else if (mode==2) { // Turn left
+            if (!RF3_BUTTON && RF2_BUTTON) {
                 RH3_LED = 1;
-                turnleft_delay+=1;
+                turnleft_calangle -= 5;
                 __delay_ms(800);
                 RH3_LED = 0;               
+            } else if (!RF2_BUTTON && RF3_BUTTON) {
+                RD7_LED = 1;
+                turnleft_calangle += 5;
+                __delay_ms(800);
+                RD7_LED = 0;               
             }
-            
-            __delay_ms(500);
-
+            __delay_ms(200);
         }        
     }  
 }

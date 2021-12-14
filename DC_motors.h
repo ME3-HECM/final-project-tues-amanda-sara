@@ -20,8 +20,8 @@ typedef struct {                 // Define a structure
 /******************
  * Global variables
  ******************/
-extern volatile char turnleft_delay;           // Adjustable value to calibrate motor left turn (refer main.h)
-extern volatile char turnright_delay;          // Adjustable value to calibrate motor right turn (refer main.h)
+extern volatile int turnleft_calangle;           // Angle turned left by motor during calibration (refer main.h)
+extern volatile int turnright_calangle;          // Angle turned right by motor during calibration (refer main.h)
 extern volatile unsigned char returnhome_flag; // Toggled when buggy has found the final white card or in exceptions (refer main.h)
 
 /*********************

@@ -2126,9 +2126,9 @@ Version 4.0 HI-TECH Software Intermediate Code
 "37
 [p x WDTE  =  OFF  ]
 "42
-[v _turnleft_delay `Vuc ~T0 @X0 1 e ]
+[v _turnleft_calangle `Vi ~T0 @X0 1 e ]
 "43
-[v _turnright_delay `Vuc ~T0 @X0 1 e ]
+[v _turnright_calangle `Vi ~T0 @X0 1 e ]
 "44
 [v _interrupts_lowerbound `Vui ~T0 @X0 1 e ]
 "45
@@ -2160,11 +2160,11 @@ Version 4.0 HI-TECH Software Intermediate Code
 [v _PWMperiod `uc ~T0 @X0 1 a ]
 [e = _PWMperiod -> -> 99 `i `uc ]
 "14
-[; ;main.c: 14:     turnleft_delay = 0;
-[e = _turnleft_delay -> -> 0 `i `uc ]
+[; ;main.c: 14:     turnleft_calangle = 360;
+[e = _turnleft_calangle -> 360 `i ]
 "15
-[; ;main.c: 15:     turnright_delay = 0;
-[e = _turnright_delay -> -> 0 `i `uc ]
+[; ;main.c: 15:     turnright_calangle = 360;
+[e = _turnright_calangle -> 360 `i ]
 "16
 [; ;main.c: 16:     interrupts_lowerbound = 0;
 [e = _interrupts_lowerbound -> -> 0 `i `ui ]

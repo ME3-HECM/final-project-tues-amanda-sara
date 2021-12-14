@@ -24387,8 +24387,8 @@ typedef struct {
 
 
 
-extern volatile char turnleft_delay;
-extern volatile char turnright_delay;
+extern volatile int turnleft_calangle;
+extern volatile int turnright_calangle;
 extern volatile unsigned char returnhome_flag;
 
 
@@ -24469,8 +24469,8 @@ void timer0_init(void);
 
 
 
-volatile char turnleft_delay;
-volatile char turnright_delay;
+volatile int turnleft_calangle;
+volatile int turnright_calangle;
 volatile unsigned int interrupts_lowerbound;
 volatile unsigned int interrupts_upperbound;
 volatile unsigned char colourcard_flag;

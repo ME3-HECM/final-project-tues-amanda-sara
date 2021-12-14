@@ -2139,9 +2139,9 @@ Version 4.0 HI-TECH Software Intermediate Code
 "37
 [p x WDTE  =  OFF  ]
 "42
-[v _turnleft_delay `Vuc ~T0 @X0 1 e ]
+[v _turnleft_calangle `Vi ~T0 @X0 1 e ]
 "43
-[v _turnright_delay `Vuc ~T0 @X0 1 e ]
+[v _turnright_calangle `Vi ~T0 @X0 1 e ]
 "44
 [v _interrupts_lowerbound `Vui ~T0 @X0 1 e ]
 "45

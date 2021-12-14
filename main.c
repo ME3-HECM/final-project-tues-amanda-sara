@@ -11,8 +11,8 @@ void main(void) {
     RGBC_val current;             // 
     unsigned char start = 0;      // 
     unsigned char PWMperiod = 99; // 0.0001s*(64MHz/4)/16 -1 = 99
-    turnleft_delay = 0;           // Adjustable value to calibrate motor left turn
-    turnright_delay = 0;          // Adjustable value to calibrate motor right turn
+    turnleft_calangle = 360;      // Angle turned left by motor during calibration
+    turnright_calangle = 360;     // Angle turned right by motor during calibration
     interrupts_lowerbound = 0;    // Lower clear threshold value to trigger interrupts when encounter colour cards
     interrupts_upperbound = 0;    // Upper clear threshold value to trigger interrupts when encounter colour cards
     colourcard_flag = 0;          // Toggled when buggy encounters a colour card
