@@ -6,7 +6,16 @@
 
 After a short calibration routine, our buggy autonomously navigates through a "mine" to find a target, and heads back home after it does so. The buggy navigates through the mine by using a clicker colour sensor to detect a series of coloured cards. Each colour has an action attached to it, and by following the instructions, the buggy can navigate to the target signified by a white card 
 
-[Untitled](https://www.notion.so/79f2c4fa8468458280c4f6d2d0767a9d)
+| Colour | Instruction |
+| --- | --- |
+| Red | Turn Right 90 |
+| Green | Turn Left 90 |
+| Blue | Turn 180 |
+| Yellow | Reverse 1 square and turn right 90 |
+| Pink | Reverse 1 square and turn left 90 |
+| Orange | Turn Right 135 |
+| Light blue | Turn Left 135 |
+| White | Return home |
 
 The buggy detects there is a card in front of it by using a clear interrupt on the colour click. When the clear channel reads outside of a specified threshold, the interrupt is triggered and the buggy stops. The buggy then goes through it's routine to identify what colour card is in front of it. The red, green and blue channels are converted into a ratio from which each colour can be identified. 
 
