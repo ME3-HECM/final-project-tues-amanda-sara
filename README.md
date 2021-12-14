@@ -1,8 +1,13 @@
-# Final project
+# ECM final project: Mine search and rescue
 
----
+## Table of contents
+- [Overview](#overview)
+- [Hardware setup](#hardware-setup)
+- [Demonstration video](#demonstration-video)
+- [User instructions](#user-instructions)
+- [Code structure](#code-structure)
 
-# Overview
+## Overview
 
 After a short calibration routine, our buggy autonomously navigates through a "mine" to find a target, and heads back home after it does so. The buggy navigates through the mine by using a clicker colour sensor to detect a series of coloured cards. Each colour has an action attached to it, and by following the instructions, the buggy can navigate to the target signified by a white card 
 
@@ -21,19 +26,33 @@ The buggy detects there is a card in front of it by using a clear interrupt on t
 
 ---
 
-# User instructions
+## Hardware setup
+
+![Buggy setup](gifs/buggy_setup.jpg)
+
+---
+
+## Demonstration video
+
+This is a demonstration of our programmed buggy working through an "easy" maze and a "hard" maze.
+
+https://youtu.be/NKAub8l3Xlc
+
+---
+
+## User instructions
 
 To account for different ambient light conditions and surface conditions, the buggy has a calibration routine to ensure that the colour sensor and turns are accurate. After this the buggy should run autonomously. Tires were removed for more accurate turning and a cover was made around the sensor to somewhat block out the ambient light. 
 
-## Calibration
+### Calibration
 
-### DC motor calibration routine
+#### DC motor calibration routine
 
 First the motor is calibrated so that the turns are accurate to the specified angle. To begin the calibration, either button RF2/RF3 can be pressed. The buggy will then execute a 360º left turn and come to stop. If the turn was off in one direction, pressing and holding the button in the direction that the buggy needs to turn to get to 360º will change the value for the turn i.e. if the buggy needs to turn more left to get to 360º, press and hold the left button. The light will flash for very increase in the specified direction. If no change is needed, a short press of either button will proceed to the right turn calibration, which has the same procedure. 
 
 Once this has been done, the buggy will turn in left 360º, then right 360º to show the result of the calibration. If the user is happy with the result, RF2 can be pressed and the buggy will move onto the colour calibration. If not, RF3 can be pressed and the calibration will perform again. 
 
-### Colour calibration
+#### Colour calibration
 
 Once the motor calibration had been completed, the buggy is placed in its starting position. Pressing either RF2/RF3 will start the colour calibration in which the lights will flash and an initial value of the ambient light will be taken. This is used to set the thresholds for the colour interrupt so the buggy knows to stop when there is a card in front of it. 
 
@@ -41,9 +60,9 @@ Once both calibration routines have been completed, either button can be pressed
 
 ---
 
-# Code structure
+## Code structure
 
-## main.c
+### main.c
 
 The main file first initialises the functions for the buggy, then initialises the variables for the left and right motors in the specified structure (see DC_motors.h for more information). The main then calls the calibration functions then moves to the main while loop. 
 
@@ -73,7 +92,7 @@ The first thing inside the main loop is a function to prevent false triggers of 
 
 If the interrupt has not been triggered, then the buggy checks whether it has been told to retrace it's step with the 'returnhome_flag'. If so, the return routine is run. In all other cases, which is most of the time it is running, the buggy moves forwards.
 
-## colour_click.c/h
+### colour_click.c/h
 
 This file contains the function to initialise the colour clicker, write to it's different addresses and read the values it takes from the RGBC channels. The RGBC values are stored as unsigned int in a specified RGBC_val structure (see  below) for easier retrieval.
 
@@ -131,7 +150,7 @@ void colourclick_readRGBC2(RGBC_val *tmpval, unsigned char mode) {
 
 This file also contains the calibration for the colour values. An initial light reading is taken, which is used to set the thresholds for the interrupts (see interrupts.c/h for more information). 
 
-## colour_cards.c/h
+### colour_cards.c/h
 
 This file contains the function to identify the card colour and execute the action. Using the white LED, the light reading is taken and the RGB values are found as a percentages. Using this alone, most colours can be identified. There are however two groups of colours that are similar and further readings need to be taken. 
 
@@ -221,7 +240,7 @@ void colourcards_readRGBC(RGBC_val *abs, DC_motor *mL, DC_motor *mR) {
 
 The values for each card were found by testing with the serial ports and the colourcards_testingRGBC2() function. 
 
-## DC_motors.c/h
+### DC_motors.c/h
 
 This file contains initialisation for the motor and the basic functions for moving the buggy. The left and right functions takes a degree argument to control how far to turn. The degree given is converted to a delay using a linear calculation. The longer the delay, the longer that the turn function is on for, and therefore the more the buggy turns (see below).
 
@@ -272,7 +291,7 @@ if (mode==1){ // Turn right
 
 The instructions for each card is also specified here in the instructions() function, in which each colour is given unique number which is called and the action is executed by the function. The order of the numbers are remembered and stored so the reverse can be executed when the buggy needs to 'return home'. The time between instructions is given by the duration recorded in the forwards direction using the timer interrupts (see interrupts.c/h for more information).
 
-## interrupts.c/h
+### interrupts.c/h
 
 The buggy uses the clear channel interrupt on the colour clicker to sense when it is near to a card to stop and run the colour card routine. The external interrupt and the peripheral pin select is initialised here for the microbus 2 pins.  
 

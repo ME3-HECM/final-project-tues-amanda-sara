@@ -400,13 +400,13 @@ void adjdelay(unsigned char mode) {
  * Function used to test all the DC motor movements
  **************************************************/
 void DCmotors_testing(DC_motor *mL, DC_motor *mR) {
-    while (RF2_BUTTON && RF3_BUTTON);
+    while (RF2_BUTTON && RF3_BUTTON); // Wait for button press
     __delay_ms(500);
     forward(mL, mR);
     __delay_ms(1000);
     stop(mL, mR);
     
-    while (RF2_BUTTON && RF3_BUTTON);
+    while (RF2_BUTTON && RF3_BUTTON); // Wait for button press
     __delay_ms(500);
     clearance(mL, mR);
     
