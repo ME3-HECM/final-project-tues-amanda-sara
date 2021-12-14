@@ -46,13 +46,13 @@ void interrupts_clear(void){
  * Function used to set up interrupts on the colour click module
 ****************************************************************/
 void interrupts_colourclick(void){
-    colourclick_writetoaddr(0x00, 0b10011);                          // 
-    __delay_ms(3);                                                   //
-    colourclick_writetoaddr(0x0C, 0b0100);                           //
-    colourclick_writetoaddr(0x04, (interrupts_lowerbound & 0x00FF)); //
-    colourclick_writetoaddr(0x05, (interrupts_lowerbound >> 8));     //
-    colourclick_writetoaddr(0x06, (interrupts_upperbound & 0x00FF)); //
-    colourclick_writetoaddr(0x07, (interrupts_upperbound >> 8));     //
+    colourclick_writetoaddr(0x00, 0b10011);                          // write to enable register and turn on interrupts
+    __delay_ms(3);                                                   // delay before next write 
+    colourclick_writetoaddr(0x0C, 0b0100);                           // write to persistence register and set to trigger interrupt after 5 readings outside range 
+    colourclick_writetoaddr(0x04, (interrupts_lowerbound & 0x00FF)); // set low bits for low threshold
+    colourclick_writetoaddr(0x05, (interrupts_lowerbound >> 8));     // set high bits for low threshold
+    colourclick_writetoaddr(0x06, (interrupts_upperbound & 0x00FF)); // set low bits for high threshold
+    colourclick_writetoaddr(0x07, (interrupts_upperbound >> 8));     // set high bits for high threshold
 }
 
 /********************************************************************************************
@@ -63,7 +63,7 @@ void __interrupt(high_priority) HighISR() {
     if (PIR0bits.INT1IF) {    // Check the interrupt source 
         colourcard_flag = 1;  // Toggle variable to run read card routine
 //        RD7_LED = !RD7_LED; // Testing
-        interrupts_clear();   //
+        interrupts_clear();   // Force clear interrupt flag on colour click 
         PIR0bits.INT1IF = 0;  // Clear the interrupt flag
     }
 }
@@ -75,9 +75,9 @@ void __interrupt(high_priority) HighISR() {
 void __interrupt(low_priority) LowISR() {
     if (PIR0bits.TMR0IF) {  // Check the interrupt source
 //        RD7_LED=!RD7_LED; // Testing
-        timer++;             //
-        TMR0H=TMR0H_BITS;    //
-        TMR0L=TMR0L_BITS;    //
+        timer++;             // increment timer 
+        TMR0H=TMR0H_BITS;    // reset initial timer values (high)
+        TMR0L=TMR0L_BITS;    //                             (low)
         PIR0bits.TMR0IF = 0; // Clear the interrupt flag
     }
 }
