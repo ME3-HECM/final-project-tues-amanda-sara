@@ -11,8 +11,8 @@ void main(void) {
     RGBC_val current;             // 
     unsigned char start = 0;      // 
     unsigned char PWMperiod = 99; // 0.0001s*(64MHz/4)/16 -1 = 99
-    turnleft_delay = 0;           // Adjustable value to calibrate motor left turn
-    turnright_delay = 0;          // Adjustable value to calibrate motor right turn
+    turnleft_calangle = 360;      // Angle turned left by motor during calibration
+    turnright_calangle = 360;     // Angle turned right by motor during calibration
     interrupts_lowerbound = 0;    // Lower clear threshold value to trigger interrupts when encounter colour cards
     interrupts_upperbound = 0;    // Upper clear threshold value to trigger interrupts when encounter colour cards
     colourcard_flag = 0;          // Toggled when buggy encounters a colour card
@@ -46,14 +46,15 @@ void main(void) {
     /***************************
      * Motor calibration routine
      ***************************/
-    DCmotors_calibration(&motorL, &motorR); //
+//    DCmotors_calibration(&motorL, &motorR); //
 //    DCmotors_testing(&motorL, &motorR);     //
     
     /****************************
      * Colour calibration routine
      ****************************/
-    colourclick_calibration(); //
-//    colourcards_testingRGBC(); //
+//    colourclick_calibration(); //
+//    colourcards_testingRGBC(&current, &motorL, &motorR); // For testing with actual motor movements
+//    colourcards_testingRGBC2(); //For testing with serial communication output on screen
     
     /***************
      * Getting ready
@@ -68,10 +69,10 @@ void main(void) {
      * Maze navigation
      *****************/
     while(1) {
-        if (start==0 && colourcard_flag==1) { // Prevents accidental trips at beginning
+        if (start<1 && colourcard_flag==1) { // Prevents accidental trips at beginning
             colourcard_flag = 0;
             start = 1;
-        } else if (start==1 && colourcard_flag==1) {
+        } else if (start>0 && colourcard_flag==1) {
             stop(&motorL, &motorR);
             TURNLEFT_LED = 1;
             TURNRIGHT_LED = 1;
@@ -83,11 +84,11 @@ void main(void) {
             __delay_ms(1000);
             
             colourcards_readRGBC(&current, &motorL, &motorR);
-            __delay_ms(1000);
             
+            __delay_ms(1000);
             colourclick_readRGBC(&current);
-            interrupts_upperbound = current.C + 100;
             interrupts_lowerbound = current.C - 150;
+            interrupts_upperbound = current.C + 100;
             
             colourcard_flag = 0;
         } else {forward(&motorL, &motorR);}

@@ -109,23 +109,8 @@ Version 4.0 HI-TECH Software Intermediate Code
 "13 ./interrupts.h
 [; ;./interrupts.h: 13: extern volatile unsigned char colourcard_flag;
 [v _colourcard_flag `Vuc ~T0 @X0 0 e ]
-"28855 C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\proc\pic18f67k40.h
-[; ;C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\proc\pic18f67k40.h: 28855:     struct {
-[s S1352 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
-[n S1352 . LATD0 LATD1 LATD2 LATD3 LATD4 LATD5 LATD6 LATD7 ]
-"28865
-[; ;C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\proc\pic18f67k40.h: 28865:     struct {
-[s S1353 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
-[n S1353 . LD0 LD1 LD2 LD3 LD4 LD5 LD6 LD7 ]
-"28854
-[; ;C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\proc\pic18f67k40.h: 28854: typedef union {
-[u S1351 `S1352 1 `S1353 1 ]
-[n S1351 . . . ]
-"28876
-[; ;C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\proc\pic18f67k40.h: 28876: extern volatile LATDbits_t LATDbits __attribute__((address(0xF7C)));
-[v _LATDbits `VS1351 ~T0 @X0 0 e@3964 ]
 [t T4 __interrupt low_priority ]
-"14 ./interrupts.h
+"14
 [; ;./interrupts.h: 14: extern volatile unsigned char returnhome_flag;
 [v _returnhome_flag `Vuc ~T0 @X0 0 e ]
 "15
@@ -2227,9 +2212,6 @@ Version 4.0 HI-TECH Software Intermediate Code
 "66
 [; ;interrupts.c: 66:         colourcard_flag = 1;
 [e = _colourcard_flag -> -> 1 `i `uc ]
-"67
-[; ;interrupts.c: 67:         LATDbits.LATD7 = !LATDbits.LATD7;
-[e = . . _LATDbits 0 7 -> -> ! != -> . . _LATDbits 0 7 `i -> 0 `i `i `uc ]
 "68
 [; ;interrupts.c: 68:         interrupts_clear();
 [e ( _interrupts_clear ..  ]

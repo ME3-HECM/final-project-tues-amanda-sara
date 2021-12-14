@@ -64,7 +64,7 @@ void interrupts_colourclick(void){
 void __interrupt(high_priority) HighISR() {
     if (PIR0bits.INT1IF) {          // Check the interrupt source 
         colourcard_flag = 1;        // Toggle variable to run read card routine
-        RD7_LED = !RD7_LED;         // Testing
+//        RD7_LED = !RD7_LED;         // Testing
         interrupts_clear();
         PIR0bits.INT1IF = 0;        // Clear the interrupt flag
     }

@@ -24330,6 +24330,7 @@ unsigned char ADC_getval(void);
 void clicker2buttons_init(void);
 void clicker2LEDs_init(void);
 void colourclickLEDs_init(void);
+void colourclickLEDs_RGB(void);
 void colourclickLEDs_C(unsigned char tog);
 void buggyLEDs_init(void);
 # 17 "./main.h" 2
@@ -24387,8 +24388,8 @@ typedef struct {
 
 
 
-extern volatile char turnleft_delay;
-extern volatile char turnright_delay;
+extern volatile int turnleft_calangle;
+extern volatile int turnright_calangle;
 extern volatile unsigned char returnhome_flag;
 
 
@@ -24424,7 +24425,8 @@ extern volatile unsigned char returnhome_flag;
 
 
 void colourcards_readRGBC(RGBC_val *abs, DC_motor *mL, DC_motor *mR);
-void colourcards_testingRGBC();
+void colourcards_testingRGBC(RGBC_val *abs, DC_motor *mL, DC_motor *mR);
+void colourcards_testingRGBC2();
 void colourcards_normaliseRGBC(RGBC_val *abs, RGB_rel *rel);
 # 18 "./main.h" 2
 
@@ -24489,8 +24491,8 @@ void timer0_init(void);
 
 
 
-volatile char turnleft_delay;
-volatile char turnright_delay;
+volatile int turnleft_calangle;
+volatile int turnright_calangle;
 volatile unsigned int interrupts_lowerbound;
 volatile unsigned int interrupts_upperbound;
 volatile unsigned char colourcard_flag;
@@ -24510,8 +24512,8 @@ void main(void) {
     RGBC_val current;
     unsigned char start = 0;
     unsigned char PWMperiod = 99;
-    turnleft_delay = 0;
-    turnright_delay = 0;
+    turnleft_calangle = 360;
+    turnright_calangle = 360;
     interrupts_lowerbound = 0;
     interrupts_upperbound = 0;
     colourcard_flag = 0;
@@ -24541,17 +24543,8 @@ void main(void) {
     timer0_init();
     USART4_init();
     checkbatterylevel();
-
-
-
-
-    DCmotors_calibration(&motorL, &motorR);
-
-
-
-
-
-    colourclick_calibration();
+# 56 "main.c"
+    colourcards_testingRGBC(&current, &motorL, &motorR);
 
 
 
@@ -24567,10 +24560,10 @@ void main(void) {
 
 
     while(1) {
-        if (start==0 && colourcard_flag==1) {
+        if (start<1 && colourcard_flag==1) {
             colourcard_flag = 0;
             start = 1;
-        } else if (start==1 && colourcard_flag==1) {
+        } else if (start>0 && colourcard_flag==1) {
             stop(&motorL, &motorR);
             LATFbits.LATF0 = 1;
             LATHbits.LATH0 = 1;
@@ -24582,11 +24575,11 @@ void main(void) {
             _delay((unsigned long)((1000)*(64000000/4000.0)));
 
             colourcards_readRGBC(&current, &motorL, &motorR);
-            _delay((unsigned long)((1000)*(64000000/4000.0)));
 
+            _delay((unsigned long)((1000)*(64000000/4000.0)));
             colourclick_readRGBC(&current);
-            interrupts_upperbound = current.C + 100;
             interrupts_lowerbound = current.C - 150;
+            interrupts_upperbound = current.C + 100;
 
             colourcard_flag = 0;
         } else {forward(&motorL, &motorR);}

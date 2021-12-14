@@ -39,8 +39,8 @@
 /******************
  * Global variables
  ******************/
-volatile char turnleft_delay;                // Adjustable value to calibrate motor left turn
-volatile char turnright_delay;               // Adjustable value to calibrate motor right turn
+volatile int turnleft_calangle;              // Angle turned left by motor during calibration
+volatile int turnright_calangle;             // Angle turned right by motor during calibration
 volatile unsigned int interrupts_lowerbound; // Lower clear threshold value to trigger interrupts when encounter colour cards
 volatile unsigned int interrupts_upperbound; // Upper clear threshold value to trigger interrupts when encounter colour cards
 volatile unsigned char colourcard_flag;      // Toggled when buggy encounters a colour card

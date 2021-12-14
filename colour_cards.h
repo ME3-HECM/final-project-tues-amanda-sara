@@ -18,8 +18,9 @@ extern volatile unsigned char returnhome_flag;  // Toggled when buggy has found 
 /*********************
  * Function prototypes
  *********************/
-void colourcards_readRGBC(RGBC_val *abs, DC_motor *mL, DC_motor *mR); // Function used to identify the colour card and respond accordingly
-void colourcards_testingRGBC();                                       // Function used to identify colours and output results using serial communication for the testing purposes
-void colourcards_normaliseRGBC(RGBC_val *abs, RGB_rel *rel);          // Function used to normalise the RGBC values
+void colourcards_readRGBC(RGBC_val *abs, DC_motor *mL, DC_motor *mR);    // Function used to identify the colour card and respond accordingly
+void colourcards_testingRGBC(RGBC_val *abs, DC_motor *mL, DC_motor *mR); // Function used to identify colours and respond accordingly for testing purposes
+void colourcards_testingRGBC2();                                         // Function used to identify colours and output results using serial communication for testing purposes
+void colourcards_normaliseRGBC(RGBC_val *abs, RGB_rel *rel);             // Function used to normalise the RGBC values
 
 #endif // End of _COLOUR_CARDS_H

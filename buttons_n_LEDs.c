@@ -39,6 +39,27 @@ void colourclickLEDs_init(void) {
     colourclickLEDs_C(0);
 }
 
+/********************************************************************************
+ * colorclickLEDs_RGB
+ * Function used to cycle the red, green and blue LEDs on the colour click module
+ ********************************************************************************/
+void colourclickLEDs_RGB(void) {
+    RED_LED = 1;
+    __delay_ms(20);
+    RED_LED = 0;
+    __delay_ms(20);
+    
+    GREEN_LED = 1;
+    __delay_ms(20);
+    GREEN_LED = 0;
+    __delay_ms(20);
+    
+    BLUE_LED = 1;
+    __delay_ms(20);
+    BLUE_LED = 0;
+    __delay_ms(20);
+}
+
 /********************************************************************
  * colorclickLEDs_C
  * Function used to toggle the clear light on the colour click module

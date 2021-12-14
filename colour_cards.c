@@ -88,9 +88,6 @@ void colourcards_readRGBC(RGBC_val *abs, DC_motor *mL, DC_motor *mR) {
 
     } else if ((rel.R<0.47) && (rel.G>0.295) && (rel.B>0.21)) {
         // White card - Finish (return home)
-        clearance(mL, mR);
-        turnright(mL, mR, 180);
-        stop(mL, mR);
         unknowncard_flag = 0;
         returnhome_flag = 1;
 
@@ -103,14 +100,11 @@ void colourcards_readRGBC(RGBC_val *abs, DC_motor *mL, DC_motor *mR) {
         colourclick_readRGBC(abs);
         if ((abs->C < interrupts_lowerbound) || (abs->C > interrupts_upperbound)) {
             if (unknowncard_flag<3) {
-                PIR0bits.INT1IF = 1;
                 unknowncard_flag++;
+                PIR0bits.INT1IF = 1;
             } else {
                 RH3_LED = 1;
-                turnright(mL, mR, 180);
-                stop(mL, mR);
-                returnhome_flag = !returnhome_flag;
-                unknowncard_flag = 0;
+                returnhome_flag = 1;
             }
         } else {
             unknowncard_flag = 0;
@@ -120,13 +114,26 @@ void colourcards_readRGBC(RGBC_val *abs, DC_motor *mL, DC_motor *mR) {
     PIE0bits.INT1IE = 1;
 }
 
-/**********************************************************************************************************
+/********************************************************************************
  * colourcards_testingRGBC
- * Function used to identify colours and output results using serial communication for the testing purposes
- **********************************************************************************************************/
-void colourcards_testingRGBC() {
-    INTCONbits.GIE = 0;
+ * Function used to identify colours and respond accordingly for testing purposes
+ ********************************************************************************/
+void colourcards_testingRGBC(RGBC_val *tmpval, DC_motor *mL, DC_motor *mR) {
+    MAINBEAM_LED = 1;
+    colourclickLEDs_C(1);
     
+    while(1) {
+        while(RF2_BUTTON && RF3_BUTTON);
+        __delay_ms(50);
+        colourcards_readRGBC(tmpval, mL, mR);
+    }
+}
+
+/******************************************************************************************************
+ * colourcards_testingRGBC2
+ * Function used to identify colours and output results using serial communication for testing purposes
+ ******************************************************************************************************/
+void colourcards_testingRGBC2() {
     while (RF2_BUTTON && RF3_BUTTON);
     MAINBEAM_LED = 1;
     colourclickLEDs_C(1);
