@@ -1,167 +1,297 @@
-# Course project - Mine navigation search and rescue
+# Final project
 
-## Challenge brief
+---
 
-Your task is to develop an autonomous robot that can navigate a "mine" using a series of instructions coded in coloured cards and return to its starting position.  Your robot must be able to perform the following: 
+# Overview
 
-1. Navigate towards a coloured card and stop before impacting the card
-1. Read the card colour
-1. Interpret the card colour using a predefined code and perform the navigation instruction
-1. When the final card is reached, navigate back to the starting position
-1. Handle exceptions and return back to the starting position if final card cannot be found
+After a short calibration routine, our buggy autonomously navigates through a "mine" to find a target, and heads back home after it does so. The buggy navigates through the mine by using a clicker colour sensor to detect a series of coloured cards. Each colour has an action attached to it, and by following the instructions, the buggy can navigate to the target signified by a white card 
 
-## "Mine" environment specification
+[Untitled](https://www.notion.so/79f2c4fa8468458280c4f6d2d0767a9d)
 
-A "mine" is contstructed from black plywood walls 100mm high with some walls having coloured cards located on the sides of the maze to assist with navigation. The following colour code is to be used for navigation:
+The buggy detects there is a card in front of it by using a clear interrupt on the colour click. When the clear channel reads outside of a specified threshold, the interrupt is triggered and the buggy stops. The buggy then goes through it's routine to identify what colour card is in front of it. The red, green and blue channels are converted into a ratio from which each colour can be identified. 
 
-Colour | Instruction
----------|---------
-Red | Turn Right 90
-Green | Turn Left 90
-Blue | Turn 180
-Yellow | Reverse 1 square and turn right 90
-Pink | Reverse 1 square and turn left 90
-Orange | Turn Right 135
-Light blue | Turn Left 135 
-White | Finish (return home)
-Black | Maze wall colour
+---
 
-Mine courses will vary in difficulty, with the simplest requiring 4 basic moves to navigate. More advanced courses may require 10 or moves to navigate. The mines may have features such as dead ends but colour cards will always direct you to the end of the maze. Once the end of the maze has been reached, you must return to the starting position. An example course to navigate is shown below. You do not know in advance which colours will be in the course or how many.
+# User instructions
 
-![Navi Diagram](gifs/maze.gif)
+To account for different ambient light conditions and surface conditions, the buggy has a calibration routine to ensure that the colour sensor and turns are accurate. After this the buggy should run autonomously. Tires were removed for more accurate turning and a cover was made around the sensor to somewhat block out the ambient light. 
 
-## Resources and project submission
+## Calibration
 
-To develop your solution you have your Clicker 2 board, buggy and colour click add on board. You must not use any hardware that is not provided as part of this course and you must use the XC8 compiler to compile your C code. 
+### DC motor calibration routine
 
-Please use this GitHub repo to manage your software development and submit your project code. 
+First the motor is calibrated so that the turns are accurate to the specified angle. To begin the calibration, either button RF2/RF3 can be pressed. The buggy will then execute a 360º left turn and come to stop. If the turn was off in one direction, pressing and holding the button in the direction that the buggy needs to turn to get to 360º will change the value for the turn i.e. if the buggy needs to turn more left to get to 360º, press and hold the left button. The light will flash for very increase in the specified direction. If no change is needed, a short press of either button will proceed to the right turn calibration, which has the same procedure. 
 
-Final testing will take place in the CAGB foyer and testing areas will be provided around the mechatronics lab. You will not know the exact layout of the maze(s) in advance. You will also be asked to give a short presentation on the testing day.
+Once this has been done, the buggy will turn in left 360º, then right 360º to show the result of the calibration. If the user is happy with the result, RF2 can be pressed and the buggy will move onto the colour calibration. If not, RF3 can be pressed and the calibration will perform again. 
 
-## Supplementary technical information
+### Colour calibration
 
-### Additional buggy features
+Once the motor calibration had been completed, the buggy is placed in its starting position. Pressing either RF2/RF3 will start the colour calibration in which the lights will flash and an initial value of the ambient light will be taken. This is used to set the thresholds for the colour interrupt so the buggy knows to stop when there is a card in front of it. 
 
-In addition to the motor drives we explored in lab 6, the buggy contains some additional features that may be of use during the project. The first feature is additional LEDs, controlled through the pins labelled **H.LAMPS**, **M.BEAM**, **BRAKE**, **TURN-L** and **TURN-R**. H.LAMPS turns on the front white LEDs and rear red LEDs, at a reduced brightness. M.BEAM and BRAKE enable you to turn these LEDs on at full brightness. The turn signals have not hardware based brightness control. These LEDs give you a method to provide feedback for debugging, in addition of the LEDs on the clicker board.
+Once both calibration routines have been completed, either button can be pressed to start the mine navigation.
 
-![Buggy pinout](gifs/buggy_pins.png)
+---
 
-A further feature of the buggy is **BAT-VSENSE** pin which allows you to monitor the batter voltage via an analogue input pin. The battery is connected across a voltage divider, as shown in the diagram below:
+# Code structure
 
-![Bat sense](gifs/bat_vsense.png)
+## main.c
 
-The voltage at BAT-VSENSE will always be one third of that at the battery. Measuring this value can be useful for determining if your battery needs charging. You could also use it to calibrate your robot to perform well at different charge levels. 
+The main file first initialises the functions for the buggy, then initialises the variables for the left and right motors in the specified structure (see DC_motors.h for more information). The main then calls the calibration functions then moves to the main while loop. 
 
-### Colour click
+The first thing inside the main loop is a function to prevent false triggers of the clear channel interrupt, and clears any flags from the false trigger before the car starts moving. It then checks to see whether the clear channel interrupt has been triggered. If so, the car stops, reverses slightly, runs the colour sensor routine (see colour_cards.c for more information), resets the threshold values for the interrupt for the new ambient light conditions by taking a colour reading, then finally clears the interrupt variable 'colourcard_flag'. 
 
-The Colour click board contains 2 devices to help with navigation, a tri-colour LED for illumination and a 4 channel RGBC photodiode sensor. This combination of two devices (an illumination source and a sensor) allow you a make measurements of the reflected colour of objects near the sensor. The circuit diagram for the Colour click is shown below:
+```c
+} else if (start>0 && colourcard_flag==1) {
+            stop(&motorL, &motorR);
+            RD7_LED = 1;
+            RH3_LED = 1;
+            reverse(&motorL, &motorR);
+            __delay_ms(100);
+            stop(&motorL, &motorR);
+            RD7_LED = 0;
+            RH3_LED = 0;
+            __delay_ms(1000);
+            
+            colourcards_readRGBC(&current, &motorL, &motorR);
+            
+            __delay_ms(1000);
+            colourclick_readRGBC(&current);
+            interrupts_lowerbound = current.C - 150;
+            interrupts_upperbound = current.C + 100;
+            
+            colourcard_flag = 0;
+```
 
-![Color Cick](gifs/color_click.png)
+If the interrupt has not been triggered, then the buggy checks whether it has been told to retrace it's step with the 'returnhome_flag'. If so, the return routine is run. In all other cases, which is most of the time it is running, the buggy moves forwards.
 
-The tri-colour LED is the simpler of the two devices to control. Three separate pins control the red, green and blue LEDs individually, despite them being in a single package. Control via these pins is simple digital on/off control and if any brightness control was required, the user would need program the microcontroller to generate a PWM signal to achieve this.  
+## colour_click.c/h
 
-The second device on the Colour click is the TCS3471 colour light-to-digital converter. The sensor contains a grid of 4x4 photodiodes, 4 are sensitive to red light, 4 green light, 4 blue light and 4 "clear" light (that is, a range of wavelengths, see datasheet for exact spectral response). When light falls on the photodiode the photons are absorbed and current is generated. This signal is then integrated over time using integrators and sampled by 16 bit on board ADCs. Communication with the device is achieved using an I2C interface. This enables configuration of the device to customise sampling of the data (i.e. integration time, gain, etc.) and to read the 16 bit digital values for each of the RGBC channels. The relative magnitude of these values gives you information about the colour of light that is falling on the sensor. The device can also be configured to send an interrupt signal to the PIC when signal reaches a preset value.
+This file contains the function to initialise the colour clicker, write to it's different addresses and read the values it takes from the RGBC channels. The RGBC values are stored as unsigned int in a specified RGBC_val structure (see  below) for easier retrieval.
 
-### I2C
+```c
+typedef struct {             // Define a structure
+    unsigned int R, G, B, C; // Containing the RGBC values read by the colour click
+} RGBC_val;                  // This structure is named RGB_val
+```
 
-The I2C interface widely used in industry for communication between microcontrollers and peripheral integrated circuits (other chips) over short distances. I2C is serial communication bus that enables communication between many devices over a simple 2 wire interface. One wire is the data line (SDA) and is used for both transmission and receiving. The second wire (SCL) is used for a clock signal to ensure all devices are synchronous. To ensure communication of data occurs without problem a message protocol must be followed and understood by all devices on the bus. Devices are termed master and slave devices, with master devices initiation communication to a slave device via unique address for that device. The general sequence of communication between a master/slave over the I2C interface is a follows:
+All the RGBC read functions are combined into one colourclick_readRGBC(RGBC_val *tmpval) function, which stores all the values with pointers into given RGBC_val type variable (see below).
 
-1. Send a Start bit
-1. Send the slave address, usually 7 bits
-1. Send a Read (1) or Write (0) bit to define what type of transaction it is
-1. Wait for an Acknowledge bit
-1. Send a data or command byte (8 bits)
-1. Wait for Acknowledge bit
-1. Send the Stop bit
+```c
+ void colourclick_readRGBC(RGBC_val *tmpval) {
+    tmpval->R = colourclick_readR();
+    tmpval->G = colourclick_readG();
+    tmpval->B = colourclick_readB();
+    tmpval->C = colourclick_readC();
+}
+```
 
-This is shown pictorial in the figure below:
+A second RGBC read function is used to take readings when specific lights are shone rather than the white light. This is used to differentiate between 'difficult' colour e.g. orange and red (see colour_card.c/h for more information). The above function is called to read and store the values each time, and which LED is shone can be set by setting the 'mode'. 
 
-![I2C](gifs/i2c.png)
+```c
+void colourclick_readRGBC2(RGBC_val *tmpval, unsigned char mode) {
+    colourclickLEDs_C(0);
+    __delay_ms(100);
+    
+    if (mode==1) {
+        RED_LED = 1;
+        __delay_ms(1000);
+        colourclick_readRGBC(tmpval);
+        __delay_ms(1000);
+        RED_LED = 0;
+        __delay_ms(20);
+    } else if (mode==2) {
+        GREEN_LED = 1;
+        __delay_ms(1000);
+        colourclick_readRGBC(tmpval);
+        __delay_ms(1000);
+        GREEN_LED = 0;
+        __delay_ms(20);
+    } else if (mode==3) {
+        BLUE_LED = 1;
+        __delay_ms(1000);
+        colourclick_readRGBC(tmpval);
+        __delay_ms(1000);
+        BLUE_LED = 0;
+        __delay_ms(20);
+    }
+    
+    colourclickLEDs_C(1);
+    __delay_ms(100);
+}
+```
 
-Although it is possible to program an entirely software based I2C interface, luckily for us our PIC chip has a module dedicated to generating and receiving I2C signals: the Master Synchronous Serial Port Module, or MSSP (see chapter 28 of the PIC datasheet). This module provides methods for sending start/stop/acknowledge bits and allows us to focus on sending/receiving data.
+This file also contains the calibration for the colour values. An initial light reading is taken, which is used to set the thresholds for the interrupts (see interrupts.c/h for more information). 
 
-The included i2c.c/h files contain functions to help you get started with I2C communication. The first function below sets up the MSSP module as an I2C master device and configures the necessary pins.
+## colour_cards.c/h
 
-	void I2C_2_Master_Init(void)
-	{
-		//i2c config  
-		SSP2CON1bits.SSPM= 0b1000;    // i2c master mode
-		SSP2CON1bits.SSPEN = 1;       //enable i2c
-		SSP2ADD = (_XTAL_FREQ/(4*_I2C_CLOCK))-1; //Baud rate divider bits (in master mode)
-  
-		//pin configuration for i2c  
-		TRISDbits.TRISD5 = 1;                   //Disable output driver
-		TRISDbits.TRISD6 = 1;                   //Disable output driver
-		ANSELDbits.ANSELD5=0;					// disable analogue on pins
-		ANSELDbits.ANSELD6=0;					// disable analogue on pins
-		SSP2DATPPS=0x1D;      //pin RD5
-		SSP2CLKPPS=0x1E;      //pin RD6
-		RD5PPS=0x1C;      // data output
-		RD6PPS=0x1B;      //clock output
-	}
-	
-Bits with the SSP2CON2 register are set to send the individual start/stop/acknowledge bits used in the protocol. These must only be set when the bus is idle (nothing being sent/received). The I2C_2_Master_Start(), I2C_2_Master_Stop() and I2C_2_Master_RepStart() functions allow you add the necessary bits as defined in the protocol above. Data is sent on the bus using the SSP2BUF register:
+This file contains the function to identify the card colour and execute the action. Using the white LED, the light reading is taken and the RGB values are found as a percentages. Using this alone, most colours can be identified. There are however two groups of colours that are similar and further readings need to be taken. 
 
-	void I2C_2_Master_Write(unsigned char data_byte)
-	{
-		I2C_2_Master_Idle();
-		SSP2BUF = data_byte;         //Write data to SSPBUF
-	}
+To differentiate between the red/orange cards, the blue LED is flashed and relative values are taken. For the blue/green/light blue cards, the red and green LEDs are flashed and values taken. 
 
-Data is also read using the same SSP2BUF registers. However, to receive data we first need to switch the module into receiver mode. We also need to start the acknowledge sequence to let the slave device know what we have received the data OK. The following function achieves this:
+Once the colour has been identified, the buggy reverses so it has clearance to turn, and the relevant action is executed (called through the instruction function, see DC_motor.c/h for details).
 
-	unsigned char I2C_2_Master_Read(unsigned char ack)
-	{
-		unsigned char tmp;
-		I2C_2_Master_Idle();
-		SSP2CON2bits.RCEN = 1;        // put the module into receive mode
-		I2C_2_Master_Idle();
-		tmp = SSP2BUF;                //Read data from SS2PBUF
-		I2C_2_Master_Idle();
-		SSP2CON2bits.ACKDT = !ack;     // 0 turns on acknowledge data bit
-		SSP2CON2bits.ACKEN = 1;        //start acknowledge sequence
-		return tmp;
-	}
+If the colour is white, the return home flag is tripped and the return routine begins. If the sensor cannot figure out what card is in front of it, or if it has hit a wall, the buggy will move forwards slightly and try three times to identify the card. If after three attempts the card cannot be identifies, the return home routine is also triggered. 
 
-The functions described so form the basics required for I2C communication with the PIC. To communicate with the TCS3471 onboard the Colour click we first need to know its address. This is listed in the data sheet as 0x29. To send our first byte over the I2C we need to send this address combined with the transaction type (read or write) as defined in the protocol diagram above. This lets the TCS3471 know the message is intended for it and not some other device on the interface. Next we send a byte which is a combination of command type and the register address in the TCS3471 that we want to write to. Finally we the value that we want to write to that register. This sequence is shown in the function below:
+```c
+void colourcards_readRGBC(RGBC_val *abs, DC_motor *mL, DC_motor *mR) {
+    // Switch off interrupts (to avoid unwanted interrupts while identifying cards)
+    PIE0bits.INT1IE = 0;
+    
+    // Current values at 5 cm distance
+    RGB_rel rel;
+    colourclick_readRGBC(abs);
+    colourcards_normaliseRGBC(abs, &rel);
+    
+    // Threshold values at 5 cm distance
+    // Red/orange
+    if ((rel.R>0.54) && (rel.G<0.245) && (rel.B<0.18)) {
+        colourclick_readRGBC2(abs, 3); // Blue LED
+        colourcards_normaliseRGBC(abs, &rel);
+        if (rel.G<0.185) {
+            // Red card - Turn right 90 degrees
+            instructions(mL, mR, 1);
+        } else {
+            // Orange card - Turn right 135 degrees
+            instructions(mL, mR, 6);
+        }
 
-	void color_writetoaddr(char address, char value){
-		I2C_2_Master_Start();         		//Start condition
-		I2C_2_Master_Write(0x52 | 0x00);     //7 bit device address + Write (0) mode (note 0x52=0x29<<1)
-		I2C_2_Master_Write(0x80 | address);    //command + register address
-		I2C_2_Master_Write(value);    			//value to store in the register
-		I2C_2_Master_Stop();          //Stop condition
-	}
+    // Green/blue/light blue
+    } else if ((rel.R<0.44) && (rel.G>0.30) && (rel.B>0.195)) {
+        colourclick_readRGBC2(abs, 1); // Red LED
+        colourcards_normaliseRGBC(abs, &rel);
+        if (rel.B<0.125) {
+            // Green card - Turn left 90 degrees
+            instructions(mL, mR, 2);
+        } else {
+            colourclick_readRGBC2(abs, 2); // Green LED
+            colourcards_normaliseRGBC(abs, &rel);
+            if (rel.R<0.115) {
+                // Blue card - Turn 180 degrees
+                instructions(mL, mR, 3);
+            } else {
+                // Light blue card - Turn left 135 degrees
+                instructions(mL, mR, 7);
+            }
+        }
+    // Other colours
+    } else if ((rel.R>0.49) && (rel.G>0.285) && (rel.B>0.18)) {
+        // Yellow card - Reverse 1 square and turn right 90 degrees
+        instructions(mL, mR, 4);
 
-We then call the function to, for example, turn the device on:
+    } else if ((rel.R>0.49) && (rel.G<0.275) && (rel.B>0.195)) {
+        // Pink card - Reverse 1 square and turn left 90 degrees
+        instructions(mL, mR, 5);
 
-	color_writetoaddr(0x00, 0x01); // write 1 to the PON bit in the device enable register
-	
-There are additional commands that must be set to initialise the device and many registers that be configured to obtain optimal performance for the sensor in your conditions. It is up to you to carefully read the TCS3471 datasheet and experiment with this.
+    } else if ((rel.R<0.47) && (rel.G>0.295) && (rel.B>0.21)) {
+        // White card - Finish (return home)
+        unknowncard_flag = 0;
+        returnhome_flag = 1;
 
-To read values from the TCS3471 you need to a similar sequence to above but you first need to tell the device which register you want to deal with, before telling the device you want read from it. The example below uses the combined read format to read multiple bytes in sequence. The auto-increment is set so that instead of reading the same register over and over again, it automatically advances to the next one. The example starts at the Red channel low byte address and then automatically advances and reads the associated high byte.
+    } else {
+        // Unknown card - Return back to the starting position if final card cannot be found
+        __delay_ms(1000);
+        forward(mL, mR);
+        __delay_ms(10);
+        stop(mL, mR);
+        colourclick_readRGBC(abs);
+        if ((abs->C < interrupts_lowerbound) || (abs->C > interrupts_upperbound)) {
+            if (unknowncard_flag<3) {
+                unknowncard_flag++;
+                PIR0bits.INT1IF = 1;
+            } else {
+                RH3_LED = 1;
+                returnhome_flag = 1;
+            }
+        } else {unknowncard_flag = 0;}
+    }
+    
+    // Switch on interrupts again (to prepare for the next card)
+    PIE0bits.INT1IE = 1;
+}
+```
 
-	unsigned int color_read_Red(void)
-	{
-		unsigned int tmp;
-		I2C_2_Master_Start();         //Start condition
-		I2C_2_Master_Write(0x52 | 0x00);     //7 bit address + Write mode
-		I2C_2_Master_Write(0xA0 | 0x16);    //command (auto-increment protocol transaction) + start at RED low register
-		I2C_2_Master_RepStart();
-		I2C_2_Master_Write(0x52 | 0x01);     //7 bit address + Read (1) mode
-		tmp=I2C_2_Master_Read(1);			// read the Red LSB
-		tmp=tmp | (I2C_2_Master_Read(0)<<8); //read the Red MSB (don't acknowledge as this is the last read)
-		I2C_2_Master_Stop();          //Stop condition
-		return tmp;
-	}
+The values for each card were found by testing with the serial ports and the colourcards_testingRGBC2() function. 
 
-Instead of separate functions for each channel you may want to create a structure to store all the values together, and pass a pointer to the function so that all values in the structure can be updated in one operation. An example structure might look like this:
+## DC_motors.c/h
 
-	//definition of RGB structure
-	struct RGB_val { 
-		unsigned int R;
-		unsigned int G;
-		unsigned int B;
-	};
+This file contains initialisation for the motor and the basic functions for moving the buggy. The left and right functions takes a degree argument to control how far to turn. The degree given is converted to a delay using a linear calculation. The longer the delay, the longer that the turn function is on for, and therefore the more the buggy turns (see below).
 
-This concludes the basics of I2C and communication with the colour sensor. Best of luck! 
+```c
+void turnleft(DC_motor *mL, DC_motor *mR, unsigned int deg) {
+    // Calculations
+    double delay = ((deg*2.332)+31.506) * 360/turnleft_calangle;
+    
+    // in order for it to make it turn on the spot: (Assume it was stationary before)
+    mL->direction = 0; // left wheels go backward
+    mR->direction = 1; // right wheels go forward
+
+    // make both motors accelerate
+    TURNLEFT_LED = 1;
+    while((mL->power < 70) || (mR->power < 70)){
+        // gradually turn left
+        if (mL->power < 70) {mL->power += 10;}
+        if (mR->power < 70) {mR->power += 10;}
+
+        // set PWM output
+        DCmotors_setPWM(mL);
+        DCmotors_setPWM(mR);
+        __delay_us(50);
+    }
+    
+    unsigned int i;
+    for (i=0; i<delay; i++) {__delay_ms(1);}
+    TURNLEFT_LED = 0;
+} 
+```
+
+This file also has the motor calibration function. The calibration works by adjusting the amount of the time that the turn function is on for by changing a constant in the delay calculations. In the adjust delay function, if for example the right button is pressed, the constant will change in favour of the right direction. 
+
+```c
+if (mode==1){ // Turn right
+            if (!RF2_BUTTON && RF3_BUTTON) {
+                RD7_LED = 1;
+                turnright_calangle -= 5;
+                __delay_ms(800);
+                RD7_LED = 0;               
+            } else if (!RF3_BUTTON && RF2_BUTTON) {
+                RH3_LED = 1;
+                turnright_calangle += 5;
+                __delay_ms(800);
+                RH3_LED = 0;
+            }
+```
+
+The instructions for each card is also specified here in the instructions() function, in which each colour is given unique number which is called and the action is executed by the function. The order of the numbers are remembered and stored so the reverse can be executed when the buggy needs to 'return home'. The time between instructions is given by the duration recorded in the forwards direction using the timer interrupts (see interrupts.c/h for more information).
+
+## interrupts.c/h
+
+The buggy uses the clear channel interrupt on the colour clicker to sense when it is near to a card to stop and run the colour card routine. The external interrupt and the peripheral pin select is initialised here for the microbus 2 pins.  
+
+A function was written to initialise the interrupt on the colour clicker (see below). The first write enables the interrupt, the second sets the persistence register to trigger when there have been 5 readings outside the specified range, and the remaining writes set the range values outside of which the interrupt will trigger. These are shifted values taken from the ambient light reading so that after each turn the interrupt will be set for the new light conditions. This accounts for changes in overhead lighting orientation (i.e. casting shadows) and changes in light levels (i.e. the sun). 
+
+```c
+void interrupts_colourclick(void){
+    colourclick_writetoaddr(0x00, 0b10011);
+    __delay_ms(3);
+    colourclick_writetoaddr(0x0C, 0b0100);
+    colourclick_writetoaddr(0x04, (interrupts_lowerbound & 0x00FF));
+    colourclick_writetoaddr(0x05, (interrupts_lowerbound >> 8));
+    colourclick_writetoaddr(0x06, (interrupts_upperbound & 0x00FF));
+    colourclick_writetoaddr(0x07, (interrupts_upperbound >> 8));
+}
+```
+
+Another function was made to force clear the interrupt flag on the clicker, and reinitialise the interrupt after every clear. 
+
+```c
+void interrupts_clear(void){
+    I2C_2_Master_Start();         //Start condition
+    I2C_2_Master_Write(0x52 | 0x00);     //7 bit device address + Write mode
+    I2C_2_Master_Write(0b11100110);    //command + register address  
+    I2C_2_Master_Stop();
+    
+    interrupts_colourclick();
+}
+```
+
+The clear channel interrupt was set as the high priority interrupt, and the low priority interrupt has a timer0 overflow to measure the duration between instruction for the return home function.
