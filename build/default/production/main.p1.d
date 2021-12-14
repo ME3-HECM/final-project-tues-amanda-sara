@@ -8,4 +8,5 @@ colour_click.h  \
 DC_motors.h  \
 I2C.h  \
 interrupts.h  \
-serial_comm.h 
+serial_comm.h  \
+timers.h 

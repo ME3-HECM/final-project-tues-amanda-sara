@@ -1,10 +1,10 @@
-#include <xc.h>
-#include "ADC.h"
+#include <xc.h>  // Include processor file
+#include "ADC.h" // Include corresponding header file
 
-/*******************************************************************************************
+/**************************************************************************************
  * ADC_init
- * Function used to initialise ADC module and set it up to sample on pin RF6 (for BAT-VSENSE)
- ********************************************************************************************/
+ * Function used to initialise ADC module and set it up to sample BAT-VSENSE on pin RF6
+ **************************************************************************************/
 void ADC_init(void) {
     // Initialise pin RF6
     TRISFbits.TRISF6=1;         // Select pin RF6 as input
@@ -19,10 +19,10 @@ void ADC_init(void) {
     ADCON0bits.ADON = 1;        // Enable ADC
 }
 
-/**********************************************************
+/****************************************************
  * ADC_getval
- * Function used to obtain ADC readings for the LDR voltage
- **********************************************************/
+ * Function used to get current battery voltage level
+ ****************************************************/
 unsigned char ADC_getval(void) {
     unsigned char tmpval;        // Declare local variable to store voltage readings in bits
     

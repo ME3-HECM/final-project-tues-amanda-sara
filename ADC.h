@@ -3,12 +3,12 @@
 
 #include <xc.h> // Include processor file
 
-#define _XTAL_FREQ 64000000 // Note intrinsic _delay function is 62.5ns at 64,000,000Hz
+#define _XTAL_FREQ 64000000 // Note intrinsic delay function is 62.5ns at 64,000,000Hz
 
 /*********************
  * Function prototypes
  *********************/
-void ADC_init(void);
-unsigned char ADC_getval(void);
+void ADC_init(void);            // Function used to initialise ADC module and set it up to sample BAT-VSENSE on pin RF6
+unsigned char ADC_getval(void); // Function used to get current battery voltage level
 
 #endif // End of _ADC_H

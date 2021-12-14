@@ -3,14 +3,11 @@
 
 #include <xc.h> // Include processor file
 
-#define _XTAL_FREQ 64000000 // Note intrinsic _delay function is 62.5ns at 64,000,000Hz
+#define _XTAL_FREQ 64000000 // Note intrinsic delay function is 62.5ns at 64,000,000Hz
 
-#define HIGH 70
-#define LOW 70
-
-/*************
- * RGBC values
- *************/
+/********************
+ * DC motor structure
+ ********************/
 typedef struct {                 // Define a structure
     char power;                  // Motor power, out of 100
     char direction;              // Motor direction, forward(1), reverse(0)
@@ -18,31 +15,31 @@ typedef struct {                 // Define a structure
     unsigned char *dir_LAT;      // LAT for direction pin
     char dir_pin;                // Pin number that controls direction on LAT
     int PWMperiod;               // Base period of PWM cycle
-} DC_motor;                      // This structure is named DC_motor
+} DC_motor;                      // Name this structure DC_motor
 
 /******************
  * Global variables
  ******************/
-extern volatile unsigned int turnleft_delay;
-extern volatile unsigned int turnright_delay;
-extern volatile unsigned char returnhome_flag; // Toggled when the final card has been found (i.e. encountered the white card)
-                                               // or in exceptional scenarios (i.e. cannot identify a card or stuck in the maze for too long)
+extern volatile char turnleft_delay;           // Adjustable value to calibrate motor left turn (refer main.h)
+extern volatile char turnright_delay;          // Adjustable value to calibrate motor right turn (refer main.h)
+extern volatile unsigned char returnhome_flag; // Toggled when buggy has found the final white card or in exceptions (refer main.h)
 
 /*********************
  * Function prototypes
  *********************/
-void DCmotors_init(unsigned char PWMperiod);
-void DCmotors_setPWM(DC_motor *m);
-void checkbatterylevel(void);
-void forward(DC_motor *mL, DC_motor *mR);
-void reverse(DC_motor *mL, DC_motor *mR);
-void stop(DC_motor *mL, DC_motor *mR);
-void left(DC_motor *mL, DC_motor *mR, unsigned int deg);
-void right(DC_motor *mL, DC_motor *mR, unsigned int deg);
-void turnleft(DC_motor *mL, DC_motor *mR, unsigned int deg);
-void turnright(DC_motor *mL, DC_motor *mR, unsigned int deg);
-void adjdelay(unsigned char mode);
-void DCmotors_calibration(DC_motor *mL, DC_motor *mR);
-void DCmotors_testing(DC_motor *mL, DC_motor *mR);
+void DCmotors_init(unsigned char PWMperiod);                  // Function used to initialise T2 and PWM for DC motor control
+void DCmotors_setPWM(DC_motor *m);                            // Function used to set PWM output from the values in the motor structure
+void checkbatterylevel(void);                                 // Function used to check battery level on the buggy
+void forward(DC_motor *mL, DC_motor *mR);                     // Function used to move the buggy forward
+void reverse(DC_motor *mL, DC_motor *mR);                     // Function used to move the buggy backwards
+void clearance(DC_motor *mL, DC_motor *mR);                   // Function used to create space clearance for the buggy to turn
+void stop(DC_motor *mL, DC_motor *mR);                        // Function used to gradually stop the buggy
+void left(DC_motor *mL, DC_motor *mR, unsigned int deg);      // Function used to rotate the buggy wheels leftwards
+void right(DC_motor *mL, DC_motor *mR, unsigned int deg);     // Function used to rotate the buggy wheels rightwards
+void turnleft(DC_motor *mL, DC_motor *mR, unsigned int deg);  // Function used to turn the buggy to the left
+void turnright(DC_motor *mL, DC_motor *mR, unsigned int deg); // Function used to turn the buggy to the right
+void adjdelay(unsigned char mode);                            // Function used to calibrate the DC motors to adapt to different surfaces
+void DCmotors_calibration(DC_motor *mL, DC_motor *mR);        // Function used to adjust the turning duration and hence the turning angle
+void DCmotors_testing(DC_motor *mL, DC_motor *mR);            // Function used to test all the DC motor movements
 
-#endif // End of _DC_MOTOR_H
+#endif // End of _DC_MOTORS_H
