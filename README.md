@@ -24,21 +24,15 @@ After a short calibration routine, our buggy autonomously navigates through a "m
 
 The buggy detects there is a card in front of it by using a clear interrupt on the colour click. When the clear channel reads outside of a specified threshold, the interrupt is triggered and the buggy stops. The buggy then goes through it's routine to identify what colour card is in front of it. The red, green and blue channels are converted into a ratio from which each colour can be identified. 
 
----
-
 ## Hardware setup
 
 ![Buggy setup](gifs/buggy_setup.jpg)
-
----
 
 ## Demonstration video
 
 This is a demonstration of our programmed buggy working through an "easy" maze and a "hard" maze.
 
 https://youtu.be/NKAub8l3Xlc
-
----
 
 ## User instructions
 
@@ -57,8 +51,6 @@ Once this has been done, the buggy will turn in left 360º, then right 360º to 
 Once the motor calibration had been completed, the buggy is placed in its starting position. Pressing either RF2/RF3 will start the colour calibration in which the lights will flash and an initial value of the ambient light will be taken. This is used to set the thresholds for the colour interrupt so the buggy knows to stop when there is a card in front of it. 
 
 Once both calibration routines have been completed, either button can be pressed to start the mine navigation.
-
----
 
 ## Code structure
 
