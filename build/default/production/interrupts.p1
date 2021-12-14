@@ -46,8 +46,8 @@ Version 4.0 HI-TECH Software Intermediate Code
 "4009
 [; ;C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\proc\pic18f67k40.h: 4009: extern volatile IPR0bits_t IPR0bits __attribute__((address(0xE1F)));
 [v _IPR0bits `VS236 ~T0 @X0 0 e@3615 ]
-"21 ./interrupts.h
-[; ;./interrupts.h: 21: void interrupts_clear(void);
+"25 ./interrupts.h
+[; ;./interrupts.h: 25: void interrupts_clear(void);
 [v _interrupts_clear `(v ~T0 @X0 0 ef ]
 "40532 C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\proc\pic18f67k40.h
 [; ;C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\proc\pic18f67k40.h: 40532:     struct {
@@ -77,8 +77,8 @@ Version 4.0 HI-TECH Software Intermediate Code
 "16
 [; ;./I2C.h: 16: void I2C_2_Master_Stop(void);
 [v _I2C_2_Master_Stop `(v ~T0 @X0 0 ef ]
-"22 ./interrupts.h
-[; ;./interrupts.h: 22: void interrupts_colourclick(void);
+"26 ./interrupts.h
+[; ;./interrupts.h: 26: void interrupts_colourclick(void);
 [v _interrupts_colourclick `(v ~T0 @X0 0 ef ]
 "29 ./colour_click.h
 [; ;./colour_click.h: 29: void colourclick_writetoaddr(char address, char value);
@@ -106,16 +106,13 @@ Version 4.0 HI-TECH Software Intermediate Code
 "5102
 [; ;C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\proc\pic18f67k40.h: 5102: extern volatile PIR0bits_t PIR0bits __attribute__((address(0xE33)));
 [v _PIR0bits `VS285 ~T0 @X0 0 e@3635 ]
-"13 ./interrupts.h
-[; ;./interrupts.h: 13: extern volatile unsigned char colourcard_flag;
+"18 ./interrupts.h
+[; ;./interrupts.h: 18: extern volatile unsigned char colourcard_flag;
 [v _colourcard_flag `Vuc ~T0 @X0 0 e ]
 [t T4 __interrupt low_priority ]
-"14
-[; ;./interrupts.h: 14: extern volatile unsigned char returnhome_flag;
-[v _returnhome_flag `Vuc ~T0 @X0 0 e ]
-"15
-[; ;./interrupts.h: 15: extern volatile unsigned char overtime_flag;
-[v _overtime_flag `Vuc ~T0 @X0 0 e ]
+"11
+[; ;./interrupts.h: 11: extern volatile unsigned int tmp;
+[v _tmp `Vui ~T0 @X0 0 e ]
 "39380 C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\proc\pic18f67k40.h
 [; ;C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\proc\pic18f67k40.h: 39380: extern volatile unsigned char TMR0H __attribute__((address(0xFD4)));
 [v _TMR0H `Vuc ~T0 @X0 0 e@4052 ]
@@ -2096,6 +2093,18 @@ Version 4.0 HI-TECH Software Intermediate Code
 "40981
 [; ;C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\proc\pic18f67k40.h: 40981: __asm("TOSU equ 0FFFh");
 [; <" TOSU equ 0FFFh ;# ">
+"12 ./interrupts.h
+[; ;./interrupts.h: 12: volatile unsigned int instr[20];
+[v _instr `Vui ~T0 @X0 -> 20 `i e ]
+"13
+[; ;./interrupts.h: 13: volatile unsigned int dur[20];
+[v _dur `Vui ~T0 @X0 -> 20 `i e ]
+"14
+[; ;./interrupts.h: 14: volatile unsigned char instr_counter;
+[v _instr_counter `Vuc ~T0 @X0 1 e ]
+"15
+[; ;./interrupts.h: 15: volatile unsigned char dur_counter;
+[v _dur_counter `Vuc ~T0 @X0 1 e ]
 "12 interrupts.c
 [; ;interrupts.c: 12: void interrupts_init(void){
 [v _interrupts_init `(v ~T0 @X0 1 ef ]
@@ -2237,18 +2246,15 @@ Version 4.0 HI-TECH Software Intermediate Code
 [; ;interrupts.c: 78:     if (PIR0bits.TMR0IF) {
 [e $ ! != -> . . _PIR0bits 0 5 `i -> 0 `i 2027  ]
 {
-"79
-[; ;interrupts.c: 79:         returnhome_flag = 1;
-[e = _returnhome_flag -> -> 1 `i `uc ]
 "80
-[; ;interrupts.c: 80:         overtime_flag = 1;
-[e = _overtime_flag -> -> 1 `i `uc ]
+[; ;interrupts.c: 80:         tmp++;
+[e ++ _tmp -> -> 1 `i `Vui ]
 "81
-[; ;interrupts.c: 81:         TMR0H=0b1011;
-[e = _TMR0H -> -> 11 `i `uc ]
+[; ;interrupts.c: 81:         TMR0H=0b00111100;
+[e = _TMR0H -> -> 60 `i `uc ]
 "82
-[; ;interrupts.c: 82:         TMR0L=0b11011011;
-[e = _TMR0L -> -> 219 `i `uc ]
+[; ;interrupts.c: 82:         TMR0L=0b10101111;
+[e = _TMR0L -> -> 175 `i `uc ]
 "83
 [; ;interrupts.c: 83:         PIR0bits.TMR0IF = 0;
 [e = . . _PIR0bits 0 5 -> -> 0 `i `uc ]

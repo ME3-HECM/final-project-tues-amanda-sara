@@ -24388,8 +24388,14 @@ typedef struct {
 
 
 
+extern volatile unsigned int tmp;
+extern volatile unsigned int instr[20];
+extern volatile unsigned int dur[20];
+extern volatile unsigned char instr_counter;
+extern volatile unsigned char dur_counter;
 extern volatile int turnleft_calangle;
 extern volatile int turnright_calangle;
+extern volatile unsigned char unknowncard_flag;
 extern volatile unsigned char returnhome_flag;
 
 
@@ -24402,10 +24408,11 @@ void forward(DC_motor *mL, DC_motor *mR);
 void reverse(DC_motor *mL, DC_motor *mR);
 void clearance(DC_motor *mL, DC_motor *mR);
 void stop(DC_motor *mL, DC_motor *mR);
-void left(DC_motor *mL, DC_motor *mR, unsigned int deg);
-void right(DC_motor *mL, DC_motor *mR, unsigned int deg);
 void turnleft(DC_motor *mL, DC_motor *mR, unsigned int deg);
 void turnright(DC_motor *mL, DC_motor *mR, unsigned int deg);
+void instructions(DC_motor *mL, DC_motor *mR, unsigned char num);
+void reverseinstructions(DC_motor *mL, DC_motor *mR);
+void returnhome(DC_motor *mL, DC_motor *mR);
 void adjdelay(unsigned char mode);
 void DCmotors_calibration(DC_motor *mL, DC_motor *mR);
 void DCmotors_testing(DC_motor *mL, DC_motor *mR);
@@ -24424,11 +24431,15 @@ unsigned char I2C_2_Master_Read(unsigned char ack);
 
 # 1 "./interrupts.h" 1
 # 11 "./interrupts.h"
+extern volatile unsigned int tmp;
+volatile unsigned int instr[20];
+volatile unsigned int dur[20];
+volatile unsigned char instr_counter;
+volatile unsigned char dur_counter;
 extern volatile unsigned int interrupts_lowerbound;
 extern volatile unsigned int interrupts_upperbound;
 extern volatile unsigned char colourcard_flag;
 extern volatile unsigned char returnhome_flag;
-extern volatile unsigned char overtime_flag;
 
 
 
@@ -24470,6 +24481,11 @@ void timer0_init(void);
 
 
 
+volatile unsigned int tmp;
+volatile unsigned int instr[20];
+volatile unsigned int dur[20];
+volatile unsigned char instr_counter;
+volatile unsigned char dur_counter;
 volatile int turnleft_calangle;
 volatile int turnright_calangle;
 volatile unsigned int interrupts_lowerbound;
@@ -24477,9 +24493,13 @@ volatile unsigned int interrupts_upperbound;
 volatile unsigned char colourcard_flag;
 volatile unsigned char unknowncard_flag;
 volatile unsigned char returnhome_flag;
-volatile unsigned char overtime_flag;
 # 5 "./colour_cards.h" 2
 # 14 "./colour_cards.h"
+extern volatile unsigned int tmp;
+extern volatile unsigned int instr[20];
+extern volatile unsigned int dur[20];
+extern volatile unsigned char instr_counter;
+extern volatile unsigned char dur_counter;
 extern volatile unsigned char colourcard_flag;
 extern volatile unsigned char unknowncard_flag;
 extern volatile unsigned char returnhome_flag;
@@ -24509,16 +24529,10 @@ void colourcards_readRGBC(RGBC_val *abs, DC_motor *mL, DC_motor *mR) {
         colourcards_normaliseRGBC(abs, &rel);
         if (rel.G<0.185) {
 
-            clearance(mL, mR);
-            turnright(mL, mR, 90);
-            stop(mL, mR);
-            unknowncard_flag = 0;
+            instructions(mL, mR, 1);
         } else {
 
-            clearance(mL, mR);
-            turnright(mL, mR, 135);
-            stop(mL, mR);
-            unknowncard_flag = 0;
+            instructions(mL, mR, 6);
         }
 
 
@@ -24527,47 +24541,26 @@ void colourcards_readRGBC(RGBC_val *abs, DC_motor *mL, DC_motor *mR) {
         colourcards_normaliseRGBC(abs, &rel);
         if (rel.B<0.125) {
 
-            clearance(mL, mR);
-            turnleft(mL, mR, 90);
-            stop(mL, mR);
-            unknowncard_flag = 0;
+            instructions(mL, mR, 2);
         } else {
             colourclick_readRGBC2(abs, 2);
             colourcards_normaliseRGBC(abs, &rel);
             if (rel.R<0.115) {
 
-                clearance(mL, mR);
-                turnright(mL, mR, 180);
-                stop(mL, mR);
-                unknowncard_flag = 0;
+                instructions(mL, mR, 3);
             } else {
 
-                clearance(mL, mR);
-                turnleft(mL, mR, 135);
-                stop(mL, mR);
-                unknowncard_flag = 0;
+                instructions(mL, mR, 7);
             }
         }
 
     } else if ((rel.R>0.49) && (rel.G>0.285) && (rel.B>0.18)) {
 
-        reverse(mL, mR);
-        _delay((unsigned long)((1400)*(64000000/4000.0)));
-        stop(mL, mR);
-        _delay((unsigned long)((100)*(64000000/4000.0)));
-        turnright(mL, mR, 90);
-        stop(mL, mR);
-        unknowncard_flag = 0;
+        instructions(mL, mR, 4);
 
     } else if ((rel.R>0.49) && (rel.G<0.275) && (rel.B>0.195)) {
 
-        reverse(mL, mR);
-        _delay((unsigned long)((1400)*(64000000/4000.0)));
-        stop(mL, mR);
-        _delay((unsigned long)((100)*(64000000/4000.0)));
-        turnleft(mL, mR, 90);
-        stop(mL, mR);
-        unknowncard_flag = 0;
+        instructions(mL, mR, 5);
 
     } else if ((rel.R<0.47) && (rel.G>0.295) && (rel.B>0.21)) {
 
@@ -24589,10 +24582,9 @@ void colourcards_readRGBC(RGBC_val *abs, DC_motor *mL, DC_motor *mR) {
                 LATHbits.LATH3 = 1;
                 returnhome_flag = 1;
             }
-        } else {
-            unknowncard_flag = 0;
-        }
+        } else {unknowncard_flag = 0;}
     }
+
 
     PIE0bits.INT1IE = 1;
 }

@@ -24179,11 +24179,15 @@ extern __attribute__((nonreentrant)) void _delay3(unsigned char);
 
 # 1 "./interrupts.h" 1
 # 11 "./interrupts.h"
+extern volatile unsigned int tmp;
+volatile unsigned int instr[20];
+volatile unsigned int dur[20];
+volatile unsigned char instr_counter;
+volatile unsigned char dur_counter;
 extern volatile unsigned int interrupts_lowerbound;
 extern volatile unsigned int interrupts_upperbound;
 extern volatile unsigned char colourcard_flag;
 extern volatile unsigned char returnhome_flag;
-extern volatile unsigned char overtime_flag;
 
 
 
@@ -24324,10 +24328,10 @@ void __attribute__((picinterrupt(("high_priority")))) HighISR() {
 
 void __attribute__((picinterrupt(("low_priority")))) LowISR() {
     if (PIR0bits.TMR0IF) {
-        returnhome_flag = 1;
-        overtime_flag = 1;
-        TMR0H=0b1011;
-        TMR0L=0b11011011;
+
+        tmp++;
+        TMR0H=0b00111100;
+        TMR0L=0b10101111;
         PIR0bits.TMR0IF = 0;
     }
 }

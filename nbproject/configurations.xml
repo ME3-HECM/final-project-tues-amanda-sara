@@ -32,7 +32,6 @@
       <itemPath>serial_comm.c</itemPath>
       <itemPath>DC_motors.c</itemPath>
       <itemPath>timers.c</itemPath>
-      <itemPath>return_home.c</itemPath>
     </logicalFolder>
     <logicalFolder name="ExternalFiles"
                    displayName="Important Files"
@@ -309,8 +308,6 @@
                   value="Press to select which tool pack to use"/>
         <property key="voltagevalue" value="5.0"/>
       </pk4hybrid>
-      <item path="return_home.c" ex="true" overriding="false">
-      </item>
     </conf>
   </confs>
 </configurationDescriptor>

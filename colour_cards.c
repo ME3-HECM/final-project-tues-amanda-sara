@@ -26,16 +26,10 @@ void colourcards_readRGBC(RGBC_val *abs, DC_motor *mL, DC_motor *mR) {
         colourcards_normaliseRGBC(abs, &rel);
         if (rel.G<0.185) {
             // Red card - Turn right 90 degrees
-            clearance(mL, mR);
-            turnright(mL, mR, 90);
-            stop(mL, mR);
-            unknowncard_flag = 0;
+            instructions(mL, mR, 1);
         } else {
             // Orange card - Turn right 135 degrees
-            clearance(mL, mR);
-            turnright(mL, mR, 135);
-            stop(mL, mR);
-            unknowncard_flag = 0;
+            instructions(mL, mR, 6);
         }
 
     // Green/blue/light blue
@@ -44,47 +38,26 @@ void colourcards_readRGBC(RGBC_val *abs, DC_motor *mL, DC_motor *mR) {
         colourcards_normaliseRGBC(abs, &rel);
         if (rel.B<0.125) {
             // Green card - Turn left 90 degrees
-            clearance(mL, mR);
-            turnleft(mL, mR, 90);
-            stop(mL, mR);
-            unknowncard_flag = 0;
+            instructions(mL, mR, 2);
         } else {
             colourclick_readRGBC2(abs, 2); // Green LED
             colourcards_normaliseRGBC(abs, &rel);
             if (rel.R<0.115) {
                 // Blue card - Turn 180 degrees
-                clearance(mL, mR);
-                turnright(mL, mR, 180);
-                stop(mL, mR);
-                unknowncard_flag = 0;
+                instructions(mL, mR, 3);
             } else {
                 // Light blue card - Turn left 135 degrees
-                clearance(mL, mR);
-                turnleft(mL, mR, 135);
-                stop(mL, mR);
-                unknowncard_flag = 0;
+                instructions(mL, mR, 7);
             }
         }
     // Other colours
     } else if ((rel.R>0.49) && (rel.G>0.285) && (rel.B>0.18)) {
         // Yellow card - Reverse 1 square and turn right 90 degrees
-        reverse(mL, mR);
-        __delay_ms(1400);
-        stop(mL, mR);
-        __delay_ms(100);
-        turnright(mL, mR, 90);
-        stop(mL, mR);
-        unknowncard_flag = 0;
+        instructions(mL, mR, 4);
 
     } else if ((rel.R>0.49) && (rel.G<0.275) && (rel.B>0.195)) {
         // Pink card - Reverse 1 square and turn left 90 degrees
-        reverse(mL, mR);
-        __delay_ms(1400);
-        stop(mL, mR);
-        __delay_ms(100);
-        turnleft(mL, mR, 90);
-        stop(mL, mR);
-        unknowncard_flag = 0;
+        instructions(mL, mR, 5);
 
     } else if ((rel.R<0.47) && (rel.G>0.295) && (rel.B>0.21)) {
         // White card - Finish (return home)
@@ -106,10 +79,9 @@ void colourcards_readRGBC(RGBC_val *abs, DC_motor *mL, DC_motor *mR) {
                 RH3_LED = 1;
                 returnhome_flag = 1;
             }
-        } else {
-            unknowncard_flag = 0;
-        }
+        } else {unknowncard_flag = 0;}
     }
+    
     // Switch on interrupts again (to prepare for the next card)
     PIE0bits.INT1IE = 1;
 }

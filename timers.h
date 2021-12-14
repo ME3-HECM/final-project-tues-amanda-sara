@@ -8,9 +8,9 @@
 /*******************
  * Timer0 parameters
  *******************/
-#define TMR0H_BITS 0b1011     // Initial value for 16-bit Timer 0 most significant byte
-#define TMR0L_BITS 0b11011011 // Initial value for 16-bit Timer 0 least significant byte
-#define PRESCALER 0b1000      // Timer0 prescaler value
+#define TMR0H_BITS 0b00111100 // Initial value for 16-bit Timer 0 most significant byte
+#define TMR0L_BITS 0b10101111 // Initial value for 16-bit Timer 0 least significant byte
+#define PRESCALER 0b0101      // Timer0 prescaler value
 
 /*********************
  * Function prototypes

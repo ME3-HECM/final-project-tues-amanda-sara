@@ -76,8 +76,8 @@ void __interrupt(high_priority) HighISR() {
  ************************************************************************************/
 void __interrupt(low_priority) LowISR() {
     if (PIR0bits.TMR0IF) {                      // Check the interrupt source
-        returnhome_flag = 1;
-        overtime_flag = 1;
+//        RD7_LED=!RD7_LED; // Testing
+        tmp++;
         TMR0H=TMR0H_BITS;
         TMR0L=TMR0L_BITS;
         PIR0bits.TMR0IF = 0;                    // Clear the interrupt flag

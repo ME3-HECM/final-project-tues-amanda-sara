@@ -72,7 +72,7 @@ void DCmotors_setPWM(DC_motor *m) {
 void checkbatterylevel(void) {
     unsigned char batterylevel;
     batterylevel = ADC_getval();
-    if (batterylevel<100) {
+    if (batterylevel<50) {
         while(1) {
             RD7_LED = !RD7_LED;
             RH3_LED = !RH3_LED;
@@ -158,11 +158,11 @@ void stop(DC_motor *mL, DC_motor *mR) {
     BRAKE_LED = 0;
 }
 
-/****************************************************
- * left
- * Function used to rotate the buggy wheels leftwards
- ****************************************************/
-void left(DC_motor *mL, DC_motor *mR, unsigned int deg) {
+/*********************************************
+ * turnleft
+ * Function used to turn the buggy to the left
+ *********************************************/
+void turnleft(DC_motor *mL, DC_motor *mR, unsigned int deg) {
     // Calculations
     double delay = ((deg*2.332)+31.506) * 360/turnleft_calangle;
     
@@ -188,11 +188,11 @@ void left(DC_motor *mL, DC_motor *mR, unsigned int deg) {
     TURNLEFT_LED = 0;
 }
 
-/*****************************************************
- * right
- * Function used to rotate the buggy wheels rightwards
- *****************************************************/
-void right(DC_motor *mL, DC_motor *mR, unsigned int deg) {
+/**********************************************
+ * turnright
+ * Function used to turn the buggy to the right
+ **********************************************/
+void turnright(DC_motor *mL, DC_motor *mR, unsigned int deg) {
     // Calculations
     double delay = ((deg*2.0303)+62.964) * 360/turnright_calangle;
     
@@ -219,22 +219,111 @@ void right(DC_motor *mL, DC_motor *mR, unsigned int deg) {
     TURNRIGHT_LED = 0;
 }
 
-/*********************************************
- * turnleft
- * Function used to turn the buggy to the left
- *********************************************/
-void turnleft(DC_motor *mL, DC_motor *mR, unsigned int deg) {
-    if (returnhome_flag==0) {left(mL, mR, deg);}
-    else {right(mL, mR, deg);}
+/*************************
+ * instructions
+ * Function used to
+ **************************/
+void instructions(DC_motor *mL, DC_motor *mR, unsigned char num) {
+    if (returnhome_flag==0) {
+        unknowncard_flag = 0;
+        instr[instr_counter] = num;
+        instr_counter++;
+    }
+    
+    if (num==1) {
+        // Red card - Turn right 90 degrees
+        clearance(mL, mR);
+        turnright(mL, mR, 90);
+        stop(mL, mR);
+    } else if (num==2) {
+        // Green card - Turn left 90 degrees
+        clearance(mL, mR);
+        turnleft(mL, mR, 90);
+        stop(mL, mR);
+    } else if (num==3) {
+        // Blue card - Turn 180 degrees
+        clearance(mL, mR);
+        turnright(mL, mR, 180);
+        stop(mL, mR);
+    } else if (num==4) {
+        // Yellow card - Reverse 1 square and turn right 90 degrees
+        reverse(mL, mR);
+        __delay_ms(1400);
+        stop(mL, mR);
+        __delay_ms(100);
+        turnright(mL, mR, 90);
+        stop(mL, mR);
+    } else if (num==5) {
+        // Pink card - Reverse 1 square and turn left 90 degrees
+        reverse(mL, mR);
+        __delay_ms(1400);
+        stop(mL, mR);
+        __delay_ms(100);
+        turnleft(mL, mR, 90);
+        stop(mL, mR);
+    } else if (num==6) {
+        // Orange card - Turn right 135 degrees
+        clearance(mL, mR);
+        turnright(mL, mR, 135);
+        stop(mL, mR);
+    } else if (num==7) {
+        // Light blue card - Turn left 135 degrees
+        clearance(mL, mR);
+        turnleft(mL, mR, 135);
+        stop(mL, mR);
+    }
 }
 
-/**********************************************
- * turnright
- * Function used to turn the buggy to the right
- **********************************************/
-void turnright(DC_motor *mL, DC_motor *mR, unsigned int deg) {
-    if (returnhome_flag==0) {right(mL, mR, deg);}
-    else {left(mL, mR, deg);}
+/*************************
+ * reverseinstructions
+ * Function used to
+ **************************/
+void reverseinstructions(DC_motor *mL, DC_motor *mR) {
+    if (instr[instr_counter]==1) {instructions(mL, mR, 2);}
+    else if (instr[instr_counter]==2) {instructions(mL, mR, 1);}
+    else if (instr[instr_counter]==3) {instructions(mL, mR, 3);}
+    else if (instr[instr_counter]==4) {
+        forward(mL, mR);
+        __delay_ms(2500);
+        stop(mL, mR);
+        __delay_ms(100);
+        turnleft(mL, mR, 90);
+        stop(mL, mR);
+    }
+    else if (instr[instr_counter]==5) {
+        forward(mL, mR);
+        __delay_ms(2500);
+        stop(mL, mR);
+        __delay_ms(100);
+        turnright(mL, mR, 90);
+        stop(mL, mR);
+    }
+    else if (instr[instr_counter]==6) {instructions(mL, mR, 7);}
+    else if (instr[instr_counter]==7) {instructions(mL, mR, 6);}
+}
+
+/*************************
+ * returnhome
+ * Function used to
+ **************************/
+void returnhome(DC_motor *mL, DC_motor *mR) {
+    INTCONbits.GIE = 1; // Turn off interrupts
+    
+    unsigned char i=instr_counter;
+    unsigned char j,k;
+    for (j=0; j<=i; j++) {
+        reverse(mL, mR);
+        for (k=0; k<=5; k++) {__delay_ms(100);}
+        stop(mL, mR);
+        
+        reverseinstructions(mL, mR);
+        
+        dur_counter--;
+        instr_counter--;
+    }
+    reverse(mL, mR);
+    for (k=0; k<=5; k++) {__delay_ms(100);}
+    stop(mL, mR);
 }
 
 /*************************************************************************
