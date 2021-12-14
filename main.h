@@ -5,12 +5,12 @@
  * Definitions
  * See The C programming language, second edition, pp.89-91
  **********************************************************/
-#define _XTAL_FREQ 64000000 // Note intrinsic _delay function is 62.5ns at 64,000,000Hz
+#define _XTAL_FREQ 64000000 // Note intrinsic delay function is 62.5ns at 64,000,000Hz
 
-/***********************************************************
+/**********************************************************
  * File inclusions
  * See The C programming language, second edition, pp.88-89
- ***********************************************************/
+ **********************************************************/
 #include <xc.h>             // Include processor file
 #include <stdio.h>          // Include standard input output library to use serial communication for testing purposes
 #include "ADC.h"            // Include header file to initilaise ADC module to check battery level of the buggy
@@ -39,13 +39,13 @@
 /******************
  * Global variables
  ******************/
+volatile char turnleft_delay;                // Adjustable value to calibrate motor left turn
+volatile char turnright_delay;               // Adjustable value to calibrate motor right turn
 volatile unsigned int interrupts_lowerbound; // Lower clear threshold value to trigger interrupts when encounter colour cards
 volatile unsigned int interrupts_upperbound; // Upper clear threshold value to trigger interrupts when encounter colour cards
-volatile unsigned int turnleft_delay;        // Used in the motor calibration routine to calibrate the left turn
-volatile unsigned int turnright_delay;       // Used in the motor calibration routine to calibrate the right turn
-volatile unsigned char overtime_flag;        // Toggled when buggy has been stuck in the maze for too long
 volatile unsigned char colourcard_flag;      // Toggled when buggy encounters a colour card
 volatile unsigned char unknowncard_flag;     // Incremented each time the buggy fails to identify a colour card
-volatile unsigned char returnhome_flag;      // Toggled when buggy has found the final white card
+volatile unsigned char returnhome_flag;      // Toggled when buggy has found the final white card or in exceptions
+volatile unsigned char overtime_flag;        // Toggled when buggy has been stuck in the maze for too long
 
 #endif // End of _MAIN_H

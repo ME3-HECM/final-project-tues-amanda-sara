@@ -1,19 +1,15 @@
-#include <xc.h>
-#include <stdio.h>
-#include "colour_click.h"
-#include "buttons_n_LEDs.h"
-#include "I2C.h"
-#include "serial_comm.h"
-
-volatile unsigned int clear_lower;
-volatile unsigned int clear_upper;
+#include <xc.h>             // Include processor file
+#include <stdio.h>          // Include standard input output library to use serial communication for testing purposes
+#include "colour_click.h"   // Include corresponding header file
+#include "buttons_n_LEDs.h" // Include header file to use buttons and LEDs on the clicker 2 board
+#include "I2C.h"            // Include header file to use I2C for programming the colour click module
+#include "serial_comm.h"    // Include header file to use serial communication module to output results on-screen for testing purposes
 
 /***************************************************************
- * colorclick_init
+ * colourclick_init
  * Function used to initialise the colour click module using I2C
  ***************************************************************/
-void colourclick_init(void)
-{   
+void colourclick_init(void) {   
     //setup colour sensor via i2c interface
     I2C_2_Master_Init();      //Initialise i2c Master
 
@@ -30,28 +26,23 @@ void colourclick_init(void)
     colourclickLEDs_init();
 }
 
-/*************************************************************
- * colorclick_writetoaddr
+/***************************************************
+ * colourclick_writetoaddr
  * Function used to write to the colour click module
- * Address is the register within the colour click to write to
- * Value is the value that will be written to that address
- *************************************************************/
-void colourclick_writetoaddr(char address, char value)
-{
-    I2C_2_Master_Start();         //Start condition
-    I2C_2_Master_Write(0x52 | 0x00);     //7 bit device address + Write mode
-    I2C_2_Master_Write(0x80 | address);    //command + register address
-    I2C_2_Master_Write(value);    
-    I2C_2_Master_Stop();          //Stop condition
+ ***************************************************/
+void colourclick_writetoaddr(char address, char value) {
+    I2C_2_Master_Start();               //Start condition
+    I2C_2_Master_Write(0x52 | 0x00);    //7 bit device address + Write mode
+    I2C_2_Master_Write(0x80 | address); //command + register address within the colour click to write to
+    I2C_2_Master_Write(value);          // The value that will be written to that address
+    I2C_2_Master_Stop();                //Stop condition
 }
 
-/**********************************************************
- * colorclick_readRed
- * Function used to read the red channel
- * Returns a 16 bit ADC value representing colour intensity
- **********************************************************/
-unsigned int colourclick_readR(void)
-{
+/***************************************************************************************************
+ * colourclick_readR
+ * Function used to read the red channel and return a 16 bit ADC value representing colour intensity
+ ***************************************************************************************************/
+unsigned int colourclick_readR(void) {
 	unsigned int tmp;
 	I2C_2_Master_Start();         //Start condition
 	I2C_2_Master_Write(0x52 | 0x00);     //7 bit address + Write mode
@@ -64,13 +55,11 @@ unsigned int colourclick_readR(void)
 	return tmp;
 }
 
-/*********************************************************
- * colorclick_readGreen
- * Function to read the green channel
- * Returns a 16 bit ADC value representing color intensity
- *********************************************************/
-unsigned int colourclick_readG(void)
-{
+/***************************************************************************************************
+ * colourclick_readG
+ * Function used to read the green channel and return a 16 bit ADC value representing colour intensity
+ ***************************************************************************************************/
+unsigned int colourclick_readG(void) {
 	unsigned int tmp;
 	I2C_2_Master_Start();         //Start condition
 	I2C_2_Master_Write(0x52 | 0x00);     //7 bit address + Write mode
@@ -83,13 +72,11 @@ unsigned int colourclick_readG(void)
 	return tmp;
 }
 
-/********************************************
- * colorclick_readBlue
- * Function to read the blue channel
- * Returns a 16 bit ADC value representing color intensity
- *********************************************************/
-unsigned int colourclick_readB(void)
-{
+/***************************************************************************************************
+ * colourclick_readB
+ * Function used to read the blue channel and return a 16 bit ADC value representing colour intensity
+ ***************************************************************************************************/
+unsigned int colourclick_readB(void) {
 	unsigned int tmp;
 	I2C_2_Master_Start();         //Start condition
 	I2C_2_Master_Write(0x52 | 0x00);     //7 bit address + Write mode
@@ -102,13 +89,11 @@ unsigned int colourclick_readB(void)
 	return tmp;
 }
 
-/*********************************************************
- * colorclick_readClear
- * Function to read the clear channel
- * Returns a 16 bit ADC value representing color intensity
- *********************************************************/
-unsigned int colourclick_readC(void)
-{
+/*****************************************************************************************************
+ * colourclick_readC
+ * Function used to read the clear channel and return a 16 bit ADC value representing colour intensity
+ *****************************************************************************************************/
+unsigned int colourclick_readC(void) {
 	unsigned int tmp;
 	I2C_2_Master_Start();         //Start condition
 	I2C_2_Master_Write(0x52 | 0x00);     //7 bit address + Write mode
@@ -121,24 +106,22 @@ unsigned int colourclick_readC(void)
 	return tmp;
 }
 
-/**********************
- * colorclick_readColor
- * Function used to
- **********************/
-void colourclick_readRGBC(RGBC_val *tmpval)
-{
+/*********************************************************
+ * colourclick_readRGBC
+ * Function used to read the RGBC values using clear light
+ *********************************************************/
+void colourclick_readRGBC(RGBC_val *tmpval) {
     tmpval->R = colourclick_readR();
     tmpval->G = colourclick_readG();
     tmpval->B = colourclick_readB();
     tmpval->C = colourclick_readC();
 }
 
-/**********************
- * colorclick_readColor
- * Function used to
- **********************/
-void colourclick_readRGBC2(RGBC_val *tmpval, unsigned char mode)
-{
+/*************************************************************************
+ * colourclick_readRGBC2
+ * Function used to read the RGBC values using the red, green or blue LEDs
+ *************************************************************************/
+void colourclick_readRGBC2(RGBC_val *tmpval, unsigned char mode) {
     colourclickLEDs_C(0);
     __delay_ms(100);
     
@@ -169,10 +152,10 @@ void colourclick_readRGBC2(RGBC_val *tmpval, unsigned char mode)
     __delay_ms(100);
 }
 
-/*************************
+/****************************************************
  * colourclick_calibration
- * function used to
- *************************/
+ * Function used to calibrate the colour click module
+ ****************************************************/
 void colourclick_calibration(void) {
     RGBC_val initial;
     while(RF2_BUTTON);
@@ -191,15 +174,21 @@ void colourclick_calibration(void) {
     colourclickLEDs_C(0);
 }
 
-void colourclick_testing(RGBC_val *initial, RGBC_val *current)
-{
-    unsigned int ambient = initial->C;
-    unsigned int R = current->R;
-    unsigned int G = current->G;
-    unsigned int B = current->B;
-    unsigned int C = current->C;
+/***********************************************
+ * colourclick_testing
+ * Function used to test the colour click module
+ ***********************************************/
+void colourclick_testing(RGBC_val *initval, RGBC_val *tmpval) {
+    unsigned int ambient = initval->C;
+    unsigned int R = tmpval->R;
+    unsigned int G = tmpval->G;
+    unsigned int B = tmpval->B;
+    unsigned int C = tmpval->C;
     
-    char buf[40];
+    if ((C>interrupts_lowerbound) && (C<ambient)) {interrupts_lowerbound = C;}
+    else if ((C<interrupts_upperbound) && (C>ambient)) {interrupts_upperbound=C;}
+    
+    char buf[100];
     sprintf(buf,"RGBC: %i %i %i %i     Threshold: %i %i %i\n\r",\
             R, G, B, C, interrupts_lowerbound, ambient, interrupts_upperbound);
     sendStringSerial4(buf);

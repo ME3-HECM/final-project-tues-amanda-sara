@@ -1,12 +1,11 @@
-#include <xc.h>
-#include "timers.h"
+#include <xc.h>     // Include processor file
+#include "timers.h" // Include corresponding header file
 
-/********************************************************************************
+/***********************************************
  * Timer0_init
- * Function used to set up Timer 0
- * Remember to write to High reg first, update happens when low reg is written to
- ********************************************************************************/
- void Timer0_init(void) {
+ * Function used to set up Timer 0 to track time
+ ***********************************************/
+ void timer0_init(void) {           // Remember to write to High reg first, update happens when low reg is written to
     T0CON1bits.T0CS=0b010;          // Fosc/4 (see datasheet pg 354)
     T0CON1bits.T0ASYNC=1;           // Needed to ensure correct operation when Fosc/4 used as clock source (see datasheet errata)
     T0CON1bits.T0CKPS=PRESCALER;    // Adjust prescaler (see datasheet pg 369)
@@ -32,3 +31,4 @@
     // We need to start the timer at a higher value to reduce the time period by 0.04856 seconds before the next overflow occurs
     // Thus, we start the timer at n=65535-(1/(4*256/64000000))=3035
 }
+ 

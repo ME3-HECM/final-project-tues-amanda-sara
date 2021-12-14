@@ -1,16 +1,16 @@
-#include <xc.h>
-#include <stdio.h>
-#include "buttons_n_LEDs.h"
-#include "colour_cards.h"
-#include "colour_click.h"
-#include "DC_motors.h"
-#include "serial_comm.h"
+#include <xc.h>             // Include processor file
+#include <stdio.h>          // Include standard input output library to use serial communication for testing purposes
+#include "colour_cards.h"   // Include corresponding header file
+#include "buttons_n_LEDs.h" // Include header file to use buttons and LEDs on the clicker 2 board
+#include "colour_click.h"   // Include header file to use colour click module for colour identication purposes
+#include "DC_motors.h"      // Include header file to control DC motors based on identified colour cards
+#include "serial_comm.h"    // Include header file to use serial communication module to output results on-screen for testing purposes
 
-/***********************
+/*******************************************************************
  * colourcards_readRGBC
- ***********************/
-void colourcards_readRGBC(RGBC_val *abs, DC_motor *mL, DC_motor *mR)
-{
+ * Function used to identify the colour card and respond accordingly
+ *******************************************************************/
+void colourcards_readRGBC(RGBC_val *abs, DC_motor *mL, DC_motor *mR) {
     // Switch off interrupts (to avoid unwanted interrupts while identifying cards)
     PIE0bits.INT1IE = 0;
     
@@ -25,14 +25,14 @@ void colourcards_readRGBC(RGBC_val *abs, DC_motor *mL, DC_motor *mR)
         colourclick_readRGBC2(abs, 3); // Blue LED
         colourcards_normaliseRGBC(abs, &rel);
         if (rel.G<0.185) {
-            car_clearance(mL, mR);
             // Red card - Turn right 90 degrees
+            clearance(mL, mR);
             turnright(mL, mR, 90);
             stop(mL, mR);
             unknowncard_flag = 0;
         } else {
-            car_clearance(mL, mR);
             // Orange card - Turn right 135 degrees
+            clearance(mL, mR);
             turnright(mL, mR, 135);
             stop(mL, mR);
             unknowncard_flag = 0;
@@ -43,23 +43,23 @@ void colourcards_readRGBC(RGBC_val *abs, DC_motor *mL, DC_motor *mR)
         colourclick_readRGBC2(abs, 1); // Red LED
         colourcards_normaliseRGBC(abs, &rel);
         if (rel.B<0.125) {
-            car_clearance(mL, mR);
             // Green card - Turn left 90 degrees
+            clearance(mL, mR);
             turnleft(mL, mR, 90);
             stop(mL, mR);
             unknowncard_flag = 0;
         } else {
-            colourclick_readRGBC2(&abs, 2); // Green LED
-            colourcards_normaliseRGBC(&abs, &rel);
+            colourclick_readRGBC2(abs, 2); // Green LED
+            colourcards_normaliseRGBC(abs, &rel);
             if (rel.R<0.115) {
-                car_clearance(mL, mR);
                 // Blue card - Turn 180 degrees
+                clearance(mL, mR);
                 turnright(mL, mR, 180);
                 stop(mL, mR);
                 unknowncard_flag = 0;
             } else {
-                car_clearance(mL, mR);
                 // Light blue card - Turn left 135 degrees
+                clearance(mL, mR);
                 turnleft(mL, mR, 135);
                 stop(mL, mR);
                 unknowncard_flag = 0;
@@ -67,9 +67,9 @@ void colourcards_readRGBC(RGBC_val *abs, DC_motor *mL, DC_motor *mR)
         }
     // Other colours
     } else if ((rel.R>0.49) && (rel.G>0.285) && (rel.B>0.18)) {
-        car_clearance(mL, mR);
         // Yellow card - Reverse 1 square and turn right 90 degrees
         reverse(mL, mR);
+        __delay_ms(1400);
         stop(mL, mR);
         __delay_ms(100);
         turnright(mL, mR, 90);
@@ -77,9 +77,9 @@ void colourcards_readRGBC(RGBC_val *abs, DC_motor *mL, DC_motor *mR)
         unknowncard_flag = 0;
 
     } else if ((rel.R>0.49) && (rel.G<0.275) && (rel.B>0.195)) {
-        car_clearance(mL, mR);
         // Pink card - Reverse 1 square and turn left 90 degrees
         reverse(mL, mR);
+        __delay_ms(1400);
         stop(mL, mR);
         __delay_ms(100);
         turnleft(mL, mR, 90);
@@ -87,8 +87,8 @@ void colourcards_readRGBC(RGBC_val *abs, DC_motor *mL, DC_motor *mR)
         unknowncard_flag = 0;
 
     } else if ((rel.R<0.47) && (rel.G>0.295) && (rel.B>0.21)) {
-        car_clearance(mL, mR);
         // White card - Finish (return home)
+        clearance(mL, mR);
         turnright(mL, mR, 180);
         stop(mL, mR);
         unknowncard_flag = 0;
@@ -120,31 +120,11 @@ void colourcards_readRGBC(RGBC_val *abs, DC_motor *mL, DC_motor *mR)
     PIE0bits.INT1IE = 1;
 }
 
-/*********************
- * colourcards_readHSV
- **********************/
-void colourcards_readHSV(RGBC_val *tmpval, DC_motor *mL, DC_motor *mR)
-{
-    
-}
-
-/***********************************
- * creates clearance for car to turn
- ***********************************/
-void car_clearance(DC_motor *mL, DC_motor *mR){
-    MAINBEAM_LED = 0;
-    reverse(mL, mR);
-    __delay_ms(500);
-    stop(mL, mR);
-    __delay_ms(1000);
-    MAINBEAM_LED = 0;
-}
-
-/*************************
+/**********************************************************************************************************
  * colourcards_testingRGBC
- ************************/
-void colourcards_testingRGBC()
-{
+ * Function used to identify colours and output results using serial communication for the testing purposes
+ **********************************************************************************************************/
+void colourcards_testingRGBC() {
     INTCONbits.GIE = 0;
     
     while (RF2_BUTTON && RF3_BUTTON);
@@ -159,7 +139,7 @@ void colourcards_testingRGBC()
         colourclick_readRGBC(&abs);
         colourcards_normaliseRGBC(&abs, &rel);
         
-        char buf[30];
+        char buf[100];
         // Red/orange
         if ((rel.R>0.54) && (rel.G<0.245) && (rel.B<0.18)) {
             colourclick_readRGBC2(&abs, 3); // Blue LED
@@ -220,19 +200,11 @@ void colourcards_testingRGBC()
     }
 }
 
-/************************
- * colourcards_testingHSV
- ************************/
-void colourcards_testingHSV(RGBC_val *tmpval)
-{
-    
-}
-
-/***************
- * 
- *******************/
-void colourcards_normaliseRGBC(RGBC_val *abs, RGB_rel *rel)
-{
+/********************************************
+ * colourcards_normaliseRGBC
+ * Function used to normalise the RGBC values
+ ********************************************/
+void colourcards_normaliseRGBC(RGBC_val *abs, RGB_rel *rel) {
     unsigned int R = abs->R;
     unsigned int G = abs->G;
     unsigned int B = abs->B;

@@ -3,39 +3,14 @@
 
 #include <xc.h> // Include processor file
 
-#define _XTAL_FREQ 64000000 // Note intrinsic _delay function is 62.5ns at 64,000,000Hz
-
-#define RX_BUF_SIZE 20
-#define TX_BUF_SIZE 60
-
-//variables for a software RX/TX buffer
-volatile char EUSART4RXbuf[RX_BUF_SIZE];
-volatile char RxBufWriteCnt=0;
-volatile char RxBufReadCnt=0;
-
-volatile char EUSART4TXbuf[TX_BUF_SIZE];
-volatile char TxBufWriteCnt=0;
-volatile char TxBufReadCnt=0;
+#define _XTAL_FREQ 64000000 // Note intrinsic delay function is 62.5ns at 64,000,000Hz
 
 /*********************
  * Function prototypes
  *********************/
-//basic EUSART funcitons
-void USART4_init(void);
-char getCharSerial4(void);
-void sendCharSerial4(unsigned char charToSend);
-void sendStringSerial4(char *string);
-
-// circular Rx buffer functions
-char getCharFromRxBuf(void);
-void putCharToRxBuf(char byte);
-char isDataInRxBuf (void);
-
-// circular Tx buffer functions
-char getCharFromTxBuf(void);
-void putCharToTxBuf(char byte);
-char isDataInTxBuf (void);
-void TxBufferedString(char *string);
-void sendTxBuf(void);
+void USART4_init(void);                         // Function used to set up USART4 for reception and transmission
+char getCharSerial4(void);                      // Function used to wait for a byte to arrive on serial port and read it once it does
+void sendCharSerial4(unsigned char charToSend); // Function used to check whether the TX reg is free and send a byte
+void sendStringSerial4(char *string);           // Function used to send a string over the serial interface
 
 #endif // End of _SERIAL_COMM_H

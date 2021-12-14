@@ -1,14 +1,13 @@
-#include <xc.h>
-#include "DC_motors.h"
-#include "ADC.h"
-#include "buttons_n_LEDs.h"
+#include <xc.h>             // Include processor file
+#include "DC_motors.h"      // Include corresponding header file
+#include "ADC.h"            // Include header file to check battery level
+#include "buttons_n_LEDs.h" // Include header file to use buttons and LEDs on the clicker 2 board
 
-/********************************************************
+/*************************************************************
  * DCmotors_init
- * function to initialise T2 and PWM for DC motor control
- ********************************************************/
-void DCmotors_init(unsigned char PWMperiod)
-{    
+ * Function used to initialise T2 and PWM for DC motor control
+ *************************************************************/
+void DCmotors_init(unsigned char PWMperiod) {    
 	// timer 2 config
     T2CONbits.CKPS=0b100; // 1:16 prescaler
     T2HLTbits.MODE=0b00000; // Free Running Mode, software gate only
@@ -44,12 +43,11 @@ void DCmotors_init(unsigned char PWMperiod)
     buggyLEDs_init();
 }
 
-/*******************************************************************
- * setMotorPWM
- * function to set PWM output from the values in the motor structure
- *******************************************************************/
-void DCmotors_setPWM(DC_motor *m)
-{
+/************************************************************************
+ * DCmotors_setPWM
+ * Function used to set PWM output from the values in the motor structure
+ ************************************************************************/
+void DCmotors_setPWM(DC_motor *m) {
 	int PWMduty; //tmp variable to store PWM duty cycle
 
 	if (m->direction){ //if forward
@@ -67,23 +65,22 @@ void DCmotors_setPWM(DC_motor *m)
 	}
 }
 
-/**********************
- * 
- **********************/
-void checkbatterylevel(void)
-{
+/***************************************************
+ * checkbatterylevel
+ * Function used to check battery level on the buggy
+ ***************************************************/
+void checkbatterylevel(void) {
     unsigned char batterylevel;
     batterylevel = ADC_getval();
     if (batterylevel<100) {RD7_LED = 1;}
     else {RD7_LED = 0;}
 }
 
-/************************************************
+/*****************************************
  * forward
- * function to make the robot go straight forward
- ************************************************/
-void forward(DC_motor *mL, DC_motor *mR)
-{
+ * Function used to move the buggy forward
+ *****************************************/
+void forward(DC_motor *mL, DC_motor *mR) {
     mL->direction = 1; // left wheels go forward
     mR->direction = 1; // right wheels go forward
     
@@ -98,12 +95,11 @@ void forward(DC_motor *mL, DC_motor *mR)
     }
 }
 
-/************************************************
+/*******************************************
  * reverse
- * function to make the robot go straight reverse
- ************************************************/
-void reverse(DC_motor *mL, DC_motor *mR)
-{
+ * Function used to move the buggy backwards
+ *******************************************/
+void reverse(DC_motor *mL, DC_motor *mR) {
     // Assume it was stationary before
     mL->direction = 0; // left wheels go forward
     mR->direction = 0; // right wheels go forward
@@ -119,12 +115,24 @@ void reverse(DC_motor *mL, DC_motor *mR)
     }
 }
 
-/**************************************
+/***************************************************************
+ * clearance
+ * Function used to create space clearance for the buggy to turn
+ ***************************************************************/
+void clearance(DC_motor *mL, DC_motor *mR) {
+    MAINBEAM_LED = 0;
+    reverse(mL, mR);
+    __delay_ms(350);
+    stop(mL, mR);
+    __delay_ms(1000);
+    MAINBEAM_LED = 0;
+}
+
+/*******************************************
  * stop
- * function to stop the robot gradually 
- **************************************/
-void stop(DC_motor *mL, DC_motor *mR)
-{
+ * Function used to gradually stop the buggy
+ *******************************************/
+void stop(DC_motor *mL, DC_motor *mR) {
     BRAKE_LED = 1;
     // need to slowly bring both motors to a stop
     while((mL->power > 0) && (mR->power > 0)){    // will be True until both motors have 0 power
@@ -140,14 +148,13 @@ void stop(DC_motor *mL, DC_motor *mR)
     BRAKE_LED = 0;
 }
 
-/******************
+/****************************************************
  * left
- *******************/
-void left(DC_motor *mL, DC_motor *mR, unsigned int deg)
-{
+ * Function used to rotate the buggy wheels leftwards
+ ****************************************************/
+void left(DC_motor *mL, DC_motor *mR, unsigned int deg) {
     // Calculations
-//    double delay = (deg*12.5) - 135 + turnleft_delay;
-    double delay = (deg*2.4) + 48 + ((turnleft_delay*deg)/90);
+    double delay = (deg*2.332) + 31.506 + ((turnleft_delay*deg)/90);
     
     // in order for it to make it turn on the spot: (Assume it was stationary before)
     mL->direction = 0; // left wheels go backward
@@ -155,10 +162,10 @@ void left(DC_motor *mL, DC_motor *mR, unsigned int deg)
 
     // make both motors accelerate
     TURNLEFT_LED = 1;
-    while((mL->power < LOW) || (mR->power < HIGH)){
+    while((mL->power < 70) || (mR->power < 70)){
         // gradually turn left
-        if (mL->power < LOW) {mL->power += 10;}
-        if (mR->power < HIGH) {mR->power += 10;}
+        if (mL->power < 70) {mL->power += 10;}
+        if (mR->power < 70) {mR->power += 10;}
 
         // set PWM output
         DCmotors_setPWM(mL);
@@ -171,14 +178,13 @@ void left(DC_motor *mL, DC_motor *mR, unsigned int deg)
     TURNLEFT_LED = 0;
 }
 
-/**********
+/*****************************************************
  * right
- ***********/
-void right(DC_motor *mL, DC_motor *mR, unsigned int deg)
-{
+ * Function used to rotate the buggy wheels rightwards
+ *****************************************************/
+void right(DC_motor *mL, DC_motor *mR, unsigned int deg) {
     // Calculations
-    //unsigned int delay = (8*deg) + 180 + turnright_delay;
-    double delay = (2.7*deg) + 27 + ((turnright_delay*deg)/90);
+    double delay = (2.0303*deg) + 62.964 + ((turnright_delay*deg)/90);
     
     // in order for it to make it turn on the spot: (Assume it was stationary before)
     mL->direction = 1; // left wheels go forward
@@ -186,10 +192,10 @@ void right(DC_motor *mL, DC_motor *mR, unsigned int deg)
 
     // make both motors accelerate
     TURNRIGHT_LED = 1;
-    while((mL->power < HIGH) || (mR->power < LOW)){
+    while((mL->power < 70) || (mR->power < 70)){
         // gradually turn right
-        if (mL->power < HIGH) {mL->power += 10;}
-        if (mR->power < LOW) {mR->power += 10;}
+        if (mL->power < 70) {mL->power += 10;}
+        if (mR->power < 70) {mR->power += 10;}
 
         // set PWM output
         DCmotors_setPWM(mL);
@@ -203,39 +209,36 @@ void right(DC_motor *mL, DC_motor *mR, unsigned int deg)
     TURNRIGHT_LED = 0;
 }
 
-/**************************************
- * turnLeft
- * function to make the robot turn left 
- **************************************/
-void turnleft(DC_motor *mL, DC_motor *mR, unsigned int deg)
-{
+/*********************************************
+ * turnleft
+ * Function used to turn the buggy to the left
+ *********************************************/
+void turnleft(DC_motor *mL, DC_motor *mR, unsigned int deg) {
     if (returnhome_flag==0) {left(mL, mR, deg);}
     else {right(mL, mR, deg);}
 }
 
-/***************************************
- * turnRight
- * function to make the robot turn right 
- ***************************************/
-void turnright(DC_motor *mL, DC_motor *mR, unsigned int deg)
-{
+/**********************************************
+ * turnright
+ * Function used to turn the buggy to the right
+ **********************************************/
+void turnright(DC_motor *mL, DC_motor *mR, unsigned int deg) {
     if (returnhome_flag==0) {right(mL, mR, deg);}
     else {left(mL, mR, deg);}
 }
 
-/*************************
- * 
- *************************/
-void DCmotors_calibration(DC_motor *mL, DC_motor *mR)
-{
+/*************************************************************************
+ * DCmotors_calibration
+ * Function used to calibrate the DC motors to adapt to different surfaces
+ *************************************************************************/
+void DCmotors_calibration(DC_motor *mL, DC_motor *mR) {
     unsigned char okay = 0;
     while(okay<1){
         while(RF2_BUTTON && RF3_BUTTON);
         MAINBEAM_LED = 1;
-        __delay_ms(200);
+        __delay_ms(100);
         turnleft(mL, mR, 360);
         stop(mL, mR);
-        __delay_ms(1000);
 
         while(RF2_BUTTON && RF3_BUTTON);
         adjdelay(1);
@@ -243,54 +246,47 @@ void DCmotors_calibration(DC_motor *mL, DC_motor *mR)
         __delay_ms(1000);
 
         MAINBEAM_LED = 1;
-        __delay_ms(200);
+        __delay_ms(100);
         turnright(mL, mR, 360);
         stop(mL, mR);
-        __delay_ms(1000);
 
         while(RF2_BUTTON && RF3_BUTTON);
         adjdelay(2);
         MAINBEAM_LED = 0;
-                
         __delay_ms(1000);
+        
+        MAINBEAM_LED = 1;
+        __delay_ms(100);
         turnleft(mL, mR, 90);
         stop(mL, mR);
-        __delay_ms(1000);       
+        __delay_ms(1000);
+        
         turnright(mL, mR, 90);
         stop(mL, mR);
         __delay_ms(1000);
+        MAINBEAM_LED = 0;
         
         RH3_LED = 1;
         RD7_LED = 1;
-        
-        __delay_ms(1000);
-        __delay_ms(1000);
-        
         while(RF3_BUTTON && RF2_BUTTON);
-        
         if(!RF2_BUTTON && RF3_BUTTON){
             RH3_LED = 0;
-            __delay_ms(1000);
             okay = 1;
         } else if(!RF3_BUTTON && RF2_BUTTON){
             RD7_LED = 0;
-            __delay_ms(1000);
+            okay = 0;
         }
-        
         RH3_LED = 0;
         RD7_LED = 0;
         __delay_ms(1000);
-        
     }
-    
 }
 
-
-/******************
- * 
- ******************/
-void adjdelay(unsigned char mode)
-{
+/**************************************************************************
+ * adjdelay
+ * Function used to adjust the turning duration and hence the turning angle
+ **************************************************************************/
+void adjdelay(unsigned char mode) {
     __delay_ms(1000);
     unsigned char i;
     for (i=0; i<10; i++) {
@@ -332,70 +328,61 @@ void adjdelay(unsigned char mode)
     }  
 }
 
-/**********************
- * 
- **********************/
-void DCmotors_testing(DC_motor *mL, DC_motor *mR)
-{
-    INTCONbits.GIE = 0;
+/**************************************************
+ * DCmotors_testing
+ * Function used to test all the DC motor movements
+ **************************************************/
+void DCmotors_testing(DC_motor *mL, DC_motor *mR) {
+    while (RF2_BUTTON && RF3_BUTTON);
+    __delay_ms(500);
+    forward(mL, mR);
+    __delay_ms(1000);
+    stop(mL, mR);
     
-//    while (RF2_BUTTON && RF3_BUTTON);
-//    forward(mL, mR);
-//    __delay_ms(1000);
-//    stop(mL, mR);
-//    __delay_ms(1000);
-//    
-//    while (RF2_BUTTON && RF3_BUTTON);
-//    reverse(mL, mR);
-//    __delay_ms(2020);
-//    stop(mL, mR);
-//    __delay_ms(1000);
+    while (RF2_BUTTON && RF3_BUTTON);
+    __delay_ms(500);
+    clearance(mL, mR);
+    
+    while (RF2_BUTTON && RF3_BUTTON);
+    __delay_ms(500);
+    reverse(mL, mR);
+    __delay_ms(1400);
+    stop(mL, mR);
     
     while (RF2_BUTTON && RF3_BUTTON);
     __delay_ms(500);
     turnright(mL, mR, 90);
-//    __delay_ms(920);
     stop(mL, mR);
-    __delay_ms(100);
     
     while (RF2_BUTTON && RF3_BUTTON);
     __delay_ms(500);
     turnleft(mL, mR, 90);
-//    __delay_ms(995);
     stop(mL, mR);
-    __delay_ms(100);
     
     while (RF2_BUTTON && RF3_BUTTON);
     __delay_ms(500);
-
+    turnright(mL, mR, 135);
+    stop(mL, mR);
+    
+    while (RF2_BUTTON && RF3_BUTTON);
+    __delay_ms(500);
+    turnleft(mL, mR, 135);
+    stop(mL, mR);
+    
+    while (RF2_BUTTON && RF3_BUTTON);
+    __delay_ms(500);
     turnright(mL, mR, 180);
-//    __delay_ms(1660);
     stop(mL, mR);
-    __delay_ms(100);
     
     while (RF2_BUTTON && RF3_BUTTON);
-    __delay_ms(500);
-
     turnleft(mL, mR, 180);
-//    __delay_ms(2115);
     stop(mL, mR);
-    __delay_ms(100);
     
     while (RF2_BUTTON && RF3_BUTTON);
-    __delay_ms(500);
-
     turnright(mL, mR, 360);
-//    __delay_ms(1240);
     stop(mL, mR);
-    __delay_ms(100);
     
     while (RF2_BUTTON && RF3_BUTTON);
-    __delay_ms(500);
-
     turnleft(mL, mR, 360);
-//    __delay_ms(1555);
     stop(mL, mR);
-    __delay_ms(100);
-    
-    INTCONbits.GIE = 1;
 }
