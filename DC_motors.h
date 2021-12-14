@@ -20,8 +20,14 @@ typedef struct {                 // Define a structure
 /******************
  * Global variables
  ******************/
+extern volatile unsigned int tmp;
+extern volatile unsigned int instr[20];
+extern volatile unsigned int dur[20];
+extern volatile unsigned char instr_counter;
+extern volatile unsigned char dur_counter;
 extern volatile int turnleft_calangle;           // Angle turned left by motor during calibration (refer main.h)
 extern volatile int turnright_calangle;          // Angle turned right by motor during calibration (refer main.h)
+extern volatile unsigned char unknowncard_flag;     // Incremented each time the buggy fails to identify a colour card
 extern volatile unsigned char returnhome_flag; // Toggled when buggy has found the final white card or in exceptions (refer main.h)
 
 /*********************
@@ -34,10 +40,11 @@ void forward(DC_motor *mL, DC_motor *mR);                     // Function used t
 void reverse(DC_motor *mL, DC_motor *mR);                     // Function used to move the buggy backwards
 void clearance(DC_motor *mL, DC_motor *mR);                   // Function used to create space clearance for the buggy to turn
 void stop(DC_motor *mL, DC_motor *mR);                        // Function used to gradually stop the buggy
-void left(DC_motor *mL, DC_motor *mR, unsigned int deg);      // Function used to rotate the buggy wheels leftwards
-void right(DC_motor *mL, DC_motor *mR, unsigned int deg);     // Function used to rotate the buggy wheels rightwards
 void turnleft(DC_motor *mL, DC_motor *mR, unsigned int deg);  // Function used to turn the buggy to the left
 void turnright(DC_motor *mL, DC_motor *mR, unsigned int deg); // Function used to turn the buggy to the right
+void instructions(DC_motor *mL, DC_motor *mR, unsigned char num);
+void reverseinstructions(DC_motor *mL, DC_motor *mR);
+void returnhome(DC_motor *mL, DC_motor *mR);
 void adjdelay(unsigned char mode);                            // Function used to calibrate the DC motors to adapt to different surfaces
 void DCmotors_calibration(DC_motor *mL, DC_motor *mR);        // Function used to adjust the turning duration and hence the turning angle
 void DCmotors_testing(DC_motor *mL, DC_motor *mR);            // Function used to test all the DC motor movements

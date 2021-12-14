@@ -24190,11 +24190,17 @@ void timer0_init(void);
  void timer0_init(void) {
     T0CON1bits.T0CS=0b010;
     T0CON1bits.T0ASYNC=1;
-    T0CON1bits.T0CKPS=0b1000;
+    T0CON1bits.T0CKPS=0b0101;
     T0CON0bits.T016BIT=1;
 
-    TMR0H=0b1011;
-    TMR0L=0b11011011;
+    TMR0H=0b00111100;
+    TMR0L=0b10101111;
     T0CON0bits.T0EN=1;
-# 33 "timers.c"
+
+
+
+
+
+
+
 }

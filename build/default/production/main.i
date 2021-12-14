@@ -24388,8 +24388,14 @@ typedef struct {
 
 
 
+extern volatile unsigned int tmp;
+extern volatile unsigned int instr[20];
+extern volatile unsigned int dur[20];
+extern volatile unsigned char instr_counter;
+extern volatile unsigned char dur_counter;
 extern volatile int turnleft_calangle;
 extern volatile int turnright_calangle;
+extern volatile unsigned char unknowncard_flag;
 extern volatile unsigned char returnhome_flag;
 
 
@@ -24402,10 +24408,11 @@ void forward(DC_motor *mL, DC_motor *mR);
 void reverse(DC_motor *mL, DC_motor *mR);
 void clearance(DC_motor *mL, DC_motor *mR);
 void stop(DC_motor *mL, DC_motor *mR);
-void left(DC_motor *mL, DC_motor *mR, unsigned int deg);
-void right(DC_motor *mL, DC_motor *mR, unsigned int deg);
 void turnleft(DC_motor *mL, DC_motor *mR, unsigned int deg);
 void turnright(DC_motor *mL, DC_motor *mR, unsigned int deg);
+void instructions(DC_motor *mL, DC_motor *mR, unsigned char num);
+void reverseinstructions(DC_motor *mL, DC_motor *mR);
+void returnhome(DC_motor *mL, DC_motor *mR);
 void adjdelay(unsigned char mode);
 void DCmotors_calibration(DC_motor *mL, DC_motor *mR);
 void DCmotors_testing(DC_motor *mL, DC_motor *mR);
@@ -24417,6 +24424,11 @@ void DCmotors_testing(DC_motor *mL, DC_motor *mR);
 
 
 
+extern volatile unsigned int tmp;
+extern volatile unsigned int instr[20];
+extern volatile unsigned int dur[20];
+extern volatile unsigned char instr_counter;
+extern volatile unsigned char dur_counter;
 extern volatile unsigned char colourcard_flag;
 extern volatile unsigned char unknowncard_flag;
 extern volatile unsigned char returnhome_flag;
@@ -24445,11 +24457,15 @@ unsigned char I2C_2_Master_Read(unsigned char ack);
 
 # 1 "./interrupts.h" 1
 # 11 "./interrupts.h"
+extern volatile unsigned int tmp;
+volatile unsigned int instr[20];
+volatile unsigned int dur[20];
+volatile unsigned char instr_counter;
+volatile unsigned char dur_counter;
 extern volatile unsigned int interrupts_lowerbound;
 extern volatile unsigned int interrupts_upperbound;
 extern volatile unsigned char colourcard_flag;
 extern volatile unsigned char returnhome_flag;
-extern volatile unsigned char overtime_flag;
 
 
 
@@ -24491,6 +24507,11 @@ void timer0_init(void);
 
 
 
+volatile unsigned int tmp;
+volatile unsigned int instr[20];
+volatile unsigned int dur[20];
+volatile unsigned char instr_counter;
+volatile unsigned char dur_counter;
 volatile int turnleft_calangle;
 volatile int turnright_calangle;
 volatile unsigned int interrupts_lowerbound;
@@ -24498,7 +24519,6 @@ volatile unsigned int interrupts_upperbound;
 volatile unsigned char colourcard_flag;
 volatile unsigned char unknowncard_flag;
 volatile unsigned char returnhome_flag;
-volatile unsigned char overtime_flag;
 # 2 "main.c" 2
 
 
@@ -24512,6 +24532,9 @@ void main(void) {
     RGBC_val current;
     unsigned char start = 0;
     unsigned char PWMperiod = 99;
+    tmp = 0;
+    instr_counter = 0;
+    dur_counter = 0;
     turnleft_calangle = 360;
     turnright_calangle = 360;
     interrupts_lowerbound = 0;
@@ -24519,7 +24542,6 @@ void main(void) {
     colourcard_flag = 0;
     unknowncard_flag = 0;
     returnhome_flag = 0;
-    overtime_flag = 0;
 
     DC_motor motorL;
     motorL.power=0;
@@ -24540,11 +24562,20 @@ void main(void) {
     ADC_init();
     colourclick_init();
     DCmotors_init(PWMperiod);
-    timer0_init();
     USART4_init();
     checkbatterylevel();
-# 56 "main.c"
-    colourcards_testingRGBC(&current, &motorL, &motorR);
+
+
+
+
+    DCmotors_calibration(&motorL, &motorR);
+
+
+
+
+
+    colourclick_calibration();
+
 
 
 
@@ -24555,23 +24586,26 @@ void main(void) {
     colourclickLEDs_C(1);
     _delay((unsigned long)((1000)*(64000000/4000.0)));
     interrupts_init();
+    timer0_init();
 
 
 
 
     while(1) {
+        checkbatterylevel();
+
         if (start<1 && colourcard_flag==1) {
             colourcard_flag = 0;
             start = 1;
         } else if (start>0 && colourcard_flag==1) {
             stop(&motorL, &motorR);
-            LATFbits.LATF0 = 1;
-            LATHbits.LATH0 = 1;
+            LATDbits.LATD7 = 1;
+            LATHbits.LATH3 = 1;
             reverse(&motorL, &motorR);
             _delay((unsigned long)((100)*(64000000/4000.0)));
             stop(&motorL, &motorR);
-            LATFbits.LATF0 = 0;
-            LATHbits.LATH0 = 0;
+            LATDbits.LATD7 = 0;
+            LATHbits.LATH3 = 0;
             _delay((unsigned long)((1000)*(64000000/4000.0)));
 
             colourcards_readRGBC(&current, &motorL, &motorR);
@@ -24582,6 +24616,11 @@ void main(void) {
             interrupts_upperbound = current.C + 100;
 
             colourcard_flag = 0;
-        } else {forward(&motorL, &motorR);}
+        } else if (returnhome_flag==1) {
+            returnhome(&motorL, &motorR);
+            returnhome_flag=2;
+        } else if (returnhome_flag==0) {
+            forward(&motorL, &motorR);
+        }
     }
 }

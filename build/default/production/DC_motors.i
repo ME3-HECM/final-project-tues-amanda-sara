@@ -24191,8 +24191,14 @@ typedef struct {
 
 
 
+extern volatile unsigned int tmp;
+extern volatile unsigned int instr[20];
+extern volatile unsigned int dur[20];
+extern volatile unsigned char instr_counter;
+extern volatile unsigned char dur_counter;
 extern volatile int turnleft_calangle;
 extern volatile int turnright_calangle;
+extern volatile unsigned char unknowncard_flag;
 extern volatile unsigned char returnhome_flag;
 
 
@@ -24205,10 +24211,11 @@ void forward(DC_motor *mL, DC_motor *mR);
 void reverse(DC_motor *mL, DC_motor *mR);
 void clearance(DC_motor *mL, DC_motor *mR);
 void stop(DC_motor *mL, DC_motor *mR);
-void left(DC_motor *mL, DC_motor *mR, unsigned int deg);
-void right(DC_motor *mL, DC_motor *mR, unsigned int deg);
 void turnleft(DC_motor *mL, DC_motor *mR, unsigned int deg);
 void turnright(DC_motor *mL, DC_motor *mR, unsigned int deg);
+void instructions(DC_motor *mL, DC_motor *mR, unsigned char num);
+void reverseinstructions(DC_motor *mL, DC_motor *mR);
+void returnhome(DC_motor *mL, DC_motor *mR);
 void adjdelay(unsigned char mode);
 void DCmotors_calibration(DC_motor *mL, DC_motor *mR);
 void DCmotors_testing(DC_motor *mL, DC_motor *mR);
@@ -24300,7 +24307,7 @@ void DCmotors_setPWM(DC_motor *m) {
 void checkbatterylevel(void) {
     unsigned char batterylevel;
     batterylevel = ADC_getval();
-    if (batterylevel<100) {
+    if (batterylevel<50) {
         while(1) {
             LATDbits.LATD7 = !LATDbits.LATD7;
             LATHbits.LATH3 = !LATHbits.LATH3;
@@ -24390,7 +24397,7 @@ void stop(DC_motor *mL, DC_motor *mR) {
 
 
 
-void left(DC_motor *mL, DC_motor *mR, unsigned int deg) {
+void turnleft(DC_motor *mL, DC_motor *mR, unsigned int deg) {
 
     double delay = ((deg*2.332)+31.506) * 360/turnleft_calangle;
 
@@ -24420,7 +24427,7 @@ void left(DC_motor *mL, DC_motor *mR, unsigned int deg) {
 
 
 
-void right(DC_motor *mL, DC_motor *mR, unsigned int deg) {
+void turnright(DC_motor *mL, DC_motor *mR, unsigned int deg) {
 
     double delay = ((deg*2.0303)+62.964) * 360/turnright_calangle;
 
@@ -24451,18 +24458,107 @@ void right(DC_motor *mL, DC_motor *mR, unsigned int deg) {
 
 
 
-void turnleft(DC_motor *mL, DC_motor *mR, unsigned int deg) {
-    if (returnhome_flag==0) {left(mL, mR, deg);}
-    else {right(mL, mR, deg);}
+void instructions(DC_motor *mL, DC_motor *mR, unsigned char num) {
+    if (returnhome_flag==0) {
+        unknowncard_flag = 0;
+        instr[instr_counter] = num;
+        instr_counter++;
+    }
+
+    if (num==1) {
+
+        clearance(mL, mR);
+        turnright(mL, mR, 90);
+        stop(mL, mR);
+    } else if (num==2) {
+
+        clearance(mL, mR);
+        turnleft(mL, mR, 90);
+        stop(mL, mR);
+    } else if (num==3) {
+
+        clearance(mL, mR);
+        turnright(mL, mR, 180);
+        stop(mL, mR);
+    } else if (num==4) {
+
+        reverse(mL, mR);
+        _delay((unsigned long)((1400)*(64000000/4000.0)));
+        stop(mL, mR);
+        _delay((unsigned long)((100)*(64000000/4000.0)));
+        turnright(mL, mR, 90);
+        stop(mL, mR);
+    } else if (num==5) {
+
+        reverse(mL, mR);
+        _delay((unsigned long)((1400)*(64000000/4000.0)));
+        stop(mL, mR);
+        _delay((unsigned long)((100)*(64000000/4000.0)));
+        turnleft(mL, mR, 90);
+        stop(mL, mR);
+    } else if (num==6) {
+
+        clearance(mL, mR);
+        turnright(mL, mR, 135);
+        stop(mL, mR);
+    } else if (num==7) {
+
+        clearance(mL, mR);
+        turnleft(mL, mR, 135);
+        stop(mL, mR);
+    }
 }
 
 
 
 
 
-void turnright(DC_motor *mL, DC_motor *mR, unsigned int deg) {
-    if (returnhome_flag==0) {right(mL, mR, deg);}
-    else {left(mL, mR, deg);}
+void reverseinstructions(DC_motor *mL, DC_motor *mR) {
+    if (instr[instr_counter]==1) {instructions(mL, mR, 2);}
+    else if (instr[instr_counter]==2) {instructions(mL, mR, 1);}
+    else if (instr[instr_counter]==3) {instructions(mL, mR, 3);}
+    else if (instr[instr_counter]==4) {
+        forward(mL, mR);
+        _delay((unsigned long)((2500)*(64000000/4000.0)));
+        stop(mL, mR);
+        _delay((unsigned long)((100)*(64000000/4000.0)));
+        turnleft(mL, mR, 90);
+        stop(mL, mR);
+    }
+    else if (instr[instr_counter]==5) {
+        forward(mL, mR);
+        _delay((unsigned long)((2500)*(64000000/4000.0)));
+        stop(mL, mR);
+        _delay((unsigned long)((100)*(64000000/4000.0)));
+        turnright(mL, mR, 90);
+        stop(mL, mR);
+    }
+    else if (instr[instr_counter]==6) {instructions(mL, mR, 7);}
+    else if (instr[instr_counter]==7) {instructions(mL, mR, 6);}
+}
+
+
+
+
+
+void returnhome(DC_motor *mL, DC_motor *mR) {
+    INTCONbits.GIE = 1;
+
+    unsigned char i=instr_counter;
+    unsigned char j,k;
+    for (j=0; j<=i; j++) {
+        reverse(mL, mR);
+        for (k=0; k<=5; k++) {_delay((unsigned long)((100)*(64000000/4000.0)));}
+        stop(mL, mR);
+
+        reverseinstructions(mL, mR);
+
+        dur_counter--;
+        instr_counter--;
+    }
+    reverse(mL, mR);
+    for (k=0; k<=5; k++) {_delay((unsigned long)((100)*(64000000/4000.0)));}
+    stop(mL, mR);
 }
 
 

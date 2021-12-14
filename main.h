@@ -39,6 +39,11 @@
 /******************
  * Global variables
  ******************/
+volatile unsigned int timer;
+volatile unsigned int instr[20];
+volatile unsigned int dur[20];
+volatile unsigned char instr_counter;
+volatile unsigned char dur_counter;
 volatile int turnleft_calangle;              // Angle turned left by motor during calibration
 volatile int turnright_calangle;             // Angle turned right by motor during calibration
 volatile unsigned int interrupts_lowerbound; // Lower clear threshold value to trigger interrupts when encounter colour cards
@@ -46,6 +51,5 @@ volatile unsigned int interrupts_upperbound; // Upper clear threshold value to t
 volatile unsigned char colourcard_flag;      // Toggled when buggy encounters a colour card
 volatile unsigned char unknowncard_flag;     // Incremented each time the buggy fails to identify a colour card
 volatile unsigned char returnhome_flag;      // Toggled when buggy has found the final white card or in exceptions
-volatile unsigned char overtime_flag;        // Toggled when buggy has been stuck in the maze for too long
 
 #endif // End of _MAIN_H

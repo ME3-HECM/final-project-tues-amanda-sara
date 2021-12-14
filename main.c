@@ -8,9 +8,12 @@ void main(void) {
     /**************************
      * Initialisation functions
      **************************/
-    RGBC_val current;             // 
-    unsigned char start = 0;      // 
+    RGBC_val current;             // Initialise structure to store current RGBC values
+    unsigned char start = 0;      // Initialise variable to indicate whether it's the first loop 
     unsigned char PWMperiod = 99; // 0.0001s*(64MHz/4)/16 -1 = 99
+    timer = 0;                    // Initilaise 
+    instr_counter = 0;            //
+    dur_counter = 0;              //
     turnleft_calangle = 360;      // Angle turned left by motor during calibration
     turnright_calangle = 360;     // Angle turned right by motor during calibration
     interrupts_lowerbound = 0;    // Lower clear threshold value to trigger interrupts when encounter colour cards
@@ -18,7 +21,6 @@ void main(void) {
     colourcard_flag = 0;          // Toggled when buggy encounters a colour card
     unknowncard_flag = 0;         // Incremented each time the buggy fails to identify a colour card
     returnhome_flag = 0;          // Toggled when buggy has found the final white card or in exceptions
-    overtime_flag = 0;            // Toggled when buggy has been stuck in the maze for too long
     
     DC_motor motorL;                                 // Initialise DC_motor structure for motorL
     motorL.power=0;                                  // Set motor power to 0 at start
@@ -36,51 +38,53 @@ void main(void) {
     motorR.dir_pin=6;                                // Pin RG6 controls direction on LAT
     motorR.PWMperiod=PWMperiod;                      // Base period of PWM cycle
     
-    ADC_init();               //
-    colourclick_init();       //
-    DCmotors_init(PWMperiod); //
-    timer0_init();            //
-    USART4_init();            //
-    checkbatterylevel();      //
+    ADC_init();               // Initialise ADC module to read buggy battery level
+    colourclick_init();       // Initialise colour click module
+    DCmotors_init(PWMperiod); // Initialise DC motors to run the buggy
+    USART4_init();            // Initialise USART4 module to use serial communication for testing purposes
+    checkbatterylevel();      // Check buggy battery level to see if we need charging before beginning the maze
     
     /***************************
      * Motor calibration routine
      ***************************/
-//    DCmotors_calibration(&motorL, &motorR); //
-//    DCmotors_testing(&motorL, &motorR);     //
+    DCmotors_calibration(&motorL, &motorR); // Initiate motor calibration routine (see DC_motors.c)
+//    DCmotors_testing(&motorL, &motorR);     // Test all DC motor movements
     
     /****************************
      * Colour calibration routine
      ****************************/
-//    colourclick_calibration(); //
-//    colourcards_testingRGBC(&current, &motorL, &motorR); // For testing with actual motor movements
-//    colourcards_testingRGBC2(); //For testing with serial communication output on screen
+    colourclick_calibration();                           // Initiate colour calibration routine (see colour_click.c)
+//    colourcards_testingRGBC(&current, &motorL, &motorR); // Test colour cards reading with actual motor movements
+//    colourcards_testingRGBC2();                          // Test colour cards readung with serial communication output on screen
     
     /***************
      * Getting ready
      ***************/
-    while(RF2_BUTTON && RF3_BUTTON); //
+    while(RF2_BUTTON && RF3_BUTTON); // Wait for button press
     MAINBEAM_LED = 1;                //
     colourclickLEDs_C(1);            //
     __delay_ms(1000);                //
     interrupts_init();               //
+    timer0_init();            //
     
     /*****************
      * Maze navigation
      *****************/
     while(1) {
+        checkbatterylevel();
+        
         if (start<1 && colourcard_flag==1) { // Prevents accidental trips at beginning
             colourcard_flag = 0;
             start = 1;
         } else if (start>0 && colourcard_flag==1) {
             stop(&motorL, &motorR);
-            TURNLEFT_LED = 1;
-            TURNRIGHT_LED = 1;
+            RD7_LED = 1;
+            RH3_LED = 1;
             reverse(&motorL, &motorR);
             __delay_ms(100);
             stop(&motorL, &motorR);
-            TURNLEFT_LED = 0;
-            TURNRIGHT_LED = 0;
+            RD7_LED = 0;
+            RH3_LED = 0;
             __delay_ms(1000);
             
             colourcards_readRGBC(&current, &motorL, &motorR);
@@ -91,6 +95,11 @@ void main(void) {
             interrupts_upperbound = current.C + 100;
             
             colourcard_flag = 0;
-        } else {forward(&motorL, &motorR);}
+        } else if (returnhome_flag==1) {
+            returnhome(&motorL, &motorR);
+            returnhome_flag=2;
+        } else if (returnhome_flag==0) {
+            forward(&motorL, &motorR);
+        }
     }
 }

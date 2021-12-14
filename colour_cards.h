@@ -11,6 +11,11 @@
 /******************
  * Global variables
  ******************/
+extern volatile unsigned int tmp;
+extern volatile unsigned int instr[20];
+extern volatile unsigned int dur[20];
+extern volatile unsigned char instr_counter;
+extern volatile unsigned char dur_counter;
 extern volatile unsigned char colourcard_flag;  // Toggled when buggy encounters a colour card (refer main.h)
 extern volatile unsigned char unknowncard_flag; // Incremented each time the buggy fails to identify a colour card (refer main.h)
 extern volatile unsigned char returnhome_flag;  // Toggled when buggy has found the final white card or in exceptions (refer main.h)
