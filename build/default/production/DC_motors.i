@@ -24225,6 +24225,7 @@ unsigned char ADC_getval(void);
 void clicker2buttons_init(void);
 void clicker2LEDs_init(void);
 void colourclickLEDs_init(void);
+void colourclickLEDs_RGB(void);
 void colourclickLEDs_C(unsigned char tog);
 void buggyLEDs_init(void);
 # 4 "DC_motors.c" 2
@@ -24299,8 +24300,18 @@ void DCmotors_setPWM(DC_motor *m) {
 void checkbatterylevel(void) {
     unsigned char batterylevel;
     batterylevel = ADC_getval();
-    if (batterylevel<100) {LATDbits.LATD7 = 1;}
-    else {LATDbits.LATD7 = 0;}
+    if (batterylevel<100) {
+        while(1) {
+            LATDbits.LATD7 = !LATDbits.LATD7;
+            LATHbits.LATH3 = !LATHbits.LATH3;
+            LATDbits.LATD3 = !LATDbits.LATD3;
+            LATDbits.LATD4 = !LATDbits.LATD4;
+            LATFbits.LATF0 = !LATFbits.LATF0;
+            LATHbits.LATH0 = !LATHbits.LATH0;
+            colourclickLEDs_RGB();
+            _delay((unsigned long)((5)*(64000000/4000.0)));
+        }
+    }
 }
 
 

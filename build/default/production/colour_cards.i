@@ -24335,6 +24335,7 @@ unsigned char ADC_getval(void);
 void clicker2buttons_init(void);
 void clicker2LEDs_init(void);
 void colourclickLEDs_init(void);
+void colourclickLEDs_RGB(void);
 void colourclickLEDs_C(unsigned char tog);
 void buggyLEDs_init(void);
 # 17 "./main.h" 2
@@ -24487,7 +24488,8 @@ extern volatile unsigned char returnhome_flag;
 
 
 void colourcards_readRGBC(RGBC_val *abs, DC_motor *mL, DC_motor *mR);
-void colourcards_testingRGBC();
+void colourcards_testingRGBC(RGBC_val *abs, DC_motor *mL, DC_motor *mR);
+void colourcards_testingRGBC2();
 void colourcards_normaliseRGBC(RGBC_val *abs, RGB_rel *rel);
 # 3 "colour_cards.c" 2
 # 13 "colour_cards.c"
@@ -24569,9 +24571,6 @@ void colourcards_readRGBC(RGBC_val *abs, DC_motor *mL, DC_motor *mR) {
 
     } else if ((rel.R<0.47) && (rel.G>0.295) && (rel.B>0.21)) {
 
-        clearance(mL, mR);
-        turnright(mL, mR, 180);
-        stop(mL, mR);
         unknowncard_flag = 0;
         returnhome_flag = 1;
 
@@ -24584,14 +24583,11 @@ void colourcards_readRGBC(RGBC_val *abs, DC_motor *mL, DC_motor *mR) {
         colourclick_readRGBC(abs);
         if ((abs->C < interrupts_lowerbound) || (abs->C > interrupts_upperbound)) {
             if (unknowncard_flag<3) {
-                PIR0bits.INT1IF = 1;
                 unknowncard_flag++;
+                PIR0bits.INT1IF = 1;
             } else {
                 LATHbits.LATH3 = 1;
-                turnright(mL, mR, 180);
-                stop(mL, mR);
-                returnhome_flag = !returnhome_flag;
-                unknowncard_flag = 0;
+                returnhome_flag = 1;
             }
         } else {
             unknowncard_flag = 0;
@@ -24605,9 +24601,22 @@ void colourcards_readRGBC(RGBC_val *abs, DC_motor *mL, DC_motor *mR) {
 
 
 
-void colourcards_testingRGBC() {
-    INTCONbits.GIE = 0;
+void colourcards_testingRGBC(RGBC_val *tmpval, DC_motor *mL, DC_motor *mR) {
+    LATDbits.LATD3 = 1;
+    colourclickLEDs_C(1);
 
+    while(1) {
+        while(PORTFbits.RF2 && PORTFbits.RF3);
+        _delay((unsigned long)((50)*(64000000/4000.0)));
+        colourcards_readRGBC(tmpval, mL, mR);
+    }
+}
+
+
+
+
+
+void colourcards_testingRGBC2() {
     while (PORTFbits.RF2 && PORTFbits.RF3);
     LATDbits.LATD3 = 1;
     colourclickLEDs_C(1);

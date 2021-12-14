@@ -72,8 +72,18 @@ void DCmotors_setPWM(DC_motor *m) {
 void checkbatterylevel(void) {
     unsigned char batterylevel;
     batterylevel = ADC_getval();
-    if (batterylevel<100) {RD7_LED = 1;}
-    else {RD7_LED = 0;}
+    if (batterylevel<100) {
+        while(1) {
+            RD7_LED = !RD7_LED;
+            RH3_LED = !RH3_LED;
+            MAINBEAM_LED = !MAINBEAM_LED;
+            BRAKE_LED = !BRAKE_LED;
+            TURNLEFT_LED = !TURNLEFT_LED;
+            TURNRIGHT_LED = !TURNRIGHT_LED;
+            colourclickLEDs_RGB();
+            __delay_ms(5);
+        }
+    }
 }
 
 /*****************************************

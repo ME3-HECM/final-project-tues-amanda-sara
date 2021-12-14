@@ -111,8 +111,8 @@ Version 4.0 HI-TECH Software Intermediate Code
 "29396
 [; ;C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\proc\pic18f67k40.h: 29396: extern volatile TRISAbits_t TRISAbits __attribute__((address(0xF81)));
 [v _TRISAbits `VS1370 ~T0 @X0 0 e@3969 ]
-"38 ./buttons_n_LEDs.h
-[; ;./buttons_n_LEDs.h: 38: void colourclickLEDs_C(unsigned char tog);
+"39 ./buttons_n_LEDs.h
+[; ;./buttons_n_LEDs.h: 39: void colourclickLEDs_C(unsigned char tog);
 [v _colourclickLEDs_C `(v ~T0 @X0 0 ef1`uc ]
 "29191 C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\proc\pic18f67k40.h
 [; ;C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\proc\pic18f67k40.h: 29191:     struct {
@@ -129,7 +129,11 @@ Version 4.0 HI-TECH Software Intermediate Code
 "29209
 [; ;C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\proc\pic18f67k40.h: 29209: extern volatile LATGbits_t LATGbits __attribute__((address(0xF7F)));
 [v _LATGbits `VS1360 ~T0 @X0 0 e@3967 ]
-"28519
+[v F14184 `(v ~T0 @X0 1 tf1`ul ]
+"203 C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\pic18.h
+[v __delay `JF14184 ~T0 @X0 0 e ]
+[p i __delay ]
+"28519 C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\proc\pic18f67k40.h
 [; ;C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\proc\pic18f67k40.h: 28519:     struct {
 [s S1343 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
 [n S1343 . LATA0 LATA1 LATA2 LATA3 LATA4 LATA5 LATA6 LATA7 ]
@@ -2200,62 +2204,108 @@ Version 4.0 HI-TECH Software Intermediate Code
 [e :UE 2021 ]
 }
 "46
-[; ;buttons_n_LEDs.c: 46: void colourclickLEDs_C(unsigned char tog) {
+[; ;buttons_n_LEDs.c: 46: void colourclickLEDs_RGB(void) {
+[v _colourclickLEDs_RGB `(v ~T0 @X0 1 ef ]
+{
+[e :U _colourclickLEDs_RGB ]
+[f ]
+"47
+[; ;buttons_n_LEDs.c: 47:     LATGbits.LATG1 = 1;
+[e = . . _LATGbits 0 1 -> -> 1 `i `uc ]
+"48
+[; ;buttons_n_LEDs.c: 48:     _delay((unsigned long)((20)*(64000000/4000.0)));
+[e ( __delay (1 -> * -> -> 20 `i `d / -> -> 64000000 `l `d .4000.0 `ul ]
+"49
+[; ;buttons_n_LEDs.c: 49:     LATGbits.LATG1 = 0;
+[e = . . _LATGbits 0 1 -> -> 0 `i `uc ]
+"50
+[; ;buttons_n_LEDs.c: 50:     _delay((unsigned long)((20)*(64000000/4000.0)));
+[e ( __delay (1 -> * -> -> 20 `i `d / -> -> 64000000 `l `d .4000.0 `ul ]
+"52
+[; ;buttons_n_LEDs.c: 52:     LATAbits.LATA4 = 1;
+[e = . . _LATAbits 0 4 -> -> 1 `i `uc ]
+"53
+[; ;buttons_n_LEDs.c: 53:     _delay((unsigned long)((20)*(64000000/4000.0)));
+[e ( __delay (1 -> * -> -> 20 `i `d / -> -> 64000000 `l `d .4000.0 `ul ]
+"54
+[; ;buttons_n_LEDs.c: 54:     LATAbits.LATA4 = 0;
+[e = . . _LATAbits 0 4 -> -> 0 `i `uc ]
+"55
+[; ;buttons_n_LEDs.c: 55:     _delay((unsigned long)((20)*(64000000/4000.0)));
+[e ( __delay (1 -> * -> -> 20 `i `d / -> -> 64000000 `l `d .4000.0 `ul ]
+"57
+[; ;buttons_n_LEDs.c: 57:     LATFbits.LATF7 = 1;
+[e = . . _LATFbits 0 7 -> -> 1 `i `uc ]
+"58
+[; ;buttons_n_LEDs.c: 58:     _delay((unsigned long)((20)*(64000000/4000.0)));
+[e ( __delay (1 -> * -> -> 20 `i `d / -> -> 64000000 `l `d .4000.0 `ul ]
+"59
+[; ;buttons_n_LEDs.c: 59:     LATFbits.LATF7 = 0;
+[e = . . _LATFbits 0 7 -> -> 0 `i `uc ]
+"60
+[; ;buttons_n_LEDs.c: 60:     _delay((unsigned long)((20)*(64000000/4000.0)));
+[e ( __delay (1 -> * -> -> 20 `i `d / -> -> 64000000 `l `d .4000.0 `ul ]
+"61
+[; ;buttons_n_LEDs.c: 61: }
+[e :UE 2022 ]
+}
+"67
+[; ;buttons_n_LEDs.c: 67: void colourclickLEDs_C(unsigned char tog) {
 [v _colourclickLEDs_C `(v ~T0 @X0 1 ef1`uc ]
 {
 [e :U _colourclickLEDs_C ]
 [v _tog `uc ~T0 @X0 1 r1 ]
 [f ]
-"47
-[; ;buttons_n_LEDs.c: 47:     LATGbits.LATG1 = tog;
+"68
+[; ;buttons_n_LEDs.c: 68:     LATGbits.LATG1 = tog;
 [e = . . _LATGbits 0 1 _tog ]
-"48
-[; ;buttons_n_LEDs.c: 48:     LATAbits.LATA4 = tog;
+"69
+[; ;buttons_n_LEDs.c: 69:     LATAbits.LATA4 = tog;
 [e = . . _LATAbits 0 4 _tog ]
-"49
-[; ;buttons_n_LEDs.c: 49:     LATFbits.LATF7 = tog;
+"70
+[; ;buttons_n_LEDs.c: 70:     LATFbits.LATF7 = tog;
 [e = . . _LATFbits 0 7 _tog ]
-"50
-[; ;buttons_n_LEDs.c: 50: }
-[e :UE 2022 ]
+"71
+[; ;buttons_n_LEDs.c: 71: }
+[e :UE 2023 ]
 }
-"56
-[; ;buttons_n_LEDs.c: 56: void buggyLEDs_init(void) {
+"77
+[; ;buttons_n_LEDs.c: 77: void buggyLEDs_init(void) {
 [v _buggyLEDs_init `(v ~T0 @X0 1 ef ]
 {
 [e :U _buggyLEDs_init ]
 [f ]
-"57
-[; ;buttons_n_LEDs.c: 57:     TRISHbits.TRISH1 = 0;
+"78
+[; ;buttons_n_LEDs.c: 78:     TRISHbits.TRISH1 = 0;
 [e = . . _TRISHbits 0 1 -> -> 0 `i `uc ]
-"58
-[; ;buttons_n_LEDs.c: 58:     TRISDbits.TRISD3 = 0;
+"79
+[; ;buttons_n_LEDs.c: 79:     TRISDbits.TRISD3 = 0;
 [e = . . _TRISDbits 0 3 -> -> 0 `i `uc ]
-"59
-[; ;buttons_n_LEDs.c: 59:     TRISDbits.TRISD4 = 0;
+"80
+[; ;buttons_n_LEDs.c: 80:     TRISDbits.TRISD4 = 0;
 [e = . . _TRISDbits 0 4 -> -> 0 `i `uc ]
-"60
-[; ;buttons_n_LEDs.c: 60:     TRISFbits.TRISF0 = 0;
+"81
+[; ;buttons_n_LEDs.c: 81:     TRISFbits.TRISF0 = 0;
 [e = . . _TRISFbits 0 0 -> -> 0 `i `uc ]
-"61
-[; ;buttons_n_LEDs.c: 61:     TRISHbits.TRISH0 = 0;
+"82
+[; ;buttons_n_LEDs.c: 82:     TRISHbits.TRISH0 = 0;
 [e = . . _TRISHbits 0 0 -> -> 0 `i `uc ]
-"63
-[; ;buttons_n_LEDs.c: 63:     LATHbits.LATH1 = 0;
+"84
+[; ;buttons_n_LEDs.c: 84:     LATHbits.LATH1 = 0;
 [e = . . _LATHbits 0 1 -> -> 0 `i `uc ]
-"64
-[; ;buttons_n_LEDs.c: 64:     LATDbits.LATD3 = 0;
+"85
+[; ;buttons_n_LEDs.c: 85:     LATDbits.LATD3 = 0;
 [e = . . _LATDbits 0 3 -> -> 0 `i `uc ]
-"65
-[; ;buttons_n_LEDs.c: 65:     LATDbits.LATD4 = 0;
+"86
+[; ;buttons_n_LEDs.c: 86:     LATDbits.LATD4 = 0;
 [e = . . _LATDbits 0 4 -> -> 0 `i `uc ]
-"66
-[; ;buttons_n_LEDs.c: 66:     LATFbits.LATF0 = 0;
+"87
+[; ;buttons_n_LEDs.c: 87:     LATFbits.LATF0 = 0;
 [e = . . _LATFbits 0 0 -> -> 0 `i `uc ]
-"67
-[; ;buttons_n_LEDs.c: 67:     LATHbits.LATH0 = 0;
+"88
+[; ;buttons_n_LEDs.c: 88:     LATHbits.LATH0 = 0;
 [e = . . _LATHbits 0 0 -> -> 0 `i `uc ]
-"68
-[; ;buttons_n_LEDs.c: 68: }
-[e :UE 2023 ]
+"89
+[; ;buttons_n_LEDs.c: 89: }
+[e :UE 2024 ]
 }

@@ -53,7 +53,8 @@ void main(void) {
      * Colour calibration routine
      ****************************/
 //    colourclick_calibration(); //
-//    colourcards_testingRGBC(); //
+//    colourcards_testingRGBC(&current, &motorL, &motorR); // For testing with actual motor movements
+//    colourcards_testingRGBC2(); //For testing with serial communication output on screen
     
     /***************
      * Getting ready
@@ -68,10 +69,10 @@ void main(void) {
      * Maze navigation
      *****************/
     while(1) {
-        if (start==0 && colourcard_flag==1) { // Prevents accidental trips at beginning
+        if (start<1 && colourcard_flag==1) { // Prevents accidental trips at beginning
             colourcard_flag = 0;
             start = 1;
-        } else if (start==1 && colourcard_flag==1) {
+        } else if (start>0 && colourcard_flag==1) {
             stop(&motorL, &motorR);
             TURNLEFT_LED = 1;
             TURNRIGHT_LED = 1;
@@ -83,11 +84,11 @@ void main(void) {
             __delay_ms(1000);
             
             colourcards_readRGBC(&current, &motorL, &motorR);
-            __delay_ms(1000);
             
+            __delay_ms(1000);
             colourclick_readRGBC(&current);
-            interrupts_upperbound = current.C + 100;
             interrupts_lowerbound = current.C - 150;
+            interrupts_upperbound = current.C + 100;
             
             colourcard_flag = 0;
         } else {forward(&motorL, &motorR);}

@@ -24200,6 +24200,7 @@ void __attribute__((picinterrupt(("low_priority")))) LowISR();
 void clicker2buttons_init(void);
 void clicker2LEDs_init(void);
 void colourclickLEDs_init(void);
+void colourclickLEDs_RGB(void);
 void colourclickLEDs_C(unsigned char tog);
 void buggyLEDs_init(void);
 # 3 "interrupts.c" 2
@@ -24311,7 +24312,7 @@ void interrupts_colourclick(void){
 void __attribute__((picinterrupt(("high_priority")))) HighISR() {
     if (PIR0bits.INT1IF) {
         colourcard_flag = 1;
-        LATDbits.LATD7 = !LATDbits.LATD7;
+
         interrupts_clear();
         PIR0bits.INT1IF = 0;
     }

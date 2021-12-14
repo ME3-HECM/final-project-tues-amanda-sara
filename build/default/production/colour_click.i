@@ -24353,6 +24353,7 @@ void colourclick_testing(RGBC_val *initval, RGBC_val *tmpval);
 void clicker2buttons_init(void);
 void clicker2LEDs_init(void);
 void colourclickLEDs_init(void);
+void colourclickLEDs_RGB(void);
 void colourclickLEDs_C(unsigned char tog);
 void buggyLEDs_init(void);
 # 4 "colour_click.c" 2

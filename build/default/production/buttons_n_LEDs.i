@@ -24182,6 +24182,7 @@ extern __attribute__((nonreentrant)) void _delay3(unsigned char);
 void clicker2buttons_init(void);
 void clicker2LEDs_init(void);
 void colourclickLEDs_init(void);
+void colourclickLEDs_RGB(void);
 void colourclickLEDs_C(unsigned char tog);
 void buggyLEDs_init(void);
 # 2 "buttons_n_LEDs.c" 2
@@ -24223,6 +24224,27 @@ void colourclickLEDs_init(void) {
 
 
     colourclickLEDs_C(0);
+}
+
+
+
+
+
+void colourclickLEDs_RGB(void) {
+    LATGbits.LATG1 = 1;
+    _delay((unsigned long)((20)*(64000000/4000.0)));
+    LATGbits.LATG1 = 0;
+    _delay((unsigned long)((20)*(64000000/4000.0)));
+
+    LATAbits.LATA4 = 1;
+    _delay((unsigned long)((20)*(64000000/4000.0)));
+    LATAbits.LATA4 = 0;
+    _delay((unsigned long)((20)*(64000000/4000.0)));
+
+    LATFbits.LATF7 = 1;
+    _delay((unsigned long)((20)*(64000000/4000.0)));
+    LATFbits.LATF7 = 0;
+    _delay((unsigned long)((20)*(64000000/4000.0)));
 }
 
 
