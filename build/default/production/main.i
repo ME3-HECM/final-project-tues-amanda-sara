@@ -24541,16 +24541,7 @@ void main(void) {
     timer0_init();
     USART4_init();
     checkbatterylevel();
-
-
-
-
-    DCmotors_calibration(&motorL, &motorR);
-
-
-
-
-
+# 55 "main.c"
     colourclick_calibration();
 
 

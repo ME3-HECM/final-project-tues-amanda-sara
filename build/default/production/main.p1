@@ -38,9 +38,6 @@ Version 4.0 HI-TECH Software Intermediate Code
 "32 ./DC_motors.h
 [; ;./DC_motors.h: 32: void checkbatterylevel(void);
 [v _checkbatterylevel `(v ~T0 @X0 0 ef ]
-"42
-[; ;./DC_motors.h: 42: void DCmotors_calibration(DC_motor *mL, DC_motor *mR);
-[v _DCmotors_calibration `(v ~T0 @X0 0 ef2`*S2023`*S2023 ]
 "36 ./colour_click.h
 [; ;./colour_click.h: 36: void colourclick_calibration(void);
 [v _colourclick_calibration `(v ~T0 @X0 0 ef ]
@@ -2243,9 +2240,6 @@ Version 4.0 HI-TECH Software Intermediate Code
 "44
 [; ;main.c: 44:     checkbatterylevel();
 [e ( _checkbatterylevel ..  ]
-"49
-[; ;main.c: 49:     DCmotors_calibration(&motorL, &motorR);
-[e ( _DCmotors_calibration (2 , &U _motorL &U _motorR ]
 "55
 [; ;main.c: 55:     colourclick_calibration();
 [e ( _colourclick_calibration ..  ]

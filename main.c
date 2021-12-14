@@ -46,13 +46,13 @@ void main(void) {
     /***************************
      * Motor calibration routine
      ***************************/
-    DCmotors_calibration(&motorL, &motorR); //
+//    DCmotors_calibration(&motorL, &motorR); //
 //    DCmotors_testing(&motorL, &motorR);     //
     
     /****************************
      * Colour calibration routine
      ****************************/
-    colourclick_calibration(); //
+//    colourclick_calibration(); //
 //    colourcards_testingRGBC(); //
     
     /***************

@@ -158,20 +158,23 @@ void colourclick_readRGBC2(RGBC_val *tmpval, unsigned char mode) {
  ****************************************************/
 void colourclick_calibration(void) {
     RGBC_val initial;
-    while(RF2_BUTTON);
+    while(RF2_BUTTON && RF3_BUTTON);
+    if (!RF2_BUTTON) {RD7_LED=1;}
+    if (!RF3_BUTTON) {RH3_LED=1;}
     MAINBEAM_LED = 1;
     colourclickLEDs_C(1);
-    RD7_LED = 1;
     __delay_ms(1000);
+    
     colourclick_readRGBC(&initial); //read initial light value
+    
     __delay_ms(1000);
+    MAINBEAM_LED = 0;
+    colourclickLEDs_C(0);
     RD7_LED = 0;
+    RH3_LED = 0;
     
     interrupts_lowerbound = initial.C - 150;
     interrupts_upperbound = initial.C + 100;
-    
-    MAINBEAM_LED = 0;
-    colourclickLEDs_C(0);
 }
 
 /***********************************************

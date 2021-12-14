@@ -24530,20 +24530,23 @@ void colourclick_readRGBC2(RGBC_val *tmpval, unsigned char mode) {
 
 void colourclick_calibration(void) {
     RGBC_val initial;
-    while(PORTFbits.RF2);
+    while(PORTFbits.RF2 && PORTFbits.RF3);
+    if (!PORTFbits.RF2) {LATDbits.LATD7=1;}
+    if (!PORTFbits.RF3) {LATHbits.LATH3=1;}
     LATDbits.LATD3 = 1;
     colourclickLEDs_C(1);
-    LATDbits.LATD7 = 1;
     _delay((unsigned long)((1000)*(64000000/4000.0)));
+
     colourclick_readRGBC(&initial);
+
     _delay((unsigned long)((1000)*(64000000/4000.0)));
+    LATDbits.LATD3 = 0;
+    colourclickLEDs_C(0);
     LATDbits.LATD7 = 0;
+    LATHbits.LATH3 = 0;
 
     interrupts_lowerbound = initial.C - 150;
     interrupts_upperbound = initial.C + 100;
-
-    LATDbits.LATD3 = 0;
-    colourclickLEDs_C(0);
 }
 
 
